@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+    }
+
+    .confetti-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .confetti {
+        width: 10px;
+        height: 10px;
+        background-color: #ff006e;
+        border-radius: 2px;
+        opacity: 0.7;
+        position: absolute;
+        animation: confettiFall 3s linear infinite;
+    }
+
+    .confetti:nth-child(even) {
+        background-color: #00bfff;
+    }
+
+    .confetti:nth-child(3n) {
+        background-color: #ffeb3b;
+    }
+
+    .confetti:nth-child(5n) {
+        background-color: #00fa9a;
+    }
+
+    @keyframes confettiFall {
+        from {
+            transform: translateY(-100vh) rotate(0deg);
+            opacity: 0.7;
+        }
+
+        to {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0.3;
+        }
+    }
+
+    .content {
+        z-index: 10;
+        position: relative;
+    }
+
+    h1 {
+        font-size: 5em;
+        margin-bottom: 20px;
+        color: #333;
+        animation: fadeIn 1s ease-in-out, pulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes pulse {
+        from {
+            transform: scale(1);
+        }
+
+        to {
+            transform: scale(1.1);
+        }
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    button {
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        padding: 3px 10px;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #0080ff;
+    }
+
+
+    .back_button svg {
+        width: 30px;
+        height: 30px;
+        fill: #555;
+        transition: fill 0.3s ease, transform 0.3s ease;
+    }
+
+    .back_button:hover svg {
+        fill: #00bfff;
+        transform: translateX(-5px);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="confetti-container">
+    </div>
+    <div class="content">
+        <h1>COMING SOON</h1>
+        <p>Our new page will be launched very soon!</p>
+        <button title="back" class="back_button" onclick="history.back()">
+            <svg style="width: 20px;color:#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path style="fill: #fff;"
+                    d="M120.1 41.8c9.9-8.9 10.7-24 1.8-33.9S97.8-2.7 87.9 6.2l-80 72C2.9 82.7 0 89.2 0 96s2.9 13.3 7.9 17.8l80 72c9.9 8.9 25 8.1 33.9-1.8s8.1-25-1.8-33.9L86.5 120 456 120c39.8 0 72 32.2 72 72l0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40c0-66.3-53.7-120-120-120L86.5 72l33.5-30.2zM307.4 166.5c-11.5-8.7-27.3-8.7-38.8 0l-168 128c-6.6 5-11 12.5-12.3 20.7l-24 160c-1.4 9.2 1.3 18.6 7.4 25.6S86.7 512 96 512l144 0 16 0c17.7 0 32-14.3 32-32l0-118.1c0-5.5 4.4-9.9 9.9-9.9c3.7 0 7.2 2.1 8.8 5.5l68.4 136.8c5.4 10.8 16.5 17.7 28.6 17.7l60.2 0 16 0c9.3 0 18.2-4.1 24.2-11.1s8.8-16.4 7.4-25.6l-24-160c-1.2-8.2-5.6-15.7-12.3-20.7l-168-128z" />
+            </svg>
+            &nbsp; Back
+        </button>
+    </div>
+
+    <script>
+    const confettiContainer = document.querySelector('.confetti-container');
+    const numberOfConfetti = 100;
+
+    function createConfetti() {
+        for (let i = 0; i < numberOfConfetti; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.animationDelay = `${Math.random() * 3}s`;
+            confetti.style.width = `${Math.random() * 10 + 5}px`;
+            confetti.style.height = confetti.style.width;
+            confettiContainer.appendChild(confetti);
+        }
+    }
+
+    createConfetti();
+    </script>
+</body>
+
+</html>

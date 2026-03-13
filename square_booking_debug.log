@@ -1,0 +1,3210 @@
+[2025-12-08 09:13:38] ------ CART ITEM DETAILS ------
+[2025-12-08 09:13:38] GameID: 41551PFXF3K14F91D8FABB
+[2025-12-08 09:13:38] Category (cat): escape-room
+[2025-12-08 09:13:38] Additional Guests: 0
+[2025-12-08 09:13:38] Per Guest Price: 0
+[2025-12-08 09:13:38] Total Additional Price: 0
+[2025-12-08 09:13:38] ------------------------------
+[2025-12-08 09:13:38] ----- BOOKEO API CALL START -----
+[2025-12-08 09:13:38] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=SjSAhqSUpnHFmHMT_50913447&notifyUsers=true&notifyCustomer=true
+[2025-12-08 09:13:38] Booking Payload for GameID 41551PFXF3K14F91D8FABB: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_41590PNU7C319592B9D086_2026-04-04",
+    "holdId": "SjSAhqSUpnHFmHMT_50913447",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T09:13:38+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "186.78",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 09:13:39] HTTP Code: 201
+[2025-12-08 09:13:39] Bookeo Raw Response: {
+  "bookingNumber": "1590512081345315",
+  "eventId": "41551PFXF3K14F91D8FABB_41590PNU7C319592B9D086_2026-04-04",
+  "startTime": "2026-04-04T13:00:00-07:00",
+  "endTime": "2026-04-04T14:00:00-07:00",
+  "customerId": "41590XPMPEP19AFD3CEBD1",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T01:13:39-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "186.78",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 09:13:39] ----- BOOKEO API CALL END -----
+
+[2025-12-08 09:13:39] ------ CART ITEM DETAILS ------
+[2025-12-08 09:13:39] GameID: 41551XJM6F314F91E1CD68
+[2025-12-08 09:13:39] Category (cat): escape-room
+[2025-12-08 09:13:39] Additional Guests: 0
+[2025-12-08 09:13:39] Per Guest Price: 0
+[2025-12-08 09:13:39] Total Additional Price: 0
+[2025-12-08 09:13:39] ------------------------------
+[2025-12-08 09:13:39] ----- BOOKEO API CALL START -----
+[2025-12-08 09:13:39] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=H4IkTbVp7bxtvCMU_50913449&notifyUsers=true&notifyCustomer=true
+[2025-12-08 09:13:39] Booking Payload for GameID 41551XJM6F314F91E1CD68: {
+    "productId": "41551XJM6F314F91E1CD68",
+    "eventId": "41551XJM6F314F91E1CD68_41590AERMME195928BA13A_2026-04-04",
+    "holdId": "H4IkTbVp7bxtvCMU_50913449",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T09:13:39+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "186.78",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 09:13:40] HTTP Code: 201
+[2025-12-08 09:13:40] Bookeo Raw Response: {
+  "bookingNumber": "1590512087455357",
+  "eventId": "41551XJM6F314F91E1CD68_41590AERMME195928BA13A_2026-04-04",
+  "startTime": "2026-04-04T14:00:00-07:00",
+  "endTime": "2026-04-04T15:00:00-07:00",
+  "customerId": "415903YWC9619AFD3CEEBA",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T01:13:40-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "STEAMPUNK SUBMARINE (PRIVATE GAME ONLY)",
+  "productId": "41551XJM6F314F91E1CD68",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "186.78",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 09:13:40] ----- BOOKEO API CALL END -----
+
+[2025-12-08 09:13:40] GiftCode unset from session
+[2025-12-08 09:13:40] New booking_summary session created: [{"bookingNumber":"1590512081345315","eventId":"41551PFXF3K14F91D8FABB_41590PNU7C319592B9D086_2026-04-04","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-04T13:00:00-07:00","endTime":"2026-04-04T14:00:00-07:00"},{"bookingNumber":"1590512087455357","eventId":"41551XJM6F314F91E1CD68_41590AERMME195928BA13A_2026-04-04","productId":"41551XJM6F314F91E1CD68","productName":"STEAMPUNK SUBMARINE (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-04T14:00:00-07:00","endTime":"2026-04-04T15:00:00-07:00"}]
+[2025-12-08 11:11:53] ------ CART ITEM DETAILS ------
+[2025-12-08 11:11:53] GameID: 415516JNCHJ14F91D5A806
+[2025-12-08 11:11:53] Category (cat): escape-room
+[2025-12-08 11:11:53] Additional Guests: 0
+[2025-12-08 11:11:53] Per Guest Price: 0
+[2025-12-08 11:11:53] Total Additional Price: 0
+[2025-12-08 11:11:53] ------------------------------
+[2025-12-08 11:11:53] ----- BOOKEO API CALL START -----
+[2025-12-08 11:11:53] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=Gf7JBGnUNQLG6dUg_50914808&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:11:53] Booking Payload for GameID 415516JNCHJ14F91D5A806: {
+    "productId": "415516JNCHJ14F91D5A806",
+    "eventId": "415516JNCHJ14F91D5A806_41551WY6PM91594A111A20_2026-04-13",
+    "holdId": "Gf7JBGnUNQLG6dUg_50914808",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:11:53+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:11:54] HTTP Code: 201
+[2025-12-08 11:11:54] Bookeo Raw Response: {
+  "bookingNumber": "1590512083612903",
+  "eventId": "415516JNCHJ14F91D5A806_41551WY6PM91594A111A20_2026-04-13",
+  "startTime": "2026-04-13T18:00:00-07:00",
+  "endTime": "2026-04-13T19:00:00-07:00",
+  "customerId": "41590YMXTJX19AFDA92C72",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:11:53-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ANCIENT EGYPT (PRIVATE GAME ONLY)",
+  "productId": "415516JNCHJ14F91D5A806",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:11:54] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:11:54] GiftCode unset from session
+[2025-12-08 11:11:54] New booking_summary session created: [{"bookingNumber":"1590512083612903","eventId":"415516JNCHJ14F91D5A806_41551WY6PM91594A111A20_2026-04-13","productId":"415516JNCHJ14F91D5A806","productName":"ANCIENT EGYPT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-13T18:00:00-07:00","endTime":"2026-04-13T19:00:00-07:00"}]
+[2025-12-08 11:14:14] ------ CART ITEM DETAILS ------
+[2025-12-08 11:14:14] GameID: 41551W69JEY18570042B52
+[2025-12-08 11:14:14] Category (cat): event-rooms
+[2025-12-08 11:14:14] Additional Guests: 0
+[2025-12-08 11:14:14] Per Guest Price: 0
+[2025-12-08 11:14:14] Total Additional Price: 0
+[2025-12-08 11:14:14] ------------------------------
+[2025-12-08 11:14:14] ----- BOOKEO API CALL START -----
+[2025-12-08 11:14:14] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=R0LDNxOaPaFulvgS_50914859&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:14:14] Booking Payload for GameID 41551W69JEY18570042B52: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551JMNTW318EABA8DBF1_2026-04-16",
+    "holdId": "R0LDNxOaPaFulvgS_50914859",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:14:14+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "4632.60",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:14:15] HTTP Code: 403
+[2025-12-08 11:14:15] Bookeo Raw Response: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590K251208111415R7369"
+}
+[2025-12-08 11:14:15] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:14:15] ------ CART ITEM DETAILS ------
+[2025-12-08 11:14:15] GameID: 41551W69JEY18570042B52
+[2025-12-08 11:14:15] Category (cat): event-rooms
+[2025-12-08 11:14:15] Additional Guests: 0
+[2025-12-08 11:14:15] Per Guest Price: 0
+[2025-12-08 11:14:15] Total Additional Price: 0
+[2025-12-08 11:14:15] ------------------------------
+[2025-12-08 11:14:15] ----- BOOKEO API CALL START -----
+[2025-12-08 11:14:15] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=R0LDNxOaPaFulvgS_50914859&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:14:15] Booking Payload for GameID 41551W69JEY18570042B52: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551U3H3JW18EABA8DBF2_2026-04-16",
+    "holdId": "R0LDNxOaPaFulvgS_50914859",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:14:15+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "4632.60",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:14:16] HTTP Code: 201
+[2025-12-08 11:14:16] Bookeo Raw Response: {
+  "bookingNumber": "1590512089418474",
+  "eventId": "41551W69JEY18570042B52_41551U3H3JW18EABA8DBF2_2026-04-16",
+  "startTime": "2026-04-16T16:00:00-07:00",
+  "endTime": "2026-04-16T19:00:00-07:00",
+  "customerId": "41590MXMKJX19AFDAB583D",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:14:16-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "2316.30",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2100",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "216.30",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "4632.60",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "216.30",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:14:16] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:14:16] GiftCode unset from session
+[2025-12-08 11:14:16] New booking_summary session created: [{"bookingNumber":"1590512089418474","eventId":"41551W69JEY18570042B52_41551U3H3JW18EABA8DBF2_2026-04-16","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-16T16:00:00-07:00","endTime":"2026-04-16T19:00:00-07:00"}]
+[2025-12-08 11:19:40] ------ CART ITEM DETAILS ------
+[2025-12-08 11:19:40] GameID: 41551W69JEY18570042B52
+[2025-12-08 11:19:40] Category (cat): event-rooms
+[2025-12-08 11:19:40] Additional Guests: 0
+[2025-12-08 11:19:40] Per Guest Price: 0
+[2025-12-08 11:19:40] Total Additional Price: 0
+[2025-12-08 11:19:40] ------------------------------
+[2025-12-08 11:19:40] ----- BOOKEO API CALL START -----
+[2025-12-08 11:19:40] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=vNMggqTvg8Rhwlr6_50914912&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:19:40] Booking Payload for GameID 41551W69JEY18570042B52: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551FT9L7C18EABA8DBF2_2026-04-16",
+    "holdId": "vNMggqTvg8Rhwlr6_50914912",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:19:40+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "5404.70",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:19:40] HTTP Code: 403
+[2025-12-08 11:19:40] Bookeo Raw Response: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590K251208111940KWMFC"
+}
+[2025-12-08 11:19:40] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:19:40] ------ CART ITEM DETAILS ------
+[2025-12-08 11:19:40] GameID: 41551W69JEY18570042B52
+[2025-12-08 11:19:40] Category (cat): event-rooms
+[2025-12-08 11:19:40] Additional Guests: 0
+[2025-12-08 11:19:40] Per Guest Price: 0
+[2025-12-08 11:19:40] Total Additional Price: 0
+[2025-12-08 11:19:40] ------------------------------
+[2025-12-08 11:19:40] ----- BOOKEO API CALL START -----
+[2025-12-08 11:19:40] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=vNMggqTvg8Rhwlr6_50914912&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:19:40] Booking Payload for GameID 41551W69JEY18570042B52: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551MWJEUR18EABA8DBF2_2026-04-17",
+    "holdId": "vNMggqTvg8Rhwlr6_50914912",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:19:40+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "5404.70",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:19:41] HTTP Code: 201
+[2025-12-08 11:19:41] Bookeo Raw Response: {
+  "bookingNumber": "1590512084961808",
+  "eventId": "41551W69JEY18570042B52_41551MWJEUR18EABA8DBF2_2026-04-17",
+  "startTime": "2026-04-17T13:00:00-07:00",
+  "endTime": "2026-04-17T16:00:00-07:00",
+  "customerId": "41590NFAPJY19AFDB04DA7",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:19:41-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2800",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "288.40",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "5404.70",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "288.40",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:19:41] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:19:41] GiftCode unset from session
+[2025-12-08 11:19:41] New booking_summary session created: [{"bookingNumber":"1590512084961808","eventId":"41551W69JEY18570042B52_41551MWJEUR18EABA8DBF2_2026-04-17","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-17T13:00:00-07:00","endTime":"2026-04-17T16:00:00-07:00"}]
+[2025-12-08 11:22:05] ------ CART ITEM DETAILS ------
+[2025-12-08 11:22:05] GameID: 415516JNCHJ14F91D5A806
+[2025-12-08 11:22:05] Category (cat): escape-room
+[2025-12-08 11:22:05] Additional Guests: 0
+[2025-12-08 11:22:05] Per Guest Price: 0
+[2025-12-08 11:22:05] Total Additional Price: 0
+[2025-12-08 11:22:05] ------------------------------
+[2025-12-08 11:22:05] ----- BOOKEO API CALL START -----
+[2025-12-08 11:22:05] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=U0XsgS34WqJN3LBj_50914955&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:22:05] Booking Payload for GameID 415516JNCHJ14F91D5A806: {
+    "productId": "415516JNCHJ14F91D5A806",
+    "eventId": "415516JNCHJ14F91D5A806_41551MEXY3E1594A111A20_2026-04-16",
+    "holdId": "U0XsgS34WqJN3LBj_50914955",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:22:05+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "2420.07",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:22:06] HTTP Code: 201
+[2025-12-08 11:22:06] Bookeo Raw Response: {
+  "bookingNumber": "1590512088502999",
+  "eventId": "415516JNCHJ14F91D5A806_41551MEXY3E1594A111A20_2026-04-16",
+  "startTime": "2026-04-16T14:00:00-07:00",
+  "endTime": "2026-04-16T15:00:00-07:00",
+  "customerId": "41590XKWM4K19AFDB284F6",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:22:06-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ANCIENT EGYPT (PRIVATE GAME ONLY)",
+  "productId": "415516JNCHJ14F91D5A806",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "2420.07",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:22:06] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:22:06] ------ CART ITEM DETAILS ------
+[2025-12-08 11:22:06] GameID: 41551W69JEY18570042B52
+[2025-12-08 11:22:06] Category (cat): event-rooms
+[2025-12-08 11:22:06] Additional Guests: 0
+[2025-12-08 11:22:06] Per Guest Price: 0
+[2025-12-08 11:22:06] Total Additional Price: 0
+[2025-12-08 11:22:06] ------------------------------
+[2025-12-08 11:22:06] ----- BOOKEO API CALL START -----
+[2025-12-08 11:22:06] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=OJ1CW6NTl787tRs3_50914958&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:22:06] Booking Payload for GameID 41551W69JEY18570042B52: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_415513W4CRF18EABA8DBF2_2026-04-16",
+    "holdId": "OJ1CW6NTl787tRs3_50914958",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:22:06+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "2420.07",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:22:07] HTTP Code: 201
+[2025-12-08 11:22:07] Bookeo Raw Response: {
+  "bookingNumber": "1590512089999199",
+  "eventId": "41551W69JEY18570042B52_415513W4CRF18EABA8DBF2_2026-04-16",
+  "startTime": "2026-04-16T20:00:00-07:00",
+  "endTime": "2026-04-16T23:00:00-07:00",
+  "customerId": "41590CUARTJ19AFDB287BC",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:22:07-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "2316.30",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2100",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "216.30",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "2420.07",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "216.30",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:22:07] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:22:07] GiftCode unset from session
+[2025-12-08 11:22:07] New booking_summary session created: [{"bookingNumber":"1590512088502999","eventId":"415516JNCHJ14F91D5A806_41551MEXY3E1594A111A20_2026-04-16","productId":"415516JNCHJ14F91D5A806","productName":"ANCIENT EGYPT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-16T14:00:00-07:00","endTime":"2026-04-16T15:00:00-07:00"},{"bookingNumber":"1590512089999199","eventId":"41551W69JEY18570042B52_415513W4CRF18EABA8DBF2_2026-04-16","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-16T20:00:00-07:00","endTime":"2026-04-16T23:00:00-07:00"}]
+[2025-12-08 11:26:00] ------ CART ITEM DETAILS ------
+[2025-12-08 11:26:00] GameID: 41590LTWCJR19900B0FD97
+[2025-12-08 11:26:00] Category (cat): party-package
+[2025-12-08 11:26:00] Additional Guests: 0
+[2025-12-08 11:26:00] Per Guest Price: 30
+[2025-12-08 11:26:00] Total Additional Price: 0
+[2025-12-08 11:26:00] ------------------------------
+[2025-12-08 11:26:00] ----- BOOKEO API CALL START -----
+[2025-12-08 11:26:00] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=uLeaFSxycjtp2HfA_50915029&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:26:00] Booking Payload for GameID 41590LTWCJR19900B0FD97: {
+    "productId": "41590LTWCJR19900B0FD97",
+    "eventId": "41590LTWCJR19900B0FD97_415907RNX4C19900B0FDBA_2026-04-16",
+    "holdId": "uLeaFSxycjtp2HfA_50915029",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:26:00+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "1411.84",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ],
+    "options": [
+        {
+            "name": "Escape Room Choice",
+            "value": "The Lift"
+        }
+    ]
+}
+[2025-12-08 11:26:01] HTTP Code: 201
+[2025-12-08 11:26:01] Bookeo Raw Response: {
+  "bookingNumber": "1590512084080326",
+  "eventId": "41590LTWCJR19900B0FD97_415907RNX4C19900B0FDBA_2026-04-16",
+  "startTime": "2026-04-16T13:00:00-07:00",
+  "endTime": "2026-04-16T16:00:00-07:00",
+  "customerId": "41590NM93NH19AFDB61B26",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:26:01-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ESCAPE GAME + VR PARTY ULTIMATE PACKAGE (Up to 8 players; 2 Hours Game + 1 Hour Party) Age 9 or above and at least 4\u00275\" tall - MAXIMUM GAME TIME",
+  "productId": "41590LTWCJR19900B0FD97",
+  "options": [
+    {
+      "id": "41590LTWCJR19900B0FD97_NKCKAART",
+      "name": "Escape Room Choice",
+      "value": "The Lift"
+    }
+  ],
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "794.16",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "720",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "74.16",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "1411.84",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "74.16",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:26:01] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:26:01] ------ CART ITEM DETAILS ------
+[2025-12-08 11:26:01] GameID: 41590N7R9HL1971A9A3506
+[2025-12-08 11:26:01] Category (cat): party-package
+[2025-12-08 11:26:01] Additional Guests: 0
+[2025-12-08 11:26:01] Per Guest Price: 40
+[2025-12-08 11:26:01] Total Additional Price: 0
+[2025-12-08 11:26:01] ------------------------------
+[2025-12-08 11:26:01] ----- BOOKEO API CALL START -----
+[2025-12-08 11:26:01] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=5yABFmWYa0xKyhpp_50915035&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:26:01] Booking Payload for GameID 41590N7R9HL1971A9A3506: {
+    "productId": "41590N7R9HL1971A9A3506",
+    "eventId": "41590N7R9HL1971A9A3506_41590W4RP6F1971A9A3513_2026-04-16",
+    "holdId": "5yABFmWYa0xKyhpp_50915035",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:26:01+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "1411.84",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ],
+    "options": [
+        {
+            "name": "Escape Room Choice",
+            "value": "The Lift\nIce Walker - GOT"
+        }
+    ]
+}
+[2025-12-08 11:26:02] HTTP Code: 201
+[2025-12-08 11:26:02] Bookeo Raw Response: {
+  "bookingNumber": "1590512087024027",
+  "eventId": "41590N7R9HL1971A9A3506_41590W4RP6F1971A9A3513_2026-04-16",
+  "startTime": "2026-04-16T16:00:00-07:00",
+  "endTime": "2026-04-16T18:30:00-07:00",
+  "customerId": "41590EWTNEF19AFDB61E48",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:26:02-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ESCAPE GAME + VR PARTY PACKAGE (Up to 8 players; 1.5 Hour Game + 1 Hour Party) Age 9 or above and at least 4\u00275\" tall",
+  "productId": "41590N7R9HL1971A9A3506",
+  "options": [
+    {
+      "id": "41590N7R9HL1971A9A3506_NKCKAART",
+      "name": "Escape Room Choice",
+      "value": "The Lift\nIce Walker - GOT"
+    },
+    {
+      "id": "41590N7R9HL1971A9A3506_UAX3T4YE",
+      "name": "Large Party Room Upgrade - 70% OFF",
+      "value": "false"
+    }
+  ],
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "617.68",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "560",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "57.68",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "1411.84",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "57.68",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:26:02] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:26:02] GiftCode unset from session
+[2025-12-08 11:26:02] New booking_summary session created: [{"bookingNumber":"1590512084080326","eventId":"41590LTWCJR19900B0FD97_415907RNX4C19900B0FDBA_2026-04-16","productId":"41590LTWCJR19900B0FD97","productName":"ESCAPE GAME + VR PARTY ULTIMATE PACKAGE (Up to 8 players; 2 Hours Game + 1 Hour Party) Age 9 or above and at least 4'5\" tall - MAXIMUM GAME TIME","status":"booked","startTime":"2026-04-16T13:00:00-07:00","endTime":"2026-04-16T16:00:00-07:00"},{"bookingNumber":"1590512087024027","eventId":"41590N7R9HL1971A9A3506_41590W4RP6F1971A9A3513_2026-04-16","productId":"41590N7R9HL1971A9A3506","productName":"ESCAPE GAME + VR PARTY PACKAGE (Up to 8 players; 1.5 Hour Game + 1 Hour Party) Age 9 or above and at least 4'5\" tall","status":"booked","startTime":"2026-04-16T16:00:00-07:00","endTime":"2026-04-16T18:30:00-07:00"}]
+[2025-12-08 11:39:59] ------ CART ITEM DETAILS ------
+[2025-12-08 11:39:59] GameID: 41551W69JEY18570042B52 | EventID: 41551W69JEY18570042B52_41551NUHECT18EABA8DBF2_2026-04-17 | Category: event-rooms | Guests: 1 | AddGuests: 0
+[2025-12-08 11:39:59] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 11:39:59] ------------------------------
+[2025-12-08 11:39:59] Using holdId vjxEcnLowkVBrOsD_50915194 for GameID 41551W69JEY18570042B52 with itemAmount 3088.4 USD
+[2025-12-08 11:39:59] ----- BOOKEO API CALL START for GameID 41551W69JEY18570042B52 -----
+[2025-12-08 11:39:59] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=vjxEcnLowkVBrOsD_50915194&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:39:59] Booking Payload: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551NUHECT18EABA8DBF2_2026-04-17",
+    "holdId": "vjxEcnLowkVBrOsD_50915194",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:39:59+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "3088.40",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:40:00] HTTP Code: 201
+[2025-12-08 11:40:00] Bookeo Raw Response: {
+  "bookingNumber": "1590512089762999",
+  "eventId": "41551W69JEY18570042B52_41551NUHECT18EABA8DBF2_2026-04-17",
+  "startTime": "2026-04-17T14:00:00-07:00",
+  "endTime": "2026-04-17T17:00:00-07:00",
+  "customerId": "41590E776H419AFDC2E91F",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:40:00-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2800",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "288.40",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "288.40",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:40:00] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:40:00] ------ CART ITEM DETAILS ------
+[2025-12-08 11:40:00] GameID: 41551W69JEY18570042B52 | EventID: 41551W69JEY18570042B52_41551MXU9LT18EABA8DBF3_2026-04-17 | Category: event-rooms | Guests: 1 | AddGuests: 0
+[2025-12-08 11:40:00] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 11:40:00] ------------------------------
+[2025-12-08 11:40:00] Using holdId 8bOdDJD2GuTcmBt0_50915196 for GameID 41551W69JEY18570042B52 with itemAmount 3088.4 USD
+[2025-12-08 11:40:00] ----- BOOKEO API CALL START for GameID 41551W69JEY18570042B52 -----
+[2025-12-08 11:40:00] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=8bOdDJD2GuTcmBt0_50915196&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:40:00] Booking Payload: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551MXU9LT18EABA8DBF3_2026-04-17",
+    "holdId": "8bOdDJD2GuTcmBt0_50915196",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:40:00+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "3088.40",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:40:01] HTTP Code: 201
+[2025-12-08 11:40:01] Bookeo Raw Response: {
+  "bookingNumber": "1590512084092508",
+  "eventId": "41551W69JEY18570042B52_41551MXU9LT18EABA8DBF3_2026-04-17",
+  "startTime": "2026-04-17T18:00:00-07:00",
+  "endTime": "2026-04-17T21:00:00-07:00",
+  "customerId": "41590FMMJN319AFDC2EBF9",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:40:01-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2800",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "288.40",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "288.40",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:40:01] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:40:01] GiftCode unset from session
+[2025-12-08 11:40:01] New booking_summary session created: [{"bookingNumber":"1590512089762999","eventId":"41551W69JEY18570042B52_41551NUHECT18EABA8DBF2_2026-04-17","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-17T14:00:00-07:00","endTime":"2026-04-17T17:00:00-07:00"},{"bookingNumber":"1590512084092508","eventId":"41551W69JEY18570042B52_41551MXU9LT18EABA8DBF3_2026-04-17","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-17T18:00:00-07:00","endTime":"2026-04-17T21:00:00-07:00"}]
+[2025-12-08 11:48:27] ------ CART ITEM DETAILS ------
+[2025-12-08 11:48:27] GameID: 41551W69JEY18570042B52 | EventID: 41551W69JEY18570042B52_41551MWJEUR18EABA8DBF2_2026-04-10 | Category: event-rooms | Guests: 1 | AddGuests: 0
+[2025-12-08 11:48:27] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 11:48:27] ------------------------------
+[2025-12-08 11:48:27] Using holdId agBperDlY2waKYqQ_50915263 for GameID 41551W69JEY18570042B52 with itemAmount 3088.4 USD
+[2025-12-08 11:48:27] ----- BOOKEO API CALL START for GameID 41551W69JEY18570042B52 -----
+[2025-12-08 11:48:27] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=agBperDlY2waKYqQ_50915263&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:48:27] Booking Payload: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551MWJEUR18EABA8DBF2_2026-04-10",
+    "holdId": "agBperDlY2waKYqQ_50915263",
+    "customer": {
+        "firstName": "Pradeep",
+        "lastName": "Singh",
+        "emailAddress": "ps5456284@gmail.com",
+        "phoneNumbers": [
+            {
+                "number": "7049527566",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:48:27+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "3088.40",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:48:28] HTTP Code: 201
+[2025-12-08 11:48:28] Bookeo Raw Response: {
+  "bookingNumber": "1590512085943624",
+  "eventId": "41551W69JEY18570042B52_41551MWJEUR18EABA8DBF2_2026-04-10",
+  "startTime": "2026-04-10T13:00:00-07:00",
+  "endTime": "2026-04-10T16:00:00-07:00",
+  "customerId": "415903YYXEY19AFDCAA7D4",
+  "title": "Pradeep Singh",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:48:28-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2800",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "288.40",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "288.40",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:48:28] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:48:28] ------ CART ITEM DETAILS ------
+[2025-12-08 11:48:28] GameID: 41551W69JEY18570042B52 | EventID: 41551W69JEY18570042B52_41551LA74J718EABA8DBF2_2026-04-10 | Category: event-rooms | Guests: 1 | AddGuests: 0
+[2025-12-08 11:48:28] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 11:48:28] ------------------------------
+[2025-12-08 11:48:28] Using holdId AOlc5mAybRPHwrlg_50915268 for GameID 41551W69JEY18570042B52 with itemAmount 3088.4 USD
+[2025-12-08 11:48:28] ----- BOOKEO API CALL START for GameID 41551W69JEY18570042B52 -----
+[2025-12-08 11:48:28] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=AOlc5mAybRPHwrlg_50915268&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:48:28] Booking Payload: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551LA74J718EABA8DBF2_2026-04-10",
+    "holdId": "AOlc5mAybRPHwrlg_50915268",
+    "customer": {
+        "firstName": "Pradeep",
+        "lastName": "Singh",
+        "emailAddress": "ps5456284@gmail.com",
+        "phoneNumbers": [
+            {
+                "number": "7049527566",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:48:28+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "3088.40",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:48:29] HTTP Code: 201
+[2025-12-08 11:48:29] Bookeo Raw Response: {
+  "bookingNumber": "1590512087662455",
+  "eventId": "41551W69JEY18570042B52_41551LA74J718EABA8DBF2_2026-04-10",
+  "startTime": "2026-04-10T16:00:00-07:00",
+  "endTime": "2026-04-10T19:00:00-07:00",
+  "customerId": "41590LH97X319AFDCAAB3B",
+  "title": "Pradeep Singh",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:48:29-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2800",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "288.40",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "288.40",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:48:29] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:48:29] GiftCode unset from session
+[2025-12-08 11:48:29] New booking_summary session created: [{"bookingNumber":"1590512085943624","eventId":"41551W69JEY18570042B52_41551MWJEUR18EABA8DBF2_2026-04-10","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-10T13:00:00-07:00","endTime":"2026-04-10T16:00:00-07:00"},{"bookingNumber":"1590512087662455","eventId":"41551W69JEY18570042B52_41551LA74J718EABA8DBF2_2026-04-10","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-10T16:00:00-07:00","endTime":"2026-04-10T19:00:00-07:00"}]
+[2025-12-08 11:50:46] ------ CART ITEM DETAILS ------
+[2025-12-08 11:50:46] GameID: 41551F9C679173BC114D28 | EventID: 41551F9C679173BC114D28_41551CNTF9H18496AE864A_2026-04-16 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-08 11:50:46] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 11:50:46] ------------------------------
+[2025-12-08 11:50:46] Using holdId WN1KytLJ4yTHlJN5_50915467 for GameID 41551F9C679173BC114D28 with itemAmount 92.24 USD
+[2025-12-08 11:50:46] ----- BOOKEO API CALL START for GameID 41551F9C679173BC114D28 -----
+[2025-12-08 11:50:46] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=WN1KytLJ4yTHlJN5_50915467&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:50:46] Booking Payload: {
+    "productId": "41551F9C679173BC114D28",
+    "eventId": "41551F9C679173BC114D28_41551CNTF9H18496AE864A_2026-04-16",
+    "holdId": "WN1KytLJ4yTHlJN5_50915467",
+    "customer": {
+        "firstName": "Pradeep",
+        "lastName": "Singh",
+        "emailAddress": "ps5456284@gmail.com",
+        "phoneNumbers": [
+            {
+                "number": "7049527566",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:50:46+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "92.24",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:50:47] HTTP Code: 201
+[2025-12-08 11:50:47] Bookeo Raw Response: {
+  "bookingNumber": "1590512082282756",
+  "eventId": "41551F9C679173BC114D28_41551CNTF9H18496AE864A_2026-04-16",
+  "startTime": "2026-04-16T19:00:00-07:00",
+  "endTime": "2026-04-16T20:00:00-07:00",
+  "customerId": "41590MYJR7619AFDCCC729",
+  "title": "Pradeep Singh",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:50:47-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "THE LIFT (PRIVATE GAME ONLY)",
+  "productId": "41551F9C679173BC114D28",
+  "options": [
+    {
+      "id": "41551F9C679173BC114D28_4C9PK6FE",
+      "name": "25% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+      "value": "0"
+    }
+  ],
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "92.24",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "80",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "12.24",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "92.24",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "8.24",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:50:47] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:50:47] ------ CART ITEM DETAILS ------
+[2025-12-08 11:50:47] GameID: 41551W69JEY18570042B52 | EventID: 41551W69JEY18570042B52_41551WF6NR918EABA8DBF3_2026-04-18 | Category: event-rooms | Guests: 1 | AddGuests: 0
+[2025-12-08 11:50:47] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 11:50:47] ------------------------------
+[2025-12-08 11:50:47] Using holdId NoAqh8ns4w5Ahq3T_50915528 for GameID 41551W69JEY18570042B52 with itemAmount 3088.4 USD
+[2025-12-08 11:50:47] ----- BOOKEO API CALL START for GameID 41551W69JEY18570042B52 -----
+[2025-12-08 11:50:47] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=NoAqh8ns4w5Ahq3T_50915528&notifyUsers=true&notifyCustomer=true
+[2025-12-08 11:50:47] Booking Payload: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551WF6NR918EABA8DBF3_2026-04-18",
+    "holdId": "NoAqh8ns4w5Ahq3T_50915528",
+    "customer": {
+        "firstName": "Pradeep",
+        "lastName": "Singh",
+        "emailAddress": "ps5456284@gmail.com",
+        "phoneNumbers": [
+            {
+                "number": "7049527566",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T11:50:47+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "3088.40",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 11:50:48] HTTP Code: 201
+[2025-12-08 11:50:48] Bookeo Raw Response: {
+  "bookingNumber": "1590512087923903",
+  "eventId": "41551W69JEY18570042B52_41551WF6NR918EABA8DBF3_2026-04-18",
+  "startTime": "2026-04-18T11:00:00-07:00",
+  "endTime": "2026-04-18T14:00:00-07:00",
+  "customerId": "41590PK7T4K19AFDCCCA4D",
+  "title": "Pradeep Singh",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T03:50:48-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2800",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "288.40",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "3088.40",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "288.40",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 11:50:48] ----- BOOKEO API CALL END -----
+
+[2025-12-08 11:50:48] GiftCode unset from session
+[2025-12-08 11:50:48] New booking_summary session created: [{"bookingNumber":"1590512082282756","eventId":"41551F9C679173BC114D28_41551CNTF9H18496AE864A_2026-04-16","productId":"41551F9C679173BC114D28","productName":"THE LIFT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-16T19:00:00-07:00","endTime":"2026-04-16T20:00:00-07:00"},{"bookingNumber":"1590512087923903","eventId":"41551W69JEY18570042B52_41551WF6NR918EABA8DBF3_2026-04-18","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2026-04-18T11:00:00-07:00","endTime":"2026-04-18T14:00:00-07:00"}]
+[2025-12-08 12:59:35] ------ CART ITEM DETAILS ------
+[2025-12-08 12:59:35] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_41590X49EL419592B9D084_2025-12-08 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-08 12:59:35] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 12:59:35] ------------------------------
+[2025-12-08 12:59:35] Using holdId 7PIQbWvsfh2MSdpn_50916213 for GameID 41551PFXF3K14F91D8FABB with itemAmount 103.77 USD
+[2025-12-08 12:59:35] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-08 12:59:35] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=7PIQbWvsfh2MSdpn_50916213&notifyUsers=true&notifyCustomer=true
+[2025-12-08 12:59:35] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_41590X49EL419592B9D084_2025-12-08",
+    "holdId": "7PIQbWvsfh2MSdpn_50916213",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T12:59:35+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 12:59:36] HTTP Code: 201
+[2025-12-08 12:59:36] Bookeo Raw Response: {
+  "bookingNumber": "1590512087613763",
+  "eventId": "41551PFXF3K14F91D8FABB_41590X49EL419592B9D084_2025-12-08",
+  "startTime": "2025-12-08T13:00:00-08:00",
+  "endTime": "2025-12-08T14:00:00-08:00",
+  "customerId": "415907RY4MU19AFE0BC91A",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T04:59:36-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 12:59:36] ----- BOOKEO API CALL END -----
+
+[2025-12-08 12:59:36] ------ CART ITEM DETAILS ------
+[2025-12-08 12:59:36] GameID: 41590LTWCJR19900B0FD97 | EventID: 41590LTWCJR19900B0FD97_41590MFJC4L19900B0FDBA_2025-12-08 | Category: party-package | Guests: 1 | AddGuests: 0
+[2025-12-08 12:59:36] PerGuestPrice: 30 | TotalAddPrice: 0
+[2025-12-08 12:59:36] ------------------------------
+[2025-12-08 12:59:36] Using holdId eKFpQeCh8LTX3RTM_50916231 for GameID 41590LTWCJR19900B0FD97 with itemAmount 794.16 USD
+[2025-12-08 12:59:36] ----- BOOKEO API CALL START for GameID 41590LTWCJR19900B0FD97 -----
+[2025-12-08 12:59:36] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=eKFpQeCh8LTX3RTM_50916231&notifyUsers=true&notifyCustomer=true
+[2025-12-08 12:59:36] Booking Payload: {
+    "productId": "41590LTWCJR19900B0FD97",
+    "eventId": "41590LTWCJR19900B0FD97_41590MFJC4L19900B0FDBA_2025-12-08",
+    "holdId": "eKFpQeCh8LTX3RTM_50916231",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T12:59:36+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "794.16",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ],
+    "options": [
+        {
+            "name": "Escape Room Choice",
+            "value": "The Lift"
+        }
+    ]
+}
+[2025-12-08 12:59:37] HTTP Code: 201
+[2025-12-08 12:59:37] Bookeo Raw Response: {
+  "bookingNumber": "1590512085153891",
+  "eventId": "41590LTWCJR19900B0FD97_41590MFJC4L19900B0FDBA_2025-12-08",
+  "startTime": "2025-12-08T15:00:00-08:00",
+  "endTime": "2025-12-08T18:00:00-08:00",
+  "customerId": "415904MF3WK19AFE0BCBF7",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T04:59:37-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ESCAPE GAME + VR PARTY ULTIMATE PACKAGE (Up to 8 players; 2 Hours Game + 1 Hour Party) Age 9 or above and at least 4\u00275\" tall - MAXIMUM GAME TIME",
+  "productId": "41590LTWCJR19900B0FD97",
+  "options": [
+    {
+      "id": "41590LTWCJR19900B0FD97_NKCKAART",
+      "name": "Escape Room Choice",
+      "value": "The Lift"
+    }
+  ],
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "794.16",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "720",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "74.16",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "794.16",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "74.16",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 12:59:37] ----- BOOKEO API CALL END -----
+
+[2025-12-08 12:59:37] GiftCode unset from session
+[2025-12-08 12:59:37] New booking_summary session created: [{"bookingNumber":"1590512087613763","eventId":"41551PFXF3K14F91D8FABB_41590X49EL419592B9D084_2025-12-08","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2025-12-08T13:00:00-08:00","endTime":"2025-12-08T14:00:00-08:00"},{"bookingNumber":"1590512085153891","eventId":"41590LTWCJR19900B0FD97_41590MFJC4L19900B0FDBA_2025-12-08","productId":"41590LTWCJR19900B0FD97","productName":"ESCAPE GAME + VR PARTY ULTIMATE PACKAGE (Up to 8 players; 2 Hours Game + 1 Hour Party) Age 9 or above and at least 4'5\" tall - MAXIMUM GAME TIME","status":"booked","startTime":"2025-12-08T15:00:00-08:00","endTime":"2025-12-08T18:00:00-08:00"}]
+[2025-12-08 13:12:13] ------ CART ITEM DETAILS ------
+[2025-12-08 13:12:13] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_415903MMENY19592B9D085_2026-04-15 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-08 13:12:13] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-08 13:12:13] ------------------------------
+[2025-12-08 13:12:13] Using holdId YLCbkgFval48wxcD_50916561 for GameID 41551PFXF3K14F91D8FABB with itemAmount 103.77 USD
+[2025-12-08 13:12:13] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-08 13:12:13] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=YLCbkgFval48wxcD_50916561&notifyUsers=true&notifyCustomer=true
+[2025-12-08 13:12:13] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_415903MMENY19592B9D085_2026-04-15",
+    "holdId": "YLCbkgFval48wxcD_50916561",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-08T13:12:13+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-08 13:12:13] HTTP Code: 201
+[2025-12-08 13:12:13] Bookeo Raw Response: {
+  "bookingNumber": "1590512084801281",
+  "eventId": "41551PFXF3K14F91D8FABB_415903MMENY19592B9D085_2026-04-15",
+  "startTime": "2026-04-15T15:00:00-07:00",
+  "endTime": "2026-04-15T16:00:00-07:00",
+  "customerId": "41590WRR6PE19AFE17563E",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T05:12:13-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-08 13:12:13] ----- BOOKEO API CALL END -----
+
+[2025-12-08 13:12:13] GiftCode unset from session
+[2025-12-08 13:12:13] New booking_summary session created: [{"bookingNumber":"1590512084801281","eventId":"41551PFXF3K14F91D8FABB_415903MMENY19592B9D085_2026-04-15","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-15T15:00:00-07:00","endTime":"2026-04-15T16:00:00-07:00"}]
+[2025-12-09 04:28:47] ------ CART ITEM DETAILS ------
+[2025-12-09 04:28:47] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_41590KWM96K1968DF763EF_2025-12-09 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 04:28:47] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 04:28:47] ------------------------------
+[2025-12-09 04:28:47] Using holdId gMftPUjAAHLaQhrv_50935812 for GameID 41551PFXF3K14F91D8FABB with itemAmount 103.77 USD
+[2025-12-09 04:28:47] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-09 04:28:47] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=gMftPUjAAHLaQhrv_50935812&notifyUsers=true&notifyCustomer=true
+[2025-12-09 04:28:47] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_41590KWM96K1968DF763EF_2025-12-09",
+    "holdId": "gMftPUjAAHLaQhrv_50935812",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T04:28:47+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 04:28:47] HTTP Code: 201
+[2025-12-09 04:28:47] Bookeo Raw Response: {
+  "bookingNumber": "1590512091512182",
+  "eventId": "41551PFXF3K14F91D8FABB_41590KWM96K1968DF763EF_2025-12-09",
+  "startTime": "2025-12-09T19:00:00-08:00",
+  "endTime": "2025-12-09T20:00:00-08:00",
+  "customerId": "41590CCFYN319B015E7B01",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T20:28:47-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 04:28:47] ----- BOOKEO API CALL END -----
+
+[2025-12-09 04:28:47] ------ CART ITEM DETAILS ------
+[2025-12-09 04:28:47] GameID: 41551W69JEY18570042B52 | EventID: 41551W69JEY18570042B52_41551EHJ4TW18EABA8DBF2_2025-12-11 | Category: event-rooms | Guests: 1 | AddGuests: 0
+[2025-12-09 04:28:47] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 04:28:47] ------------------------------
+[2025-12-09 04:28:47] Using holdId 1dmeTu6pa2tdx7rY_50935815 for GameID 41551W69JEY18570042B52 with itemAmount 2316.3 USD
+[2025-12-09 04:28:47] ----- BOOKEO API CALL START for GameID 41551W69JEY18570042B52 -----
+[2025-12-09 04:28:47] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=1dmeTu6pa2tdx7rY_50935815&notifyUsers=true&notifyCustomer=true
+[2025-12-09 04:28:47] Booking Payload: {
+    "productId": "41551W69JEY18570042B52",
+    "eventId": "41551W69JEY18570042B52_41551EHJ4TW18EABA8DBF2_2025-12-11",
+    "holdId": "1dmeTu6pa2tdx7rY_50935815",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T04:28:47+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "2316.30",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 04:28:48] HTTP Code: 201
+[2025-12-09 04:28:48] Bookeo Raw Response: {
+  "bookingNumber": "1590512095779336",
+  "eventId": "41551W69JEY18570042B52_41551EHJ4TW18EABA8DBF2_2025-12-11",
+  "startTime": "2025-12-11T18:00:00-08:00",
+  "endTime": "2025-12-11T21:00:00-08:00",
+  "customerId": "415903UX7NH19B015E7E13",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 1
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T20:28:48-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "3 HOUR FACILITY RENTAL (up to 120 guests)",
+  "productId": "41551W69JEY18570042B52",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "2316.30",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "2100",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "216.30",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "2316.30",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "216.30",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 04:28:48] ----- BOOKEO API CALL END -----
+
+[2025-12-09 04:28:48] GiftCode unset from session
+[2025-12-09 04:28:48] New booking_summary session created: [{"bookingNumber":"1590512091512182","eventId":"41551PFXF3K14F91D8FABB_41590KWM96K1968DF763EF_2025-12-09","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2025-12-09T19:00:00-08:00","endTime":"2025-12-09T20:00:00-08:00"},{"bookingNumber":"1590512095779336","eventId":"41551W69JEY18570042B52_41551EHJ4TW18EABA8DBF2_2025-12-11","productId":"41551W69JEY18570042B52","productName":"3 HOUR FACILITY RENTAL (up to 120 guests)","status":"booked","startTime":"2025-12-11T18:00:00-08:00","endTime":"2025-12-11T21:00:00-08:00"}]
+[2025-12-09 04:33:50] ------ CART ITEM DETAILS ------
+[2025-12-09 04:33:50] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-04-10 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 04:33:50] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 04:33:50] ------------------------------
+[2025-12-09 04:33:50] Using holdId gbfOwD2C1HV7T4YR_50935911 for GameID 41551PFXF3K14F91D8FABB with itemAmount 93.39 USD
+[2025-12-09 04:33:50] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-09 04:33:50] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=gbfOwD2C1HV7T4YR_50935911&notifyUsers=true&notifyCustomer=true
+[2025-12-09 04:33:50] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-04-10",
+    "holdId": "gbfOwD2C1HV7T4YR_50935911",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T04:33:50+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "93.39",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 04:33:51] HTTP Code: 201
+[2025-12-09 04:33:51] Bookeo Raw Response: {
+  "bookingNumber": "1590512098740282",
+  "eventId": "41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-04-10",
+  "startTime": "2026-04-10T21:00:00-07:00",
+  "endTime": "2026-04-10T22:00:00-07:00",
+  "customerId": "415907CUE3C19B01631B91",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T20:33:51-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "93.39",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 04:33:51] ----- BOOKEO API CALL END -----
+
+[2025-12-09 04:33:51] ------ CART ITEM DETAILS ------
+[2025-12-09 04:33:51] GameID: 41551HE99XR14F91DF96B0 | EventID: 41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-04-10 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 04:33:51] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 04:33:51] ------------------------------
+[2025-12-09 04:33:51] Using holdId cvSVnuG8Vk0LQQJj_50935913 for GameID 41551HE99XR14F91DF96B0 with itemAmount 93.39 USD
+[2025-12-09 04:33:51] ----- BOOKEO API CALL START for GameID 41551HE99XR14F91DF96B0 -----
+[2025-12-09 04:33:51] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=cvSVnuG8Vk0LQQJj_50935913&notifyUsers=true&notifyCustomer=true
+[2025-12-09 04:33:51] Booking Payload: {
+    "productId": "41551HE99XR14F91DF96B0",
+    "eventId": "41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-04-10",
+    "holdId": "cvSVnuG8Vk0LQQJj_50935913",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T04:33:51+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "93.39",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 04:33:52] HTTP Code: 201
+[2025-12-09 04:33:52] Bookeo Raw Response: {
+  "bookingNumber": "1590512098198774",
+  "eventId": "41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-04-10",
+  "startTime": "2026-04-10T19:00:00-07:00",
+  "endTime": "2026-04-10T20:00:00-07:00",
+  "customerId": "41590C4XCRC19B01631EF1",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T20:33:51-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "PRISON ESCAPE (PRIVATE GAME ONLY)",
+  "productId": "41551HE99XR14F91DF96B0",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "93.39",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 04:33:52] ----- BOOKEO API CALL END -----
+
+[2025-12-09 04:33:52] GiftCode unset from session
+[2025-12-09 04:33:52] New booking_summary session created: [{"bookingNumber":"1590512098740282","eventId":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-04-10","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-10T21:00:00-07:00","endTime":"2026-04-10T22:00:00-07:00"},{"bookingNumber":"1590512098198774","eventId":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-04-10","productId":"41551HE99XR14F91DF96B0","productName":"PRISON ESCAPE (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-10T19:00:00-07:00","endTime":"2026-04-10T20:00:00-07:00"}]
+[2025-12-09 04:50:14] ------ CART ITEM DETAILS ------
+[2025-12-09 04:50:14] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_41590RFJR7W19592B9D084_2026-05-03 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 04:50:14] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 04:50:14] ------------------------------
+[2025-12-09 04:50:14] Using holdId euqAjnS8BO8lVWIB_50936204 for GameID 41551PFXF3K14F91D8FABB with itemAmount 93.39 USD
+[2025-12-09 04:50:14] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-09 04:50:14] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=euqAjnS8BO8lVWIB_50936204&notifyUsers=true&notifyCustomer=true
+[2025-12-09 04:50:14] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_41590RFJR7W19592B9D084_2026-05-03",
+    "holdId": "euqAjnS8BO8lVWIB_50936204",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T04:50:14+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "93.39",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 04:50:15] HTTP Code: 403
+[2025-12-09 04:50:15] Bookeo Raw Response: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590K2512090450154WCPK"
+}
+[2025-12-09 04:50:15] ----- BOOKEO API CALL END -----
+
+[2025-12-09 04:50:15] DB insert error for GameID 41551PFXF3K14F91D8FABB: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'bookingNumber' cannot be null
+[2025-12-09 04:50:15] ------ CART ITEM DETAILS ------
+[2025-12-09 04:50:15] GameID: 41551XJM6F314F91E1CD68 | EventID: 41551XJM6F314F91E1CD68_41590HH73PP195928BA139_2026-05-03 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 04:50:15] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 04:50:15] ------------------------------
+[2025-12-09 04:50:15] Using holdId P8aGfsUlS1O8QHKV_50936206 for GameID 41551XJM6F314F91E1CD68 with itemAmount 93.39 USD
+[2025-12-09 04:50:15] ----- BOOKEO API CALL START for GameID 41551XJM6F314F91E1CD68 -----
+[2025-12-09 04:50:15] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=P8aGfsUlS1O8QHKV_50936206&notifyUsers=true&notifyCustomer=true
+[2025-12-09 04:50:15] Booking Payload: {
+    "productId": "41551XJM6F314F91E1CD68",
+    "eventId": "41551XJM6F314F91E1CD68_41590HH73PP195928BA139_2026-05-03",
+    "holdId": "P8aGfsUlS1O8QHKV_50936206",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T04:50:15+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "93.39",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 04:50:16] HTTP Code: 403
+[2025-12-09 04:50:16] Bookeo Raw Response: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590K251209045015NX9X9"
+}
+[2025-12-09 04:50:16] ----- BOOKEO API CALL END -----
+
+[2025-12-09 04:50:16] DB insert error for GameID 41551XJM6F314F91E1CD68: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'bookingNumber' cannot be null
+[2025-12-09 04:50:16] Exception: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'bookingNumber' cannot be null
+[2025-12-09 06:52:01] ------ CART ITEM DETAILS ------
+[2025-12-09 06:52:01] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_41590P7LXRM19592B9D085_2026-05-08 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 06:52:01] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 06:52:01] ------------------------------
+[2025-12-09 06:52:01] Using holdId toUSfHE4JAYeqrim_50937289 for GameID 41551PFXF3K14F91D8FABB with itemAmount 103.77 USD
+[2025-12-09 06:52:01] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-09 06:52:01] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=toUSfHE4JAYeqrim_50937289&notifyUsers=true&notifyCustomer=true
+[2025-12-09 06:52:01] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_41590P7LXRM19592B9D085_2026-05-08",
+    "holdId": "toUSfHE4JAYeqrim_50937289",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T06:52:01+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 06:52:02] HTTP Code: 201
+[2025-12-09 06:52:02] Bookeo Raw Response: {
+  "bookingNumber": "1590512096794099",
+  "eventId": "41551PFXF3K14F91D8FABB_41590P7LXRM19592B9D085_2026-05-08",
+  "startTime": "2026-05-08T15:00:00-07:00",
+  "endTime": "2026-05-08T16:00:00-07:00",
+  "customerId": "4159094N4UX19B01E19EC2",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T22:52:02-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 06:52:02] ----- BOOKEO API CALL END -----
+
+[2025-12-09 06:52:02] GiftCode unset from session
+[2025-12-09 06:52:02] New booking_summary session created: [{"bookingNumber":"1590512096794099","eventId":"41551PFXF3K14F91D8FABB_41590P7LXRM19592B9D085_2026-05-08","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-05-08T15:00:00-07:00","endTime":"2026-05-08T16:00:00-07:00"}]
+[2025-12-09 07:10:07] ------ CART ITEM DETAILS ------
+[2025-12-09 07:10:07] GameID: 41551XJM6F314F91E1CD68 | EventID: 41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-04-17 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 07:10:07] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 07:10:07] ------------------------------
+[2025-12-09 07:10:07] Using holdId rY7ftVBvFlA1XBro_50937420 for GameID 41551XJM6F314F91E1CD68 with itemAmount 103.77 USD
+[2025-12-09 07:10:07] ----- BOOKEO API CALL START for GameID 41551XJM6F314F91E1CD68 -----
+[2025-12-09 07:10:07] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=rY7ftVBvFlA1XBro_50937420&notifyUsers=true&notifyCustomer=true
+[2025-12-09 07:10:07] Booking Payload: {
+    "productId": "41551XJM6F314F91E1CD68",
+    "eventId": "41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-04-17",
+    "holdId": "rY7ftVBvFlA1XBro_50937420",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T07:10:07+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 07:10:07] HTTP Code: 201
+[2025-12-09 07:10:07] Bookeo Raw Response: {
+  "bookingNumber": "1590512094395356",
+  "eventId": "41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-04-17",
+  "startTime": "2026-04-17T18:00:00-07:00",
+  "endTime": "2026-04-17T19:00:00-07:00",
+  "customerId": "41590P4MEKW19B01F22F50",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T23:10:07-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "STEAMPUNK SUBMARINE (PRIVATE GAME ONLY)",
+  "productId": "41551XJM6F314F91E1CD68",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 07:10:07] ----- BOOKEO API CALL END -----
+
+[2025-12-09 07:10:07] GiftCode unset from session
+[2025-12-09 07:10:07] New booking_summary session created: [{"bookingNumber":"1590512094395356","eventId":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-04-17","productId":"41551XJM6F314F91E1CD68","productName":"STEAMPUNK SUBMARINE (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-17T18:00:00-07:00","endTime":"2026-04-17T19:00:00-07:00"}]
+[2025-12-09 07:16:39] ------ CART ITEM DETAILS ------
+[2025-12-09 07:16:39] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_41590PNU7C319592B9D086_2026-04-18 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 07:16:39] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 07:16:39] ------------------------------
+[2025-12-09 07:16:39] Using holdId 2s8VRowmyr1gW4ff_50937476 for GameID 41551PFXF3K14F91D8FABB with itemAmount 103.77 USD
+[2025-12-09 07:16:39] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-09 07:16:39] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=2s8VRowmyr1gW4ff_50937476&notifyUsers=true&notifyCustomer=true
+[2025-12-09 07:16:39] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_41590PNU7C319592B9D086_2026-04-18",
+    "holdId": "2s8VRowmyr1gW4ff_50937476",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T07:16:39+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 07:16:40] HTTP Code: 201
+[2025-12-09 07:16:40] Bookeo Raw Response: {
+  "bookingNumber": "1590512096335172",
+  "eventId": "41551PFXF3K14F91D8FABB_41590PNU7C319592B9D086_2026-04-18",
+  "startTime": "2026-04-18T13:00:00-07:00",
+  "endTime": "2026-04-18T14:00:00-07:00",
+  "customerId": "415907A3PKW19B01F82CD3",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T23:16:40-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 07:16:40] ----- BOOKEO API CALL END -----
+
+[2025-12-09 07:16:40] GiftCode unset from session
+[2025-12-09 07:16:40] New booking_summary session created: [{"bookingNumber":"1590512096335172","eventId":"41551PFXF3K14F91D8FABB_41590PNU7C319592B9D086_2026-04-18","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-18T13:00:00-07:00","endTime":"2026-04-18T14:00:00-07:00"}]
+[2025-12-09 07:20:00] ------ CART ITEM DETAILS ------
+[2025-12-09 07:20:00] GameID: 41551XJM6F314F91E1CD68 | EventID: 41551XJM6F314F91E1CD68_41590MTHAML195928BA13A_2026-04-16 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 07:20:00] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 07:20:00] ------------------------------
+[2025-12-09 07:20:00] Using holdId 533H4eIhsmVb6xRD_50937508 for GameID 41551XJM6F314F91E1CD68 with itemAmount 103.77 USD
+[2025-12-09 07:20:00] ----- BOOKEO API CALL START for GameID 41551XJM6F314F91E1CD68 -----
+[2025-12-09 07:20:00] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=533H4eIhsmVb6xRD_50937508&notifyUsers=true&notifyCustomer=true
+[2025-12-09 07:20:00] Booking Payload: {
+    "productId": "41551XJM6F314F91E1CD68",
+    "eventId": "41551XJM6F314F91E1CD68_41590MTHAML195928BA13A_2026-04-16",
+    "holdId": "533H4eIhsmVb6xRD_50937508",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T07:20:00+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 07:20:01] HTTP Code: 201
+[2025-12-09 07:20:01] Bookeo Raw Response: {
+  "bookingNumber": "1590512096070940",
+  "eventId": "41551XJM6F314F91E1CD68_41590MTHAML195928BA13A_2026-04-16",
+  "startTime": "2026-04-16T18:00:00-07:00",
+  "endTime": "2026-04-16T19:00:00-07:00",
+  "customerId": "41590R667NH19B01FB3E2B",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-08T23:20:01-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "STEAMPUNK SUBMARINE (PRIVATE GAME ONLY)",
+  "productId": "41551XJM6F314F91E1CD68",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 07:20:01] ----- BOOKEO API CALL END -----
+
+[2025-12-09 07:20:01] GiftCode unset from session
+[2025-12-09 07:20:01] New booking_summary session created: [{"bookingNumber":"1590512096070940","eventId":"41551XJM6F314F91E1CD68_41590MTHAML195928BA13A_2026-04-16","productId":"41551XJM6F314F91E1CD68","productName":"STEAMPUNK SUBMARINE (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-16T18:00:00-07:00","endTime":"2026-04-16T19:00:00-07:00"}]
+[2025-12-09 08:20:44] ------ CART ITEM DETAILS ------
+[2025-12-09 08:20:44] GameID: 41551Y4PM9614F91DD1BC6 | EventID: 41551Y4PM9614F91DD1BC6_41590YWFLW71959D430A60_2026-04-15 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 08:20:44] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 08:20:44] ------------------------------
+[2025-12-09 08:20:44] Using holdId YROENV8hDOlI1sAc_50937773 for GameID 41551Y4PM9614F91DD1BC6 with itemAmount 103.77 USD
+[2025-12-09 08:20:44] ----- BOOKEO API CALL START for GameID 41551Y4PM9614F91DD1BC6 -----
+[2025-12-09 08:20:44] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=YROENV8hDOlI1sAc_50937773&notifyUsers=true&notifyCustomer=true
+[2025-12-09 08:20:44] Booking Payload: {
+    "productId": "41551Y4PM9614F91DD1BC6",
+    "eventId": "41551Y4PM9614F91DD1BC6_41590YWFLW71959D430A60_2026-04-15",
+    "holdId": "YROENV8hDOlI1sAc_50937773",
+    "customer": {
+        "firstName": "Pradeep",
+        "lastName": "Singh",
+        "emailAddress": "ps5456284@gmail.com",
+        "phoneNumbers": [
+            {
+                "number": "7049527566",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T08:20:44+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 08:20:45] HTTP Code: 201
+[2025-12-09 08:20:45] Bookeo Raw Response: {
+  "bookingNumber": "1590512092895564",
+  "eventId": "41551Y4PM9614F91DD1BC6_41590YWFLW71959D430A60_2026-04-15",
+  "startTime": "2026-04-15T16:00:00-07:00",
+  "endTime": "2026-04-15T17:00:00-07:00",
+  "customerId": "415907YXYHU19B0232D6BC",
+  "title": "Pradeep Singh",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-09T00:20:44-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "MUSEUM HEIST (PRIVATE GAME ONLY)",
+  "productId": "41551Y4PM9614F91DD1BC6",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 08:20:45] ----- BOOKEO API CALL END -----
+
+[2025-12-09 08:20:45] GiftCode unset from session
+[2025-12-09 08:20:45] New booking_summary session created: [{"bookingNumber":"1590512092895564","eventId":"41551Y4PM9614F91DD1BC6_41590YWFLW71959D430A60_2026-04-15","productId":"41551Y4PM9614F91DD1BC6","productName":"MUSEUM HEIST (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-04-15T16:00:00-07:00","endTime":"2026-04-15T17:00:00-07:00"}]
+[2025-12-09 08:32:11] ------ CART ITEM DETAILS ------
+[2025-12-09 08:32:11] GameID: 41551PFXF3K14F91D8FABB | EventID: 41551PFXF3K14F91D8FABB_415909H96AX19592B9D086_2026-05-09 | Category: escape-room | Guests: 2 | AddGuests: 0
+[2025-12-09 08:32:11] PerGuestPrice: 0 | TotalAddPrice: 0
+[2025-12-09 08:32:11] ------------------------------
+[2025-12-09 08:32:11] Using holdId Tnk6lEGFlIDyI7kd_50937886 for GameID 41551PFXF3K14F91D8FABB with itemAmount 103.77 USD
+[2025-12-09 08:32:11] ----- BOOKEO API CALL START for GameID 41551PFXF3K14F91D8FABB -----
+[2025-12-09 08:32:11] Booking URL: https://api.bookeo.com/v2/bookings?previousHoldId=Tnk6lEGFlIDyI7kd_50937886&notifyUsers=true&notifyCustomer=true
+[2025-12-09 08:32:11] Booking Payload: {
+    "productId": "41551PFXF3K14F91D8FABB",
+    "eventId": "41551PFXF3K14F91D8FABB_415909H96AX19592B9D086_2026-05-09",
+    "holdId": "Tnk6lEGFlIDyI7kd_50937886",
+    "customer": {
+        "firstName": "megha",
+        "lastName": "barve",
+        "emailAddress": "megha.barve04@gmai.com",
+        "phoneNumbers": [
+            {
+                "number": "9424894738",
+                "type": "mobile"
+            }
+        ]
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "status": "booked",
+    "initialPayments": [
+        {
+            "receivedTime": "2025-12-09T08:32:11+00:00",
+            "reason": "Full payment",
+            "comment": "Credit card payment",
+            "amount": {
+                "amount": "103.77",
+                "currency": "USD"
+            },
+            "paymentMethod": "creditCard",
+            "paymentMethodOther": "VISA **** 1111"
+        }
+    ]
+}
+[2025-12-09 08:32:12] HTTP Code: 201
+[2025-12-09 08:32:12] Bookeo Raw Response: {
+  "bookingNumber": "1590512092171064",
+  "eventId": "41551PFXF3K14F91D8FABB_415909H96AX19592B9D086_2026-05-09",
+  "startTime": "2026-05-09T15:00:00-07:00",
+  "endTime": "2026-05-09T16:00:00-07:00",
+  "customerId": "41590U3MKEJ19B023D547A",
+  "title": "Megha Barve",
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": 2
+      }
+    ]
+  },
+  "canceled": false,
+  "accepted": true,
+  "creationTime": "2025-12-09T00:32:12-08:00",
+  "creationAgent": "Flee Escape (application)",
+  "productName": "ICE WALKER - GOT (PRIVATE GAME ONLY)",
+  "productId": "41551PFXF3K14F91D8FABB",
+  "privateEvent": false,
+  "noShow": false,
+  "price": {
+    "totalGross": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "totalNet": {
+      "amount": "90",
+      "currency": "USD"
+    },
+    "totalTaxes": {
+      "amount": "13.77",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "amount": "103.77",
+      "currency": "USD"
+    },
+    "taxes": [
+      {
+        "taxId": "41551F4AA9416930C3600E",
+        "amount": {
+          "amount": "4.50",
+          "currency": "USD"
+        }
+      },
+      {
+        "taxId": "415514PR6RC14F9231736E",
+        "amount": {
+          "amount": "9.27",
+          "currency": "USD"
+        }
+      }
+    ]
+  }
+}
+[2025-12-09 08:32:12] ----- BOOKEO API CALL END -----
+
+[2025-12-09 08:32:12] GiftCode unset from session
+[2025-12-09 08:32:12] New booking_summary session created: [{"bookingNumber":"1590512092171064","eventId":"41551PFXF3K14F91D8FABB_415909H96AX19592B9D086_2026-05-09","productId":"41551PFXF3K14F91D8FABB","productName":"ICE WALKER - GOT (PRIVATE GAME ONLY)","status":"booked","startTime":"2026-05-09T15:00:00-07:00","endTime":"2026-05-09T16:00:00-07:00"}]

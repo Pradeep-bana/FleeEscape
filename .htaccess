@@ -1,0 +1,38 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# SPECIFIC RULE FIRST - For VR experience pages
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^vr/(.*)$ vr.php?slug=$1 [L,QSA]
+RewriteRule ^blog/(.*)$ blog.php?slug=$1 [L,QSA]
+
+# GENERIC RULES AFTER - Allow URLs without .php extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
+
+# For subfolders like pages/, etc.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/?$ $1.php [L,QSA]
+
+# Redirect all 404 errors to custom page
+ErrorDocument 404 https://fleeescapes.com/404.php
+
+#----------------------------------------------------------------cp:ppd
+# Section managed by cPanel: Password Protected Directories     -cp:ppd
+# - Do not edit this section of the htaccess file!              -cp:ppd
+#----------------------------------------------------------------cp:ppd
+#AuthType Basic
+#AuthName "Protected 'public_html'"
+#AuthUserFile "/home/wwwfleee/.htpasswds/public_html/passwd"
+#Require valid-user
+#----------------------------------------------------------------cp:ppd
+# End section managed by cPanel: Password Protected Directories -cp:ppd
+#----------------------------------------------------------------cp:ppd
+
+<Files "bookeo_webhook.php">
+    Require all granted
+    Satisfy Any
+</Files>

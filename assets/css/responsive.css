@@ -1,0 +1,2373 @@
+@media screen and (min-device-width: 768px) and (max-device-width: 1342px) { 
+   .sw-caption .home_slider_content_main {
+    padding-left: 60px;
+}
+}
+
+
+/* Responsive */
+
+
+@media (max-width: 768px) {
+    section {
+        padding: 20px 0;
+    }
+
+  .gaming-container .nav-tabs .nav-link {
+    padding: 4px 14px;
+    font-size: 14px;
+    margin: 0;
+    border-radius: 7px;
+    margin: 3px 8px;
+    margin-top: 10px;
+}
+    .dark-scheme section {
+        overflow: hidden;
+    }
+
+ .gaming-container .room-card {
+    height: auto;
+    margin: 0 auto;
+    width: 93%;
+    margin-bottom: 14px;
+}
+
+    .gaming-container .room-image {
+        height: 240px!important;
+    }
+
+    /* ================ */
+  .bg_bnt_custom {
+    padding: 5px 13px !important;
+    font-size: 13px !important;
+    border-radius: 5px !important;
+}
+.booking_date_multi_bnt {
+    flex-wrap: wrap;
+}
+
+.booking_date_multi_bnt .bg_bnt_custom {
+    padding: 9px 14px !important;
+    border-radius: 5px !important;
+    font-size: 15px !important;
+    line-height: normal;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+}
+
+    .booking_date_multi_bnt .bg_bnt_custom i {
+        margin-right: 0;
+    }
+
+    .second_logo_main {
+        width: 85px;
+        left: 0;
+    }
+
+    div#logo img.logo-main {
+        width: 80px;
+    }
+h1.slider-title.s2 {
+    font-size: 22px;
+    display: grid;
+    line-height: 29px;
+    letter-spacing: 0;
+    margin-bottom: 17px!important;
+}
+.sw-caption {
+    height: 100%;
+    top: auto;
+    /* bottom: 0; */
+    transform: translate(0);
+    display: flex;
+    align-items: center;
+    padding-bottom: 25px;
+}
+.sw-caption .col-lg-5.mb-sm-30 {
+    margin: 0;
+}
+    .sw-caption .slider-text {
+    margin-top: 3px;
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color:#fff;
+}
+.swiper-inner.bg_before_bg_add:before {
+    width: 100%;
+    /* transform: rotate(-90deg); */
+    height: inherit;
+    bottom: 0;
+    /* background: red; */
+    background: linear-gradient(0deg, rgb(0 0 0 / 81%) 18%, rgb(1 1 1 / 0%) 67%);
+}
+
+    .heading_main_section h1 {
+        font-size: 23px;
+        margin-bottom: 6px;
+    }
+
+   .heading_main_section h2 {
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 6px;
+    font-weight: 400;
+    margin-bottom: 9px;
+}
+
+    #gamingTabsContent .owl-dots,
+    .collcrion_sum .owl-dots,
+    .review_section .owl-dots {
+        margin-top: 0;
+    }
+
+    #gamingTabsContent button.owl-prev,
+    .collcrion_sum button.owl-prev,
+    .review_section button.owl-prev,
+    #gamingTabsContent button.owl-next,
+    .collcrion_sum button.owl-next,
+    .review_section button.owl-next {
+        width: 22%;
+    }
+    .gaming-container .owl-nav button, .collcrion_sum .owl-nav button, .review_section .owl-nav button, .escapeRoomReviewsSlider .owl-nav button {
+    font-size: 17px !important;
+}
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .sm-padding40 {
+        padding: 70px 0px;
+        font-size: 14px;
+    }
+
+    .pt90 {
+        padding-top: 30px !important;
+    }
+
+    .footer_soci_media ul a {
+        width: 25px;
+        height: 25px;
+        font-size: 13px;
+    }
+
+    .subfooter {
+        margin-top: 0;
+        padding: 0 0 20px 0;
+        padding-bottom: 3px;
+    }
+
+    .footer_soci_media ul {
+        margin-bottom: 0;
+        padding: 5px 0;
+    }
+
+    .widget {
+        padding-bottom: 7px;
+    }
+
+    .footer_map_grid iframe {
+        height: 135px;
+    }
+
+    .subfooter {
+        font-size: 14px;
+    }
+
+    .menu-simple li {
+        margin: 0 2px;
+    }
+
+    .footer_address__box_headeign {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+
+    .footer_content_add p,
+    .footer_content_add span {
+        font-size: 15px;
+    }
+
+   .footer_content_add .mb-8:nth-child(2) {
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+    .footer_content_add .cont_footer_add .text-end {
+        text-align: left !important;
+    }
+
+    .cont_footer_add>div {
+        display: block !important;
+    }
+
+    .cont_footer_add>div b {
+        display: block;
+    }
+
+    .cont_footer_add>div .text-right {
+        text-align: start !important;
+    }
+
+    .footer_content_add {
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .row.reponsive_footer_grid {
+        margin-bottom: 20px;
+    }
+
+    .row.reponsive_footer_grid .col-lg-6.col-sm-6:first-child {
+        width: 60%;
+    }
+
+    .row.reponsive_footer_grid .col-lg-6.col-sm-6:last-child {
+        width: 40%;
+    }
+
+    .review_section .card {
+        padding: 15px 7px;
+        margin-bottom: 6px;
+    }
+
+  .review_section .card p {
+    font-size: 17px;
+    line-height: 25px;
+    margin-bottom: 10px;
+    height: auto!important;
+}
+    .review_section .profile-img {
+        width: 45px !important;
+        height: 45px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+ .review_section .card {
+    padding: 15px 19px;
+    margin-bottom: 15px;
+}
+
+    .review_section .card .text-muted {
+        font-size: 16px;
+        padding: 0;
+    }
+
+    .review_section .google-badge {
+        margin-top: 0;
+        font-size: 16px;
+    }
+
+    .review_section .google-badge svg {
+        height: 14px;
+        margin-right: 4px;
+    }
+
+    .heading_main_section {
+        margin-bottom: 0;
+    }
+
+ .heading_main_section p {
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: 0px;
+}
+
+    .game_all_project_count .counter-col {
+        width: 46%;
+        /* font-size: 13px; */
+        padding: 16px 0;
+        background: transparent;
+        margin: 0 0px;
+        border-radius: 9px;
+        height: auto;
+        max-height: max-content;
+        margin-bottom: 12px !important;
+    }
+
+    .game_all_project_count .icon-circle {
+        width: auto;
+        height: auto;
+        font-size: 10px;
+    }
+
+.game_all_project_count h2.display-4.fw-bold {
+        font-size:25px;
+        margin-bottom: 0;
+    }
+
+    .game_all_project_count .counter-col p {
+        font-size: 16px;
+        line-height: normal;
+    }
+
+    .ENTER_NEW_WORLD_img {
+        height: 250px;
+        margin-bottom: 15px;
+    }
+
+    .ENTER_NEW_WORLD_Content {
+        width: 100%;
+    }
+
+  .ENTER_NEW_WORLD_Content h1 {
+    font-size: 22px!important;
+    margin-bottom: 6px;
+    margin-top: 8px;
+}
+
+   .ENTER_NEW_WORLD_Content p {
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0;
+}
+
+.Collection_summer_camp_card {
+    margin: 0;
+    margin-top: 13px;
+    height: 358px;
+    margin-bottom: 19px;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 54px;
+    margin-top: 30px;
+}
+
+   .Collection_summer_camp_card_icons {
+    top: -59px;
+    height: auto;
+    margin: 0 auto;
+}
+
+    .Collection_summer_camp_card_cont_box {
+        padding-top: 28px;
+    }
+
+    .Collection_summer_camp_card_icons_img img {
+        width: 100px !important;
+        height: 100px;
+    }
+
+    .Collection_summer_camp_card_cont {
+        padding: 0 8px;
+    }
+
+   .Collection_summer_camp_card_cont p {
+    font-size: 15px;
+    margin-bottom: 17px;
+    line-height: 23px;
+}
+
+.Collection_summer_camp_card_cont h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+    .video_play_add,
+    .video_play_add video {
+        height: 250px;
+        margin-bottom: 10px;
+        width: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+        border-radius: 13px;
+    }
+
+    .play_button_video {
+        height: 100%;
+    }
+
+    .play_button_video i {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+
+    .swiper-pagination,
+    .spacer-single {
+        display: none;
+    }
+
+    header a.bg_bnt_custom.mb-3 {
+        margin: 0px !important;
+        font-size: 9px !important;
+        padding: 8px 3px !important;
+        line-height: normal;
+    }
+
+    /* ================================== */
+
+    .gaming-container .nav-tabs {
+        margin-bottom: 13px;
+    }
+
+    .gaming-container {
+        padding: 27px 0;
+        padding-bottom: 60px;
+    }
+
+.d-label {
+    font-size: 16px;
+    top: 13px;
+    right: 15px;
+    padding: 4px 6px;
+    line-height: normal;
+    font-weight: 500;
+}
+
+   .gaming-container .room-title {
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+    .gaming-container .room-content {
+        padding: 12px 12px;
+    }
+
+.gaming-container .d-price {
+    margin: 16px 3px;
+    font-size: 16px;
+    line-height: normal;
+}
+
+  .gaming-container .book-btn {
+    border: 1px solid #00d4ff;
+    letter-spacing: 0;
+    margin-top: 12px;
+    width: fit-content;
+    text-align: center;
+    margin: 2px auto;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 19px;
+    display: grid;
+    line-height: normal;
+    font-weight: 500;
+}
+
+   #gamingTabsContent h6 {
+    font-size: 14px;
+}
+
+    body .owl-stage .owl-item {
+        margin-bottom: 0;
+        margin: 0;
+    }
+
+    .all_box_full_width {
+        margin-top: 34px;
+        padding: 0 10px;
+    }
+
+    .our_clients_slider {
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .our_clients_slider .owl-dots {
+        margin-top: 20px !important;
+    }
+
+    .owl-nav {
+        /*display: none !important;*/
+    }
+
+    .booking_banner_content {
+        padding: 0;
+        width: 93%;
+    }
+
+    .page_heading_main_top {
+        margin-top: 25px;
+        margin-bottom: 28px;
+    }
+
+    .booking_banner_content h1 {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+   .booking_banner_content p {
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0;
+}
+
+    .booking_banner_content {
+        padding: 0;
+    }
+
+    .booking_banner {
+        height: 60vh;
+    }
+    .booking_banner img {
+    object-fit: cover;
+}
+
+    header.header-mobile {
+        /*position: relative !important;*/
+    }
+
+    .sm-pt100 {
+        padding-top: 0 !important;
+    }
+
+    .owl-item.active.center {
+        transform: translateY(0);
+    }
+
+    .page_heading_main_top h1 {
+        font-size: 33px;
+    }
+
+ .step-circle {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #000;
+}
+
+  .progress-step::before {
+    font-size: 11px;
+    line-height: 15px;
+    top: 37px;
+}
+
+    .progress-line {
+        top: 14px;
+        height: 1px;
+    }
+
+    .progress-container {
+        margin-bottom: 80px;
+    }
+
+.tab-item {
+    padding: 6px 18px;
+    margin-bottom: 2px;
+    width: max-content;
+    border-radius: 7px;
+    font-size: 14px;
+    border-bottom: 1px solid #00d4ff40;
+    border: 1px solid #00d4ff40;
+}
+
+    .booking-sidebar.p-3.rounded {
+        padding: 0 !important;
+        margin-bottom: 17px;
+    }
+
+    .custom-tab-nav {
+        display: flex;
+        flex-direction: row !important;
+        gap: 9px;
+    }
+
+    .booking_card_time_and_price {
+    padding: 4px 9px;
+}
+
+    .booking_card_time_and_price {
+        padding: 6px 16px;
+    }
+
+    .player-count-display {
+        font-size: 16px;
+    }
+
+    img.palyear_tem_img {
+        width: 14px;
+        margin-right: 1px;
+    }
+
+   .custom-date-wrapper_date input {
+    /* padding: 1px 0px 6px 0px; */
+    font-size: 18px !important;
+}
+
+    .time_slots label {
+           margin: 3px;
+    font-size: 15px;
+    padding: 4px 6px;
+    }
+
+   .View_All_Dates_tag {
+    font-size: 16px;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+  h5.guest-heading {
+    font-size: 16px;
+    margin-bottom: 12px!important;
+}
+
+    .guest-value {
+        font-size: 16px;
+        padding: 2px 11px;
+    }
+
+    .next-button-wrapper a {
+        font-size: 13px;
+    }
+
+
+    .bg_bnt_custom {
+        padding: 1px 14px;
+        font-size: 14px;
+        border-radius: 6px;
+        margin-top: 7px;
+    }
+
+    .review-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+    }
+
+    .review-section p.subtitle1 {
+                font-size: 13px;
+        margin-bottom: 17px;
+        line-height: 1.7;
+        letter-spacing: 0;
+    }
+
+  .review-card {
+    padding: 10px 14px;
+    margin-bottom: 10px;
+}
+    .review-card p {
+        margin-bottom: 10px;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+  .review-card p {
+    font-size: 15px;
+    line-height: 25px;
+}
+.faq-section .accordion-body {
+    font-size: 15px !important;
+}
+
+    .faq-section {
+        margin-top: 10px !important;
+    }
+
+  .custom-date_arrow.prev-date, .custom-date_arrow.next-date {
+    position: relative;
+    top: 0px;
+    font-size: 14px;
+}
+
+    .time_slots label span.Available_play_time {
+        padding-top: 3px;
+        font-size: 11px;
+    }
+
+    .time_slot_group.selected {
+        background-color: transparent !important;
+        border-width: 0px !important;
+    }
+
+    #stepContents {
+        display: block;
+    }
+
+    .add_on_heading {
+        font-size: 18px;
+        margin-bottom: 2px;
+        line-height: 1.2;
+    }
+
+    .step-content {
+        margin-top: 0px;
+        /*display: block;*/
+    }
+
+    .customer-details {
+        padding: 14px 0;
+    }
+
+    .customer-details .form-group label {
+        font-size: 14px;
+    }
+
+    .customer-details .form-group input,
+    .customer-details .form-group select {
+        padding: 0 9px;
+        height: 42px;
+        font-size: 13px;
+    }
+    
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .payment_right_tab {
+        padding: 0;
+    }
+
+    .payment_right_tab h3 {
+        margin-bottom: 13px;
+        font-size: 16px;
+        padding-bottom: 10px;
+    }
+
+    .policy-box li {
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 8px;
+    }
+
+   .payment_summary_tab p {
+    margin: 8px 0;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+    .add_on_heading {
+        margin-bottom: 00px;
+    }
+
+   .booking_right_sitebar {
+    width: 100%;
+    padding: 0;
+    margin-top: 25px;
+}
+
+    .booking-summary-box h3 {
+        font-size: 20px;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        padding: 0;
+                padding-bottom: 10px;
+    }
+
+    .summary-header {
+        font-size: 14px;
+        padding: 0 15px;
+    }
+
+    .summary-date {
+        font-size: 12px;
+    }
+
+    .delete_card i {
+        font-size: 14px;
+    }
+
+    .summary-row {
+    padding: 1px 0;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+.summary-row div:nth-child(1) {
+    width: 42%;
+}
+select.QNT_SELECT_drop.qty-input {
+    box-shadow: none;
+    font-size: 13px;
+    padding: 3px 3px;
+    border-radius: 4px;
+}
+.sq-card-wrapper {
+    min-width: 100%!important;
+}
+.sq-card-wrapper .sq-card-message {
+   
+    display: none;
+}
+    .total_all_card_summary h2 {
+        font-size: 17px;
+    }
+
+    .total_all_card_summary p {
+        font-size: 18px;
+    }
+
+    .applied_code_box .label {
+        font-size: 12px;
+    }
+
+    .applied_code_box_header .btn_remove {
+        font-size: 12px;
+    }
+
+    .applied_code_box .code {
+        padding: 3px 10px;
+        font-size: 10px;
+    }
+
+    .applied_code_box .change {
+        font-size: 12px;
+    }
+
+    section.review-section {
+        margin-top: 10px !important;
+    }
+
+    .faq-section h2 {
+        font-size: 20px;
+    }
+
+    .faq-section .accordion-button,
+    .faq-section .accordion-body {
+        padding: 5px 9px;
+        font-size: 15px;
+    }
+
+    .faq-section .accordion-item {
+        margin-bottom: 0;
+    }
+
+   
+
+    .add_on_booking_card img {
+        max-height: 220px;
+        border-radius: 8px;
+        margin-bottom: 0;
+    }
+
+    .add_on_section .row .col-md-6 .card-body {
+        padding: 14px 9px;
+        padding-top: 8px;
+    }
+
+    .add_on_section .row .col-md-6 .card-body h5.add_on_booking_card_title {
+    font-size: 18px;
+    margin-bottom: 7px;
+    padding-top: 3px;
+}
+
+    .add-summary-btn_wraper {
+        margin-top: auto;
+    }
+
+    .add_on_section .row .col-md-6 .card-body .price-box {
+        font-size: 14px !important;
+        line-height: 1.4;
+    }
+
+  .add_on_section .row .col-md-6 .card-body p {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    margin-top: 6px;
+}
+
+    .add_on_booking_quantity_controls button {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: normal;
+    }
+
+    .add_on_booking_quantity_controls {
+        justify-content: flex-start;
+        gap: 13px;
+    }
+
+    .add_on_booking_card {
+        padding: 0 !important;
+        margin: 0 0px;
+        margin-bottom: 13px;
+    }
+
+    .booking_tab_wrapper {
+        margin-top: 29px;
+    }
+
+    .choose-adventure {
+        padding-top: 30px;
+        padding-bottom: 0;
+        margin-bottom: 30px;
+    }
+
+    .escpe_room_right_data_items {
+        top: 0;
+    }
+
+    .card_deatils_tabs li.nav-item button {
+        padding: 6px 2px;
+        font-size: 13px;
+    }
+
+    .Boo_Prison_Escap_main_heading h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .escape_room_home_contact_icon {
+        font-size: 25px;
+        margin-bottom: 8px;
+    }
+
+    .Boo_Prison_Escap_main_heading p {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+.Boo_Prison_Escape_time_box {
+    padding: 12px 10px;
+    margin-bottom: 0px;
+    margin-top: 15px;
+}
+.Boo_Prison_Escape_time_box .sub_heading {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+    .Boo_Prison_Escape_time-slot-label {
+        padding: 6px 7px;
+        color: #fff;
+        font-size: 13px;
+    }
+
+    .Boo_Prison_Escape_booking_summary_box_row span {
+        font-size: 12px;
+    }
+
+    .Boo_Prison_Escape_booking_summary_box_row {
+        margin-bottom: 9px;
+    }
+
+    .escape_boo_summart_data_totale {
+        font-size: 16px;
+    }
+
+
+    .escape_room_home_Customer_Reviews_tabs a.nav-link {
+        border-radius: 7px;
+        font-size: 14px;
+        padding: 1px 14px;
+        margin: 0 3px;
+        margin-bottom: 7px;
+    }
+
+    .escape_room_home_Customer_Reviews_tabs {
+        margin-bottom: 10px;
+    }
+
+    .escape_room_home_Customer_Reviews_card p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .escape_room_home_Customer_Reviews_footer {
+        font-size: 16px;
+        margin-top: 0;
+    }
+
+    .escape_room_home_Customer_Reviews_card {
+        padding: 18px 13px;
+    }
+
+    .escape_room_home_Customer_Reviews_avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .small,
+    small {
+        font-size: 15px;
+    }
+
+    .Boo_Prison_Escap_main_heading {
+        margin-bottom: 15px;
+    }
+
+    .vr_page_banner_content {
+        padding: 0 0;
+    }
+
+    .vr_page_banner_content h1 {
+        font-size: 23px;
+    }
+
+    .vr_page_banner_content p {
+        font-size: 13px;
+        line-height: normal;
+    }
+
+    .vr_page_banner {
+        /*height: 350px !important;*/
+        margin-top: 0;
+        margin-bottom: 0px;
+    }
+
+    .gaming-container .room-details {
+        opacity: 1;
+        max-height: max-content;
+        overflow: hidden;
+        visibility: visible;
+    }
+
+    .gaming-container .container {
+        padding: 0 !important;
+    }
+.home_baneer_section {
+    height: 90vh;
+    position: relative;
+}
+   .v-center {
+    min-height: 100%;
+    text-align: center;
+}
+
+    .gaming-container .owl-dots button.owl-dot,
+    .collcrion_sum .owl-dots button.owl-dot,
+    .review_section .owl-dots button.owl-dot,
+    .escapeRoomReviewsSlider button.owl-dot {
+        height: 6px;
+        width: 6px;
+        border: 1px solid #0cdede;
+    }
+
+    .Collection_summer_camp_card_img,
+    .game_Collection_section .img-fluid {
+    height: 215px;
+    }
+
+   .Collection_summer_camp_card_icons_i i {
+    font-size: 26px;
+}
+
+    .row.game_Collection_section div#thumbnail-carousel {
+        display: ruby-text;
+        padding: 0;
+    }
+
+    .row.game_Collection_section {
+        margin-top: 8px;
+    }
+
+    #ourclinets .item img {
+        padding: 3px 3px;
+        border-radius: 4px;
+    }
+
+    .p-2 {
+        padding: 1px !important;
+    }
+
+    .adventure-content h2 {
+        font-size: 18px;
+        margin: 0 0 2px 0;
+    }
+
+    .adventure-content p {
+        font-size: 14px;
+        margin-bottom: 14px;
+        line-height: 20px;
+    }
+
+    .adventure-content {
+        width: 100%;
+        padding: 30px 20px;
+        margin-top: 0;
+    }
+    .contact_data_list_form .input-group textarea {
+    height: 77px!important;
+}
+
+    .discount-badge_lat_m {
+        padding: 4px 8px;
+        border-radius: 25px;
+        font-size: 9px !important;
+        border: 1px solid transparent;
+    }
+
+    .contact_data_list_box h6 {
+        font-size: 16px;
+    }
+
+    .contact_data_list_box a {
+        font-size: 14px;
+    }
+
+    .contact_data_list_box_items svg {
+        padding: 5px 3px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .contact_data_list_box {
+        margin-bottom: 10px;
+        padding: 9px 14px;
+        gap: 9px;
+    }
+
+    .contact_data_list_heading h4 {
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    .stat-card {
+        padding: 15px 15px;
+    }
+
+    .stat-number {
+        font-size: 18px;
+    }
+
+    .stat-label {
+        font-size: 13px;
+    }
+
+    .award-section {
+        max-width: 100%;
+        margin: 0 auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 14px 20px;
+    }
+
+    .award-section h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .award-section p {
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    .award-section {
+        display: block;
+
+    }
+
+    .all_box_full_width .row .col-sm-6:nth-child(1),
+    .all_box_full_width .row .col-sm-6:nth-child(4),
+    .all_box_full_width .row .col-sm-6:nth-child(5) {
+        /*border-bottom: 2px solid #00d4ff5e;*/
+        /*margin-bottom: 23px;*/
+        /*padding-bottom: 14px !important;*/
+        /*border-radius: 4%;*/
+    }
+
+  
+.all_box_full_width .row .col-sm-6:nth-child(2) {
+    order: -1;
+}
+
+
+.all_box_full_width .row .col-sm-6 {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0;
+    border: 1px solid #0CDEDE;
+    border-top: none;
+    z-index: 1;
+    border-radius: 12px;
+    margin: 7px;
+    background: transparent;
+    border-color: #00d4ff;
+    color: #00d4ff;
+    /*box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);*/
+    margin: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 0;
+}
+.all_box_full_width .row .col-sm-6:nth-child(1), .all_box_full_width .row .col-sm-6:nth-child(4), .all_box_full_width .row .col-sm-6:nth-child(5) {
+    margin-bottom: 20px;
+    padding: 12px !important;
+    border-bottom: 1px solid #0CDEDE;
+    border-bottom-left-radius: 12px!important;
+    border-bottom-right-radius: 12px!important;
+            padding-top: 0 !important;
+}
+.all_box_full_width .row .col-sm-6:nth-child(2), .all_box_full_width .row .col-sm-6:nth-child(3), .all_box_full_width .row .col-sm-6:nth-child(6) {
+    /*margin-bottom: 20px;*/
+    padding: 0px !important;
+    border-top: 1px solid #0CDEDE;
+    border-top-left-radius: 12px!important;
+    border-top-right-radius: 12px!important;
+}
+
+
+
+    .all_box_full_width .row .col-sm-6:nth-child(5) {
+        order: 1;
+    }
+
+    .ENTER_NEW_WORLD_img {
+        height: 250px;
+        margin-bottom: 7px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    .all_box_full_width {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .responsive_width_center {
+        width: 92%;
+        margin: 0 auto;
+    }
+
+    .lds-roller {
+        width: 50px;
+        height: 50px;
+    }
+
+    .lds-roller div:after {
+        width: 4px;
+        height: 4px;
+    }
+
+    .nav-toggle {
+
+        padding: 6px;
+        gap: 5px;
+    }
+
+    .add_to_card a {
+        font-size: 18px;
+    }
+
+    .nav-toggle span {
+        width: 30px!important;
+        /*height: 4px!important;*/
+    }
+
+    /*.nav-toggle span:nth-child(2) {*/
+    /*    width: 25px!important;*/
+    /*}*/
+
+    /*.nav-toggle span:nth-child(3) {*/
+    /*    width: 20px!important;*/
+    /*}*/
+
+    header .de-flex.sm-pt10 .de-flex-col:nth-child(1) {
+        order: -1;
+    }
+
+    header .de-flex.sm-pt10 .de-flex-col:nth-child(3) {
+        order: -1;
+    }
+
+    #mainmenu li ul ul {
+        margin-left: 0;
+    }
+
+    header.header-mobile #mainmenu li:last-child {
+        margin-bottom: 0;
+    }
+
+    #mainmenu li a {
+        font-size: 13px;
+    }
+
+    ul.submenu li {
+        padding: 0px 12px !important;
+    }
+
+    #mainmenu li {
+        padding: 0 15px;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+        width: 28px;
+    }
+
+    .choose-adventure .ca-title {
+        font-size: 18px;
+    }
+
+section.choose-adventure {
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    padding-top: 63px;
+}
+
+    .choose-adventure .ca-item-name {
+        font-size: 16px;
+    }
+
+    .choose-adventure .ca-item-sub {
+        font-size: 14px;
+    }
+
+    .choose-adventure .ca-item-meta {
+        margin-top: 2px;
+    }
+
+    .choose-adventure span.ca-difficulty.ca-medium,
+    .choose-adventure .ca-item-meta span.ca-item-meta_minutes {
+        font-size: 15px;
+    }
+
+    .choose-adventure .ca-item-meta span.ca-item-meta_minutes {
+        margin-left: 10px;
+    }
+
+    .choose-adventure .ca-rating {
+        margin-top: 0;
+        font-size: 12px;
+    }
+
+.choose-adventure .ca-item {
+    margin-bottom: 13px;
+    padding: 9px 13px;
+    width: 92%;
+    margin: 0 auto;
+    margin-bottom: 9px;
+}
+
+    .portable_baner_section h3 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .Portable_payrer_desc_time_items i {
+        font-size: 18px;
+    }
+
+    .portable_image-box img {
+        height: 335px;
+        margin-top: 16px;
+    }
+
+    .Portable_img_box_img_verly h6 {
+        font-size: 10px;
+    }
+
+    .Portable_img_box_img_verly p {
+        font-size: 8px;
+    }
+
+    .Portable_img_box_img_verly i {
+        font-size: 15px;
+    }
+
+    .Portable_img_box_img_verly {
+        bottom: 14px;
+        left: 14px;
+        border-radius: 4px;
+        padding: 4px 14px;
+        gap: 7px;
+        width: 42%;
+    }
+
+    .portable_baner_section {
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    .eam-transform-section_box {
+        margin-top: 0;
+    }
+
+    .section_heading_page {
+        margin-bottom: 30px;
+    }
+
+   .section_heading_page .section-title {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+    .section_heading_page .section-subtitle {
+        font-size: 14px;
+        letter-spacing: 0;
+        padding: 0 33px;
+    }
+
+    .section_heading_page .section-subtitle br {
+        display: none;
+    }
+
+    .icon-circle {
+        width: 40px;
+        height: 40px;
+                margin-bottom: 4px;
+    }
+
+    .icon-circle svg {
+        width: 18px;
+    }
+
+   .Corporate_Team_Building_card {
+    padding: 9px 8px !important;
+}
+
+    .Corporate_Team_Building_card h5 {
+        font-size: 16px;
+        margin: 0 !important;
+        margin-top: 10px !important;
+    }
+span.player-label p {
+    margin-bottom: 10px;
+}
+    .Facility_Rentals_Entire {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .Facility_Rentals_Entire .row .col-md-3 {
+        width: 50%;
+    }
+
+    .Facility_Rentals_Entire .col-md-3 .Corporate_Team_Building_card h5 {
+        font-size: 15px;
+        margin-bottom: 5px !important;
+    }
+
+    .Facility_Rentals_Entire .col-md-3 .Corporate_Team_Building_card svg {
+        width: 25px;
+        height: 25px;
+        margin: 0 !important;
+    }
+
+
+
+    .Flexible_Rental_Packages {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+   .party_packages_card_new_desc li {
+    margin-bottom: 0px;
+    font-size: 16px;
+    padding-left: 16px;
+    line-height: 1.7;
+}
+
+    .party_packages_card_new_desc ul {
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0 !important;
+    }
+
+    .facility_rental_card_paclkage .pricing p.pricing_and_dis_new {
+        font-size: 19px;
+        margin-top: 0px;
+        margin-bottom: 0;
+    }
+
+    .booking_card_overlay h5 {
+        font-size: 18px;
+    }
+
+    .icon_buttons_wrapper .icon-button {
+        padding: 5px;
+        max-width: 30px;
+        max-height: 30px;
+        margin: 1px;
+    }
+
+    .icon_buttons_wrapper .icon-button i {
+        font-size: 15px;
+        margin-right: 10px;
+        right: 3px;
+    }
+
+    .booking_card_img {
+        height: 258px;
+    }
+
+    .Corporate_Team_Building_card_price strong {
+        font-size: 18px;
+    }
+
+    .Corporate_Team_Building_card svg {
+        margin-bottom: 0 !important;
+    }
+
+
+    .Experience_Gallery .col-md-4 {
+        width: 50%;
+        margin-bottom: 0;
+        padding: 5px;
+    }
+
+    .onsite-team-event_gallery .overlay-text h6 {
+        font-size: 10px !important;
+    }
+
+    .Experience_Gallery .gallery-item .overlay-text p {
+        margin: 0;
+        font-size: 8px;
+        opacity: 0.8;
+    }
+
+    .Experience_Gallery .gallery-item .overlay-text {
+        padding: 5px 7px;
+    }
+
+    section.Ultimate_Birthday_Experience {
+        padding: 0;
+    }
+
+    .py-5 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+ .faq-section .accordion-button, .faq-section .accordion-body {
+    /* padding: 2px 9px; */
+    font-size: 15px;
+}
+    .Bring_Adventure_time {
+        margin-top: 18px;
+        gap: 15px;
+    }
+
+    .Bring_Adventure_time_iteme h3 {
+        font-size: 20px;
+    }
+
+    footer {
+        padding: 34px 0 0 0;
+        font-size: 13px;
+                padding-bottom: 70px;
+    }
+
+    .booking_tab_content .booking_card {
+        margin-bottom: 15px;
+    }
+
+    .vr_game_video_modal img {
+        height: 180px;
+    }
+
+    .vr_game_video_modal_content i {
+        font-size: 42px;
+    }
+
+    .SPACE_MARINE_VR h3 {
+        font-size: 18px;
+    }
+
+    .SPACE_MARINE_VR h6 {
+        font-size: 15px;
+        margin-bottom: 2px;
+    }
+
+   .SPACE_MARINE_VR p {
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 0;
+    /* margin: 4px 0; */
+    margin-bottom: 16px;
+}
+  h6 {
+    font-size: 14px;
+    line-height: 1.7;
+}
+ .vr_game_deatils_page_layer_item {
+    padding: 12px 6px;
+    border-radius: 6px;
+    width: 48%;
+    flex: auto;
+}
+
+    .vr_game_deatils_page_layer_item h3 {
+        font-size: 15px;
+        margin-bottom: 3px;
+        letter-spacing: 0px;
+    }
+
+    .vr_game_deatils_page_layer_item p {
+        font-size: 14px;
+    }
+
+   .vr_game_deatils_page_layer {
+    max-width: 100%;
+    gap: 9px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .Last_Minute_Deals_card_date p {
+        font-size: 14px;
+    }
+
+    .booking_card.Last_Minute_Deals_card .time_slot_group label {
+        padding: 5px 5px;
+        gap: 0;
+        font-size: 14px;
+        margin: 0 1px;
+    }
+
+    .Last_Minute_Deals_card_player .player-btn {
+        font-size: 14px;
+        padding: 0px 14px;
+    }
+
+    .Last_Minute_Deals_card_player .player-value {
+        font-size: 15px;
+    }
+
+    .p-3 {
+        padding: 6px !important;
+    }
+
+    .section_heading_page span.badge-custom {
+        padding: 0px 10px;
+        border: 1px solid #00d4ff;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+.vr_page_banner_content p {
+    font-size: 14px;
+    line-height: 22px !important;
+    letter-spacing: 0;
+    font-size: 16px;
+}
+
+    .vr_page_banner_content p br {
+        display: none;
+    }
+
+    p.Last_Minute_Deals_card_price {
+        font-size: 12px;
+    }
+
+    .Last_Minute_Deals_card_date p {
+        margin-bottom: 7px;
+    }
+
+    .Last-Minute_Deals {
+        margin-top: 0px;
+        margin-bottom: 0;
+    }
+
+    .Celebrate_Style {
+        padding: 0!important;
+    }
+    .Last-Minute_Deals {
+    margin-top: 0px;
+    margin-bottom: 0!important;
+}
+.booking_card.party_packages_card_new p.Last_Minute_Deals_card_price {
+    font-size: 18px;
+}
+.booking_card_overlay p {
+    font-size: 16px;
+    line-height: normal;
+    margin-top: 4px;
+    margin-bottom: 7px;
+}
+
+.mb-2 {
+  margin-bottom: -0.5rem !important;
+}
+.filters select {
+    padding: 8px 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.all_button_main_header {
+    gap: 5px;
+    padding: 0px;
+}
+.booking_date_multi_bnt .all_button_main_header:nth-child(2) {
+    order: -1;
+}
+h4 {
+    font-size: 17px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    /*line-height: 8px;*/
+}
+.customer-details .form-group {
+    margin-bottom: 8px;
+}
+.payment_btnrow_tab button, .payment_voucher_tab {
+    padding: 8px 2px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+.payment_images_done {
+    padding: 26px 7px;
+}
+.booking_done_img_main_img img {
+    width: 150px;
+    height: 180px;
+}
+.booking_done_img_main_gallery img {
+    width: 56px;
+    height: 75px;
+    border: 1px solid #00d4ff;
+    border-radius: 12px;
+}
+.payment_images_done h1 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 21px;
+}
+.offer-card {
+    max-width: 100%;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.mt-2 {
+    margin-top: -0.5rem !important;
+}
+.fs-6 {
+    font-size: 12px !important;
+}
+.modal-header .btn-close {
+    padding: -0.5rem -1.5rem;
+    margin: -2.5rem 6.5rem 2.5rem auto;
+}
+.pro-tip {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+}
+.timer_header {
+    margin-bottom: 0;
+    font-size: 16px;
+    letter-spacing: 0;
+}
+.booking-summary-box {
+    color: #fff;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+.summary-row.discount-row> div ,.summary-row> div{
+    padding: 0!important;
+}
+.summary-date p {
+    font-size: 15px;
+}
+.summary-header {
+    border-bottom: 0;
+}
+.Boo_Prison_Escape_calendar_box .flatpickr-day {
+    height: 43px;
+    font-size: 15px;
+}
+.Boo_Prison_Escape_calendar_box span.flatpickr-weekday {
+    font-size: 13px;
+}
+.escape_room_home_Customer_Reviews_summary {
+    padding: 19px 0;
+    margin-top: 0;
+}
+.col-md-4.escape_room_home_Customer_Reviews_counter {
+    width: 33%;
+}
+.escape_room_home_Customer_Reviews_counter .value {
+    font-size: 24px;
+}
+.escape_room_home_contact_section {
+    padding: 8px 6px;
+}
+.escape_room_home_Customer_Reviews_section {
+    margin-top: 0;
+}
+.Corporate_Team_Building_table thead th {
+    padding: 5px 4px;
+    font-size: 13px;
+}
+.Corporate_Team_Building_table tr td {
+    padding: 5px 9px !important;
+    font-size: 13px;
+    line-height: normal;
+}
+.game_all_project_count_bg {
+    background-color: #1a1a1a;
+    padding: 17px 0;
+    border-radius: 12px;
+    margin-top: 0;
+}
+.Complete_Corporate_Team  .col-md-3 {
+    width: 50%;
+}
+.Complete_Corporate_Team .Corporate_Team_Building_card i {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+section.our_clients_slider_team_building {
+    margin-top: 10px;
+    margin-bottom: 21px;
+}
+div#ourclinets {
+    margin-top: 10px;
+}
+.team-transform-section .features span {
+    border-radius: 5px;
+    line-height: normal;
+    font-size: 13px;
+    text-align: center;
+    padding: 9px 4px;
+}
+.faq-section h4 {
+    font-size: 18px;
+    margin-bottom: 13px;
+    line-height: normal;
+}
+.faq-list.row ,.team-transform-section .contact-form{
+    padding: 0 14px;
+}
+.team-transform-section .contact-form .form-group input, .team-transform-section .contact-form .form-group select, .team-transform-section .contact-form .form-group textarea {
+    width: 100%;
+    border: 1px solid #00d4ffdb;
+    padding: 6px 14px;
+    border-radius: 6px;
+    /*box-shadow: 2px 3px 10px rgba(0, 212, 255, 0.6);*/
+    font-size: 12px;
+    height: 40px;
+    text-align: left;
+}
+.faq-section {
+    box-shadow: 0 0 30px #00d4ff00;
+}
+.team-transform-section .features span {
+    border: 1px solid #00d4ff;
+}
+.review-section {
+    padding-bottom: 0;
+}
+.mt-5 {
+    margin-top: 1rem !important;
+}
+.Corporate_Team_Building_table thead th {
+    line-height: normal;
+}
+h3 {
+    font-size: 17px;
+}
+.Custom_Team_Building .custom-box {
+    border-radius: 12px !important;
+    padding: 0px 0px!important;
+    background: transparent;
+    box-shadow: none;
+}
+.Custom_Team_Building .feature-card i {
+    font-size: 31px;
+    margin-bottom: 15px;
+}
+.Corporate_Team_Building_content_Features_box {
+    gap: 14px;
+    margin: 0 auto;
+    width: fit-content;
+    flex-wrap: wrap;
+}
+.Corporate_Team_Building_content_Features_box_items p {
+    font-size: 14px;
+}
+.Corporate_Team_Building_content_Features_box_items i {
+    font-size: 13px;
+}
+.Corporate_Team_Building_content_Features_box_items {
+    background: transparent;
+    gap: 6px;
+    line-height: normal;
+    padding: 9px 14px;
+    border-radius: 30px;
+    box-shadow: none;
+    border: 1px solid #00d4ff;
+    border-radius: 5px;
+}
+.Corporate_Team_Building_4_cont .col-md-4 {
+    text-align: left;
+    font-size: 13px;
+}
+section.Corporate_Team_Building {
+    margin-top: 50px;
+}
+.Corporate_Team_Building_content-box {
+    padding: 30px 13px;
+    padding-top: 24px;
+}
+p.lead {
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 0;
+    margin-top: 0!important;
+    letter-spacing: 0;
+    margin-bottom: 10px!important;
+}
+.Corporate_Team_Building_content-box .order_summart_main_button {
+    margin-top: 8px !important;
+}
+.Unforgettable_Birthday_content {
+    padding: 0;
+    padding-bottom: 24px;
+}
+.Unforgettable_Birthday_text {
+    margin-bottom: 14px;
+}
+.Unforgettable_Birthday_title {
+    font-size: 22px;
+    margin-bottom: 12px;
+    margin-top: 17px;
+}
+section.Ultimate_Birthday_Experience {
+    padding: 41px 0px;
+}
+.section_heading_page span.badge-custom {
+    padding: 0px 10px;
+    border: 1px solid #00d4ff;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+.section_heading_page .section-title {
+    font-size: 18px;
+}
+.section_heading_page .section-subtitle {
+    font-size: 12px;
+}
+.feature-box h5 {
+    margin-bottom: 3px;
+    font-size: 15px;
+}
+.feature-box p {
+    color: #fff;
+    font-size: 12px;
+}
+.feature-box i {
+    font-size: 20px;
+    margin-right: 12px;
+}
+.order_summart_main_button {
+    /*display: block;*/
+}
+.container.Why_Choose_VR .col-md-3.col-sm-6.mb-4 {
+    width: 50%;
+    margin-bottom: 10px!important;
+}
+.choose-card {
+    padding: 9px 6px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    margin-bottom: 14px;
+    background: #191919;
+    height: 100%;
+    margin-bottom: 0;
+}
+.choose-text {
+    font-size: 12px;
+}
+.Why_Choose_VR {
+    background: transparent;
+    border-radius: 12px;
+    margin-top: 72px;
+}
+.game_all_project_count .icon-circle i {
+    font-size: 32px;
+}
+.vr_page_banner_add_log_top img {
+    width: 83px;
+}
+.Additional_Guests_card {
+    padding: 13px 12px;
+}
+.Additional_Guests .col-sm-6 {
+    margin-bottom: 13px;
+}
+.Corporate_Team_Building_table {
+    border: 1px solid #00d4ff;
+    border-radius: 14px;
+}
+.Additional_Guests_card_icons {
+    height: 40px;
+    font-size: 14px;
+    width: 39px;
+    margin-bottom: 0;
+}
+.Additional_Guests .col-sm-6 .d-flex.align-items-center.gap-3.mb-4 {
+    margin-bottom: 9px!important;
+}
+.Additional_Guests .col-sm-6 p {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.Additional_Guests {
+    margin-bottom: 0;
+}
+.adventure-section_list_bnt_aa {
+    padding: 6px 18px;
+    font-size: 13px;
+}
+.adventure-section_list_bnt_aa svg {
+    width: 17px;
+}
+.Experience_Gallery .row .col-md-3.col-sm-6 {
+    width: 50%;
+    margin-bottom: 14px;
+}
+section.Ultimate_Birthday_Experience .d-flex.flex-wrap.justify-content-center {
+    margin: 0 auto;
+    width: 92%;
+    gap: 2px!important;
+}
+.Facility_Rentals_owl_slider {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.adventure-content_svg {
+    height: 50px;
+    width: 50px;
+}
+.review_section .heading_main_section {
+    margin-bottom: 18px;
+}
+.review_section {
+    padding-bottom: 46px;
+}
+#ourclinets .item {
+    height: auto;
+}
+.scrolledclass .respnsive_booknow_bnt {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    z-index: 99;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    /* background: rgba(255, 255, 255, 0.25); */
+    /* backdrop-filter: blur(2px); */
+    -webkit-backdrop-filter: blur(9px);
+    /* box-shadow: 0px -2px 35px rgba(255, 255, 255, 0.3); */
+    padding: 5px 0;
+    /* border-radius: 10px 10px 0 0; */
+}
+.scrolledclass .respnsive_booknow_bnt a.bg_bnt_custom.mb-3 {
+    width: 100%;
+    width: 78%;
+    text-align: center;
+    /*box-shadow: 20px 9px 35px 0px #fff;*/
+    margin: 0 auto;
+    border-radius: 58px!important;
+    margin: 0 auto;
+    text-align: center;
+            margin-bottom: 0 !important;
+}
+header .de-flex.sm-pt10 .de-flex-col:nth-child(3){
+    display: none;
+}
+.bg_bnt_custom:hover {
+    background: #000002;
+    border: 1px solid #00d4ff;
+}
+h1.slider-title.s2 br {
+    display:none;
+}
+.logo-mobile {
+    max-height: max-content;
+    width: 120px;
+}
+.booking_card .p-3 {
+    padding: 0 11px!important;
+    padding-bottom: 10px!important;
+}
+.gaming_dropdwon_select {
+  position: relative;
+  width: 70%;
+  margin: 0 auto 17px;
+}
+
+select {
+  padding: 12px 5px!important;
+    border-radius: 8px;
+    border: 1px solid #61dafb;
+    background: #111827;
+    color: #61dafb;
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+    box-shadow: 0px 0px 15px rgba(0, 212, 255, 0.9);
+    /* border: none; */
+    background: transparent;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+
+  text-align:center;
+}
+.form-select {
+    color: #61dafb;
+    background: #000002;
+
+select.form-select.custom-select {
+    background: transparent;
+    color: #00d4ff;
+    margin-bottom: 7px;
+}
+
+/* Custom arrow */
+.gaming_dropdwon_select::after {
+  content: "▼";
+  font-size: 14px;
+  color: #00d4ff;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* allows clicks through */
+}
+
+select option {
+  background-color: #00d4ff;
+  color: black;
+}
+select option:checked {
+    background-color: #00d4ff; 
+    color: #000;
+  }
+
+
+
+.collcrion_sum .owl-dots {
+    top: -34px!important;
+}
+.booking_date_multi_bnt .all_button_main_header button span {
+    display: none;
+}
+input#bookingDateInput {
+    width: 100%!important;
+}
+.custom-modal .d-flex {
+    white-space: normal!important;
+}
+h2.add_on_heading {
+    margin-bottom: 17px;
+}
+.Last-Minute_Deals {
+    margin-top: 0px;
+    margin-bottom: 0;
+}
+.stats-section {
+    flex-wrap: wrap-reverse;
+        margin: 0;
+}
+.stat-icon {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 0;
+}
+.stat-label {
+    font-size: 14px;
+    margin-top: 0;
+    letter-spacing: 0;
+}
+.stat-card {
+    min-width: 44%!important;
+        gap: 0;
+    padding: 11px 0;
+}
+.stats-section {
+    gap: 14px!important;
+}
+.team-transform-section .Corporate_Team_Building_card i {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    font-size: 13px;
+        margin-top: 9px;
+}
+.contact-form form {
+    margin-top: 14px;
+}
+.team-transform-section .form-group {
+    display: block;
+    margin-bottom: 0;
+}
+    .team-transform-section .contact-form .form-group input,     .team-transform-section .contact-form .form-group select {
+                margin-bottom: 14px;
+    }
+    ul.time_contact_list {
+    padding-left: 0;
+    font-size: 14px;
+}
+ul.time_contact_list li {
+    line-height: 23px;
+}
+
+.contact_data_list_form .input-group input, .contact_data_list_form .input-group textarea, .contact_data_list_form .input-group select {
+    border-radius: 10px!important;
+    font-size: 13px;
+}
+.contact_data_list_form .input-group textarea {
+    height: 100px;
+    border-radius: 12px !important;
+}
+.award-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+.award-list li {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: normal;
+}
+.award-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+}
+.my-5 {
+    margin-top: 1rem !important;
+    margin-bottom: 0rem !important;
+}
+.Need_Custom_Package_box {
+    max-width: 100%;
+    width: 100%;
+    padding: 21px 16px;
+    text-align: center;
+    margin-bottom: 0;
+}
+.Need_Custom_Package_box p {
+    margin-bottom: 10px;
+}
+section.Immersive_Escap_Adventures.gaming-container {
+    padding-bottom: 0!important;
+}
+.Why_Choose_Us img {
+    margin-bottom: 11px;
+}
+.game_all_project_count_bg {
+    background-color: transparent;
+    padding-bottom:0;
+}
+.vr_page_banner.all_baneer_IMG.reponsive_inner_banner {
+    height: 437px!important;
+}
+.vr_page_banner_add_log_top {
+    bottom: 0;
+}
+.Party_contact_form_header.d-flex.justify-content-between.align-items-center {
+    white-space: normal;
+    text-align: center;
+}
+section.Party_contact_form_section .container {
+    padding: 0;
+}
+.Party_contact_form_form input, .Party_contact_form_form textarea {
+    border-radius: 6px;
+}
+.Party_contact_form_info, .Party_contact_form_form {
+    padding: 14px;
+    border-radius: 12px;
+}
+.list-unstyled li {
+    font-size: 13px;
+}
+.leaderboard_section {
+    max-width: 100%;
+}
+.leaderboard-table tbody td {
+    padding: 5px 15px;
+    font-size: 12px;
+}
+.SPACE_MARINE_VR h5 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #00d4ff;
+}
+.SPACE_MARINE_VR h3 {
+    font-size: 14px;
+}
+li.dropdown-parent:after {
+    content: "\f282";
+    position: absolute;
+    top: 7px;
+    right: 29px;
+    width: 10px;
+    height: 10px;
+    font-family: "bootstrap-icons";
+    font-size: 13px;
+    color: #ffffff;
+    z-index: -1;
+}
+#mainnav {
+    position: fixed;
+    width: 86vw;
+}
+.Unforgettable_Birthday_section .col-md-6:nth-child(2) {
+    order: -1;
+}
+.AWARD_banne_AWARd_home_img img {
+    width: 85px;
+}
+.home_baneer_section .col-lg-7 {
+    order: -1;
+    margin-bottom: 9px;
+}
+.sw-caption .col-lg-7 {
+    order: -1;
+}
+
+
+.our_clients_slider .owl-dots {
+    display: none;
+}
+span.player-label p {
+    margin: 0;
+    margin-bottom: 12px;
+    margin-top: 3px;
+}
+.faq-section .accordion-button {
+    border-radius: 0;
+}
+form#payment-form {
+    width: 100%!important;
+}
+.stats-section {
+    gap: 13px;
+    flex-wrap: wrap!important;
+}
+.Complete_Corporate_Team {
+    margin-bottom: 0;
+}
+
+
+}
+
+@media (max-width: 303px) {
+    #gamingTabsContent button.owl-prev, .collcrion_sum button.owl-prev, .review_section button.owl-prev, #gamingTabsContent button.owl-next, .collcrion_sum button.owl-next, .review_section button.owl-next {
+    width: 10%;
+}
+.gaming-container button.owl-next, .collcrion_sum button.owl-next, .review_section button.owl-next, .escapeRoomReviewsSlider .owl-next {
+    width: 10%!important;
+}
+.gaming-container button.owl-prev, .collcrion_sum button.owl-prev, .review_section button.owl-prev, .escapeRoomReviewsSlider .owl-prev {
+    width: 10%!important;
+}
+}

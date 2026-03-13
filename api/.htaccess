@@ -1,0 +1,11 @@
+# /api/.htaccess
+# Disable password protection for this folder
+Satisfy Any
+Allow from all
+Require all granted
+
+# Turn off ModSecurity for this folder (Prevents firewall from blocking Bookeo)
+<IfModule mod_security.c>
+  SecFilterEngine Off
+  SecFilterScanPOST Off
+</IfModule>

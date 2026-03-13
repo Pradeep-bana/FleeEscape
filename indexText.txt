@@ -1,0 +1,78 @@
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [product_id] => 41590N7R9HL1971A9A3506
+            [title] => ESCAPE GAME + VR PARTY PACKAGE FOR 8 PLAYERS
+            [slug] => birthday-party-escape-room-vr-party
+            [price] => 560
+            [duration] => 2 HOURS, 30 Minutes
+            [players] => 8
+            [thumbnail] => 1767914536_Blog Image 4.webp
+            [bottom_heading] => <b><font color="#00ffff">Double the Thrill</font></b>. One Unforgettable Party.
+            [created_at] => 2025-11-12 18:53:14
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [product_id] => 41590LTWCJR19900B0FD97
+            [title] => ESCAPE GAME + VR PARTY ULTIMATE PACKAGE FOR 8 PLAYERS
+            [slug] => christmas-new-year-escape-room-vr-party
+            [price] => 720
+            [duration] => 3 HOURS
+            [players] => 8
+            [thumbnail] => 1767914748_Booking Page Cover.png
+            [bottom_heading] => <p><b><font color="#9c00ff">MAXIMUM GAME TIME </font></b>- 1 HOUR ESCAPE ROOM and 2 VR GAMES for 8 PLAYERS</p>
+            [created_at] => 2025-11-12 18:54:18
+        )
+
+    [2] => Array
+        (
+            [id] => 4
+            [product_id] => 41551U9C4YX1857011E312
+            [title] => ESCAPE ROOM PARTY PACKAGE FOR 16 PLAYERS
+            [slug] => halloween-escape-room-vr-party
+            [price] => 560
+            [duration] => 2 HOURS
+            [players] => 16
+            [thumbnail] => 1768022618_Escape Room Image 9.webp
+            [bottom_heading] => <p><font color="#00ff00">Big Group</font>. <font color="#ff00ff">Bigger Thrills</font>. <font color="#ff9c00"><b>Best Value.</b></font></p>
+            [created_at] => 2025-11-17 11:55:22
+        )
+
+    [3] => Array
+        (
+            [id] => 5
+            [product_id] => 41551LAM3LY18570132661
+            [title] => ZERO LATENCY VR PARTY PACKAGE FOR 16 PLAYERS
+            [slug] => corporate-team-building-escape-room-vr-party
+            [price] => 560
+            [duration] => 2 HOURS
+            [players] => 16
+            [thumbnail] => 1768021996_Far-Cry-VR-Hero-Promo-Image-Gen-3-Insanity.webp
+            [bottom_heading] => <p>The Ultimate 16-Player <b><font color="#9c00ff">VR Takeover</font></b></p>
+            [created_at] => 2025-11-17 11:58:50
+        )
+
+    [4] => Array
+        (
+            [id] => 6
+            [product_id] => 415516WUX97185701517DA
+            [title] => ESCAPE GAME + VR PARTY PACKAGE FOR 16
+            [slug] => diwali-escape-room-vr-party
+            [price] => 900
+            [duration] => 3 HOURS
+            [players] => 16
+            [thumbnail] => 1767963194_new image.png
+            [bottom_heading] => <p><font color="#e76363">Double the Thrill</font>. <font color="#ffff00">Double the Fun</font>. <font color="#3984c6">One Unforgettable Party</font>.</p>
+            [created_at] => 2025-11-17 12:02:13
+        )
+
+)
+1767914536_Blog Image 4.webp
+1767914748_Booking Page Cover.png
+1768022618_Escape Room Image 9.webp
+1768021996_Far-Cry-VR-Hero-Promo-Image-Gen-3-Insanity.webp
+1767963194_new image.png

@@ -1,0 +1,104 @@
+Array
+(
+    [time] => 2025-11-01 09:51:49
+    [input] => Array
+        (
+            [firstName] => prabhat
+            [lastName] => dehariya
+            [emailAddress] => indiawebsoft02@gmail.com
+            [phoneNumbers] => Array
+                (
+                    [0] => Array
+                        (
+                            [number] => 6264413175
+                            [type] => mobile
+                        )
+
+                )
+
+            [customFields] => Array
+                (
+                    [0] => Array
+                        (
+                            [name] => Password
+                            [value] => prabhat@12345
+                        )
+
+                )
+
+        )
+
+    [http_code] => 400
+    [curl_error] => 
+    [response] => Array
+        (
+            [httpStatus] => 400
+            [message] => Unkown custom field name: Password
+            [errorId] => 1590K251101095149RX9EN
+        )
+
+)
+
+-----------------------------
+Array
+(
+    [time] => 2025-11-01 10:04:48
+    [input] => Array
+        (
+            [firstName] => prabhat
+            [lastName] => dehariya
+            [emailAddress] => indiawebsoft02@gmail.com
+            [password] => prabhat@12345
+            [phoneNumbers] => Array
+                (
+                    [0] => Array
+                        (
+                            [number] => 6264413175
+                            [type] => mobile
+                        )
+
+                )
+
+        )
+
+    [http_code] => 201
+    [curl_error] => 
+    [response] => Array
+        (
+            [credit] => Array
+                (
+                    [amount] => 0
+                    [currency] => USD
+                )
+
+            [acceptSmsReminders] => 
+            [numBookings] => 0
+            [numCancelations] => 0
+            [numNoShows] => 0
+            [member] => 
+            [id] => 41590RHJYTR19A3EE073E7
+            [firstName] => prabhat
+            [lastName] => dehariya
+            [emailAddress] => indiawebsoft02@gmail.com
+            [phoneNumbers] => Array
+                (
+                    [0] => Array
+                        (
+                            [number] => 6264413175
+                            [type] => mobile
+                        )
+
+                )
+
+            [streetAddress] => Array
+                (
+                    [countryCode] => US
+                )
+
+            [creationTime] => 2025-11-01T03:04:48-07:00
+            [gender] => unknown
+        )
+
+)
+
+-----------------------------

@@ -1,0 +1,677 @@
+[2025-12-20 09:05:20] Calculated Total Cents to Charge: 5377
+[2025-12-20 09:05:21] Payment Success. ID: F6A4V1gA5AFjrshmg152GhHPv0aZY
+[20-Dec-2025 09:05:21 UTC] PHP Warning:  Undefined array key "firstName" in /home/fleeescapes/public_html/process_booking.php on line 144
+[20-Dec-2025 09:05:21 UTC] PHP Warning:  Undefined array key "lastName" in /home/fleeescapes/public_html/process_booking.php on line 145
+[20-Dec-2025 09:05:21 UTC] PHP Warning:  Undefined array key "email" in /home/fleeescapes/public_html/process_booking.php on line 146
+[20-Dec-2025 09:05:21 UTC] PHP Warning:  Undefined array key "phone" in /home/fleeescapes/public_html/process_booking.php on line 147
+[20-Dec-2025 09:05:21 UTC] PHP Warning:  Undefined array key "type" in /home/fleeescapes/public_html/process_booking.php on line 147
+[2025-12-20 09:05:22] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "Invalid value for field \"firstName\". At least one of firstName, lastName must be provided",
+  "errorId": "1590K2512200905224FYJM"
+}
+[2025-12-20 09:19:16] Calculated Total Cents to Charge: 5377
+[2025-12-20 09:19:17] Payment Success. ID: DNeoANZyocPwluJ5uGxjEZC5uEOZY
+[2025-12-20 10:22:33] Calculated Total Cents to Charge: 14224
+[2025-12-20 10:22:35] Payment Success. ID: xqpAsUBdu54HwVFW2weZNPs2WLQZY
+[2025-12-20 10:22:35] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 25% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590K251220102235MXWWH"
+}
+[2025-12-20 10:22:45] Critical Error: Cart is empty.
+[2025-12-20 10:23:26] Calculated Total Cents to Charge: 13678
+[2025-12-20 10:23:27] Payment Success. ID: tMhL8WNVNjvg9o95PTFPAq5EK1KZY
+[2025-12-22 12:20:01] Calculated Total Cents to Charge: 5377
+[2025-12-22 12:20:03] Payment Success. ID: JmnF5eegxLP9cm3ZhTolU2NhoHaZY
+[2025-12-22 12:30:27] Calculated Total Cents to Charge: 5377
+[2025-12-22 12:30:28] Payment Success. ID: FmuMppQ0lehp4KWNf74v2SMVNndZY
+[2025-12-22 12:31:48] Critical Error: Cart is empty.
+[2025-12-22 12:37:36] Calculated Total Cents to Charge: 1302
+[2025-12-22 12:37:37] Payment Success. ID: B0cV8P1lezohPwzmLS5lGSvohCfZY
+[2025-12-22 12:37:38] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590K251222123738E7PH6"
+}
+[2025-12-22 12:43:26] Calculated Total Cents to Charge: 3377
+[2025-12-22 12:43:27] Payment Success. ID: Lh8RB82RFH5lVgv8gtfoUk0UTvQZY
+[2025-12-22 12:45:23] Critical Error: Cart is empty.
+[2025-12-22 12:50:16] Calculated Total Cents to Charge: 2339
+[2025-12-22 12:50:17] Payment Success. ID: XNRWbs2BT6LP7VwImCs7VuUWRLdZY
+[2025-12-22 12:50:18] Bookeo Error for Game 41551XJM6F314F91E1CD68: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K2512221250184WN7C"
+}
+[2025-12-22 12:54:48] Critical Error: Cart is empty.
+[2025-12-23 05:33:54] Calculated Total Cents to Charge: 377
+[2025-12-23 05:33:56] Payment Success. ID: LpWuOobFzKfMp1dEKPBY1044hV7YY
+[2025-12-23 11:11:33] Calculated Total Cents to Charge: 3339
+[2025-12-23 11:11:35] Payment Success. ID: rVSJW14O6PKo3u6z2YaswOe4QUPZY
+[2025-12-23 11:11:35] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K251223111135ATXY9"
+}
+[2025-12-23 11:24:46] Calculated Total Cents to Charge: 3339
+[2025-12-23 11:24:47] Payment Success. ID: vPkEedM3yO3I7UHNTPZ4v0a9QdfZY
+[2025-12-23 11:24:49] Booking Created: 1590512237071035
+[2025-12-23 11:57:18] Calculated Total Cents to Charge: 8302
+[2025-12-23 11:57:19] Payment Success. ID: NoXRTctTrWjkCbS0uo4LpXpfPxAZY
+[2025-12-23 11:57:20] Booking Created: 1590512239499144
+[2025-12-23 12:34:57] Calculated Total Cents to Charge: 9339
+[2025-12-23 12:35:00] Payment Success. ID: bROQDnBt39Lk11Rxm9TiiCrpp8XZY
+[2025-12-23 12:35:00] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K251223123500A947C"
+}
+[2025-12-26 10:02:15] Calculated Total Cents to Charge: 3302
+[2025-12-26 10:02:16] Payment Success. ID: rB859PwD3f4U9zQm6pKeuP1NtgcZY
+[2025-12-26 10:02:17] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K251226100217W7E4M"
+}
+[2025-12-26 10:04:25] Critical Error: Cart is empty.
+[2025-12-26 10:08:00] Calculated Total Cents to Charge: 4224
+[2025-12-26 10:08:01] Payment Success. ID: N2ggGitsY9duh1OArVKF0Dwn0aUZY
+[2025-12-26 10:38:50] Calculated Total Cents to Charge: 8302
+[2025-12-26 10:38:51] Payment Success. ID: TnNnyfnNjv1ICQxmup31W0150kEZY
+[2025-12-26 10:38:52] Bookeo Error for Game 41551F9C679173BC114D28 (Code 400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K2512261038524NRA4"
+}
+[2025-12-26 10:38:52] Critical Error: Booking creation failed. Please contact support. Bookeo Error for Game 41551F9C679173BC114D28 (Code 400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K2512261038524NRA4"
+}
+[2025-12-26 10:44:22] Calculated Total Cents to Charge: 9339
+[2025-12-26 10:44:23] Payment Success. ID: 9MtJl5XFoaCWuHuKCEb5otkl7USZY
+[2025-12-26 10:45:40] Critical Error: Cart is empty.
+[2025-12-26 10:49:25] Calculated Total Cents to Charge: 11641
+[2025-12-26 10:49:26] Payment Success. ID: 9MHC7bm08JqqTNUO0NAyThKNXdVZY
+[2025-12-26 10:49:28] Bookeo Error for Game 41551PFXF3K14F91D8FABB (Code 400): {
+  "httpStatus": 400,
+  "message": "H9T7LYX: This voucher has already been used. There is no balance left in the voucher\nPANKFE4: This voucher has already been used. There is no balance left in the voucher",
+  "errorId": "1590K25122610492864LHM"
+}
+[2025-12-26 11:04:08] Calculated Total Cents to Charge: 12678
+[2025-12-26 11:04:09] Payment Success. ID: zp0eyPLMUvELJLivsYyYwu9FsAdZY
+[2025-12-26 11:04:11] Booking Item 41551HE99XR14F91DF96B0 failed with Gift Code (K7HRF7Y,3NA37EL). Retrying without gift code...
+[2025-12-26 11:12:00] Calculated Total Cents to Charge: 3339
+[2025-12-26 11:12:01] Payment Success. ID: f5FSFCcrkKwFqQLkEESS84xIZCPZY
+[2025-12-26 11:12:02] Bookeo Error for Game 41551PFXF3K14F91D8FABB (Code 400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid coupon code",
+  "errorId": "1590K2512261112023J743"
+}
+[2025-12-26 11:12:02] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB (Code 400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid coupon code",
+  "errorId": "1590K2512261112023J743"
+}
+[2025-12-26 11:13:29] Calculated Total Cents to Charge: 4339
+[2025-12-26 11:13:30] Payment Success. ID: 1eEhCdMO6WERFN5Iprtm1iJI4b9YY
+[2025-12-26 11:13:31] Bookeo Error for Game 41551PFXF3K14F91D8FABB (Code 400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid coupon code",
+  "errorId": "1590K251226111331UCHRH"
+}
+[2025-12-26 11:13:31] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB (Code 400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid coupon code",
+  "errorId": "1590K251226111331UCHRH"
+}
+[2025-12-26 11:14:25] Calculated Total Cents to Charge: 9339
+[2025-12-26 11:14:26] Payment Success. ID: JupgpJ7kQ4pvcz5RWHWXdVralfaZY
+[2025-12-26 11:58:45] Calculated Total Cents to Charge: 3339
+[2025-12-26 11:58:46] Payment Success. ID: 1MZiJSrnFZu3ROnTQeVjypLYXfEZY
+[2025-12-26 12:04:33] Calculated Total Cents to Charge: 9339
+[2025-12-26 12:04:34] Payment Success. ID: F2s5m3knoSFRqJw7bHVsZx48hN7YY
+[2025-12-26 12:04:36] Booking Item 41551XJM6F314F91E1CD68 failed with Gift Code (34LCAEJ,7WHFYKU,YY9UJJE). Retrying without gift code...
+[2025-12-26 12:32:59] Calculated Total Cents to Charge: 0
+[2025-12-26 12:33:03] Booking Item 41551XJM6F314F91E1CD68 succeeded without gift codes (Fallback).
+[2025-12-26 12:45:48] Calculated Total Cents to Charge: 0
+[2025-12-26 12:54:30] Calculated Total Cents to Charge: 0
+[2025-12-26 12:54:31] Booking 41551PFXF3K14F91D8FABB Success (Attempt 1: Hold + Gifts)
+[2025-12-26 12:54:31] Attempt 1 Failed for 41551XJM6F314F91E1CD68. Retrying with Hold Only...
+[2025-12-26 12:54:32] Booking 41551XJM6F314F91E1CD68 Success (Attempt 2: Hold Only)
+[2025-12-26 13:05:39] Total Cents to Charge via Square: 0
+[2025-12-26 13:05:40] Booking 41551PFXF3K14F91D8FABB Success (Attempt 1)
+[2025-12-26 13:05:41] Booking 41551XJM6F314F91E1CD68 failed (TAW49HY,Y7LR4MM,E99YF7P). Retrying without gift input...
+[2025-12-26 13:05:42] Booking 41551XJM6F314F91E1CD68 Success (Attempt 2 - No Gift Input)
+[2025-12-26 13:15:49] Total Cents to Charge: 18678
+[2025-12-26 13:15:50] Payment Success: xASRnzIOsEeOBBMfk2rwl0IHWcfZY
+[2025-12-26 13:15:56] Error: Error 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590K251226131553YKTR7"
+} Error 41551XJM6F314F91E1CD68: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590K251226131556LKW9H"
+}
+[2025-12-26 13:25:16] Calculated Total Cents to Charge: 3339
+[2025-12-26 13:25:17] Payment Success. ID: hyBSnTLDg5FECSW9ttZ7tWkpIzeZY
+[2025-12-27 08:24:37] Calculated Total Cents to Charge: 3339
+[2025-12-27 08:24:39] Payment Success. ID: jtuaxosoU8DnXparA4S6qDjIUN7YY
+[2025-12-27 08:27:35] Critical Error: Cart is empty.
+[2025-12-27 08:33:33] Calculated Total Cents to Charge: 8302
+[2025-12-27 08:33:36] Payment Success. ID: fH25Km3PkEbsrlxnjfdqD7TfteIZY
+[2025-12-27 08:34:31] Critical Error: Cart is empty.
+[2025-12-27 08:39:16] Calculated Total Cents to Charge: 377
+[2025-12-27 08:39:18] Payment Success. ID: V8BkoQWBMDB22yfYQaRAgnlYUQCZY
+[2025-12-27 08:42:12] Calculated Total Cents to Charge: 0
+[2025-12-27 08:51:23] Calculated Total Cents to Charge: 4339
+[2025-12-27 08:51:24] Payment Success. ID: HPAlWNhL6PlupgtMS3xYQ0Fm0OGZY
+[2025-12-27 08:51:26] Booking Item 41551HE99XR14F91DF96B0 failed with Gift Code (79H97PM,E9CTEXH). Retrying without gift code...
+[2025-12-27 09:01:46] Critical Error: Cart is empty.
+[2025-12-27 09:35:09] Calculated Total Cents to Charge: 4339
+[2025-12-27 09:35:10] Payment Success. ID: nPeMy6nz2Y5oKEpaPSPwfK5uvcPZY
+[2025-12-27 09:46:09] Calculated Total Cents to Charge: 4339
+[2025-12-27 09:46:10] Payment Success. ID: RIMegyC9Lsg4IUuxAXLHmoVjS6KZY
+[2025-12-27 09:52:45] Calculated Total Cents to Charge: 3339
+[2025-12-27 09:52:46] Payment Success. ID: VmIRuuG1w2hsqx8oq6NtNWYljKaZY
+[2025-12-27 09:58:18] Calculated Total Cents to Charge: 8302
+[2025-12-27 09:58:21] Payment Success. ID: 5wCytXBxgxw8vqdfJXEmKaNWxgUZY
+[2025-12-27 10:19:45] Calculated Total Cents to Charge: 3302
+[2025-12-27 10:19:46] Payment Success. ID: nzCti2kFKiy6PQPk7uhMFxbS8h7YY
+[2025-12-29 05:21:29] Calculated Total Cents to Charge: 5377
+[2025-12-29 05:21:31] Payment Success. ID: jTZqR13aQ6ZTjLXdMqlUVdfwbtTZY
+[2025-12-29 05:27:48] Calculated Total Cents to Charge: 0
+[2025-12-29 05:47:21] Calculated Total Cents to Charge: 377
+[2025-12-29 05:47:22] Payment Success. ID: vdrSpX8UZIF2246FDpSz2TbPHhaZY
+[2026-01-08 06:46:30] Calculated Total Cents to Charge: 9339
+[2026-01-08 06:46:31] Payment Success. ID: rXLJUD8bsiPE4YNX6oYXOUAMa4cZY
+[2026-01-08 06:46:32] Bookeo Error for Game 415516JNCHJ14F91D5A806: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K260108064632XNPKF"
+}
+[2026-01-08 06:46:32] Critical Error: Booking creation failed. Bookeo Error for Game 415516JNCHJ14F91D5A806: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K260108064632XNPKF"
+}
+[2026-01-08 06:51:49] Calculated Total Cents to Charge: 5377
+[2026-01-08 06:51:50] Payment Success. ID: l2An8G2f2ahTEC8yse9qz8wfR7KZY
+[2026-02-02 06:06:05] Calculated Total Cents to Charge: 2386
+[2026-02-02 06:06:06] Payment Success. ID: L1wIYBTRzTHfazkIII2rSr0mMVfZY
+[2026-02-02 07:13:53] Calculated Total Cents to Charge: 44313
+[2026-02-02 07:13:54] Payment Success. ID: rjl9ZPUMWDniT1Chs2kvBPwUgDFZY
+[2026-02-02 07:14:16] Critical Error: Cart is empty.
+[2026-02-02 07:15:10] Critical Error: Cart is empty.
+[2026-02-02 07:35:09] Calculated Total Cents to Charge: 48005
+[2026-02-02 07:35:10] Payment Success. ID: b9AafC9WQvtCsaPhvD0xsEPy85DZY
+[2026-02-02 07:35:10] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590H260202073510A7KLF"
+}
+[2026-02-02 07:35:10] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590H260202073510JTWXF"
+}
+[2026-02-02 07:35:18] Critical Error: Cart is empty.
+[2026-02-04 05:55:51] Calculated Total Cents to Charge: 7386
+[2026-02-04 05:55:52] Payment Success. ID: L52WuFtZ3n2lJ4BV0SE7cAxiRRYZY
+[2026-02-04 05:55:52] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204055552EAWX7"
+}
+[2026-02-04 05:55:52] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204055552EAWX7"
+}
+[2026-02-04 05:56:39] Calculated Total Cents to Charge: 7386
+[2026-02-04 05:56:40] Payment Success. ID: la2JwIe9F01wyCuKL8arleTeblIZY
+[2026-02-04 05:56:40] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204055640FXE99"
+}
+[2026-02-04 05:56:40] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204055640FXE99"
+}
+[2026-02-04 05:57:01] Calculated Total Cents to Charge: 8309
+[2026-02-04 05:57:01] Payment Success. ID: XLU810Mgdr8lPniLI6hInh88l5bZY
+[2026-02-04 05:57:02] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590H2602040557026CWK4"
+}
+[2026-02-04 05:57:02] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590H2602040557026CWK4"
+}
+[2026-02-04 06:00:12] Calculated Total Cents to Charge: 2386
+[2026-02-04 06:00:13] Payment Success. ID: rV4oKgmAlSVrylQ9fIWrg8zYDXAZY
+[2026-02-04 08:08:24] Calculated Total Cents to Charge: 8309
+[2026-02-04 08:08:25] Payment Success. ID: RE6WQKeduezmxu9MnOWOneKa8jfZY
+[2026-02-04 08:08:25] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590H260204080825FYC3T"
+}
+[2026-02-04 08:08:25] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590H260204080825FYC3T"
+}
+[2026-02-04 08:15:30] Calculated Total Cents to Charge: 8309
+[2026-02-04 08:15:31] Payment Success. ID: 1Afs5nsW9YHvnUx3pIWyMxMDM1FZY
+[2026-02-04 08:15:31] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204081531LYFU9"
+}
+[2026-02-04 08:15:31] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204081531LYFU9"
+}
+[2026-02-04 08:15:42] Calculated Total Cents to Charge: 8309
+[2026-02-04 08:15:43] Payment Success. ID: P9DcgwWTbVGpkFbgf7hVHSHI47EZY
+[2026-02-04 08:15:43] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204081543UTT3W"
+}
+[2026-02-04 08:15:43] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204081543UTT3W"
+}
+[2026-02-04 08:16:22] Calculated Total Cents to Charge: 3309
+[2026-02-04 08:16:23] Payment Success. ID: BIE0WWujfClUg01icDS9cKKiJXDZY
+[2026-02-04 08:38:14] Payment Success. ID: RCrD05tz34AcWaTFo6G0IcrBozCZY
+[2026-02-04 08:38:14] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204083814W79KA"
+}
+[2026-02-04 08:38:14] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204083814W79KA"
+}
+[2026-02-04 08:38:24] Payment Success. ID: BwMwVhIvsrWZMsZ62dIDkrP4IAGZY
+[2026-02-04 08:44:37] Payment Success. ID: 3xLUUDg9NoQJ0kHV8JiAXKVokN8YY
+[2026-02-04 09:05:17] Payment Success. ID: FcJIXJ40YFpkDIyHzrD1B3RG4qXZY
+[2026-02-04 09:05:17] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204090517PP9A3"
+}
+[2026-02-04 09:05:17] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204090517PP9A3"
+}
+[2026-02-04 09:06:17] Payment Success. ID: 3LuvY5SQYeUWrgXyunpTAV8I81fZY
+[2026-02-04 09:12:42] Payment Success. ID: 92y3WKygmN0nsCv18R0MbU61kCIZY
+[2026-02-04 09:12:42] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260204091242CYA9T"
+}
+[2026-02-04 09:12:42] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260204091242CYA9T"
+}
+[2026-02-04 09:13:57] Calculated Total Cents to Charge: 77251
+[2026-02-04 09:13:58] Payment Success. ID: 9In5oexGpVBAplCrxJQDaDg96DBZY
+[2026-02-04 09:13:58] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260204091358UJNM4"
+}
+[2026-02-04 09:13:58] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260204091358UJNM4"
+}
+[2026-02-04 13:13:13] Calculated Total Cents to Charge: 7386
+[2026-02-04 13:13:15] Payment Success. ID: 3NfldehM3xOD611HoYYfPII5M9bZY
+[2026-02-04 13:13:15] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H26020413131544RM9"
+}
+[2026-02-04 13:13:15] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H26020413131544RM9"
+}
+[2026-02-04 13:14:02] Calculated Total Cents to Charge: 7386
+[2026-02-04 13:14:03] Payment Success. ID: v9rGVwhkAYw5XjQUeT1ZosswYEVZY
+[2026-02-04 13:14:03] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204131403EJNTA"
+}
+[2026-02-04 13:14:03] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204131403EJNTA"
+}
+[2026-02-04 13:14:09] Calculated Total Cents to Charge: 7386
+[2026-02-04 13:14:10] Payment Success. ID: REMLUzVseb1Wwcj66QolPqzI4dAZY
+[2026-02-04 13:14:10] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204131410HYYTU"
+}
+[2026-02-04 13:14:10] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "BMSM_20: Invalid code",
+  "errorId": "1590H260204131410HYYTU"
+}
+[2026-02-04 13:15:13] Calculated Total Cents to Charge: 2386
+[2026-02-04 13:15:14] Payment Success. ID: lYL6vQRF2cEXEtQPwMI9WqVcKVGZY
+[2026-02-04 13:20:29] Calculated Total Cents to Charge: 5386
+[2026-02-04 13:20:30] Payment Success. ID: 1cZeJsIdC6bwSN4VFHC2lhMxJYHZY
+[2026-02-04 13:49:56] Calculated Total Cents to Charge: 10386
+[2026-02-04 13:49:57] Payment Success. ID: RS94eOrpXKWKdAXM4jdPqUSk2B9YY
+[2026-02-04 13:58:16] Calculated Total Cents to Charge: 3309
+[2026-02-04 13:58:16] Payment Success. ID: vBDNFN7NrDZtwMmIOANVGIiyvJGZY
+[2026-02-05 03:58:46] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 50% OFF Large Party Room Upgrade",
+  "errorId": "1590H260205035846E6EUM"
+}
+[2026-02-05 03:58:46] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 50% OFF Large Party Room Upgrade",
+  "errorId": "1590H260205035846E6EUM"
+}
+[2026-02-05 04:00:10] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H2602050400106UEU4"
+}
+[2026-02-05 04:00:10] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H2602050400106UEU4"
+}
+[2026-02-05 12:31:14] Bookeo Error for Game 41551XJM6F314F91E1CD68: {
+  "httpStatus": 400,
+  "message": "3JYT49X: This voucher has already been used. To use the credit left in this voucher, simply make a normal booking and sign in.",
+  "errorId": "1590H260205123114P3WYJ"
+}
+[2026-02-06 05:00:08] Bookeo Error for Game 41551XJM6F314F91E1CD68: {
+  "httpStatus": 400,
+  "message": "XLYJTMT: This voucher has already been used. There is no balance left in the voucher",
+  "errorId": "1590H260206050007UJT4E"
+}
+[2026-02-06 05:37:21] Calculated Total Cents to Charge: 13694
+[2026-02-06 05:37:22] Payment Success. ID: pG77FQYmkgNGi9P30WPjKS8qMgAZY
+[2026-02-06 05:37:22] Bookeo Error for Game 41551XJM6F314F91E1CD68: {
+  "httpStatus": 400,
+  "message": "NWHELRX: This voucher has already been used. There is no balance left in the voucher",
+  "errorId": "1590H260206053722LUALR"
+}
+[2026-02-06 05:41:03] Calculated Total Cents to Charge: 10386
+[2026-02-06 05:41:04] Payment Success. ID: b3bnQJa4xD87ys8jNs5x2LNAXZdZY
+[2026-02-06 06:04:10] Calculated Total Cents to Charge: 10386
+[2026-02-06 06:04:11] Payment Success. ID: V0nHB7j7rNDXNntdHLeAO4CNPlWZY
+[2026-02-06 06:19:45] Calculated Total Cents to Charge: 9232
+[2026-02-06 06:19:46] Payment Success. ID: 9Y3x0xwJiOsP0Cq1pNGPQo0bWBSZY
+[2026-02-06 06:46:18] Calculated Total Cents to Charge: 10386
+[2026-02-06 06:46:19] Payment Success. ID: zHVtVjT9UXeKFoBVgWpiCmQkClBZY
+[2026-02-06 07:01:43] Calculated Total Cents to Charge: 9232
+[2026-02-06 07:01:44] Payment Success. ID: v953S4LasTKW4RdkzXcVYOWXgPDZY
+[2026-02-06 08:59:14] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260206085914HRM6M"
+}
+[2026-02-06 11:29:56] Bookeo Error for Game 41551HE99XR14F91DF96B0: {
+  "httpStatus": 400,
+  "message": "AMECMCP: This voucher has already been used. There is no balance left in the voucher",
+  "errorId": "1590H26020611295644YAW"
+}
+[2026-02-06 11:41:44] Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590H260206114144FCN6W"
+}
+[2026-02-06 11:41:44] Bookeo Error for Game 41551HE99XR14F91DF96B0: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590H260206114144MMURL"
+}
+[2026-02-06 11:41:44] Critical Error: Booking creation failed. Bookeo Error for Game 41551PFXF3K14F91D8FABB: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590H260206114144FCN6W"
+}; Bookeo Error for Game 41551HE99XR14F91DF96B0: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590H260206114144MMURL"
+}
+[2026-02-07 07:29:37] Bookeo Error for Game 415516WUX97185701517DA: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: Escape Room Choice",
+  "errorId": "1590H260207072937N99J3"
+}
+[2026-02-07 07:29:37] Critical Error: Booking creation failed. Bookeo Error for Game 415516WUX97185701517DA: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: Escape Room Choice",
+  "errorId": "1590H260207072937N99J3"
+}
+[2026-02-07 08:46:24] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260207084624WA3K6"
+}
+[2026-02-07 08:46:24] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260207084624WA3K6"
+}
+[2026-02-07 09:17:17] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260207091717KXMMC"
+}
+[2026-02-07 09:17:17] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260207091717KXMMC"
+}
+[2026-02-07 09:18:17] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H2602070918176ELYC"
+}
+[2026-02-07 09:18:17] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H2602070918176ELYC"
+}
+[2026-02-07 23:23:27] Bookeo Error for Game 41590LTWCJR19900B0FD97: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260207232327HMNNX"
+}
+[2026-02-07 23:23:27] Critical Error: Booking creation failed. Bookeo Error for Game 41590LTWCJR19900B0FD97: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260207232327HMNNX"
+}
+[2026-02-09 05:28:33] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260209052833AMYX7"
+}
+[2026-02-09 05:28:33] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260209052833AMYX7"
+}
+[2026-02-09 05:37:08] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260209053708PCT76"
+}
+[2026-02-09 05:37:08] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260209053708PCT76"
+}
+[2026-02-09 05:39:55] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260209053955ECCJF"
+}
+[2026-02-09 05:39:55] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260209053955ECCJF"
+}
+[2026-02-09 05:41:26] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260209054126MXL6H"
+}
+[2026-02-09 05:41:26] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H260209054126MXL6H"
+}
+[2026-02-09 05:43:39] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H2602090543399RNFA"
+}
+[2026-02-09 05:43:39] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: 4C9PK6FE",
+  "errorId": "1590H2602090543399RNFA"
+}
+[2026-02-09 07:21:30] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260209072130UXY34"
+}
+[2026-02-09 07:21:30] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260209072130UXY34"
+}
+[2026-02-09 07:24:48] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H2602090724484NKPT"
+}
+[2026-02-09 07:24:48] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H2602090724484NKPT"
+}
+[2026-02-09 07:24:55] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260209072455CMY7J"
+}
+[2026-02-09 07:24:55] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260209072455CMY7J"
+}
+[2026-02-09 09:10:10] Hold stale for Game 41551F9C679173BC114D28. Adding manual addon cost: 44.12
+[2026-02-09 09:57:23] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260209095723766EN"
+}
+[2026-02-09 09:57:23] Critical Error: Booking creation failed. Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 400,
+  "message": "Unkown option name for this product: 80% OFF VR GAME ADD ON - BUNDLE AND SAVE",
+  "errorId": "1590H260209095723766EN"
+}
+[2026-02-09 11:38:43] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260209113842T3CAA"
+}
+[2026-02-09 11:38:43] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260209113842T3CAA"
+}
+[2026-02-09 12:38:18] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260209123818Y9RLY"
+}
+[2026-02-09 12:38:18] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260209123818Y9RLY"
+}
+[2026-02-10 07:12:20] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260210071220PRYCX"
+}
+[2026-02-10 07:12:20] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260210071220PRYCX"
+}
+[2026-02-10 08:29:06] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260210082906FRUUC"
+}
+[2026-02-10 08:29:06] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Missing or invalid field: unitPrice",
+  "errorId": "1590H260210082906FRUUC"
+}
+[2026-02-13 10:29:12] Bookeo Error for Game 41551F9C679173BC114D28: {
+  "httpStatus": 403,
+  "message": "There are no more seats available in this game",
+  "errorId": "1590H260213102912ACMTC"
+}
+[2026-02-21 08:43:53] Bookeo Error for Game 41551F9C679173BC114D28: 
+[02-Mar-2026 07:08:09 UTC] PHP Warning:  Undefined variable $taxPerGuestFormatted in /home/wwwfleee/public_html/process_booking.php on line 272
+[2026-03-02 07:08:21] Critical Error: Cart is empty.
+[02-Mar-2026 07:11:06 UTC] PHP Warning:  Undefined variable $taxPerGuestFormatted in /home/wwwfleee/public_html/process_booking.php on line 272
+[02-Mar-2026 07:22:48 UTC] PHP Warning:  Undefined variable $taxPerGuestFormatted in /home/wwwfleee/public_html/process_booking.php on line 272
+[2026-03-02 07:22:58] Critical Error: Cart is empty.
+[02-Mar-2026 07:24:36 UTC] PHP Warning:  Undefined variable $taxPerGuestFormatted in /home/wwwfleee/public_html/process_booking.php on line 272
+[2026-03-02 08:57:29] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: WE7TRAUW",
+  "errorId": "1590G260302085729C4JWT"
+}
+[2026-03-02 08:57:29] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: WE7TRAUW",
+  "errorId": "1590G260302085729C4JWT"
+}
+[2026-03-02 09:03:14] Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: WE7TRAUW",
+  "errorId": "1590G2603020903147WYUW"
+}
+[2026-03-02 09:03:14] Critical Error: Booking creation failed. Bookeo Error for Game 41590N7R9HL1971A9A3506: {
+  "httpStatus": 400,
+  "message": "Unkown option id for this product: WE7TRAUW",
+  "errorId": "1590G2603020903147WYUW"
+}

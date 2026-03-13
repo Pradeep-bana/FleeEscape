@@ -1,0 +1,5005 @@
+========================================
+Time: 2025-12-15 06:21:32
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "TTTJWRM",
+    "giftVoucherCodeInput": "PFN9FT7"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K25121506213297TKX"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:21:33
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "PFN9FT7",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "PFN9FT7: Invalid coupon code",
+    "errorId": "1590K251215062133YM74C"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:21:34
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "TTTJWRM,PFN9FT7"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K251215062134F74LW"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:23:23
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41590N7R9HL1971A9A3506_41590WMT9EK1971A9A3513_2026-05-14",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "productId": "41590N7R9HL1971A9A3506",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "pUBb67AfAfOeJJ3Q_51047630",
+    "price": {
+        "totalGross": {
+            "amount": "617.68",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "560",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "57.68",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "57.68",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "617.68",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-14T22:28:23-08:00"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:23:24
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41590N7R9HL1971A9A3506_41590WMT9EK1971A9A3513_2026-05-14",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "productId": "41590N7R9HL1971A9A3506",
+    "giftVoucherCodeInput": "BMSM_10"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_10: Invalid code",
+    "errorId": "1590K251215062324R7WYP"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:23:38
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41590N7R9HL1971A9A3506_41590WMT9EK1971A9A3513_2026-05-14",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "productId": "41590N7R9HL1971A9A3506",
+    "promotionCodeInput": "DHWANS10"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "cw0OQ5f167CU44yp_51047634",
+    "price": {
+        "totalGross": {
+            "amount": "555.91",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "504",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "51.91",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "51.91",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "555.91",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-14T22:28:38-08:00",
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "61.77",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:23:39
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41590N7R9HL1971A9A3506_41590WMT9EK1971A9A3513_2026-05-14",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 1
+            }
+        ]
+    },
+    "productId": "41590N7R9HL1971A9A3506",
+    "giftVoucherCodeInput": "DHWANS10"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "DHWANS10: Invalid code",
+    "errorId": "1590K251215062338YKU47"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:33:19
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "giftVoucherCodeInput": "TTTJWRM,PFN9FT7"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "D8O3qr8oDLp8ny0S_51047651",
+    "price": {
+        "totalGross": {
+            "amount": "92.24",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "80",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.24",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.24",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-14T22:38:19-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "92.24",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:33:20
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "TTTJWRM",
+    "giftVoucherCodeInput": "PFN9FT7"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K251215063320EUXNL"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:33:21
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "PFN9FT7",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "PFN9FT7: Invalid coupon code",
+    "errorId": "1590K251215063320JH4UJ"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:33:21
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "TTTJWRM,PFN9FT7"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K2512150633213UH7R"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:35:54
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "giftVoucherCodeInput": "TTTJWRM,BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20: Invalid code",
+    "errorId": "1590K2512150635547N7NH"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:35:55
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "TTTJWRM",
+    "giftVoucherCodeInput": "BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K2512150635556EKXW"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:35:56
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "BMSM_20",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "NoJLBMkxU1NNniSo_51047662",
+    "price": {
+        "totalGross": {
+            "amount": "73.79",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "64",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "9.79",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "3.20",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "6.59",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "23.79",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-14T22:40:56-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "18.45",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:35:57
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "TTTJWRM,BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K251215063556U9RCN"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:36:15
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "giftVoucherCodeInput": "BMSM_10,BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_10: Invalid code\nBMSM_20: Invalid code",
+    "errorId": "1590K2512150636144LJLE"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:36:15
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20: Invalid code",
+    "errorId": "1590K251215063615M9U44"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:36:16
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "BMSM_20",
+    "giftVoucherCodeInput": "BMSM_10"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_10: Invalid code",
+    "errorId": "1590K251215063616CA3J7"
+}
+========================================
+
+========================================
+Time: 2025-12-15 06:36:17
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551F9C679173BC114D28_41551MMPKTH18496AE8649_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551F9C679173BC114D28",
+    "promotionCodeInput": "BMSM_10,BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_10: Invalid coupon code",
+    "errorId": "1590K251215063617XC9LX"
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:56:19
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "giftVoucherCodeInput": "TTTJWRM,BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20: Invalid code",
+    "errorId": "1590K251215085619X749N"
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:56:19
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "TTTJWRM",
+    "giftVoucherCodeInput": "BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K251215085619JA337"
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:56:20
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_20",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "IpUeErLPtDHIlbyF_51047993",
+    "price": {
+        "totalGross": {
+            "amount": "83.02",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "72",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "11.02",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "3.60",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "7.42",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "33.02",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T01:01:20-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "20.75",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:56:21
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "TTTJWRM,BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K251215085621KN6L4"
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:58:52
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "giftVoucherCodeInput": "TTTJWRM,BMSM_20jkfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20jkfd: Invalid code",
+    "errorId": "1590K251215085852JX6HW"
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:58:52
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "TTTJWRM",
+    "giftVoucherCodeInput": "BMSM_20jkfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K251215085852MX7W3"
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:58:53
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_20jkfd",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20jkfd: Invalid coupon code",
+    "errorId": "1590K251215085853P7WU3"
+}
+========================================
+
+========================================
+Time: 2025-12-15 08:58:54
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "TTTJWRM,BMSM_20jkfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "TTTJWRM: Invalid coupon code",
+    "errorId": "1590K251215085853LA6LP"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:01
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "BMSM_20,BMSM_10"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20: Invalid code\nBMSM_10: Invalid code",
+    "errorId": "1590K251215090701NTAW7"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:01
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20: Invalid code",
+    "errorId": "1590K251215090701E3CRF"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:02
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "BMSM_10"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_10: Invalid code",
+    "errorId": "1590K2512150907024AL9U"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:03
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "dCW0GFrRFtfJsj5d_51048045",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T01:12:03-08:00",
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:05
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "BMSM_20,BMSM_10"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20: Invalid code\nBMSM_10: Invalid code",
+    "errorId": "1590K2512150907046KWUY"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:05
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "BMSM_20"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_20: Invalid code",
+    "errorId": "1590K251215090705FCEHE"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:06
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "BMSM_10"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "BMSM_10: Invalid code",
+    "errorId": "1590K251215090706EJ4WT"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:07
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "DEhDv1COutHLlTO8_51048051",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T01:12:07-08:00",
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:39
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7,TTTJWRM"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "lgebw6ONPhG4Tapd_51048054",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T01:12:39-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:40
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090740UAN9T"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:41
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090741NUTLF"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:42
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090742K66F9"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:43
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7,TTTJWRM"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "6fwWGpGpneOg0HC1_51048060",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T01:12:43-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:44
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K2512150907447J9F7"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:45
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090745PP347"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:07:46
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090745JX6TR"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:23
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7,TTTJWRM"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "wq3WmaOg4iL8bguM_51048069",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T01:14:23-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:24
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090924PRWWE"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:24
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090924MXEUU"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:25
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090925WKFCM"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:26
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7,TTTJWRM"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "RO73PBlAiyE23x4u_51048075",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T01:14:26-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:27
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "PFN9FT7"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K2512150909277RXJW"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:28
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "TTTJWRM"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215090928E4XMF"
+}
+========================================
+
+========================================
+Time: 2025-12-15 09:09:29
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K25121509092849TAK"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:13:31
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2025-12-15",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "giftVoucherCodeInput": "J67K37Y,4EULLN9"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "txJPa5By5fNnHA0G_51048329",
+    "price": {
+        "totalGross": {
+            "amount": "103.77",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "90",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "13.77",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.50",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "9.27",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "3.77",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:18:31-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "100",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:13:32
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2025-12-15",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "J67K37Y",
+    "giftVoucherCodeInput": "4EULLN9"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "J67K37Y: Invalid coupon code",
+    "errorId": "1590K251215101332YFTUU"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:13:32
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2025-12-15",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "4EULLN9",
+    "giftVoucherCodeInput": "J67K37Y"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "4EULLN9: Invalid coupon code",
+    "errorId": "1590K251215101332RMPLY"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:13:33
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551PFXF3K14F91D8FABB_4159074CKAK19592B9D084_2025-12-15",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551PFXF3K14F91D8FABB",
+    "promotionCodeInput": "J67K37Y,4EULLN9"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "J67K37Y: Invalid coupon code",
+    "errorId": "1590K251215101333M63X6"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:15
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsjfd,W9XTXMN"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsjfd: Invalid code",
+    "errorId": "1590K251215103415L6HX6"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:16
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsjfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsjfd: Invalid code",
+    "errorId": "1590K251215103416T9KE6"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:17
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "pKIAyRmpL8tCS5kg_51048499",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:39:17-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:18
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103418RNR64"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:19
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsjfd,W9XTXMN"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsjfd: Invalid code",
+    "errorId": "1590K251215103419NML9X"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:20
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsjfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsjfd: Invalid code",
+    "errorId": "1590K251215103420JE9JR"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:21
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "e3KKcEYTGxIjEVXu_51048504",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:39:21-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:34:22
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103422LTYXA"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:29
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,jkfds"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jkfds: Invalid code",
+    "errorId": "1590K251215103629979K3"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:30
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "5uysmYPEamrCh0IB_51048512",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:41:29-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:30
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "jkfds"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jkfds: Invalid code",
+    "errorId": "1590K251215103630NKWT6"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:31
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K25121510363134NKW"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:33
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,jkfds"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jkfds: Invalid code",
+    "errorId": "1590K25121510363366FWC"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:34
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "DeqssNteyUXhXT73_51048518",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:41:34-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:35
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "jkfds"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jkfds: Invalid code",
+    "errorId": "1590K251215103634H7XWE"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:35
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103635EPPYL"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:48
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,KHJX7M6"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "CEMS0u8ifEjrYqLL_51048523",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:41:47-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:48
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103648A96XJ"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:49
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "KHJX7M6"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103649HKLUK"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:50
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K2512151036504XXMM"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:52
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,KHJX7M6"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "3QPT5HpNVaJT4Qgc_51048529",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:41:52-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:53
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103652CCCNM"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:53
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "KHJX7M6"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103653AK6XK"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:36:54
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103654MMM6U"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:29
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,jlkjfdlksf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jlkjfdlksf: Invalid code",
+    "errorId": "1590K251215103729TPNNE"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:30
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "Uwogp7QHSG8u28Es_51048537",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:42:30-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:31
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "jlkjfdlksf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jlkjfdlksf: Invalid code",
+    "errorId": "1590K251215103731KXEKN"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:32
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103731433P9"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:33
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,jlkjfdlksf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jlkjfdlksf: Invalid code",
+    "errorId": "1590K2512151037337H7HL"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:34
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "HtBDB60eNJTJv7oM_51048543",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:42:34-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:35
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "jlkjfdlksf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "jlkjfdlksf: Invalid code",
+    "errorId": "1590K2512151037354U4NP"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:37:36
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215103736RJNFM"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:13
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,KHJX7M6"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "f5wMq32d4G8YqFkV_51048572",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:53:13-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:14
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215104813FY9UY"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:14
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "KHJX7M6"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215104814MPL3K"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:15
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215104815WRXX3"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:17
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,KHJX7M6"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "pA1cluwxrMAqtCxB_51048577",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "0",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:53:16-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:17
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215104817E9CUC"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:18
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "KHJX7M6"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215104818A934E"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:48:19
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215104819A4MAU"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:02
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,kjklfjdslkf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjklfjdslkf: Invalid code",
+    "errorId": "1590K251215105102HRPUC"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:03
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "xvNIHAyIfjeC0nag_51048594",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:56:03-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:04
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjklfjdslkf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjklfjdslkf: Invalid code",
+    "errorId": "1590K251215105103494EJ"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:04
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215105104L36WF"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:06
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN,kjklfjdslkf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjklfjdslkf: Invalid code",
+    "errorId": "1590K251215105105CXCPW"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:06
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "W9XTXMN"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "Fl7oWVv7WBIEw8Ek_51048600",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:56:06-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:07
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjklfjdslkf"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjklfjdslkf: Invalid code",
+    "errorId": "1590K251215105107LA6J9"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:51:08
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K2512151051087RHYM"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:16
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdfds,KHJX7M6"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdfds: Invalid code",
+    "errorId": "1590K2512151053169HM9P"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:17
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdfds"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdfds: Invalid code",
+    "errorId": "1590K2512151053173LNU4"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:18
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "KHJX7M6"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "KWPP8GKDlQXFUma4_51048611",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:58:18-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:19
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215105319MWCFL"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:21
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdfds,KHJX7M6"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdfds: Invalid code",
+    "errorId": "1590K251215105320XMTT9"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:21
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdfds"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdfds: Invalid code",
+    "errorId": "1590K251215105321MP6UE"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:22
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "KHJX7M6"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "TgTWAoBBh1JMDS6w_51048617",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "43.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:58:22-08:00",
+    "applicableGiftVoucherCredit": {
+        "amount": "50",
+        "currency": "USD"
+    },
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:53:23
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 403
+Response Body:
+{
+    "httpStatus": 403,
+    "message": "There are no more seats available in this game",
+    "errorId": "1590K251215105323UP9UT"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:41
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsfd,kjkfdskfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsfd: Invalid code\nkjkfdskfd: Invalid code",
+    "errorId": "1590K2512151054419C3Y7"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:42
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsfd: Invalid code",
+    "errorId": "1590K251215105442PWNHK"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:43
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjkfdskfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjkfdskfd: Invalid code",
+    "errorId": "1590K251215105442X6HPT"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:43
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551HE99XR14F91DF96B0",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 201
+Response Body:
+{
+    "id": "i2v6Wg5dPqmaKcPd_51048626",
+    "price": {
+        "totalGross": {
+            "amount": "93.39",
+            "currency": "USD"
+        },
+        "totalNet": {
+            "amount": "81",
+            "currency": "USD"
+        },
+        "totalTaxes": {
+            "amount": "12.39",
+            "currency": "USD"
+        },
+        "totalPaid": {
+            "amount": "0",
+            "currency": "USD"
+        },
+        "taxes": [
+            {
+                "taxId": "41551F4AA9416930C3600E",
+                "amount": {
+                    "amount": "4.05",
+                    "currency": "USD"
+                }
+            },
+            {
+                "taxId": "415514PR6RC14F9231736E",
+                "amount": {
+                    "amount": "8.34",
+                    "currency": "USD"
+                }
+            }
+        ]
+    },
+    "totalPayable": {
+        "amount": "93.39",
+        "currency": "USD"
+    },
+    "expiration": "2025-12-15T02:59:43-08:00",
+    "promotionApplicable": true,
+    "appliedPromotionDiscount": {
+        "amount": "10.38",
+        "currency": "USD"
+    }
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:45
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsfd,kjkfdskfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsfd: Invalid code\nkjkfdskfd: Invalid code",
+    "errorId": "1590K251215105445LP9F3"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:46
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjfdsfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjfdsfd: Invalid code",
+    "errorId": "1590K251215105446A3JCN"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:47
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10",
+    "giftVoucherCodeInput": "kjkfdskfd"
+}
+HTTP Status: 400
+Response Body:
+{
+    "httpStatus": 400,
+    "message": "kjkfdskfd: Invalid code",
+    "errorId": "1590K251215105446CNEKN"
+}
+========================================
+
+========================================
+Time: 2025-12-15 10:54:48
+Request URL: https://api.bookeo.com/v2/holds
+Sent Payload:
+{
+    "eventId": "41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20",
+    "customer": {
+        "firstName": "Temp",
+        "lastName": "User",
+        "emailAddress": "temp@example.com"
+    },
+    "participants": {
+        "numbers": [
+            {
+                "peopleCategoryId": "Cadults",
+                "number": 2
+            }
+        ]
+    },
+    "productId": "41551XJM6F314F91E1CD68",
+    "promotionCodeInput": "BMSM_10"
+}
+HTTP Status: 429
+Response Body:
+{
+    "httpStatus": 429,
+    "message": "Too many recent API calls resulting in error responses. Please try again in 3604 seconds.",
+    "retryAfter": 3604,
+    "errorId": "1590KNODB25121510544747UWR"
+}
+========================================
+
+Time: 2025-12-15 11:03:35
+Payload: {"eventId":"41551HE99XR14F91DF96B0_4159049N6U31950102C5EC_2026-04-20","customer":{"firstName":"Temp","lastName":"User","emailAddress":"temp@example.com"},"participants":{"numbers":[{"peopleCategoryId":"Cadults","number":2}]},"productId":"41551HE99XR14F91DF96B0","promotionCodeInput":"BMSM_10","giftVoucherCodeInput":"kjfdsfd,kjkfdskfd,KHJX7M6,W9XTXMN"}
+Response (429): {
+  "httpStatus": 429,
+  "message": "Too many recent API calls resulting in error responses. Please try again in 3076 seconds.",
+  "retryAfter": 3076,
+  "errorId": "1590KNODB251215110335UAURY"
+}
+----------------
+Time: 2025-12-15 11:03:36
+Payload: {"eventId":"41551XJM6F314F91E1CD68_41590P6JRWR195928BA139_2026-04-20","customer":{"firstName":"Temp","lastName":"User","emailAddress":"temp@example.com"},"participants":{"numbers":[{"peopleCategoryId":"Cadults","number":2}]},"productId":"41551XJM6F314F91E1CD68","promotionCodeInput":"BMSM_10","giftVoucherCodeInput":"kjfdsfd,kjkfdskfd,KHJX7M6,W9XTXMN"}
+Response (429): {
+  "httpStatus": 429,
+  "message": "Too many recent API calls resulting in error responses. Please try again in 3075 seconds.",
+  "retryAfter": 3075,
+  "errorId": "1590KNODB2512151103367X4HH"
+}
+----------------
+Time: 2025-12-15 12:47:02
+Payload: {"eventId":"41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20","customer":{"firstName":"Temp","lastName":"User","emailAddress":"temp@example.com"},"participants":{"numbers":[{"peopleCategoryId":"Cadults","number":2}]},"productId":"41551PFXF3K14F91D8FABB","giftVoucherCodeInput":"BMSM_10,BMSM_20"}
+Response (400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code\nBMSM_20: Invalid code",
+  "errorId": "1590K251215124702FRRW3"
+}
+----------------
+Time: 2025-12-15 12:47:10
+Payload: {"eventId":"41551PFXF3K14F91D8FABB_415904ULUYF19592B9D085_2026-04-20","customer":{"firstName":"Temp","lastName":"User","emailAddress":"temp@example.com"},"participants":{"numbers":[{"peopleCategoryId":"Cadults","number":2}]},"productId":"41551PFXF3K14F91D8FABB","giftVoucherCodeInput":"BMSM_10"}
+Response (400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K251215124710FKKXH"
+}
+----------------
+Time: 2025-12-15 12:54:34
+Payload: {"eventId":"415516JNCHJ14F91D5A806_41551K6FNL61594A111A20_2026-04-20","customer":{"firstName":"Temp","lastName":"User","emailAddress":"temp@example.com"},"participants":{"numbers":[{"peopleCategoryId":"Cadults","number":2}]},"productId":"415516JNCHJ14F91D5A806","giftVoucherCodeInput":"BMSM_10"}
+Response (400): {
+  "httpStatus": 400,
+  "message": "BMSM_10: Invalid code",
+  "errorId": "1590K2512151254336R34U"
+}
+----------------

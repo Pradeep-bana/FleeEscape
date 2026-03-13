@@ -1,0 +1,130 @@
+Array
+(
+    [id] => R02YfAiyHBwqeAHt_51139113
+    [price] => Array
+        (
+            [totalGross] => Array
+                (
+                    [amount] => 103.77
+                    [currency] => USD
+                )
+
+            [totalNet] => Array
+                (
+                    [amount] => 90
+                    [currency] => USD
+                )
+
+            [totalTaxes] => Array
+                (
+                    [amount] => 13.77
+                    [currency] => USD
+                )
+
+            [totalPaid] => Array
+                (
+                    [amount] => 0
+                    [currency] => USD
+                )
+
+            [taxes] => Array
+                (
+                    [0] => Array
+                        (
+                            [taxId] => 41551F4AA9416930C3600E
+                            [amount] => Array
+                                (
+                                    [amount] => 4.50
+                                    [currency] => USD
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [taxId] => 415514PR6RC14F9231736E
+                            [amount] => Array
+                                (
+                                    [amount] => 9.27
+                                    [currency] => USD
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [totalPayable] => Array
+        (
+            [amount] => 103.77
+            [currency] => USD
+        )
+
+    [expiration] => 2025-12-19T03:28:11-08:00
+)
+Array
+(
+    [id] => er1d0nXE8KUQgIlb_51139127
+    [price] => Array
+        (
+            [totalGross] => Array
+                (
+                    [amount] => 103.77
+                    [currency] => USD
+                )
+
+            [totalNet] => Array
+                (
+                    [amount] => 90
+                    [currency] => USD
+                )
+
+            [totalTaxes] => Array
+                (
+                    [amount] => 13.77
+                    [currency] => USD
+                )
+
+            [totalPaid] => Array
+                (
+                    [amount] => 0
+                    [currency] => USD
+                )
+
+            [taxes] => Array
+                (
+                    [0] => Array
+                        (
+                            [taxId] => 41551F4AA9416930C3600E
+                            [amount] => Array
+                                (
+                                    [amount] => 4.50
+                                    [currency] => USD
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [taxId] => 415514PR6RC14F9231736E
+                            [amount] => Array
+                                (
+                                    [amount] => 9.27
+                                    [currency] => USD
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [totalPayable] => Array
+        (
+            [amount] => 103.77
+            [currency] => USD
+        )
+
+    [expiration] => 2025-12-19T03:29:20-08:00
+)

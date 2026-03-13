@@ -1,0 +1,1151 @@
+.Unforgettable_Birthday_section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.Unforgettable_Birthday_content {
+    padding: 50px;
+}
+
+.Unforgettable_Birthday_title {
+    color: #00c8ff;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.Unforgettable_Birthday_text {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+
+/* ---------------------------
+   Slider
+---------------------------- */
+.Unforgettable_Birthday_slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.Unforgettable_Birthday_slider .Unforgettable_slides {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.Unforgettable_Birthday_slider img {
+    width: 100%;
+    border-radius: 15px;
+    flex-shrink: 0;
+      height: 350px;
+}
+
+
+/* Arrows */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid #00d4ff;
+    color: #00d4ff;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    /* background: rgba(0, 0, 0, 0.3); */
+}
+
+.slider-btn:hover {
+    background: #00d4ff;
+    color: #000;
+}
+
+.slider-btn.prev {
+    left: 12px;
+}
+
+.slider-btn.next {
+    right: 12px;
+}
+
+/* ======================== */
+
+.section_heading_page {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section_heading_page .section-title {
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #00d4ff;
+}
+
+.section_heading_page .section-subtitle {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.section_heading_page span.badge-custom {
+    display: inline-block;
+    padding: 6px 15px;
+    border: 2px solid #00d4ff;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #00d4ff;
+    animation: glow 2s ease-in-out infinite alternate;
+    margin-bottom: 18px;
+}
+
+section.Ultimate_Birthday_Experience {
+    background: #6565653e;
+    padding: 80px 0px;
+}
+
+
+
+/* Features inside card */
+.feature-box {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.feature-box:last-child {
+    margin-bottom: 0;
+}
+
+.feature-box i {
+    font-size: 2rem;
+    color: #00d4ff;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.feature-box h5 {
+    font-weight: bold;
+    color: #00d4ff;
+    margin-bottom: 5px;
+}
+
+.feature-box p {
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Image card */
+.Ultimate_Birthday_Experience .birthday-card {
+    /* border: 2px solid #00d4ff; */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.Ultimate_Birthday_Experience .birthday-card img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.Ultimate_Birthday_Experience .birthday-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.9);
+}
+
+.Ultimate_Birthday_Experience .birthday-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Glow Animation */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+    }
+
+    to {
+        box-shadow: 0 0 35px rgba(0, 212, 255, 0.9);
+    }
+}
+
+/* ===================== */
+
+.Corporate_Team_Building_section {
+    background: linear-gradient(135deg, #0a0f1c, #1b1f35);
+    color: #ffffff;
+    position: relative;
+}
+
+/* Heading */
+.Corporate_Team_Building_heading {
+    color: #00d4ff;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.Corporate_Team_Building_subheading {
+    color: #b0b7c3;
+    font-size: 1rem;
+}
+
+/* Table */
+.Corporate_Team_Building_table table {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.Corporate_Team_Building_table thead {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.Corporate_Team_Building_table {
+    border-collapse: collapse;
+    width: 100%;
+    transition: all 0.3s ease;
+    border: 2px solid #00d4ff;
+    border-radius: 12px;
+}
+
+.Corporate_Team_Building_table tr {
+    background: #191919;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid #00d4ff;
+    border-radius: 12px;
+}
+
+.Corporate_Team_Building_table thead tr {
+    background: #00d4ff;
+    color: #000;
+}
+
+.Corporate_Team_Building_table thead th {
+    text-align: left;
+    padding: 7px 14px;
+}
+
+.Corporate_Team_Building_table tr:last-child {
+    border-bottom: 0;
+}
+
+
+.Corporate_Team_Building_table tr :hover {
+
+    transform: scale(1.01);
+}
+
+.Corporate_Team_Building_table tr td {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    text-align: left;
+    padding: 7px 14px !important;
+    color: #aaa
+}
+
+.Corporate_Team_Building_table tr td:first-child {
+    text-align: left;
+    font-weight: bold;
+    color: #fff;
+}
+
+.Corporate_Team_Building_table tr td:last-child,
+.Corporate_Team_Building_table thead th:last-child {
+    text-align: center;
+}
+
+.Corporate_Team_Building_table thead th {
+    text-align: left;
+}
+
+
+
+.Corporate_Team_Building_rating {
+    color: #ffd700 !important;
+    font-weight: bold;
+}
+
+.Corporate_Team_Building_yes {
+    color: #00ff99 !important;
+    font-weight: bold;
+}
+
+.Corporate_Team_Building_no {
+    color: #ff4e4e !important;
+    font-weight: bold;
+}
+
+/* Cards */
+.Corporate_Team_Building_card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    /*cursor: pointer;*/
+    background: #191919;
+    border-radius: 12px;
+}
+
+.Corporate_Team_Building_card:hover {
+    border-color: #00d4ff;
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+}
+
+.Corporate_Team_Building_card i {
+    color: #00d4ff;
+    transition: all 0.4s ease;
+}
+
+.Corporate_Team_Building_card:hover i {
+    color: #fff;
+    transform: rotate(15deg) scale(1.2);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+}
+
+.Corporate_Team_Building_card h5 {
+    transition: color 0.3s ease;
+}
+
+.Corporate_Team_Building_card:hover h5 {
+    color: #00d4ff;
+}
+
+/* Button */
+.Corporate_Team_Building_btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: transparent;
+    border: 2px solid #00d4ff;
+    border-radius: 30px;
+    color: #00d4ff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.Corporate_Team_Building_btn:hover {
+    background: #00d4ff;
+    color: #0a0f1c;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.9);
+}
+
+/* ========================== */
+
+
+.Why_Choose_VR {
+    background: #191919;
+    border-radius: 12px;
+    color: #fff;
+    margin-top: 100px;
+    padding: 30px 0;
+}
+
+.Why_Choose_VR_title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #00d9ff;
+}
+
+.Why_Choose_VR_subtitle {
+    font-size: 16px;
+    color: #ccc;
+    max-width: 700px;
+    margin: 10px auto 0;
+}
+
+.choose-card {
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.choose-card:hover {
+    transform: translateY(-8px);
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #1a2a38;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 28px;
+    color: #00d9ff;
+    transition: all 0.3s ease;
+}
+
+.choose-card:hover .icon-circle {
+    background: #00d9ff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+}
+
+.choose-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.choose-text {
+    font-size: 14px;
+    color: #bbb;
+}
+
+
+/* ================== */
+
+.Experience_Gallery {
+    /*background: #0d1b2a;*/
+    color: #fff;
+}
+
+.Experience_Gallery .section-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00d9ff;
+}
+
+.Experience_Gallery .section-subtitle {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.Experience_Gallery .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+        margin-bottom: 0px;
+            border: 1px solid #00d4ff82;
+}
+.Experience_Gallery .col-md-3.col-6 {
+    padding: 10px;
+    margin-top: 0!important;
+}
+
+.Experience_Gallery .gallery-item img {
+    width: 100%;
+    height: 200px;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* Overlay Eye Icon */
+.Experience_Gallery .gallery-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.Experience_Gallery .gallery-item .overlay i {
+    font-size: 32px;
+    color: #fff;
+    text-shadow: 0 0 15px #00d9ff;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+}
+
+.Experience_Gallery .gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.Experience_Gallery .gallery-item:hover .overlay i {
+    transform: scale(1);
+}
+
+/* Hover Effect on Image */
+.Experience_Gallery .gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.9);
+    border: 1px solid #00d9ff;
+}
+
+.Experience_Gallery .gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.Experience_Gallery .gallery-item .overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    width: 100%;
+    background: #0000009c;
+    padding: 10px 14px;
+}
+
+.Experience_Gallery .gallery-item .overlay-text h6 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.Experience_Gallery .gallery-item .overlay-text p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.8;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;      /* 🔥 max 4 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =================== */
+
+.faq_pary_ask .accordion {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq_pary_ask .accordion-button {
+    background: #5f5f5fff;
+    color: #fff;
+    border: none;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.faq_pary_ask .accordion-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.9);
+}
+
+.faq_pary_ask .accordion-item {
+    background: transparent;
+    padding: 0;
+    border: none;
+    margin-bottom: 8px;
+}
+
+.faq_pary_ask .accordion-button:focus {
+    box-shadow: none;
+}
+
+.faq_pary_ask .accordion-button:not(.collapsed) {
+    background: #00d9ff;
+    color: #000;
+}
+
+.accordion-body {
+    background: #1a1a1a;
+    color: #ddd;
+    text-align: left;
+    border-top: 1px solid #333;
+}
+
+.faq_pary_ask .faq-toggle-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.faq_pary_ask .accordion-button.collapsed .plus {
+    display: inline;
+}
+
+.faq_pary_ask .accordion-button.collapsed .minus {
+    display: none;
+}
+
+
+/* ================== */
+
+.package_card_popular {
+    position: relative;
+}
+
+.package_card_popular_item {
+    position: absolute;
+    top: -14px;
+    background: #00d4ff;
+    color: #000;
+    padding: 0;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+    z-index: 1;
+    left: 50%;
+    transform: translate(-50%, 0);
+    line-height: normal;
+    padding: 7px 15px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.party-packages {
+    padding: 60px 20px;
+    /*text-align: center;*/
+    background: #0b0f1a;
+    color: #fff;
+}
+
+.section-subtitle {
+    color: #00d4ff;
+    font-size: 14px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+.section-title {
+    font-size: 28px;
+    margin: 10px 0;
+    color: #61dafb;
+}
+
+.section-desc {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #aaa;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filters select {
+    padding: 12px 5px;
+    border-radius: 8px;
+    border: 1px solid #61dafb;
+    background: #111827;
+    color: #61dafb;
+    font-size: 14px;
+    text-align: left;
+    width: 194px;
+    box-shadow: 0px 0px 15px rgba(0, 212, 255, 0.9);
+    /* border: none; */
+    background: #0b0f1a;
+}
+
+.filters select option , select option {
+    background-color: #0b0f1a;
+}
+
+
+.package_card a.bg_bnt_custom {
+    margin: 0;
+    text-align: center;
+    width: max-content;
+    margin: 0 auto;
+}
+
+/* Grid */
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* हमेशा 3 cards desktop पर */
+    gap: 25px;
+}
+
+/* Tablet पर 2 cards */
+@media (max-width: 992px) {
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile पर 1 card */
+@media (max-width: 576px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.package_card {
+    background: #191919;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: left;
+    position: relative;
+    border: 1px solid #1f2937;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.package_card.active {
+    border: 2px solid #00d4ff;
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.9);
+}
+
+.package_card:hover {
+    transform: translateY(-8px);
+    border-color: #00d4ff;
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.9);
+    border: 1px solid #00d9ff;
+}
+
+.package_card_name_time .tag {
+    height: auto;
+    background: #0CDEDE;
+    background: linear-gradient(90deg, rgb(0 255 255 / 48%) 28%, rgb(0 212 255 / 40%) 50%);
+    border-radius: 30px;
+    padding: 4px 7px;
+    font-size: 13px;
+    line-height: normal;
+}
+
+.clock_pac_card_name {
+    line-height: normal;
+    font-size: 12px;
+    border: 1px solid #00d4ff;
+    padding: 4px 9px;
+    border-radius: 30px;
+    font-size: 11px;
+    color: #00d4ff;
+    font-weight: 500;
+}
+
+
+.package_card_name_desc h3 {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.package_card_name_desc p {
+    margin: 0;
+    font-size: 13px;
+    color: rgb(209 213 219);
+}
+
+.package_card_name_desc {
+    margin-top: 16px;
+}
+
+.package_card_price {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: normal;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.package_card_price p.price {
+    text-align: center;
+    color: #00d4ff;
+    font-size: 33px;
+    font-weight: 800;
+    margin: 0;
+    line-height: normal;
+}
+
+.package_card_price small {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.package_card .price span {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.package_card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 18px;
+}
+
+
+.package_card ul li {
+    margin: 0;
+    font-size: 14px;
+    color: rgb(209 213 219);
+    position: relative;
+}
+
+.package_card ul li::before {
+    content: "✓";
+    color: #00d4ff;
+    position: absolute;
+    left: -20px;
+    top: 0;
+}
+
+.package_card_people {
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+.package_card_people p {
+    font-size: 12px;
+    margin: 0;
+    color: #aaa;
+}
+
+.package_card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #00d4ff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.package_card button:hover {
+    background: #00d4ff;
+}
+
+
+/* ============ */
+
+.Need_Custom_Package_box {
+    background: #191919;
+    border-radius: 12px;
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 22px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.Need_Custom_Package_box .all_button_main_header {
+    text-align: center;
+    margin: 0 !important;
+    justify-content: center;
+}
+
+.Need_Custom_Package_box .all_button_main_header a.bg_bnt_custom {
+    margin-top: 5px;
+}
+
+.Need_Custom_Package_box h3 {
+    font-size: 24px;
+    margin: 0;
+    margin-bottom: 10px;
+    color: #61dafb;
+}
+
+/* ======================== */
+
+section.Party_contact_form_section {
+    margin-top: 44px;
+}
+
+.Party_contact_form_section {
+    background: #191919;
+    color: #fff;
+    padding: 60px 20px;
+}
+
+.Party_contact_form_header {
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.Party_contact_form_header h2 {
+    color: #61dafb;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.Party_contact_form_header p {
+    color: #ccc;
+    margin-top: 8px;
+}
+
+.Party_contact_form_buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.Party_contact_form_btn_primary {
+    background: #00cfff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.Party_contact_form_btn_secondary {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 10px 18px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.Party_contact_form_content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.Party_contact_form_info,
+.Party_contact_form_form {
+    background: #191919;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.Party_contact_form_info h3,
+.Party_contact_form_form h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.Party_contact_form_info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Party_contact_form_info li {
+    margin-bottom: 18px;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+}
+
+.Party_contact_form_info i {
+    color: #00cfff;
+    margin-right: 11px;
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+}
+
+.Party_contact_form_info li span ,.Party_contact_form_info li span a {
+    color: #aaa;
+}
+.Party_contact_form_info li span a {
+    color: #00d4ff;
+}
+
+.Party_contact_form_form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Party_contact_form_row {
+    display: flex;
+    gap: 15px;
+}
+
+.Party_contact_form_form input,
+.Party_contact_form_form textarea {
+    width: 100%;
+    background: transparent!important;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 9px 16px;
+    box-shadow: #00d9ff 0px 1px 4px;
+    transform: all 0.3s ease-in-out;
+}
+
+.Party_contact_form_form input:focus-visible,
+.Party_contact_form_form textarea:focus-visible {
+    /* transform: scale(1.05); */
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.9) !important;
+    border: 1px solid #00d9ffad !important;
+    outline: none !important;
+}
+
+.Party_contact_form_form textarea {
+    min-height: 120px;
+    resize: none;
+    border-radius: 12px;
+}
+
+.Party_contact_form_w100 {
+    width: 100%;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .Party_contact_form_content {
+        grid-template-columns: 1fr;
+    }
+
+    .Party_contact_form_row {
+        flex-direction: column;
+    }
+
+    .Party_contact_form_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+
+/* ================= Responsive ================= */
+
+/* Tablet */
+@media(max-width: 992px) {
+    .Unforgettable_Birthday_title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+ .Unforgettable_Birthday_content {
+    padding: 0;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media(max-width: 768px) {
+    .Unforgettable_Birthday_section {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 10px;
+    }
+
+   .Unforgettable_Birthday_title {
+    font-size: 18px;
+    margin-bottom: 11px;
+}
+
+   .Unforgettable_Birthday_text {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+  
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .Party_contact_form_content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .Party_contact_form_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .Party_contact_form_row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .Party_contact_form_header h2 {
+        font-size: 22px;
+        text-align: left;
+    }
+    .slider-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.section_heading_page .section-title {
+    font-size: 23px;
+    line-height: 28px;
+    margin-bottom: 0;
+}
+.section_heading_page {
+    margin-bottom: 17px;
+}
+.section_heading_page .section-subtitle {
+    font-size: 15px;
+}
+.Custom_Team_Building .feature-card {
+    padding: 17px;
+}
+.h5, h5 {
+    font-size: 16px;
+}
+.N_obligation_Custom_Team_Building {
+    font-size: 13px;
+}
+.party-packages {
+    padding: 0 0;
+}
+.section_heading_page .section-subtitle {
+    font-size: 13px;
+}
+.section_heading_page .section-title br {
+    display: none;
+}
+.Corporate_Team_Building_table tr td {
+    padding: 3px 11px !important;
+}
+.game_all_project_count {
+    margin-bottom: 0;
+}
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
+}
+.Need_Custom_Package_box h3 {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+}

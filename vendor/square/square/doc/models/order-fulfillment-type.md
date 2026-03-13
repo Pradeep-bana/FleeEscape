@@ -1,0 +1,16 @@
+
+# Order Fulfillment Type
+
+The type of fulfillment.
+
+## Enumeration
+
+`OrderFulfillmentType`
+
+## Fields
+
+| Name | Description |
+|  --- | --- |
+| `PICKUP` | A recipient to pick up the fulfillment from a physical [location](../../doc/models/location.md). |
+| `SHIPMENT` | A shipping carrier to ship the fulfillment. |
+
