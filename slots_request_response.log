@@ -35067,3 +35067,339 @@ STATUS: SUCCESS
 DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
 --------------------------------------------------------
 
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:31:08 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551F9C679173BC114D28&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551F9C679173BC114D28","slots":[{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 18:00:00","event_id":"41551F9C679173BC114D28_415903ULT7R19B61091FEA_2026-03-13","available_seats":"0"},{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 20:00:00","event_id":"41551F9C679173BC114D28_41590MR77MC19B61091FEB_2026-03-13","available_seats":"4"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:31:08 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551PFXF3K14F91D8FABB&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551PFXF3K14F91D8FABB","slots":[{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 13:00:00","event_id":"41551PFXF3K14F91D8FABB_41590RKWUJM19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 17:30:00","event_id":"41551PFXF3K14F91D8FABB_41590TTXPLF19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 19:00:00","event_id":"41551PFXF3K14F91D8FABB_41590YL9M9P19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 21:00:00","event_id":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-03-13","available_seats":"0"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:31:08 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551HE99XR14F91DF96B0&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551HE99XR14F91DF96B0","slots":[{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 13:00:00","event_id":"41551HE99XR14F91DF96B0_41590Y7A9UW1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 17:30:00","event_id":"41551HE99XR14F91DF96B0_41590X9A39T1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 19:00:00","event_id":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 21:00:00","event_id":"41551HE99XR14F91DF96B0_41590J3RC4A1950102C5ED_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:31:08 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551XJM6F314F91E1CD68&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551XJM6F314F91E1CD68","slots":[{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 18:00:00","event_id":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-03-13","available_seats":"0"},{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 20:00:00","event_id":"41551XJM6F314F91E1CD68_4159033PMLL195928BA13A_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:31:08 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551Y4PM9614F91DD1BC6&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551Y4PM9614F91DD1BC6","slots":[{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 18:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590MWCPLW1959D430A60_2026-03-13","available_seats":"8"},{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 20:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590LXRR4J1959D430A60_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:31:08 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=415516JNCHJ14F91D5A806&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:49:55 AM
+SOURCE: API (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551F9C679173BC114D28&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551F9C679173BC114D28","slots":[{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 18:00:00","event_id":"41551F9C679173BC114D28_415903ULT7R19B61091FEA_2026-03-13","available_seats":"0"},{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 20:00:00","event_id":"41551F9C679173BC114D28_41590MR77MC19B61091FEB_2026-03-13","available_seats":"4"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:49:55 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551PFXF3K14F91D8FABB&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551PFXF3K14F91D8FABB","slots":[{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 13:00:00","event_id":"41551PFXF3K14F91D8FABB_41590RKWUJM19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 17:30:00","event_id":"41551PFXF3K14F91D8FABB_41590TTXPLF19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 19:00:00","event_id":"41551PFXF3K14F91D8FABB_41590YL9M9P19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 21:00:00","event_id":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-03-13","available_seats":"0"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:49:55 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551HE99XR14F91DF96B0&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551HE99XR14F91DF96B0","slots":[{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 13:00:00","event_id":"41551HE99XR14F91DF96B0_41590Y7A9UW1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 17:30:00","event_id":"41551HE99XR14F91DF96B0_41590X9A39T1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 19:00:00","event_id":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 21:00:00","event_id":"41551HE99XR14F91DF96B0_41590J3RC4A1950102C5ED_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:49:55 AM
+SOURCE: API (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551XJM6F314F91E1CD68&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551XJM6F314F91E1CD68","slots":[{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 18:00:00","event_id":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-03-13","available_seats":"0"},{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 20:00:00","event_id":"41551XJM6F314F91E1CD68_4159033PMLL195928BA13A_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:49:55 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551Y4PM9614F91DD1BC6&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551Y4PM9614F91DD1BC6","slots":[{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 18:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590MWCPLW1959D430A60_2026-03-13","available_seats":"8"},{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 20:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590LXRR4J1959D430A60_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:49:55 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=415516JNCHJ14F91D5A806&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:53:20 AM
+SOURCE: API (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551F9C679173BC114D28&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551F9C679173BC114D28","slots":[{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 18:00:00","event_id":"41551F9C679173BC114D28_415903ULT7R19B61091FEA_2026-03-13","available_seats":"0"},{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 20:00:00","event_id":"41551F9C679173BC114D28_41590MR77MC19B61091FEB_2026-03-13","available_seats":"4"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:53:20 AM
+SOURCE: API (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551PFXF3K14F91D8FABB&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551PFXF3K14F91D8FABB","slots":[{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 13:00:00","event_id":"41551PFXF3K14F91D8FABB_41590RKWUJM19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 17:30:00","event_id":"41551PFXF3K14F91D8FABB_41590TTXPLF19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 19:00:00","event_id":"41551PFXF3K14F91D8FABB_41590YL9M9P19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 21:00:00","event_id":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-03-13","available_seats":"0"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:53:20 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551HE99XR14F91DF96B0&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551HE99XR14F91DF96B0","slots":[{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 13:00:00","event_id":"41551HE99XR14F91DF96B0_41590Y7A9UW1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 17:30:00","event_id":"41551HE99XR14F91DF96B0_41590X9A39T1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 19:00:00","event_id":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 21:00:00","event_id":"41551HE99XR14F91DF96B0_41590J3RC4A1950102C5ED_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:53:20 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551XJM6F314F91E1CD68&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551XJM6F314F91E1CD68","slots":[{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 18:00:00","event_id":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-03-13","available_seats":"0"},{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 20:00:00","event_id":"41551XJM6F314F91E1CD68_4159033PMLL195928BA13A_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:53:20 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551Y4PM9614F91DD1BC6&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551Y4PM9614F91DD1BC6","slots":[{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 18:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590MWCPLW1959D430A60_2026-03-13","available_seats":"8"},{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 20:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590LXRR4J1959D430A60_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 02:53:20 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=415516JNCHJ14F91D5A806&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:17:58 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551F9C679173BC114D28&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551F9C679173BC114D28","slots":[{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 18:00:00","event_id":"41551F9C679173BC114D28_415903ULT7R19B61091FEA_2026-03-13","available_seats":"0"},{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 20:00:00","event_id":"41551F9C679173BC114D28_41590MR77MC19B61091FEB_2026-03-13","available_seats":"4"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:17:58 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551PFXF3K14F91D8FABB&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551PFXF3K14F91D8FABB","slots":[{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 13:00:00","event_id":"41551PFXF3K14F91D8FABB_41590RKWUJM19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 17:30:00","event_id":"41551PFXF3K14F91D8FABB_41590TTXPLF19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 19:00:00","event_id":"41551PFXF3K14F91D8FABB_41590YL9M9P19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 21:00:00","event_id":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-03-13","available_seats":"0"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:17:58 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551HE99XR14F91DF96B0&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551HE99XR14F91DF96B0","slots":[{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 13:00:00","event_id":"41551HE99XR14F91DF96B0_41590Y7A9UW1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 17:30:00","event_id":"41551HE99XR14F91DF96B0_41590X9A39T1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 19:00:00","event_id":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 21:00:00","event_id":"41551HE99XR14F91DF96B0_41590J3RC4A1950102C5ED_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:17:58 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551XJM6F314F91E1CD68&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551XJM6F314F91E1CD68","slots":[{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 18:00:00","event_id":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-03-13","available_seats":"0"},{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 20:00:00","event_id":"41551XJM6F314F91E1CD68_4159033PMLL195928BA13A_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:17:58 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551Y4PM9614F91DD1BC6&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551Y4PM9614F91DD1BC6","slots":[{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 18:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590MWCPLW1959D430A60_2026-03-13","available_seats":"8"},{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 20:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590LXRR4J1959D430A60_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:17:58 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=415516JNCHJ14F91D5A806&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:18:09 AM
+SOURCE: CACHE (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551F9C679173BC114D28&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551F9C679173BC114D28","slots":[{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 18:00:00","event_id":"41551F9C679173BC114D28_415903ULT7R19B61091FEA_2026-03-13","available_seats":"0"},{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 20:00:00","event_id":"41551F9C679173BC114D28_41590MR77MC19B61091FEB_2026-03-13","available_seats":"4"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:18:09 AM
+SOURCE: CACHE (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551PFXF3K14F91D8FABB&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551PFXF3K14F91D8FABB","slots":[{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 13:00:00","event_id":"41551PFXF3K14F91D8FABB_41590RKWUJM19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 17:30:00","event_id":"41551PFXF3K14F91D8FABB_41590TTXPLF19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 19:00:00","event_id":"41551PFXF3K14F91D8FABB_41590YL9M9P19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 21:00:00","event_id":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-03-13","available_seats":"0"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:18:09 AM
+SOURCE: CACHE (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551HE99XR14F91DF96B0&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551HE99XR14F91DF96B0","slots":[{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 13:00:00","event_id":"41551HE99XR14F91DF96B0_41590Y7A9UW1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 17:30:00","event_id":"41551HE99XR14F91DF96B0_41590X9A39T1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 19:00:00","event_id":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 21:00:00","event_id":"41551HE99XR14F91DF96B0_41590J3RC4A1950102C5ED_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:18:09 AM
+SOURCE: CACHE (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551XJM6F314F91E1CD68&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551XJM6F314F91E1CD68","slots":[{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 18:00:00","event_id":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-03-13","available_seats":"0"},{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 20:00:00","event_id":"41551XJM6F314F91E1CD68_4159033PMLL195928BA13A_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:18:09 AM
+SOURCE: CACHE (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551Y4PM9614F91DD1BC6&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551Y4PM9614F91DD1BC6","slots":[{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 18:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590MWCPLW1959D430A60_2026-03-13","available_seats":"8"},{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 20:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590LXRR4J1959D430A60_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:18:09 AM
+SOURCE: CACHE (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=415516JNCHJ14F91D5A806&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:22:14 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551F9C679173BC114D28&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551F9C679173BC114D28","slots":[{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 18:00:00","event_id":"41551F9C679173BC114D28_415903ULT7R19B61091FEA_2026-03-13","available_seats":"0"},{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 20:00:00","event_id":"41551F9C679173BC114D28_41590MR77MC19B61091FEB_2026-03-13","available_seats":"4"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:22:14 AM
+SOURCE: API (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551PFXF3K14F91D8FABB&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551PFXF3K14F91D8FABB","slots":[{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 13:00:00","event_id":"41551PFXF3K14F91D8FABB_41590RKWUJM19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 17:30:00","event_id":"41551PFXF3K14F91D8FABB_41590TTXPLF19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 19:00:00","event_id":"41551PFXF3K14F91D8FABB_41590YL9M9P19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 21:00:00","event_id":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-03-13","available_seats":"0"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:22:14 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551HE99XR14F91DF96B0&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551HE99XR14F91DF96B0","slots":[{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 13:00:00","event_id":"41551HE99XR14F91DF96B0_41590Y7A9UW1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 17:30:00","event_id":"41551HE99XR14F91DF96B0_41590X9A39T1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 19:00:00","event_id":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 21:00:00","event_id":"41551HE99XR14F91DF96B0_41590J3RC4A1950102C5ED_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:22:14 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551XJM6F314F91E1CD68&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551XJM6F314F91E1CD68","slots":[{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 18:00:00","event_id":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-03-13","available_seats":"0"},{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 20:00:00","event_id":"41551XJM6F314F91E1CD68_4159033PMLL195928BA13A_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:22:14 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551Y4PM9614F91DD1BC6&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551Y4PM9614F91DD1BC6","slots":[{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 18:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590MWCPLW1959D430A60_2026-03-13","available_seats":"8"},{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 20:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590LXRR4J1959D430A60_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:22:14 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=415516JNCHJ14F91D5A806&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:32:44 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551F9C679173BC114D28&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551F9C679173BC114D28","slots":[{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 18:00:00","event_id":"41551F9C679173BC114D28_415903ULT7R19B61091FEA_2026-03-13","available_seats":"0"},{"product_id":"41551F9C679173BC114D28","start_time_local":"2026-03-13 20:00:00","event_id":"41551F9C679173BC114D28_41590MR77MC19B61091FEB_2026-03-13","available_seats":"4"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:32:44 AM
+SOURCE: API (FRESH)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551PFXF3K14F91D8FABB&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551PFXF3K14F91D8FABB","slots":[{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 13:00:00","event_id":"41551PFXF3K14F91D8FABB_41590RKWUJM19592B9D085_2026-03-13","available_seats":"0"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 17:30:00","event_id":"41551PFXF3K14F91D8FABB_41590TTXPLF19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 19:00:00","event_id":"41551PFXF3K14F91D8FABB_41590YL9M9P19592B9D085_2026-03-13","available_seats":"8"},{"product_id":"41551PFXF3K14F91D8FABB","start_time_local":"2026-03-13 21:00:00","event_id":"41551PFXF3K14F91D8FABB_41590PA9ELY19592B9D086_2026-03-13","available_seats":"0"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:32:44 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551HE99XR14F91DF96B0&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551HE99XR14F91DF96B0","slots":[{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 13:00:00","event_id":"41551HE99XR14F91DF96B0_41590Y7A9UW1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 17:30:00","event_id":"41551HE99XR14F91DF96B0_41590X9A39T1950102C5EC_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 19:00:00","event_id":"41551HE99XR14F91DF96B0_41590XTA7391950102C5ED_2026-03-13","available_seats":"0"},{"product_id":"41551HE99XR14F91DF96B0","start_time_local":"2026-03-13 21:00:00","event_id":"41551HE99XR14F91DF96B0_41590J3RC4A1950102C5ED_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:32:44 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551XJM6F314F91E1CD68&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551XJM6F314F91E1CD68","slots":[{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 18:00:00","event_id":"41551XJM6F314F91E1CD68_41590JXJ7PH195928BA13A_2026-03-13","available_seats":"0"},{"product_id":"41551XJM6F314F91E1CD68","start_time_local":"2026-03-13 20:00:00","event_id":"41551XJM6F314F91E1CD68_4159033PMLL195928BA13A_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:32:44 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=41551Y4PM9614F91DD1BC6&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"41551Y4PM9614F91DD1BC6","slots":[{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 18:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590MWCPLW1959D430A60_2026-03-13","available_seats":"8"},{"product_id":"41551Y4PM9614F91DD1BC6","start_time_local":"2026-03-13 20:00:00","event_id":"41551Y4PM9614F91DD1BC6_41590LXRR4J1959D430A60_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+
+--------------------------------------------------------
+TIMESTAMP: 2026-03-13 03:32:44 AM
+SOURCE: CACHE (STALE - refreshing bg)
+REQUEST URL: https://api.bookeo.com/v2/availability/slots?productId=415516JNCHJ14F91D5A806&startTime=2026-03-13T07:00:00Z&endTime=2026-03-14T06:59:59Z&mode=calendar
+STATUS: SUCCESS
+DATA: {"productId":"415516JNCHJ14F91D5A806","slots":[{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 13:00:00","event_id":"415516JNCHJ14F91D5A806_41590XTTYXR19B6101886F_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 17:30:00","event_id":"415516JNCHJ14F91D5A806_41590RW4JU419B6101886F_2026-03-13","available_seats":"8"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 19:00:00","event_id":"415516JNCHJ14F91D5A806_41590YLMXHY19B61018870_2026-03-13","available_seats":"0"},{"product_id":"415516JNCHJ14F91D5A806","start_time_local":"2026-03-13 21:00:00","event_id":"415516JNCHJ14F91D5A806_41590T9AWM419B61018870_2026-03-13","available_seats":"8"}]}
+--------------------------------------------------------
+

@@ -3416,6 +3416,7 @@ async function handleAddButtonClick(evt) {
     if (!btn) return;
 
     evt.preventDefault();
+    if (btn.dataset.loading === "1") return;
 
     const card = btn.closest(".add_on_booking_card");
     if (!card) return;
@@ -3432,7 +3433,7 @@ async function handleAddButtonClick(evt) {
     const game_id    = card.querySelector(".game_id")?.textContent?.trim() || card.querySelector(".addon-dropdown")?.dataset.optId || "";
     const priceText = card.querySelector(".discounted-price")?.textContent || "";
     const addonPrice = parseFloat(priceText.replace("$", "").trim()) || 0;
-    let currentCode = document.getElementById("giftCodeInput").value || "";
+    let currentCode = document.getElementById("giftCodeInput")?.value || "";
 
     const fd = new FormData();
     // POST parameter names expected by your PHP
@@ -3443,6 +3444,8 @@ async function handleAddButtonClick(evt) {
     fd.append("qty", qty);
 
     try {
+        btn.dataset.loading = "1";
+        btn.disabled = true;
         const resp = await fetch("add_addon_to_cart.php", {
             method: "POST",
             body: fd
@@ -3450,17 +3453,17 @@ async function handleAddButtonClick(evt) {
         const json = await resp.json();
 
         if (json.success || json.status === "success") {
-            // reload cart and addons (you already call loadAddons() after add-to-cart elsewhere;
-            // here we reload cart so UI updates immediately)
-            fetch("apply_code.php", {
+            const refreshResp = await fetch("apply_code.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: "code=" + encodeURIComponent(currentCode)
-            })
-            .then(() => {
-                // 3. After Bookeo updates the hold, reload the cart view
-                if (typeof loadCart === "function") loadCart();
             });
+            const refreshJson = await refreshResp.json();
+            if (refreshJson.status !== "success") {
+                throw new Error(refreshJson.message || "Failed to refresh hold");
+            }
+
+            if (typeof loadCart === "function") loadCart();
 
             // If your flow expects to reload addons (e.g. availability changed),
             // uncomment next line to refresh addon list:
@@ -3479,7 +3482,9 @@ async function handleAddButtonClick(evt) {
         }
     } catch (err) {
         console.error("Addons: AJAX error", err);
-        alert("Something went wrong while adding addon.");
+        alert(err.message || "Something went wrong while adding addon.");
+    } finally {
+        delete btn.dataset.loading;
     }
 }
 
@@ -3530,6 +3535,7 @@ function loadAddons() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    return;
 
     document.querySelectorAll(".add-addon-btn").forEach(btn => {
         btn.addEventListener("click", function (e) {

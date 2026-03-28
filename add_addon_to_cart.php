@@ -72,6 +72,16 @@ $update->execute([
     ":id"           => $row["id"]
 ]);
 
+$touchCart = $pdo->prepare("
+    UPDATE tbl_carts
+    SET created_at = :created_at
+    WHERE session_id = :sid
+");
+$touchCart->execute([
+    ":created_at" => $created_at,
+    ":sid"        => $sid
+]);
+
 
 // ----------------------------------------------------------
 // 3) UPDATE ALSO THE SESSION CART
@@ -83,8 +93,8 @@ if (!isset($_SESSION['cart'])) {
 
 // Find matching gameId inside session cart
 foreach ($_SESSION['cart'] as &$cartItem) {
-
-    if ($cartItem['gameId'] == $game_id) {
+    $cartGameId = $cartItem['gameId'] ?? ($cartItem['game_id'] ?? '');
+    if ($cartGameId == $game_id) {
 
         // Create addon detail array
         $addonArray = [
@@ -96,15 +106,10 @@ foreach ($_SESSION['cart'] as &$cartItem) {
             "addon_tax"      => $addon_tax
         ];
 
-        // If "addons" not created, create it
-        if (!isset($cartItem['addons'])) {
-            $cartItem['addons'] = [];
-        }
-
-        // Add addon inside the game array
-        $cartItem['addons'][] = $addonArray;
+        $cartItem['addons'] = [$addonArray];
     }
 }
+unset($cartItem);
 
 echo json_encode(["success" => true, "message" => "Addon updated with tax"]);
 exit;

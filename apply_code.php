@@ -39,6 +39,15 @@ function deleteBookeoHold($holdId, $apiKey, $secretKey) {
     curl_close($ch);
 }
 
+function touchSessionCartRows($pdo, $sid) {
+    $stmt = $pdo->prepare("
+        UPDATE tbl_carts
+        SET created_at = NOW()
+        WHERE session_id = :sid
+    ");
+    $stmt->execute([':sid' => $sid]);
+}
+
 // --- INPUT VALIDATION ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
@@ -67,6 +76,8 @@ if (!$cartItems) {
     echo json_encode(['status' => 'error', 'message' => 'Cart is empty']);
     exit;
 }
+
+touchSessionCartRows($pdo, $sid);
 
 // Sort: Highest Price First
 usort($cartItems, function($a, $b) {
