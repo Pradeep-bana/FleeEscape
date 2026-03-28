@@ -29,7 +29,7 @@ if (!defined('FLEE_BOOKEO_DAY_CACHE_DIR')) {
 }
 
 if (!defined('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS')) {
-    define('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS', true);
+    define('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS', false);
 }
 
 if (!function_exists('flee_bookeo_now_la')) {
@@ -186,7 +186,7 @@ if (!function_exists('flee_bookeo_request')) {
             'http_method' => $method,
             'timeout' => $timeout,
         ];
-        if (!empty($options['log_body'])) {
+        if ($method !== 'GET' && $body !== null) {
             $requestMeta['request_body'] = $body;
         }
         if ($shouldLogRequest) {
@@ -241,14 +241,26 @@ if (!function_exists('flee_bookeo_request')) {
             'http_method' => $method,
             'http_code' => $httpCode,
         ];
-        if (!empty($options['log_response_body'])) {
+        if ($httpCode < 200 || $httpCode >= 300) {
             $responseMeta['response_body'] = $response;
         }
         $isSuccessfulGet = ($method === 'GET' && $httpCode >= 200 && $httpCode < 300);
-        $shouldLogResponse = true;
+        $shouldLogResponse = !FLEE_BOOKEO_LOG_SUCCESSFUL_GETS ? !$isSuccessfulGet : true;
 
         if ($shouldLogResponse) {
             flee_bookeo_log($context . '_response', $responseMeta);
+        }
+
+        if ($httpCode < 200 || $httpCode >= 300) {
+            flee_bookeo_log_message($context . '_error', 'Bookeo API error - Full details for debugging', [
+                'request_method' => $method,
+                'request_url' => $url,
+                'request_headers' => $headers,
+                'request_body' => $body,
+                'response_code' => $httpCode,
+                'response_body' => $response,
+                'curl_error' => $curlError,
+            ]);
         }
 
         return [

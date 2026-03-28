@@ -1,14 +1,11 @@
 <?php
-$logFile = __DIR__ . "/update_button.log";
+require_once(__DIR__ . '/includes/bookeo_runtime.php');
+
 $data = file_get_contents("php://input");
 
 if ($data) {
-    file_put_contents(
-        $logFile,
-        "[" . date("Y-m-d H:i:s") . "] " . $data . PHP_EOL,
-        FILE_APPEND
-    );
-    echo "Logged OK"; // 👀 JS .then() will show this
+    flee_bookeo_log_message('ui_button_update', 'Button update triggered: ' . trim($data));
+    echo "Logged OK";
 } else {
     echo "No data";
 }

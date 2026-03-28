@@ -298,7 +298,7 @@ try {
     $stmt = $pdo->query("SELECT `id`, `product_id`, `title`, `slug`, `price`, `duration`, `players`, `thumbnail`, `bottom_heading`, `created_at` FROM `tbl_party_packages` WHERE 1");
     $packages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    file_put_contents('indexText.txt', print_r($packages, true));
+    // Removed local file logging - use centralized logging if needed
 
     foreach ($packages as $package) {
         // Optional: Add label logic based on some criteria
@@ -311,11 +311,7 @@ try {
             $label = 'Most Value';
         }
         
-        file_put_contents(
-    'indexText.txt',
-    print_r($package['thumbnail'], true) . PHP_EOL,
-    FILE_APPEND
-);
+        // Removed local file logging - use centralized logging if needed
  
         ?>
                         <div class="item">
