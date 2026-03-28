@@ -1153,25 +1153,6 @@ header.transparent a.bg_bnt_custom {
     padding-bottom: 10px;
 }
 
-.payment_btnrow_tab {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.payment_btnrow_tab button,
-.payment_voucher_tab {
-    flex: 1;
-    padding: 9px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: none;
-    background-color: #d1d5db;
-    cursor: pointer;
-    width: 49%;
-}
-
 .payment_cardinputs_tab {
     display: flex;
     gap: 10px;

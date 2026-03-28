@@ -157,76 +157,39 @@ $flashDeal = $flashQuery->fetch(PDO::FETCH_ASSOC);
     error_reporting(E_ALL);
     include ('link.php');
     include ("admin/db.php");
-    $expiryDays = 30;
+
+    // --- DATA FETCHING (DATABASE ONLY) ---
     $data = null;
-    $useCache = false;
-    // 1. Fetch cache from DB
-    $stmt = $pdo->prepare("SELECT * FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
-    $stmt->execute();
-    $cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($cacheRow) {
-        $updatedAt = strtotime($cacheRow['stored_at']);
-        $now = time();
-        // Check expiry (30 days)
-        if (($now - $updatedAt) <= ($expiryDays * 24 * 60 * 60)) {
-            // Decode the stored JSON
-            $cachedData = json_decode($cacheRow['product_data'], true);
-            if ($cachedData && isset($cachedData['data'])) {
-                $data = $cachedData;
-                $useCache = true;
+
+    try {
+        $stmt = $pdo->prepare("SELECT product_data FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
+        $stmt->execute();
+        $cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($cacheRow && !empty($cacheRow['product_data'])) {
+            $decodedData = json_decode($cacheRow['product_data'], true);
+            if ($decodedData && isset($decodedData['data'])) {
+                $data = $decodedData;
             }
         }
+    } catch (Exception $e) {
+        error_log("Database error on promotions.php (Block 1): " . $e->getMessage());
     }
-    if (!$useCache) {
-        // CALL BOOKEO API
-        $curl = curl_init();
-        curl_setopt_array($curl, array(CURLOPT_URL => 'https://api.bookeo.com/v2/settings/products', CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => array('X-Bookeo-apiKey: AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC', 'X-Bookeo-secretKey: RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4', 'Accept: application/json'), CURLOPT_TIMEOUT => 20, CURLOPT_CONNECTTIMEOUT => 10,));
-        $response = curl_exec($curl);
-        $curlError = curl_error($curl);
-        curl_close($curl);
-        if ($response === false || $curlError) {
-            // API FAILED → Use old cache (if exists)
-            if ($cacheRow) {
-                $data = json_decode($cacheRow['product_data'], true);
-            } else {
-                die("API Error: " . htmlspecialchars($curlError));
-            }
-        } else {
-            $json = json_decode($response, true);
-            // Invalid API → fallback
-            if (!isset($json['data']) || !is_array($json['data'])) {
-                if ($cacheRow) {
-                    $data = json_decode($cacheRow['product_data'], true);
-                } else {
-                    die("Invalid API response");
-                }
-            } else {
-                // Fresh API data
-                $data = $json;
-                // STORE / UPDATE CACHE
-                $stmt = $pdo->prepare("
-                INSERT INTO bookeo_products_cache (id, product_data, stored_at)
-                VALUES (1, :json, NOW())
-                ON DUPLICATE KEY UPDATE
-                    product_data = VALUES(product_data),
-                    stored_at = NOW()
-            ");
-                $stmt->execute([':json' => json_encode($json) ]);
-            }
-        }
-    }
+
     // Fail safe
     if (!isset($data['data']) || !is_array($data['data'])) {
-        $data['data'] = [];
+        $data = ['data' => []];
     }
-    // Collect product IDs
+
+    // Collect product IDs (First 6 products for Flash Deals)
     $productIds = [];
     $count = 0;
     foreach ($data['data'] as $product) {
         if ($count >= 6) break;
-        $productIds[] = htmlspecialchars($product['productCode']??'');
+        $productIds[] = htmlspecialchars($product['productCode'] ?? '');
         $count++;
     }
+    
     // Convert product IDs to JSON for hidden field
     $productIdsJson = json_encode($productIds);
 ?>
@@ -837,77 +800,40 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include ('link.php');
 include ("admin/db.php");
-$expiryDays = 30;
+
+// --- DATA FETCHING (DATABASE ONLY) ---
 $data = null;
-$useCache = false;
-// 1. Fetch cache from DB
-$stmt = $pdo->prepare("SELECT * FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
-$stmt->execute();
-$cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
-if ($cacheRow) {
-    $updatedAt = strtotime($cacheRow['stored_at']);
-    $now = time();
-    // Check expiry (30 days)
-    if (($now - $updatedAt) <= ($expiryDays * 24 * 60 * 60)) {
-        // Decode the stored JSON
-        $cachedData = json_decode($cacheRow['product_data'], true);
-        if ($cachedData && isset($cachedData['data'])) {
-            $data = $cachedData;
-            $useCache = true;
+
+try {
+    $stmt = $pdo->prepare("SELECT product_data FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
+    $stmt->execute();
+    $cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($cacheRow && !empty($cacheRow['product_data'])) {
+        $decodedData = json_decode($cacheRow['product_data'], true);
+        if ($decodedData && isset($decodedData['data'])) {
+            $data = $decodedData;
         }
     }
+} catch (Exception $e) {
+    error_log("Database error on promotions.php (Block 2): " . $e->getMessage());
 }
-if (!$useCache) {
-    // CALL BOOKEO API
-    $curl = curl_init();
-    curl_setopt_array($curl, array(CURLOPT_URL => 'https://api.bookeo.com/v2/settings/products', CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => array('X-Bookeo-apiKey: AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC', 'X-Bookeo-secretKey: RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4', 'Accept: application/json'), CURLOPT_TIMEOUT => 20, CURLOPT_CONNECTTIMEOUT => 10,));
-    $response = curl_exec($curl);
-    $curlError = curl_error($curl);
-    curl_close($curl);
-    if ($response === false || $curlError) {
-        // API FAILED → Use old cache (if exists)
-        if ($cacheRow) {
-            $data = json_decode($cacheRow['product_data'], true);
-        } else {
-            die("API Error: " . htmlspecialchars($curlError));
-        }
-    } else {
-        $json = json_decode($response, true);
-        // Invalid API → fallback
-        if (!isset($json['data']) || !is_array($json['data'])) {
-            if ($cacheRow) {
-                $data = json_decode($cacheRow['product_data'], true);
-            } else {
-                die("Invalid API response");
-            }
-        } else {
-            // Fresh API data
-            $data = $json;
-            // STORE / UPDATE CACHE
-            $stmt = $pdo->prepare("
-                INSERT INTO bookeo_products_cache (id, product_data, stored_at)
-                VALUES (1, :json, NOW())
-                ON DUPLICATE KEY UPDATE
-                    product_data = VALUES(product_data),
-                    stored_at = NOW()
-            ");
-            $stmt->execute([':json' => json_encode($json) ]);
-        }
-    }
-}
+
 // Fail safe
 if (!isset($data['data']) || !is_array($data['data'])) {
-    $data['data'] = [];
+    $data = ['data' => []];
 }
-// Collect product IDs
+
+// Collect product IDs (Products 6 through 10 for Party Packages)
 $productIds = [];
 $count = 0;
 foreach ($data['data'] as $product) {
     if ($count >= 6 && $count <= 10) {
-        $productIds[] = htmlspecialchars($product['productCode']??'');
+        $productIds[] = htmlspecialchars($product['productCode'] ?? '');
     }
     $count++;
 }
+
 // Convert product IDs to JSON for hidden field
 $productIdsJson = json_encode($productIds);
 ?>
@@ -2769,11 +2695,11 @@ if (e.target.classList.contains("continue_nex_step") && !e.target.disabled) {
         dataAvailable = selectedSlot.getAttribute("data-available") || "0";
     }
 
-    fetch("cart_pramotion_session.php", {
+    fetch("cart_session.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-            action: "add_to_cart",
+            action: "add_promotion_cart",
             gameId: productCode,
             gameName: gameName,
             slot: slot,
@@ -2785,11 +2711,8 @@ if (e.target.classList.contains("continue_nex_step") && !e.target.disabled) {
     })
     .then(res => res.json())
     .then(response => {
-        if (response.status === "slot_error") {
-            document.getElementById("bookeoErrorMessage").innerText = 
-                response.message || "This time slot is no longer available. Please select another time.";
-            const modal = new bootstrap.Modal(document.getElementById("bookeoErrorModal"));
-            modal.show();
+        if (response.status !== "success") {
+            showBookeoError(response.message || "This time slot is no longer available. Please select another time.");
             return;
         }
 
@@ -2801,9 +2724,7 @@ if (e.target.classList.contains("continue_nex_step") && !e.target.disabled) {
     })
     .catch(err => {
         console.error(err);
-        document.getElementById("bookeoErrorMessage").innerText = "Network error. Please try again.";
-        const modal = new bootstrap.Modal(document.getElementById("bookeoErrorModal"));
-        modal.show();
+        showBookeoError("Network error. Please try again.");
     })
     .finally(() => {
         btn.dataset.processing = "false";
@@ -2845,7 +2766,7 @@ document.addEventListener("click", async (e) => {
 
         document.getElementById("stepLoader")?.style?.setProperty("display", "flex");
 
-        const response = await fetch("party_cart_session.php", {
+        const response = await fetch("cart_session.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({
@@ -2864,14 +2785,9 @@ document.addEventListener("click", async (e) => {
         const resData = await response.json();
 
         // ⭐ Slot unavailable → show error ONCE and STOP
-        if (resData.status === "slot_error") {
+        if (resData.status !== "success") {
             document.getElementById("stepLoader")?.style?.setProperty("display", "none");
-            document.getElementById("bookeoErrorMessage").innerText = 
-                "Failed to reserve slot. Please try again or choose another time.";
-
-            const errModalEl = document.getElementById("bookeoErrorModal");
-            const errModal = bootstrap.Modal.getInstance(errModalEl) || new bootstrap.Modal(errModalEl);
-            errModal.show();
+            showBookeoError("Failed to reserve slot. Please try again or choose another time.");
 
             // ⭐ Yeh sabse important line hai — modal ke bahar click karne pe dobara na chale
             return; // Bilkul ruk jao yahi pe
@@ -2879,19 +2795,6 @@ document.addEventListener("click", async (e) => {
 
         
         if (productCode === "41551LAM3LY18570132661") {
-            const applyRes = await fetch("apply_code.php", { method: "POST" });
-            const applyData = await applyRes.json();
-
-            if (applyData.status !== "success") {
-                document.getElementById("stepLoader")?.style?.setProperty("display", "none");
-                document.getElementById("bookeoErrorMessage").innerText =
-                    applyData.message || "Failed to reserve slot. Please try again.";
-                const errModalEl = document.getElementById("bookeoErrorModal");
-                const errModal = bootstrap.Modal.getInstance(errModalEl) || new bootstrap.Modal(errModalEl);
-                errModal.show();
-                return;
-            }
-
             loadCart();
             loadAddons();
             window.location.href = "<?= BASE_URL ?>/booking?add-ons-";
@@ -2901,11 +2804,7 @@ document.addEventListener("click", async (e) => {
         const modal = new bootstrap.Modal(modalEl);
         modal.show();
         
-        fetch("apply_code.php", { method: "POST" })
-        .then(() => {
-            // loadCart();
-            // console.log("triggered");
-        });
+        loadCart();
 
         document.getElementById("stepLoader")?.style?.setProperty("display", "none");
 
@@ -2944,10 +2843,10 @@ document.addEventListener("click", async (e) => {
         loading.style.display = "flex";
         modalBox.classList.add("loading-mode");
 
-        fetch("remove_from_cart.php", {
+        fetch("cart_session.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "index=" + index
+            body: "action=remove_from_cart&index=" + encodeURIComponent(index)
         })
         .then(res => res.json())
         .then(data => {

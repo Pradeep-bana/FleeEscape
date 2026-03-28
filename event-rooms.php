@@ -6,113 +6,47 @@
 }
 </style>
 <?php
+// Note: session_start() may be needed if not already in a header file.
+// Enable PHP error reporting for development
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include('link.php');
 include("admin/db.php");
 
-$expiryDays = 30;
-$data = null;
-$useCache = false;
+$data = null; // Initialize variable
 
-// 1. Fetch cache from DB
-$stmt = $pdo->prepare("SELECT * FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
+// 1. Fetch product data directly from the database table.
+$stmt = $pdo->prepare("SELECT product_data FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
 $stmt->execute();
 $cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($cacheRow) {
-    $updatedAt = strtotime($cacheRow['stored_at']);
-    $now = time();
+if ($cacheRow && !empty($cacheRow['product_data'])) {
+    // 2. Decode the stored JSON data.
+    $decodedData = json_decode($cacheRow['product_data'], true);
 
-    // Check expiry (30 days)
-    if (($now - $updatedAt) <= ($expiryDays * 24 * 60 * 60)) {
-
-        // Decode the stored JSON
-        $cachedData = json_decode($cacheRow['product_data'], true);
-
-        if ($cachedData && isset($cachedData['data'])) {
-            $data = $cachedData;
-            $useCache = true;
-        }
+    // 3. Check if the JSON is valid and has the expected 'data' key.
+    if ($decodedData && isset($decodedData['data'])) {
+        $data = $decodedData;
     }
 }
 
-if (!$useCache) {
-
-    // CALL BOOKEO API
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.bookeo.com/v2/settings/products',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HTTPHEADER => array(
-            'X-Bookeo-apiKey: AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC',
-            'X-Bookeo-secretKey: RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4',
-            'Accept: application/json'
-        ),
-        CURLOPT_TIMEOUT => 20,
-        CURLOPT_CONNECTTIMEOUT => 10,
-    ));
-
-    $response = curl_exec($curl);
-    $curlError = curl_error($curl);
-    curl_close($curl);
-
-    if ($response === false || $curlError) {
-
-        // API FAILED → Use old cache (if exists)
-        if ($cacheRow) {
-            $data = json_decode($cacheRow['product_data'], true);
-        } else {
-            die("API Error: " . htmlspecialchars($curlError));
-        }
-
-    } else {
-
-        $json = json_decode($response, true);
-
-        // Invalid API → fallback
-        if (!isset($json['data']) || !is_array($json['data'])) {
-
-            if ($cacheRow) {
-                $data = json_decode($cacheRow['product_data'], true);
-            } else {
-                die("Invalid API response");
-            }
-
-        } else {
-
-            // Fresh API data
-            $data = $json;
-
-            // STORE / UPDATE CACHE
-            $stmt = $pdo->prepare("
-                INSERT INTO bookeo_products_cache (id, product_data, stored_at)
-                VALUES (1, :json, NOW())
-                ON DUPLICATE KEY UPDATE
-                    product_data = VALUES(product_data),
-                    stored_at = NOW()
-            ");
-
-            $stmt->execute([
-                ':json' => json_encode($json)
-            ]);
-        }
-    }
-}
-
-// Fail safe
+// 4. Fail-safe: Ensure $data['data'] is an array to prevent errors in the loop below.
 if (!isset($data['data']) || !is_array($data['data'])) {
-    $data['data'] = [];
+    $data = ['data' => []]; // Set a default empty structure.
 }
 
-// Collect product IDs
 $productIds = [];
 $count = 0;
 foreach ($data['data'] as $product) {
-   if ($count >= 10 && $count <= 11) {
+   // This page displays products at index 11 and 12
+   if ($count >= 11 && $count <= 12) {
     $productIds[] = htmlspecialchars($product['productCode'] ?? '');
    }
     $count++;
 }
-// Convert product IDs to JSON for hidden field
+// Convert product IDs to JSON for the hidden field
 $productIdsJson = json_encode($productIds);
 ?>
 

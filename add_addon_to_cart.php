@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 session_start();
 include("admin/db.php");
+require_once("addon_pricing_helper.php");
 
 header('Content-Type: application/json');
 
@@ -31,7 +32,7 @@ $created_at = date("Y-m-d H:i:s");
 
 // 1) Check main game exists for this session + game
 $parent = $pdo->prepare("
-    SELECT id FROM tbl_carts 
+    SELECT id, slot FROM tbl_carts 
     WHERE session_id = :sid 
       AND game_id    = :gid
     ORDER BY id DESC LIMIT 1
@@ -46,6 +47,15 @@ $row = $parent->fetch(PDO::FETCH_ASSOC);
 if (!$row) {
     echo json_encode(["success" => false, "message" => "Main game not found in cart"]);
     exit;
+}
+
+$products = flee_get_cached_products_data($pdo);
+$product = flee_find_cached_product($products, $game_id);
+if (is_array($product)) {
+    $resolvedAddonPrice = flee_get_bookeo_option_price($product, $addon_opt_id, $row['slot'] ?? '');
+    if ($resolvedAddonPrice > 0) {
+        $addon_price = $resolvedAddonPrice;
+    }
 }
 
 // 2) UPDATE addon columns in database

@@ -7,6 +7,7 @@ ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 include('admin/db.php');
+require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
 // 1. Get Payload
 $input = file_get_contents('php://input');
@@ -14,6 +15,9 @@ $payload = json_decode($input, true);
 
 // If no payload, stop
 if (!$payload) {
+    flee_bookeo_log_message('bookeo_webhook_invalid', 'Invalid JSON payload received by webhook', [
+        'raw_payload' => $input,
+    ]);
     http_response_code(400);
     exit('Invalid JSON');
 }
@@ -55,13 +59,21 @@ try {
         ':payload' => $input, // Store raw JSON string
     ]);
 } catch (PDOException $e) {
-    // Log DB error quietly if needed
-    error_log("Webhook DB Log Error: " . $e->getMessage());
+    flee_bookeo_log_message('bookeo_webhook_db_error', 'Webhook DB log insert failed', [
+        'error' => $e->getMessage(),
+    ]);
 }
 
 // 4. Process Logic (Cache Invalidation)
 // We check if the event is created/updated/deleted
 if ($eventId && in_array($eventType, ['created', 'updated', 'deleted'])) {
+    flee_bookeo_log('bookeo_webhook_event', [
+        'event_type' => $eventType,
+        'domain' => $domain,
+        'product_id' => $productId,
+        'event_id' => $eventId,
+        'slot_date' => $slotDate,
+    ]);
     
     $newSeats = $data['numSeatsAvailable'] ?? null;
     $isCanceled = $data['canceled'] ?? false; // Check if it is a cancellation
@@ -93,6 +105,7 @@ if ($eventId && in_array($eventType, ['created', 'updated', 'deleted'])) {
     if ($productId && $slotDate) {
         $stmt = $pdo->prepare("DELETE FROM bookeo_fetch_registry WHERE product_id=? AND slot_date=?");
         $stmt->execute([$productId, $slotDate]);
+        flee_bookeo_clear_day_cache($slotDate);
     }
 }
 

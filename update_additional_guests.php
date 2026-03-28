@@ -32,7 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id' => $cartId
         ]);
 
-        echo json_encode(['status' => 'success']);
+        // Refresh Bookeo hold so totals (taxes, pricing) stay in sync when additional guests change.
+        // We do this the same way update_qty_hold.php does: re-run apply_code.php using the current session code.
+        $_POST['code'] = $_SESSION['giftCode'] ?? '';
+        include("apply_code.php");
+        exit;
+
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Item not found']);
     }

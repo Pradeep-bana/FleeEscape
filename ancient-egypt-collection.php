@@ -6,20 +6,22 @@ try {
     $stmt = $pdo->prepare("SELECT * FROM tbl_service WHERE link = ? LIMIT 1");
     $stmt->execute([$current_slug]);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    $prod_id = $productId = $data['product_id'];
-
+    
     if ($data) {
+        $prod_id = $productId = $data['product_id'];
         $pageTitle = htmlspecialchars($data['page_title']);
         $metaKeywords = htmlspecialchars($data['keywords']);
         $metaDescription = htmlspecialchars($data['page_description']);
     } else {
-        // Fallback if table is empty
+        // Fallback if table is empty or game not found
+        $prod_id = $productId = '';
         $pageTitle = 'Ancient Egypt';
         $metaKeywords = 'Ancient Egypt';
         $metaDescription = 'Ancient Egypt';
     }
 } catch (Exception $e) {
     // Fallback in case of error
+    $prod_id = $productId = '';
     $pageTitle = 'Ancient Egypt';
     $metaKeywords = 'Ancient Egypt';
     $metaDescription = 'Ancient Egypt';
@@ -35,8 +37,6 @@ include('includes/header.php');
     border: 2px solid #777;
 }
 .slot-box span.Available_play_time {
-    
-    
     color: #fff;
     line-height: initial;
     padding-top: 4px;
@@ -49,7 +49,6 @@ include('includes/header.php');
     border: none;
     background: transparent;
     font-weight: 300 !important;
-    border: none;
     font-size: inherit;
     padding: 0 5px;
     cursor: pointer;
@@ -70,13 +69,10 @@ include('includes/header.php');
             <div class="choose_all_page_resposnive_toggle">
                 <p> <span>All Games</span> <i class="fa-solid fa-bars-staggered"></i></p>
             </div>
-            <!-- LEFT: Tabs list (grid same) -->
-         <div class="col-md-3">
+            <div class="col-md-3">
                 <h5 class="ca-title mb-3">Choose Your Adventure</h5>
              <div class="nav flex-column nav-pills">
 <?php
-include('admin/db.php'); // adjust path if needed
-
 try {
     // Fetch all games
     $stmt = $pdo->prepare("SELECT * FROM tbl_service 
@@ -103,12 +99,12 @@ try {
         $reviewCount = $ratingData['total_reviews'] ?? 0;
 
         // Prepare display data
-        $slug = $row['link'];
-        $difficultyClass = 'ca-' . strtolower($row['difficulty']);
-        $difficultyLabel = ucfirst($row['difficulty']);
-         $duration = $row['duration'];
-        $thumbnail = !empty($row['thumbnail']) ? "uploads/vr/{$row['thumbnail']}" : "images/default.jpg";
-        $label = !empty($row['label']) ? $row['label'] : '';
+        $slug = htmlspecialchars($row['link']);
+        $difficultyClass = 'ca-' . strtolower(htmlspecialchars($row['difficulty']));
+        $difficultyLabel = ucfirst(htmlspecialchars($row['difficulty']));
+        $duration = htmlspecialchars($row['duration']);
+        $thumbnail = !empty($row['thumbnail']) ? "uploads/vr/".htmlspecialchars($row['thumbnail']) : "images/default.jpg";
+        $label = !empty($row['label']) ? htmlspecialchars($row['label']) : '';
 ?>
     <button onclick="window.location.href='<?php echo $slug; ?>'" class="nav-link ca-item <?=$selectedClass?>">
         <div class="ca-item-head">
@@ -127,8 +123,7 @@ try {
         </div>
 
         <div class="ca-rating">
-           
-            <i class="bi bi-star-fill"></i> <?php echo $avgRating; ?> (<?php echo $row['reviewsCount']; ?> reviews)
+            <i class="bi bi-star-fill"></i> <?php echo $avgRating; ?> (<?php echo $reviewCount; ?> reviews)
         </div>
     </button>
 <?php
@@ -142,8 +137,7 @@ try {
 
             </div>
 
-            <!-- RIGHT: Tab content (grid same) -->
-                   <?php
+            <?php
 try {
     // Fetch escape room data
     $stmt = $pdo->prepare("SELECT * FROM tbl_service WHERE product_id = ?");
@@ -162,13 +156,13 @@ try {
         // Prepare variables
         $gameTitle = $title = htmlspecialchars($room['title']);
         $sub = htmlspecialchars($room['middle_h2']);
-        $difficulty = ucfirst($room['difficulty']);
-        $duration=$room['duration'];
+        $difficulty = ucfirst(htmlspecialchars($room['difficulty']));
+        $duration = htmlspecialchars($room['duration']);
         $players = htmlspecialchars($room['players']);
-        $cover = !empty($room['cover_photo']) ? "admin/uploads/{$room['cover_photo']}" : "img/default-bg.jpg";
+        $cover = !empty($room['cover_photo']) ? "admin/uploads/".htmlspecialchars($room['cover_photo']) : "img/default-bg.jpg";
         $label = !empty($room['label']) ? htmlspecialchars($room['label']) : '';
-        $trailer = !empty($room['trailer_video']) ? "admin/uploads/{$room['trailer_video']}" : '';
-        $price = !empty($room['price']) ? $room['price'] : '35';
+        $trailer = !empty($room['trailer_video']) ? "admin/uploads/".htmlspecialchars($room['trailer_video']) : '';
+        $price = !empty($room['price']) ? htmlspecialchars($room['price']) : '35';
 ?>
 
 <div class="col-md-9">
@@ -188,16 +182,12 @@ try {
                 <div class="ca-badges">
                     <span class="ca-badge"><i class="bi bi-clock"></i> <?php echo $duration; ?> minutes</span>
                     <span class="ca-badge"><i class="bi bi-people"></i> <?php echo $players; ?> players</span>
-                    <!--<span class="ca-badge"><i class="bi bi-graph-up"></i> <?php echo $difficulty; ?> Difficulty</span>-->
-                    <span class="ca-badge"><i class="bi bi-star-fill"></i> <?php echo $avgRating; ?>/5 (<?php echo $room['reviewsCount']; ?> reviews)</span>
+                    <span class="ca-badge"><i class="bi bi-star-fill"></i> <?php echo $avgRating; ?>/5 (<?php echo $reviewCount; ?> reviews)</span>
                 </div>
 
                 <div class="all_button_main_header" style="background-size: cover; background-repeat: no-repeat;">
                     <?php if ($trailer) { ?>
-                    
-                     <a href="#to_book_scroll" data-bs-toggle="modal" data-bs-target="#Indoormodal"
-                                    class="bg_bnt_custom bg_bnt_custom_tran">Watch Trailer</a>
-                       
+                     <a href="#to_book_scroll" data-bs-toggle="modal" data-bs-target="#Indoormodal" class="bg_bnt_custom bg_bnt_custom_tran">Watch Trailer</a>
                     <?php } ?>
                     <a href="#Book_one_single_pr" class="bg_bnt_custom">
                         Book Now – $<?php echo $price; ?>/person
@@ -225,20 +215,16 @@ try {
     <div class="container">
         <ul class="nav nav-tabs card_deatils_tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview"
-                    type="button" role="tab">Overview</button>
+                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">Overview</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="story-tab" data-bs-toggle="tab" data-bs-target="#story" type="button"
-                    role="tab">Story</button>
+                <button class="nav-link" id="story-tab" data-bs-toggle="tab" data-bs-target="#story" type="button" role="tab">Story</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="gallery-cardDetails-tab" data-bs-toggle="tab"
-                    data-bs-target="#gallery-cardDetails" type="button" role="tab">Gallery</button>
+                <button class="nav-link" id="gallery-cardDetails-tab" data-bs-toggle="tab" data-bs-target="#gallery-cardDetails" type="button" role="tab">Gallery</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button"
-                    role="tab">FAQ</button>
+                <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab">FAQ</button>
             </li>
         </ul>
 
@@ -252,17 +238,16 @@ try {
 
     if ($room) {
         // Assign variables
-        $duration = $room['duration']; // fixed or can be dynamic if stored
+        $duration = htmlspecialchars($room['duration']);
         $players = htmlspecialchars($room['players']);
-        $difficulty = ucfirst($room['difficulty']);
-        $success = !empty($room['success_rate']) ? $room['success_rate'] . '%' : 'N/A';
+        $difficulty = ucfirst(htmlspecialchars($room['difficulty']));
+        $success = !empty($room['success_rate']) ? htmlspecialchars($room['success_rate']) . '%' : 'N/A';
         $age = htmlspecialchars($room['age']);
-        $price = !empty($room['price']) ? '$' . $room['price'] . '/person' : '$35/person';
+        $price = !empty($room['price']) ? '$' . htmlspecialchars($room['price']) . '/person' : '$35/person';
         $features = !empty($room['features']) ? $room['features'] : '';
-        $description = !empty($room['blog_detl']) ? $room['blog_detl'] : 'Description coming soon.';
+        $description = !empty($room['blog_detl']) ? htmlspecialchars($room['blog_detl']) : 'Description coming soon.';
 ?>
 <div class="row g-4">
-    <!-- Left Column: Details -->
     <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
         <div class="Room_Detail_overview_tabs p-4 h-100">
             <h5 class="Room_Detail_overview_tabs-title">
@@ -297,19 +282,15 @@ try {
         </div>
     </div>
 
-    <!-- Right Column: Features -->
     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="400">
         <div class="Room_Detail_overview_tabs p-4 h-100">
             <h5 class="Room_Detail_overview_tabs-title">Features</h5>
             <ul class="list-unstyled mt-3">
-                <?php
-                echo $features;
-                ?>
+                <?php echo $features; ?>
             </ul>
         </div>
     </div>
 
-    <!-- Description -->
     <div class="col-12 mt-4" data-aos="fade-up" data-aos-delay="600">
         <div class="Room_Detail_overview_tabs p-4">
             <h5 class="Room_Detail_overview_tabs-title">Description</h5>
@@ -328,17 +309,16 @@ try {
 
             </div>
             <div class="tab-pane fade" id="story" role="tabpanel">
-               <?php
+                <?php
 try {
     $stmt = $pdo->prepare("SELECT * FROM tbl_service WHERE product_id = ?");
     $stmt->execute([$prod_id]);
     $room = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($room) {
-        $story = !empty($room['story']) ? $room['story'] : 'Story coming soon.';
+        $story = !empty($room['story']) ? htmlspecialchars($room['story']) : 'Story coming soon.';
 ?>
 <div class="Room_Detail_overview_tabs p-4" data-aos="zoom-in-up">
-    <!--<h5 class="Room_Detail_overview_tabs-title">Story</h5>-->
     <p class="mt-3"><?php echo nl2br($story); ?></p>
 </div>
 <?php
@@ -366,7 +346,7 @@ try {
     if ($galleryItems && count($galleryItems) > 0) {
         echo '<div class="row Experience_Gallery">';
         foreach ($galleryItems as $item) {
-            $imgPath = !empty($item['image']) ? "admin/uploads/" . $item['image'] : "images/default.jpg";
+            $imgPath = !empty($item['image']) ? "admin/uploads/" . htmlspecialchars($item['image']) : "images/default.jpg";
             $title = htmlspecialchars($item['first_heading']);
             $subtitle = htmlspecialchars($item['second_heading']);
 ?>
@@ -436,250 +416,39 @@ try {
     </div>
 </section>
 
-
 <?php
+// ---------- FETCH DATA DIRECTLY FROM DATABASE ----------
+if(!empty($prod_id)){
+    $stmt = $pdo->prepare("SELECT * FROM tbl_service WHERE product_id = ?");
+    $stmt->execute([$prod_id]);
+    $roomData = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    $name = htmlspecialchars($roomData['title'] ?? '');
+    $productCode = htmlspecialchars($roomData['product_id'] ?? '');
+    $duration = htmlspecialchars($roomData['duration'] ?? '');
+    $priceRaw = $roomData['price'] ?? '0';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+    // Format the price for JS properly
+    $price = preg_match('/\$/', $priceRaw) ? $priceRaw : '$' . $priceRaw;
 
-include "admin/db.php"; // must set $pdo (PDO instance)
-
-// ---------- CONFIG ----------
-$apiKey     = "AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC";
-$secretKey  = "RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4";
-$expiryDays = 30; // cache expiry in days
-
-// Optional: you can override $productId from GET if desired (uncomment)
-// $productId = $_GET['productId'] ?? $productId;
-
-// ---------- HELPERS ----------
-function safe_html($s) {
-    return htmlspecialchars($s ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
-
-/**
- * Try to get cached row (id, product_data, stored_at) from DB
- * returns assoc array or false
- */
-function get_cache_row($pdo) {
-    $stmt = $pdo->prepare("SELECT id, product_data, stored_at FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-/**
- * Save response JSON string to cache (insert or update row id=1)
- */
-function save_cache_row($pdo, $jsonString) {
-    // Try update first
-    $update = $pdo->prepare("UPDATE bookeo_products_cache SET product_data = :data, stored_at = NOW() WHERE id = 1");
-    $updated = $update->execute([':data' => $jsonString]);
-    if ($updated && $update->rowCount() > 0) {
-        return true;
-    }
-    // If update didn't affect rows, insert (if table empty)
-    $insert = $pdo->prepare("INSERT INTO bookeo_products_cache (id, product_data, stored_at) VALUES (1, :data, NOW())");
-    return $insert->execute([':data' => $jsonString]);
-}
-
-/**
- * Call Bookeo API and return response string or false on cURL error
- */
-function call_bookeo_api($apiKey, $secretKey) {
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.bookeo.com/v2/settings/products',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HTTPHEADER => array(
-            'X-Bookeo-apiKey: ' . $apiKey,
-            'X-Bookeo-secretKey: ' . $secretKey,
-            'Accept: application/json'
-        ),
-        CURLOPT_TIMEOUT => 20,
-        CURLOPT_CONNECTTIMEOUT => 10,
-    ));
-    $response = curl_exec($curl);
-    if ($response === false) {
-        $err = curl_error($curl);
-        curl_close($curl);
-        return ['error' => true, 'message' => $err];
-    }
-    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
-    // treat non-2xx as error (but return content so we can inspect)
-    if ($httpcode < 200 || $httpcode >= 300) {
-        return ['error' => true, 'message' => "HTTP {$httpcode}", 'body' => $response];
-    }
-    return ['error' => false, 'body' => $response];
-}
-
-// ---------- MAIN: load cache then possibly API ----------
-$cacheRow = null;
-try {
-    $cacheRow = get_cache_row($pdo);
-} catch (Exception $ex) {
-    // DB failure - show friendly error
-    echo "<div style='color:crimson; font-weight:bold'>Database error: " . safe_html($ex->getMessage()) . "</div>";
-    $cacheRow = false;
-}
-
-$useCache = false;
-$cachedJson = null;
-if ($cacheRow && isset($cacheRow['product_data']) && isset($cacheRow['stored_at'])) {
-    $storedAt = strtotime($cacheRow['stored_at']);
-    $now = time();
-    $daysDiff = ($now - $storedAt) / (60 * 60 * 24);
-    if ($daysDiff <= $expiryDays) {
-        $useCache = true;
-        $cachedJson = $cacheRow['product_data'];
+    // Calculate Min and Max guests from your Database (e.g. "2-8")
+    $playersStr = $roomData['players'] ?? '';
+    $minGuests = 1;
+    $maxGuests = 10;
+    if (preg_match('/(\d+)\s*-\s*(\d+)/', $playersStr, $matches)) {
+        $minGuests = (int)$matches[1];
+        $maxGuests = (int)$matches[2];
+    } elseif (preg_match('/(\d+)/', $playersStr, $matches)) {
+        $maxGuests = (int)$matches[1];
     }
 }
-
-// If we must call API (no cache or expired)
-$responseBody = null;
-$apiError = null;
-if (!$useCache) {
-    $apiResult = call_bookeo_api($apiKey, $secretKey);
-    if ($apiResult['error']) {
-        $apiError = $apiResult['message'] ?? 'Unknown API error';
-        // If we have a cache row at all (even expired), fallback to it
-        if ($cacheRow && isset($cacheRow['product_data'])) {
-            $cachedJson = $cacheRow['product_data'];
-            $useCache = true;
-        } else {
-            // no cache, API failure -> fatal for data
-            echo "<div style='color:crimson; font-weight:bold'>Bookeo API error: " . safe_html($apiError) . "</div>";
-            exit; // stop further execution because we have nothing to show
-        }
-    } else {
-        // API returned success body
-        $responseBody = $apiResult['body'];
-        // Try to save in DB; if save fails, still proceed with API body
-        try {
-            save_cache_row($pdo, $responseBody);
-        } catch (Exception $ex) {
-            // log error but continue with API data
-            error_log("Failed to save Bookeo cache: " . $ex->getMessage());
-        }
-        $cachedJson = $responseBody;
-        $useCache = true;
-    }
-}
-
-// At this point $cachedJson contains JSON string to use (either fresh API or cache)
-if (!$cachedJson) {
-    echo "<div style='color:crimson; font-weight:bold'>No product data available.</div>";
-    exit;
-}
-
-// Decode JSON safely
-$data = json_decode($cachedJson, true);
-if ($data === null) {
-    echo "<div style='color:crimson; font-weight:bold'>Failed to decode product JSON data.</div>";
-    exit;
-}
-
-// Find product by productId
-$wanted = null;
-if (isset($data['data']) && is_array($data['data'])) {
-    foreach ($data['data'] as $product) {
-        // Some Bookeo responses include productId or productCode - check both
-        if ((isset($product['productId']) && $product['productId'] === $productId)
-            || (isset($product['productCode']) && $product['productCode'] === $productId)
-        ) {
-            $wanted = $product;
-            break;
-        }
-    }
-} else {
-    echo "<div style='color:crimson; font-weight:bold'>Product list missing from Bookeo data.</div>";
-    exit;
-}
-
-if (!$wanted) {
-    // product not found - show friendly message and dump small debug
-    echo "<div style='color:darkorange; font-weight:bold'>Requested product (ID: " . safe_html($productId) . ") not found in Bookeo data.</div>";
-    // optional: show available product codes (useful for debugging)
-    echo "<div style='margin-top:8px'><strong>Available product codes (sample):</strong><br>";
-    $sample = array_slice($data['data'], 0, 10);
-    foreach ($sample as $p) {
-        $pc = $p['productCode'] ?? $p['productId'] ?? '(no id)';
-        echo safe_html($pc) . " — " . safe_html($p['name'] ?? '') . "<br>";
-    }
-    echo "</div>";
-    exit;
-}
-
-// ----------------- Process product fields for the UI -----------------
-$name = safe_html($wanted['name'] ?? '');
-$productCode = safe_html($wanted['productCode'] ?? $wanted['productId'] ?? '');
-$durationArr = $wanted['duration'] ?? null;
-$duration = '';
-if ($durationArr && is_array($durationArr)) {
-    $h = intval($durationArr['hours'] ?? 0);
-    $m = intval($durationArr['minutes'] ?? 0);
-    $duration = ($h > 0 ? $h . 'h ' : '') . ($m > 0 ? $m . 'm' : '');
-}
-$desc = trim($wanted['description'] ?? '');
-$lines = preg_split('/\r\n|\r|\n/', strip_tags($desc, "<p><br><div>")); // keep structure a bit
-
-// Extract info from first 4 lines (making safe)
-$players = isset($lines[0]) ? preg_replace('/^.*?:\s*/', '', trim(strip_tags($lines[0]))) : '';
-$difficulty = isset($lines[1]) ? trim(strip_tags($lines[1])) : '';
-$successRate = isset($lines[2]) ? trim(strip_tags($lines[2])) : '';
-$priceRaw = isset($lines[3]) ? preg_replace('/^.*?:\s*/', '', trim(strip_tags($lines[3]))) : '';
-
-// Process price into $-format or range
-$price = '';
-if ($priceRaw) {
-    preg_match_all('/\$\d+(?:\.\d+)?/', $priceRaw, $matches);
-    if (!empty($matches[0])) {
-        if (count($matches[0]) >= 2) {
-            $price = $matches[0][0] . '-' . $matches[0][1];
-        } else {
-            $price = $matches[0][0];
-        }
-    }
-}
-
-// Booking limits
-$minGuests = 1;
-$maxGuests = 10;
-if (isset($wanted['bookingLimits']) && is_array($wanted['bookingLimits'])) {
-    foreach ($wanted['bookingLimits'] as $limit) {
-        if (isset($limit['min']) && is_numeric($limit['min'])) {
-            $minGuests = max($minGuests, intval($limit['min']));
-        }
-        if (isset($limit['max']) && is_numeric($limit['max'])) {
-            $maxGuests = min($maxGuests, intval($limit['max']));
-        }
-    }
-}
-
-// Short description
-$remainingText = '';
-if (count($lines) > 4) {
-    $remainingText = implode(' ', array_slice($lines, 4));
-}
-$remainingText = strip_tags($remainingText);
-$words = preg_split('/\s+/', trim($remainingText));
-$shortDescription = '';
-if (!empty($words)) {
-    $shortDescription = implode(' ', array_slice($words, 0, 13));
-    if (count($words) > 13) $shortDescription .= '...';
-}
-
-// ----------------- Output HTML UI (as in your original) -----------------
 ?>
 
 <section id="Book_one_single_pr">
     <div class="container my-5">
         <div class="section_heading_page" >
             <h2 class="section-title">BOOK <?php echo $name; ?></h2>
-            <p class="section-subtitle">Select your preferred date,
-                time, and number of guests</p>
+            <p class="section-subtitle">Select your preferred date, time, and number of guests</p>
         </div>
 
         <div class="row g-4 justify-content-center">
@@ -698,8 +467,7 @@ if (!empty($words)) {
                 <div class="Boo_Prison_Escape_time_box" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="200">
                     <h5 class="sub_heading">Select Time</h5>
                     <div class="row g-2" id="timeSlots-<?php echo $productCode; ?>">
-                        <!-- Time slots will be dynamically inserted here -->
-                    </div>
+                        </div>
                 </div>
                 <div class="Boo_Prison_Escape_time_box" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="400">
                     <h5 class="sub_heading">Number of Guests</h5>
@@ -743,7 +511,6 @@ if (!empty($words)) {
                         </div>
 
                         <div class="next-button-wrapper">
-                            
                               <?php echo '<button 
                             class="continueBtn bg_bnt_custom disabled continue_nex_step1" 
                             id="continueBtn-' . $productCode . '" 
@@ -795,7 +562,7 @@ if (!empty($words)) {
                         ?>
                     </span>
                     <span class="fw-bold"><?php echo $avgRating; ?>/5</span>
-                    <small class="text-muted">(<?php echo $room['reviewsCount']; ?> reviews)</small>
+                    <small class="text-muted">(<?php echo $totalReviews; ?> reviews)</small>
                 </div>
             </div>
         </div>
@@ -811,7 +578,7 @@ if (!empty($words)) {
                             $message = nl2br(htmlspecialchars($review['message']));
                             $rating = (int)$review['rating'];
                             $created_at = date('F j, Y', strtotime($review['created_at']));
-                            $image = !empty($review['image']) ? "admin/uploads/{$review['image']}" : "";
+                            $image = !empty($review['image']) ? "admin/uploads/".htmlspecialchars($review['image']) : "";
 
                             $filledStars = str_repeat('★', $rating);
                             $emptyStars = str_repeat('☆', 5 - $rating);
@@ -871,10 +638,10 @@ if (!empty($words)) {
                     $averageRating = round(array_sum($ratings) / $totalReviews, 1);
 
                     // Approximate recommend % based on 4★+ ratings
-                  $recommendCount = count(array_filter($ratings, function($r) {
-    return $r >= 4;
-}));
-$recommendPercent = round(($recommendCount / $totalReviews) * 100);
+                    $recommendCount = count(array_filter($ratings, function($r) {
+                        return $r >= 4;
+                    }));
+                    $recommendPercent = round(($recommendCount / $totalReviews) * 100);
                 } else {
                     $totalReviews = 0;
                     $averageRating = 0;
@@ -902,7 +669,7 @@ $recommendPercent = round(($recommendCount / $totalReviews) * 100);
                 </div>
                 <div class="col-md-4 escape_room_home_Customer_Reviews_counter">
                     <div class="value escape_room_home_Customer_Reviews_total">
-                        <?php echo $room['reviewsCount']; ?>
+                        <?php echo $totalReviews; ?>
                     </div>
                     <small class="text-muted">Total Reviews</small>
                 </div>
@@ -935,7 +702,6 @@ $recommendPercent = round(($recommendCount / $totalReviews) * 100);
                     <p>
                     <a href="tel:4252871426" class="text-gray-300" >425-287-1426</a>
                     </p>
-                    <!--<p>Available 24/7</p>-->
                 </div>
                 <div class="col-md-4 escape_room_home_contact_item">
                     <div class="escape_room_home_contact_icon">
@@ -960,10 +726,7 @@ $recommendPercent = round(($recommendCount / $totalReviews) * 100);
     <div class="container">
         <div class="row g-4">
             
-           
 <?php
-include('admin/db.php');
-
 try {
     $stmt = $pdo->prepare("SELECT * FROM tbl_service 
                            WHERE category_id = 'escape room'
@@ -981,13 +744,9 @@ try {
              $duration = htmlspecialchars(ucfirst($room['duration']));
             $players = htmlspecialchars($room['players']);
             $price = !empty($room['price']) ? htmlspecialchars($room['price']) : '—';
-            $cover_photo = !empty($room['cover_photo']) ? "admin/uploads/" . $room['cover_photo'] : "img/default.jpg";
+            $cover_photo = !empty($room['cover_photo']) ? "admin/uploads/" . htmlspecialchars($room['cover_photo']) : "img/default.jpg";
             $facilities = htmlspecialchars($room['facilities']);
           $facilitiesArray = explode(',', $facilities);
-
-           
-
-          
 ?>
     <div class="col-md-4" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
         <div class="comparison_card h-100">
@@ -997,8 +756,6 @@ try {
                     <h5 class="comparison_card-title"><?php echo $title; ?></h5>
                     <p class="comparison_card-text"><?php echo $story; ?></p>
     
-                   
-                    
                      <p class="comparison_card_content_data_items"><strong>Theme:</strong><span
                                     class="badge bg-primary"><?php echo $theme; ?></span></p>
                                      <p class="comparison_card_content_data_items"><strong>Difficulty:</strong><span
@@ -1015,30 +772,28 @@ try {
                         <strong>Rating:</strong>
                         <span class="rating">
                             <?php 
-                            // Optional: Fetch average rating dynamically from testimonial table
+                            // Fetch average rating dynamically from testimonial table
                             $rateStmt = $pdo->prepare("SELECT AVG(rating) as avg_rating FROM tbl_escape_room_testimonial WHERE category = ?");
                             $rateStmt->execute([$room['product_id']]);
                             $ratingData = $rateStmt->fetch(PDO::FETCH_ASSOC);
-                            $avgRating = $ratingData && $ratingData['avg_rating'] ? round($ratingData['avg_rating'], 1) : 4.5;
-                            $filledStars = str_repeat('⭐', floor($avgRating));
-                            echo "$filledStars ";
+                            $avgRatingComp = $ratingData && $ratingData['avg_rating'] ? round($ratingData['avg_rating'], 1) : 4.5;
+                            $filledStarsComp = str_repeat('⭐', floor($avgRatingComp));
+                            echo "$filledStarsComp ";
                             ?>
                         </span>
                     </p>
     
                     <div class="comparison_card_content_features">
                         <?php foreach ($facilitiesArray as $feat) { ?>
-                            <span><?php echo trim($feat); ?></span>
+                            <span><?php echo htmlspecialchars(trim($feat)); ?></span>
                         <?php } ?>
                     </div>
                 </div>
             </div>
               <div class="comparison_card_bnt">
     <?php
-    // Room slug/link से dynamic URL
-    $page_url = !empty($room['link']) ? $room['link'] : 'default-page.php';
+    $page_url = !empty($room['link']) ? htmlspecialchars($room['link']) : 'default-page.php';
     ?>
-    <!--<a href="<?php echo $page_url; ?>#Book_one_single_pr" class="bg_bnt_custom continue_nex_step">Book Now</a>-->
     <a href="<?php echo $page_url; ?>" class="bg_bnt_custom continue_nex_step">Learn More</a>
 </div>
         </div>
@@ -1064,7 +819,6 @@ try {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("dateInput element:", document.getElementById("Book-Prison-Date"));
     const { DateTime } = luxon;
     const LA_ZONE     = "America/Los_Angeles";
     const productCode = '<?php echo $productCode; ?>';
@@ -1081,10 +835,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const laDate = laNow.toJSDate(); 
 
     const dateInput = document.getElementById("Book-Prison-Date-inline");
-    if (!dateInput) {
-        console.error("Date input element not found!");
-        return;
-    }
+    if (!dateInput) return;
+
     if (dateInput._flatpickr) {
         dateInput._flatpickr.destroy();
     }
@@ -1119,13 +871,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (dateInput) {
-        // Destroy existing flatpickr instance if any
-        if (dateInput._flatpickr) {
-            dateInput._flatpickr.destroy();
-        }
-    
         const fp = flatpickr(dateInput, {
-            inline: true,                    // ← render calendar inside the div
+            inline: true,                    
             dateFormat: "Y-m-d",
             defaultDate: laNow.toJSDate(),
             minDate: laNow.toJSDate(),
@@ -1134,7 +881,6 @@ document.addEventListener("DOMContentLoaded", function () {
             disableMobile: true,
         
             onReady: function(selectedDates, dateStr, instance) {
-                console.log("✅ Flatpickr ready");
                 injectCustomYearDropdown(instance);
             },
         
@@ -1145,7 +891,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
             onChange: function(selectedDates, dateStr, instance) {
                 if (selectedDates.length > 0) {
-                    console.log("✅ onChange fired:", dateStr);
                     const displayDate = selectedDates[0].toLocaleDateString('en-US', {
                         weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'
                     });
@@ -1167,8 +912,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 300);
     }
 
-    // --- LOGIC FUNCTIONS (No changes needed here) ---
-    
     function fetchTimeSlots(date) {
         if (!date) return;
         const formattedDate = DateTime.fromJSDate(date).toFormat("yyyy-MM-dd");
@@ -1219,7 +962,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // --- GUEST LOGIC ---
     const guestSelectEl = document.getElementById("guest-select-" + productCode);
     if (guestSelectEl) { 
         guestSelectEl.disabled = true; 
@@ -1346,11 +1088,8 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(response) {
-                if (response.status === "bookeo_error") {
-                    // Bookeo का exact message ही दिखाओ
-                    $("#bookeoErrorMessage").text("Failed to reserve slot. Please try again.");
-                    const errorModal = new bootstrap.Modal(document.getElementById("bookeoErrorModal"));
-                    errorModal.show(); 
+                if (response.status === "error") {
+                    showBookeoError(response.message);
                     return;
                 }
 
@@ -1368,28 +1107,21 @@ $(document).ready(function() {
                                 return;
                             }
 
-                            if (holdResponse.status === "hold_error") {
-                                const failed = holdResponse.failed_items || [];
-                                const msg = failed.map(f => f.message || "Slot unavailable").join("\n");
-                                $("#bookeoErrorMessage").text("Sorry, this slot is no longer available:\n" + msg);
-                                new bootstrap.Modal(document.getElementById("bookeoErrorModal")).show();
+                            if (holdResponse.status === "error") {
+                                showBookeoError(holdResponse.message);
                                 return;
                             }
 
-                            $("#bookeoErrorMessage").text(holdResponse.message || "Failed to reserve slot. Please try again.");
-                            new bootstrap.Modal(document.getElementById("bookeoErrorModal")).show();
+                            showBookeoError(holdResponse.message || "Failed to reserve slot. Please try again.");
                         },
                         error: function() {
-                            $("#bookeoErrorMessage").text("Failed to reserve slot. Please try again.");
-                            new bootstrap.Modal(document.getElementById("bookeoErrorModal")).show();
+                            showBookeoError("Failed to reserve slot. Please try again.");
                         }
                     });
                 }
             },
             error: function() {
-                $("#bookeoErrorMessage").text("Failed to reserve slot. Please try again.");
-                const errorModal = new bootstrap.Modal(document.getElementById("bookeoErrorModal"));
-                errorModal.show();
+                showBookeoError("Failed to reserve slot. Please try again.");
             },
             complete: function() {
                 isProcessing = false;
@@ -1424,7 +1156,6 @@ $(document).ready(function() {
     font-weight: 300;
     font-size: 14px;
 }
-
 
 .call-popup-overlay {
     position: fixed;
@@ -1470,7 +1201,7 @@ function showCallPopup(time) {
         <div class="call-popup-box">
             <p>To book for ${time}, please call our support team.</p>
              <button > <a id="callNowBtn" href="tel:(425)287-1426">Call now</a></button>
-            <button onclick="this.closest(\'.call-popup-overlay\').remove()">Close</button>
+            <button onclick="this.closest('.call-popup-overlay').remove()">Close</button>
         </div>`;
     document.body.appendChild(popup);
 }
@@ -1495,13 +1226,12 @@ function showCallPopup(time) {
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="videoModalLabel"><?=htmlspecialchars($gameTitle)?></h5>
+                <h5 class="modal-title" id="videoModalLabel"><?=htmlspecialchars($gameTitle ?? '')?></h5>
                 <button type="button" class="btn btn-sm close-btn" data-bs-dismiss="modal" aria-label="Close"
                     onclick="stopLocalVideo()">X</button>
             </div>
             <div class="modal-body p-0">
                 <div class="ratio ratio-16x9">
-                    <!-- muted -->
                     <video id="localVideo" controls>
                         <source src="<?php echo $trailer ; ?>" type="video/mp4">
                         Your browser does not support the video tag.

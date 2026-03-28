@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 
 $pageTitle = 'Booking Confirmation';
 include('./includes/header.php');
@@ -8,6 +8,59 @@ if (empty($_SESSION['booking_summary'])) {
     echo '<meta http-equiv="refresh" content="0;URL=' . BASE_URL . '">';
     exit;
 }
+
+function bc_normalize_code_list($codes) {
+    if (is_array($codes)) {
+        $list = $codes;
+    } else {
+        $list = explode(',', (string)$codes);
+    }
+
+    $list = array_map('trim', $list);
+    return array_values(array_unique(array_filter($list, static function ($code) {
+        return $code !== '';
+    })));
+}
+
+function bc_promo_label(array $summaryItem) {
+    $label = trim((string)($summaryItem['promo_label'] ?? ''));
+    if ($label !== '') {
+        return $label;
+    }
+
+    $promoName = trim((string)($summaryItem['promo_name'] ?? ''));
+    if ($promoName !== '') {
+        return $promoName;
+    }
+
+    $promoCode = trim((string)($summaryItem['promo_code'] ?? ''));
+    if ($promoCode === '') {
+        return 'Applied Promotion';
+    }
+
+    $upperCode = strtoupper($promoCode);
+    if (strpos($upperCode, 'BMSM') !== false) {
+        $label = 'Play More Save More';
+        if ($upperCode === 'BMSM_20') {
+            $label .= ' - 20% OFF';
+        } elseif ($upperCode === 'BMSM_10') {
+            $label .= ' - 10% OFF';
+        }
+        return $label;
+    }
+
+    return ucwords(strtolower(str_replace(['_', '-'], ' ', $promoCode)));
+}
+
+function bc_voucher_label(array $summaryItem) {
+    $codes = bc_normalize_code_list($summaryItem['voucher_codes'] ?? []);
+    if (empty($codes)) {
+        return 'Gift Voucher Applied';
+    }
+
+    $prefix = count($codes) > 1 ? 'Gift Vouchers Applied' : 'Gift Voucher Applied';
+    return $prefix . ' (' . implode(', ', array_map('htmlspecialchars', $codes)) . ')';
+}
 ?>
 
 <div class="booking_banner booking_success_banner">
@@ -16,7 +69,7 @@ if (empty($_SESSION['booking_summary'])) {
     <div class="booking_banner_content booking_success_content">
 
         <div class="success_icon_3d">
-    🎉
+    ðŸŽ‰
 </div>
 
 
@@ -98,7 +151,7 @@ if (empty($_SESSION['booking_summary'])) {
         </div>
     </div>
 
-    <!-- ✅ Dynamic Product Name -->
+    <!-- âœ… Dynamic Product Name -->
    <h1>
 <?php
 if (!empty($_SESSION['booking_summary'])) {
@@ -137,7 +190,7 @@ if (!empty($_SESSION['booking_summary'])) {
                 <div class="payment_labeltext_tab">JULY 28TH,<br />2025</div>
             </div>
         </div>
-        <div class="payment_session_tag">🔒 PUBLIC SESSION</div>
+        <div class="payment_session_tag">ðŸ”’ PUBLIC SESSION</div>
     </div>
 </div>
 
@@ -168,6 +221,17 @@ try {
     $customerShown = false;
     $grandTotal = 0;
     $grandTaxes = 0;
+    $grandVoucherAmount = 0;
+    $grandBalanceDue = 0;
+    $confirmationEmail = '';
+    $summaryMap = [];
+
+    foreach ($_SESSION['booking_summary'] as $summaryItem) {
+        $summaryBookingNumber = $summaryItem['bookingNumber'] ?? '';
+        if ($summaryBookingNumber !== '') {
+            $summaryMap[$summaryBookingNumber] = $summaryItem;
+        }
+    }
 
     foreach ($_SESSION['booking_summary'] as $b) {
         $bookingNumber = $b['bookingNumber'] ?? '';
@@ -188,6 +252,7 @@ try {
 
         // Show customer info only once
         if (!$customerShown) {
+            $confirmationEmail = $row["email"] ?? '';
             $html .= '
             <div class="booking_com_customer_info">
                 <h3>Customer Info</h3>
@@ -203,11 +268,95 @@ try {
         $participants = json_decode($row['participantsJson'], true) ?? [];
         $priceAdjustments = json_decode($row['priceAdjustments'], true) ?? [];
         $taxes = json_decode($row['taxesJson'], true) ?? [];
+        $summaryItem = $summaryMap[$bookingNumber] ?? [];
 
         $totalGross = isset($price['totalGross']['amount']) ? (float)$price['totalGross']['amount'] : 0;
         $totalTaxes = isset($price['totalTaxes']['amount']) ? (float)$price['totalTaxes']['amount'] : 0;
-        $grandTotal += $totalGross;
-        $grandTaxes += $totalTaxes;
+
+        $participantCount = 0;
+        if (!empty($participants['numbers'])) {
+            foreach ($participants['numbers'] as $participant) {
+                $participantCount += (int)($participant['number'] ?? 0);
+            }
+        }
+
+        $escapeRoomUnitPrice = (float)($summaryItem['price'] ?? 0);
+        $escapeRoomSubtotal = (float)($summaryItem['escape_room_subtotal'] ?? 0);
+        if ($escapeRoomSubtotal <= 0 && $escapeRoomUnitPrice > 0 && $participantCount > 0) {
+            $escapeRoomSubtotal = $escapeRoomUnitPrice * $participantCount;
+        }
+
+        $additionalGuestCount = (int)($summaryItem['additional_guest'] ?? 0);
+        $additionalGuestUnitPrice = (float)($summaryItem['per_guest_price'] ?? 0);
+        $additionalGuestSubtotal = (float)($summaryItem['total_additional_price'] ?? 0);
+        if ($additionalGuestUnitPrice <= 0 && $additionalGuestCount > 0 && $additionalGuestSubtotal > 0) {
+            $additionalGuestUnitPrice = $additionalGuestSubtotal / $additionalGuestCount;
+        }
+
+        $addonTitle = trim((string)($summaryItem['addon_title'] ?? ($row['addon_title'] ?? '')));
+        $addonQty = (int)($summaryItem['addon_qty'] ?? ($row['addon_qty'] ?? 0));
+        $addonPrice = (float)($summaryItem['addon_price'] ?? ($row['addon_price'] ?? 0));
+        $addonSubtotal = (float)($summaryItem['addon_subtotal'] ?? ($row['addon_subtotal'] ?? 0));
+        if ($addonPrice <= 0 && $addonQty > 0 && $addonSubtotal > 0) {
+            $addonPrice = $addonSubtotal / $addonQty;
+        }
+
+        $bookingSubtotal = $escapeRoomSubtotal + $additionalGuestSubtotal + $addonSubtotal;
+        if ($bookingSubtotal <= 0 && isset($price['totalNet']['amount'])) {
+            $bookingSubtotal = (float)$price['totalNet']['amount'];
+        }
+
+        $displayTaxes = [];
+        if (!empty($summaryItem['display_taxes']) && is_array($summaryItem['display_taxes'])) {
+            foreach ($summaryItem['display_taxes'] as $taxRow) {
+                $displayTaxes[] = [
+                    'label' => (string)($taxRow['label'] ?? 'Tax'),
+                    'amount' => (float)($taxRow['amount'] ?? 0)
+                ];
+            }
+        } elseif (!empty($taxes)) {
+            $taxCount = count($taxes);
+            foreach ($taxes as $i => $tax) {
+                $taxAmount = isset($tax['amount']['amount']) ? (float)$tax['amount']['amount'] : 0;
+                if ($taxCount == 1) {
+                    $taxName = "Redmond Sales Tax";
+                } else {
+                    $taxName = ($i == 0) ? "Admission Tax" : "Redmond Sales Tax";
+                }
+
+                $displayTaxes[] = [
+                    'label' => $taxName,
+                    'amount' => $taxAmount
+                ];
+            }
+        }
+
+        $displayTaxTotal = 0.0;
+        foreach ($displayTaxes as $taxRow) {
+            $displayTaxTotal += (float)($taxRow['amount'] ?? 0);
+        }
+
+        $bookingTotalDisplay = isset($summaryItem['display_booking_total'])
+            ? (float)$summaryItem['display_booking_total']
+            : $totalGross;
+        if ($bookingTotalDisplay <= 0 && $bookingSubtotal > 0) {
+            $bookingTotalDisplay = $bookingSubtotal + $displayTaxTotal;
+        }
+
+        $voucherAmountDisplay = isset($summaryItem['voucher_amount'])
+            ? (float)$summaryItem['voucher_amount']
+            : 0.0;
+        $promoDiscountDisplay = isset($summaryItem['promo_discount'])
+            ? (float)$summaryItem['promo_discount']
+            : 0.0;
+        $balanceDueDisplay = isset($summaryItem['display_balance_due'])
+            ? (float)$summaryItem['display_balance_due']
+            : max(0, $bookingTotalDisplay - $voucherAmountDisplay);
+
+        $grandTotal += $bookingTotalDisplay;
+        $grandTaxes += ($displayTaxTotal > 0 ? $displayTaxTotal : $totalTaxes);
+        $grandVoucherAmount += $voucherAmountDisplay;
+        $grandBalanceDue += $balanceDueDisplay;
 
         $html .= '
         <div class="booking_com_customer_info">
@@ -227,44 +376,74 @@ try {
             }
         }
 
-        // Additional Guests (priceAdjustments)
+        if ($escapeRoomSubtotal > 0) {
+            $escapeLabel = 'Escape Room';
+            if ($participantCount > 0 && $escapeRoomUnitPrice > 0) {
+                $escapeLabel .= ': ' . $participantCount . ' x $' . number_format($escapeRoomUnitPrice, 2);
+            }
+            $html .= '<p>' . htmlspecialchars($escapeLabel) . ' = <span>$' . number_format($escapeRoomSubtotal, 2) . '</span></p>';
+        }
+
+        $renderedAdditionalGuests = false;
+        if ($additionalGuestCount > 0 || $additionalGuestSubtotal > 0) {
+            $additionalGuestLabel = 'Additional Guests';
+            if ($additionalGuestCount > 0 && $additionalGuestUnitPrice > 0) {
+                $additionalGuestLabel .= ': ' . $additionalGuestCount . ' x $' . number_format($additionalGuestUnitPrice, 2);
+            } elseif ($additionalGuestCount > 0) {
+                $additionalGuestLabel .= ': ' . $additionalGuestCount;
+            }
+
+            $html .= '<p>' . htmlspecialchars($additionalGuestLabel) . ' = <span>$' . number_format($additionalGuestSubtotal, 2) . '</span></p>';
+            $renderedAdditionalGuests = true;
+        }
+
+        if ($addonTitle !== '' && ($addonQty > 0 || $addonSubtotal > 0)) {
+            $addonLabel = $addonTitle;
+            if ($addonQty > 0 && $addonPrice > 0) {
+                $addonLabel .= ': ' . $addonQty . ' x $' . number_format($addonPrice, 2);
+            } elseif ($addonQty > 0) {
+                $addonLabel .= ': ' . $addonQty;
+            }
+
+            $html .= '<p>' . htmlspecialchars($addonLabel) . ' = <span>$' . number_format($addonSubtotal, 2) . '</span></p>';
+        }
+
+        // Fallback adjustments from Bookeo for items not preserved locally.
         if (!empty($priceAdjustments)) {
             foreach ($priceAdjustments as $adj) {
                 $qty = $adj['quantity'] ?? 0;
                 $desc = $adj['description'] ?? '';
                 $unitPrice = isset($adj['unitPrice']['amount']) ? (float)$adj['unitPrice']['amount'] : 0;
                 $totalPrice = isset($adj['totalPrice']['amount']) ? (float)$adj['totalPrice']['amount'] : 0;
+                $isAdditionalGuest = stripos($desc, 'additional guest') !== false;
+
+                if ($renderedAdditionalGuests && $isAdditionalGuest) {
+                    continue;
+                }
 
                 $html .= '<p>' . htmlspecialchars($desc) . ': ' . $qty . ' x $' . number_format($unitPrice,2) . ' = <span>$' . number_format($totalPrice,2) . '</span></p>';
             }
         }
 
-        // Taxes per booking|
-        $taxCount = !empty($taxes) ? count($taxes) : 0;
-
-if ($taxCount > 0) {
-    foreach ($taxes as $i => $tax) {
-        $taxAmount = isset($tax['amount']['amount']) ? (float)$tax['amount']['amount'] : 0;
-
-        // Dynamic Tax Name
-        if ($taxCount == 1) {
-            $taxName = "Redmond Sales Tax";
-        } else {
-            $taxName = ($i == 0) ? "Admission Tax" : "Redmond Sales Tax";
+        if ($bookingSubtotal > 0) {
+            $html .= '<p>Subtotal: <span>$' . number_format($bookingSubtotal, 2) . '</span></p>';
         }
 
-        $html .= '<p>' . htmlspecialchars($taxName) . ': <span>$' . number_format($taxAmount,2) . '</span></p>';
-    }
-}
+        foreach ($displayTaxes as $taxRow) {
+            $html .= '<p>' . htmlspecialchars($taxRow['label']) . ': <span>$' . number_format((float)$taxRow['amount'], 2) . '</span></p>';
+        }
 
-        // if (!empty($taxes)) {
-        //     foreach ($taxes as $tax) {
-        //         $taxAmount = isset($tax['amount']['amount']) ? (float)$tax['amount']['amount'] : 0;
-        //         $html .= '<p>Admission Tax: <span>$' . number_format($taxAmount,2) . '</span></p>';
-        //     }
-        // }
+        if ($promoDiscountDisplay > 0) {
+            $html .= '<p>' . htmlspecialchars(bc_promo_label($summaryItem)) . ': <span>- $' . number_format($promoDiscountDisplay, 2) . '</span></p>';
+        }
 
-        $html .= '<p class="total">Booking Total: <span>$' . number_format($totalGross,2) . '</span></p>';
+        $html .= '<p class="total">Booking Total: <span>$' . number_format($bookingTotalDisplay,2) . '</span></p>';
+
+        if ($voucherAmountDisplay > 0) {
+            $html .= '<p>' . bc_voucher_label($summaryItem) . ': <span>- $' . number_format($voucherAmountDisplay, 2) . '</span></p>';
+            $html .= '<p class="total">Balance Due: <span>$' . number_format($balanceDueDisplay, 2) . '</span></p>';
+        }
+
         $html .= '</div></div>';
     }
 
@@ -273,7 +452,14 @@ if ($taxCount > 0) {
     <div class="booking_com_customer_info">
         <h3 style="color:#00d4ff">Grand Total</h3>
         <p>Total Amount: <span>$' . number_format($grandTotal,2) . '</span></p>
-        <p>Total Taxes: <span>$' . number_format($grandTaxes,2) . '</span></p>
+        <p>Total Taxes: <span>$' . number_format($grandTaxes,2) . '</span></p>';
+
+    if ($grandVoucherAmount > 0) {
+        $html .= '<p>Total Voucher Applied: <span>- $' . number_format($grandVoucherAmount, 2) . '</span></p>';
+        $html .= '<p class="total">Balance Due: <span>$' . number_format($grandBalanceDue, 2) . '</span></p>';
+    }
+
+    $html .= '
     </div>';
 
     echo $html ?: "<p style='color:red;'>No booking summary available.</p>";
@@ -290,6 +476,7 @@ if ($taxCount > 0) {
 
 } else {
     echo "<p>No booking found yet.</p>";
+    $confirmationEmail = '';
 }
 ?>
     
@@ -300,7 +487,7 @@ if ($taxCount > 0) {
             </div>
             <div class="Confirmation_so_butn">
              <div class="email-message">
-                    <p>An email has been sent to <?php echo htmlspecialchars($row["email"]); ?> with all the booking details.</p>
+                    <p>An email has been sent to <?php echo htmlspecialchars($confirmationEmail); ?> with all the booking details.</p>
                     <p>If you do not find it in your inbox shortly, please check the spam/junk folder.</p>
                     <a class="bg_bnt_custom " onclick="openPrintPage()">Print</a>
 

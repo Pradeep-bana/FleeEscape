@@ -7,110 +7,47 @@
 </style>
 
 <?php
-session_start();
+// session_start();
 
-// Enable PHP error reporting
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Enable PHP error reporting for development
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 include('link.php');
 include("admin/db.php");
 
-$expiryDays = 30;
-$data = null;
-$useCache = false;
+// --- DATA FETCHING (DATABASE ONLY) ---
+// The product data is now managed via the admin panel and stored in the database.
+// The live API call and caching logic have been removed to improve performance
+// and rely on the admin-managed data as the single source of truth.
 
-// 1. Fetch cache from DB
-$stmt = $pdo->prepare("SELECT * FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
-$stmt->execute();
-$cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
+$data = null; // Initialize variable
 
-if ($cacheRow) {
-    $updatedAt = strtotime($cacheRow['stored_at']);
-    $now = time();
+// 1. Fetch product data directly from the database table.
+try {
+    $stmt = $pdo->prepare("SELECT product_data FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
+    $stmt->execute();
+    $cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Check expiry (30 days)
-    if (($now - $updatedAt) <= ($expiryDays * 24 * 60 * 60)) {
-
-        // Decode the stored JSON
-        $cachedData = json_decode($cacheRow['product_data'], true);
-
-        if ($cachedData && isset($cachedData['data'])) {
-            $data = $cachedData;
-            $useCache = true;
+    if ($cacheRow && !empty($cacheRow['product_data'])) {
+        // 2. Decode the stored JSON data.
+        $decodedData = json_decode($cacheRow['product_data'], true);
+        if ($decodedData && isset($decodedData['data'])) {
+            $data = $decodedData;
         }
     }
+} catch (Exception $e) {
+    // Optional: Log the error. For the user, we'll proceed with an empty array.
+    error_log("Database error on party-package-all.php: " . $e->getMessage());
 }
 
-if (!$useCache) {
-
-    // CALL BOOKEO API
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.bookeo.com/v2/settings/products',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HTTPHEADER => array(
-            'X-Bookeo-apiKey: AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC',
-            'X-Bookeo-secretKey: RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4',
-            'Accept: application/json'
-        ),
-        CURLOPT_TIMEOUT => 20,
-        CURLOPT_CONNECTTIMEOUT => 10,
-    ));
-
-    $response = curl_exec($curl);
-    $curlError = curl_error($curl);
-    curl_close($curl);
-
-    if ($response === false || $curlError) {
-
-        // API FAILED → Use old cache (if exists)
-        if ($cacheRow) {
-            $data = json_decode($cacheRow['product_data'], true);
-        } else {
-            die("API Error: " . htmlspecialchars($curlError));
-        }
-
-    } else {
-
-        $json = json_decode($response, true);
-
-        // Invalid API → fallback
-        if (!isset($json['data']) || !is_array($json['data'])) {
-
-            if ($cacheRow) {
-                $data = json_decode($cacheRow['product_data'], true);
-            } else {
-                die("Invalid API response");
-            }
-
-        } else {
-
-            // Fresh API data
-            $data = $json;
-
-            // STORE / UPDATE CACHE
-            $stmt = $pdo->prepare("
-                INSERT INTO bookeo_products_cache (id, product_data, stored_at)
-                VALUES (1, :json, NOW())
-                ON DUPLICATE KEY UPDATE
-                    product_data = VALUES(product_data),
-                    stored_at = NOW()
-            ");
-
-            $stmt->execute([
-                ':json' => json_encode($json)
-            ]);
-        }
-    }
-}
-
-// Fail safe
+// 3. Fail-safe: Ensure $data['data'] is an array to prevent errors in the loop below.
 if (!isset($data['data']) || !is_array($data['data'])) {
-    $data['data'] = [];
+    $data = ['data' => []]; // Set a default empty structure.
 }
-// Collect product IDs
+
+// 4. Collect product IDs for the relevant party packages (products 6 through 10).
 $productIds = [];
 $count = 0;
 foreach ($data['data'] as $product) {
@@ -119,7 +56,8 @@ foreach ($data['data'] as $product) {
    }
     $count++;
 }
-// Convert product IDs to JSON for hidden field
+
+// 5. Convert product IDs to JSON for the hidden field.
 $productIdsJson = json_encode($productIds);
 ?>
 

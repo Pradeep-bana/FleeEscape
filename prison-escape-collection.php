@@ -459,225 +459,76 @@ try {
     </div>
 </section>
 <?php
-// full_bookeo_with_cache.php
-// -------------------------
-// Usage: include this file where you need the product booking UI.
-// Requires: admin/db.php which must provide a PDO instance in $pdo.
-//
-// Behavior:
-//  - Check bookeo_products_cache (id, product_data, stored_at) for cache row id = 1
-//  - If cache exists and stored_at <= $expiryDays, use cache
-//  - Otherwise call Bookeo API, store/update cache, then use response
-//  - If API fails and cache exists, use cache (fallback)
-//  - If both fail, show friendly error (no blank page)
+// This block now fetches product data for the booking widget from the local database
+// instead of making a live API call, improving speed and reliability.
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// The specific product ID for Prison Escape
+$productId = '41551HE99XR14F91DF96B0';
+$data = null;
 
-include "admin/db.php"; // must set $pdo (PDO instance)
-
-// ---------- CONFIG ----------
-$apiKey     = "AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC";
-$secretKey  = "RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4";
-$expiryDays = 30; // cache expiry in days
-// productId you gave:
-$productId  = '41551HE99XR14F91DF96B0';
-
-// Optional: you can override $productId from GET if desired (uncomment)
-// $productId = $_GET['productId'] ?? $productId;
-
-// ---------- HELPERS ----------
-function safe_html($s) {
-    return htmlspecialchars($s ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
-
-/**
- * Try to get cached row (id, product_data, stored_at) from DB
- * returns assoc array or false
- */
-function get_cache_row($pdo) {
-    $stmt = $pdo->prepare("SELECT id, product_data, stored_at FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-/**
- * Save response JSON string to cache (insert or update row id=1)
- */
-function save_cache_row($pdo, $jsonString) {
-    // Try update first
-    $update = $pdo->prepare("UPDATE bookeo_products_cache SET product_data = :data, stored_at = NOW() WHERE id = 1");
-    $updated = $update->execute([':data' => $jsonString]);
-    if ($updated && $update->rowCount() > 0) {
-        return true;
+if (!function_exists('safe_html')) {
+    function safe_html($s) {
+        return htmlspecialchars($s ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
-    // If update didn't affect rows, insert (if table empty)
-    $insert = $pdo->prepare("INSERT INTO bookeo_products_cache (id, product_data, stored_at) VALUES (1, :data, NOW())");
-    return $insert->execute([':data' => $jsonString]);
 }
 
-/**
- * Call Bookeo API and return response string or false on cURL error
- */
-function call_bookeo_api($apiKey, $secretKey) {
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.bookeo.com/v2/settings/products',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HTTPHEADER => array(
-            'X-Bookeo-apiKey: ' . $apiKey,
-            'X-Bookeo-secretKey: ' . $secretKey,
-            'Accept: application/json'
-        ),
-        CURLOPT_TIMEOUT => 20,
-        CURLOPT_CONNECTTIMEOUT => 10,
-    ));
-    $response = curl_exec($curl);
-    if ($response === false) {
-        $err = curl_error($curl);
-        curl_close($curl);
-        return ['error' => true, 'message' => $err];
-    }
-    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
-    // treat non-2xx as error (but return content so we can inspect)
-    if ($httpcode < 200 || $httpcode >= 300) {
-        return ['error' => true, 'message' => "HTTP {$httpcode}", 'body' => $response];
-    }
-    return ['error' => false, 'body' => $response];
-}
-
-// ---------- MAIN: load cache then possibly API ----------
-$cacheRow = null;
+// 1. Fetch product data directly from the database cache.
 try {
-    $cacheRow = get_cache_row($pdo);
-} catch (Exception $ex) {
-    // DB failure - show friendly error
-    echo "<div style='color:crimson; font-weight:bold'>Database error: " . safe_html($ex->getMessage()) . "</div>";
-    $cacheRow = false;
-}
+    $stmt = $pdo->prepare("SELECT product_data FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
+    $stmt->execute();
+    $cacheRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$useCache = false;
-$cachedJson = null;
-if ($cacheRow && isset($cacheRow['product_data']) && isset($cacheRow['stored_at'])) {
-    $storedAt = strtotime($cacheRow['stored_at']);
-    $now = time();
-    $daysDiff = ($now - $storedAt) / (60 * 60 * 24);
-    if ($daysDiff <= $expiryDays) {
-        $useCache = true;
-        $cachedJson = $cacheRow['product_data'];
-    }
-}
-
-// If we must call API (no cache or expired)
-$responseBody = null;
-$apiError = null;
-if (!$useCache) {
-    $apiResult = call_bookeo_api($apiKey, $secretKey);
-    if ($apiResult['error']) {
-        $apiError = $apiResult['message'] ?? 'Unknown API error';
-        // If we have a cache row at all (even expired), fallback to it
-        if ($cacheRow && isset($cacheRow['product_data'])) {
-            $cachedJson = $cacheRow['product_data'];
-            $useCache = true;
-        } else {
-            // no cache, API failure -> fatal for data
-            echo "<div style='color:crimson; font-weight:bold'>Bookeo API error: " . safe_html($apiError) . "</div>";
-            exit; // stop further execution because we have nothing to show
+    if ($cacheRow && !empty($cacheRow['product_data'])) {
+        // 2. Decode the stored JSON data.
+        $decodedData = json_decode($cacheRow['product_data'], true);
+        if ($decodedData && isset($decodedData['data'])) {
+            $data = $decodedData;
         }
-    } else {
-        // API returned success body
-        $responseBody = $apiResult['body'];
-        // Try to save in DB; if save fails, still proceed with API body
-        try {
-            save_cache_row($pdo, $responseBody);
-        } catch (Exception $ex) {
-            // log error but continue with API data
-            error_log("Failed to save Bookeo cache: " . $ex->getMessage());
-        }
-        $cachedJson = $responseBody;
-        $useCache = true;
     }
-}
-
-// At this point $cachedJson contains JSON string to use (either fresh API or cache)
-if (!$cachedJson) {
-    echo "<div style='color:crimson; font-weight:bold'>No product data available.</div>";
+} catch (Exception $e) {
+    echo "<div style='color:crimson; font-weight:bold'>Database error: " . safe_html($e->getMessage()) . "</div>";
     exit;
 }
 
-// Decode JSON safely
-$data = json_decode($cachedJson, true);
-if ($data === null) {
-    echo "<div style='color:crimson; font-weight:bold'>Failed to decode product JSON data.</div>";
-    exit;
-}
-
-// Find product by productId
+// 3. Find the specific product needed for this page.
 $wanted = null;
 if (isset($data['data']) && is_array($data['data'])) {
     foreach ($data['data'] as $product) {
-        // Some Bookeo responses include productId or productCode - check both
-        if ((isset($product['productId']) && $product['productId'] === $productId)
-            || (isset($product['productCode']) && $product['productCode'] === $productId)
-        ) {
+        if ((isset($product['productId']) && $product['productId'] === $productId) || 
+            (isset($product['productCode']) && $product['productCode'] === $productId)) {
             $wanted = $product;
             break;
         }
     }
-} else {
-    echo "<div style='color:crimson; font-weight:bold'>Product list missing from Bookeo data.</div>";
-    exit;
 }
 
+// 4. Handle case where product is not found in the database.
 if (!$wanted) {
-    // product not found - show friendly message and dump small debug
-    echo "<div style='color:darkorange; font-weight:bold'>Requested product (ID: " . safe_html($productId) . ") not found in Bookeo data.</div>";
-    // optional: show available product codes (useful for debugging)
-    echo "<div style='margin-top:8px'><strong>Available product codes (sample):</strong><br>";
-    $sample = array_slice($data['data'], 0, 10);
-    foreach ($sample as $p) {
-        $pc = $p['productCode'] ?? $p['productId'] ?? '(no id)';
-        echo safe_html($pc) . " — " . safe_html($p['name'] ?? '') . "<br>";
-    }
+    echo "<div class='container text-center my-5 p-4' style='background-color: #ffc10720; border: 1px solid #ffc107; border-radius: 8px;'>";
+    echo "<h4 style='color: #ffc107;'>Booking Not Available</h4>";
+    echo "<p>The booking information for this room (ID: " . safe_html($productId) . ") could not be found. Please contact support.</p>";
     echo "</div>";
+    include('includes/footer.php');
     exit;
 }
 
-// ----------------- Process product fields for the UI -----------------
+// 5. Process product fields for the UI (same logic as original file).
 $name = safe_html($wanted['name'] ?? '');
 $productCode = safe_html($wanted['productCode'] ?? $wanted['productId'] ?? '');
-$durationArr = $wanted['duration'] ?? null;
-$duration = '';
-if ($durationArr && is_array($durationArr)) {
-    $h = intval($durationArr['hours'] ?? 0);
-    $m = intval($durationArr['minutes'] ?? 0);
-    $duration = ($h > 0 ? $h . 'h ' : '') . ($m > 0 ? $m . 'm' : '');
-}
+
+// Price parsing from description
 $desc = trim($wanted['description'] ?? '');
-$lines = preg_split('/\r\n|\r|\n/', strip_tags($desc, "<p><br><div>")); // keep structure a bit
-
-// Extract info from first 4 lines (making safe)
-$players = isset($lines[0]) ? preg_replace('/^.*?:\s*/', '', trim(strip_tags($lines[0]))) : '';
-$difficulty = isset($lines[1]) ? trim(strip_tags($lines[1])) : '';
-$successRate = isset($lines[2]) ? trim(strip_tags($lines[2])) : '';
+$lines = preg_split('/\r\n|\r|\n/', strip_tags($desc, "<p><br><div>")); 
 $priceRaw = isset($lines[3]) ? preg_replace('/^.*?:\s*/', '', trim(strip_tags($lines[3]))) : '';
-
-// Process price into $-format or range
 $price = '';
 if ($priceRaw) {
     preg_match_all('/\$\d+(?:\.\d+)?/', $priceRaw, $matches);
     if (!empty($matches[0])) {
-        if (count($matches[0]) >= 2) {
-            $price = $matches[0][0] . '-' . $matches[0][1];
-        } else {
-            $price = $matches[0][0];
-        }
+        $price = count($matches[0]) >= 2 ? $matches[0][0] . '-' . $matches[0][1] : $matches[0][0];
     }
 }
 
-// Booking limits
+// Booking limits for guest dropdown
 $minGuests = 1;
 $maxGuests = 10;
 if (isset($wanted['bookingLimits']) && is_array($wanted['bookingLimits'])) {
@@ -690,21 +541,6 @@ if (isset($wanted['bookingLimits']) && is_array($wanted['bookingLimits'])) {
         }
     }
 }
-
-// Short description
-$remainingText = '';
-if (count($lines) > 4) {
-    $remainingText = implode(' ', array_slice($lines, 4));
-}
-$remainingText = strip_tags($remainingText);
-$words = preg_split('/\s+/', trim($remainingText));
-$shortDescription = '';
-if (!empty($words)) {
-    $shortDescription = implode(' ', array_slice($words, 0, 13));
-    if (count($words) > 13) $shortDescription .= '...';
-}
-
-// ----------------- Output HTML UI (as in your original) -----------------
 ?>
 
 <section id="Book_one_single_pr">
@@ -1417,9 +1253,8 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(response) {
-                if (response.status === "bookeo_error") {
-                    $("#bookeoErrorMessage").text("Failed to reserve slot. Please try again.");
-                    new bootstrap.Modal(document.getElementById("bookeoErrorModal")).show();
+                if (response.status === "error") {
+                    showBookeoError(response.message);
                     return;
                 }
             
@@ -1438,28 +1273,21 @@ $(document).ready(function() {
                                 return;
                             }
 
-                            if (holdResponse.status === "hold_error") {
-                                const failed = holdResponse.failed_items || [];
-                                const msg = failed.map(f => f.message || "Slot unavailable").join("\n");
-                                $("#bookeoErrorMessage").text("Sorry, this slot is no longer available:\n" + msg);
-                                new bootstrap.Modal(document.getElementById("bookeoErrorModal")).show();
+                            if (holdResponse.status === "error") {
+                                showBookeoError(holdResponse.message);
                                 return;
                             }
 
-                            $("#bookeoErrorMessage").text(holdResponse.message || "Failed to reserve slot. Please try again.");
-                            new bootstrap.Modal(document.getElementById("bookeoErrorModal")).show();
+                            showBookeoError(holdResponse.message || "Failed to reserve slot. Please try again.");
                         },
                         error: function() {
-                            $("#bookeoErrorMessage").text("Failed to reserve slot. Please try again.");
-                            new bootstrap.Modal(document.getElementById("bookeoErrorModal")).show();
+                            showBookeoError("Failed to reserve slot. Please try again.");
                         }
                     });
                 }
             },
             error: function() {
-                $("#bookeoErrorMessage").text("Failed to reserve slot. Please try again.");
-                const errorModal = new bootstrap.Modal(document.getElementById("bookeoErrorModal"));
-                errorModal.show();
+                showBookeoError("Failed to reserve slot. Please try again.");
             },
             complete: function() {
                 isProcessing = false;

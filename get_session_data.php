@@ -34,10 +34,12 @@ if (!empty($_SESSION['cart'])) {
     
 }
 
- if (!empty($_SESSION['giftCode']) && is_array($_SESSION['giftCode'])) {
-            $response["giftCode"] = $_SESSION['giftCode'] ;
-           
-         
-        }
+if (!empty($_SESSION['giftCode'])) {
+    if (is_array($_SESSION['giftCode'])) {
+        $response["giftCode"] = implode(",", array_filter($_SESSION['giftCode']));
+    } else {
+        $response["giftCode"] = (string)$_SESSION['giftCode'];
+    }
+}
 
 echo json_encode($response);

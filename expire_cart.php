@@ -10,7 +10,11 @@ if ($reason !== '') {
     $_REQUEST['reason'] = $reason;
 }
 
-require_once 'remove_expired_holds.php';
+if (!defined('FLEE_CART_SESSION_LIBRARY')) {
+    define('FLEE_CART_SESSION_LIBRARY', true);
+}
+require_once 'cart_session.php';
+$fleeExpiredCleanup = flee_cart_cleanup_expired($pdo, $reason);
 
 echo json_encode([
     'status' => 'success',

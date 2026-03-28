@@ -357,6 +357,7 @@ button.custom-date_arrow {
                     </div>
                     <div class="payment_section_tab">
                         <h2>PAYMENT</h2>
+                        <p>CREDIT / DEBIT CARD</p>
                         <div class="payment_cardinputs_tab">
                             <form id="payment-form">
                                 <div id="card-container"></div>
@@ -364,15 +365,14 @@ button.custom-date_arrow {
                             </form>
                             <!--<div id="payment-status-container" style="margin-top:20px;"></div>-->
                         </div>
-                        <div class="payment_btnrow_tab">
+                        <!-- <div class="payment_btnrow_tab">
                             <button>CREDIT / DEBIT CARD</button>
-                            <!--<button><strong>G</strong> Pay</button>-->
                              <button class="payment_voucher_tab" 
                                     onclick="window.open('booking#gift-card', '_blank');">
                                 GIFT VOUCHER
                             </button>
 
-                        </div>
+                        </div> -->
                        
                         <!-- 💡 Cancellation Policy + Terms & Conditions Section -->
                         <div class="policy-section">
@@ -1775,7 +1775,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
                     // 1. TRACK IF ANY GAME HAS A SLOT
                     let atLeastOneGameHasSlots = false;
-    
+
                     productIds.forEach(productId => {
                         const res = response[productId];
                         let html = (res && typeof res === 'object' && res.html) ? res.html : (res || '<p>No slots available</p>');
@@ -1783,38 +1783,37 @@ document.addEventListener("DOMContentLoaded", function() {
                         // Update UI
                         const $container = $('#timeSlots-' + productId);
                         if ($container.length) $container.html(html);
-    
+
                         // Check availability for this specific game
                         if (!html.includes("No slots available") && !html.includes("Error loading slots")) {
                             atLeastOneGameHasSlots = true;
                         }
                     });
-    
+
                     // 2. CHECK TIME (8:30 PM Cutoff)
                     const laNow = luxon.DateTime.now().setZone("America/Los_Angeles");
-    
+
                     // Logic: Is it after 8 PM? OR Is it 8 PM and minutes >= 30?
                     const isPastCutoff = (laNow.hour > 20) || (laNow.hour === 20 && laNow.minute >= 30);
-    
+
                     // 3. DECIDE TO REDIRECT
                     if (allowAutoNextDay && isPastCutoff && !atLeastOneGameHasSlots) {
-                        
                         const currentRequestedDate = luxon.DateTime.fromISO(rawDate, { zone: "America/Los_Angeles" });
                         const nextDay = currentRequestedDate.plus({ days: 1 });
                         
                         // Prevent infinite jumps (limit to 1 day from today)
                         const todayRef = luxon.DateTime.now().setZone("America/Los_Angeles").startOf('day');
                         const diffFromToday = nextDay.diff(todayRef, 'days').days;
-    
+
                         if (diffFromToday <= 1) {
                             // 1. Raw format for logic/flatpickr (YYYY-MM-DD)
                             const nextRaw = nextDay.toFormat('yyyy-MM-dd');
                             
                             // 2. Pretty format for Display (Fri, March 06, 2026)
                             const nextVisual = nextDay.toFormat("ccc, LLLL dd, yyyy");
-    
+
                             console.log(`Auto-advance: Switching ALL datepickers to ${nextVisual} (${nextRaw})`);
-    
+
                             // Update ALL datepickers on the page
                             $('.custom-datepicker_input').each(function() {
                                 const $this = $(this);
@@ -1822,7 +1821,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 // A. Update internal data attribute (logic)
                                 $this.data('rawdate', nextRaw);
                                 $this.attr('data-rawdate', nextRaw); 
-    
+
                                 // B. Update Flatpickr instance FIRST
                                 if (this._flatpickr) {
                                     this._flatpickr.setDate(nextRaw, false); 
@@ -1831,12 +1830,11 @@ document.addEventListener("DOMContentLoaded", function() {
                                     const yearSelect = this._flatpickr.calendarContainer.querySelector(".flatpickr-year-dropdown");
                                     if (yearSelect) yearSelect.value = nextDay.year;
                                 }
-    
+
                                 // C. FORCE OVERWRITE THE DISPLAY TEXT LAST
-                                // This fixes the issue where it showed "2026-03-06"
                                 $this.val(nextVisual);
                             });
-    
+
                             // Recursively fetch for the next day
                             fetchSlotsForProducts(productIds, nextRaw, false); 
                         }
@@ -2644,7 +2642,6 @@ try {
 <script>
 const BASE_URL = "<?= BASE_URL ?>";
 </script>
-<script src="assets/js/booking-js.js"></script>
 <div class="modal fade" id="timeslotModal" tabindex="-1" aria-labelledby="timeslotModalLabel" aria-hidden="true"
     data-bs-backdrop="static" data-bs-keyboard="false">
 
@@ -3577,6 +3574,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <?php include('includes/footer.php'); ?>
+<script src="assets/js/booking-js.js"></script>
 
 // <script>
 //     function triggerOrder() {

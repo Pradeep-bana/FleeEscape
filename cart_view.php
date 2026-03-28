@@ -7,8 +7,11 @@ include("admin/db.php");
 
 $sid = session_id();
 
-//remove slots that is more than 3 minutes
-require('remove_expired_holds.php');
+if (!defined('FLEE_CART_SESSION_LIBRARY')) {
+    define('FLEE_CART_SESSION_LIBRARY', true);
+}
+require_once('cart_session.php');
+flee_cart_cleanup_expired($pdo);
 
 // --- Fetch cart items ---
 try {
@@ -115,7 +118,7 @@ foreach ($cart as $index => $item) {
                 // Admission: 5%
                 $taxAdm = $baseItemPrice * 0.05; 
                 // Redmond: 10.3%
-                $taxRed = $baseItemPrice * 0.103;
+                $taxRed = ($baseItemPrice * 0.103) + floatval($item['addon_tax'] ?? 0);
 
                 $itemTaxes[] = ['label' => "Admission Tax", 'amount' => $taxAdm];
                 $itemTaxes[] = ['label' => "Redmond Sales Tax", 'amount' => $taxRed];
@@ -289,10 +292,6 @@ foreach ($cart as $index => $item) {
     // TAXES
     foreach ($itemTaxes as $tax) {
         $taxAmt = $tax['amount'];
-        // Redmond Tax hack for addons
-        if (stripos($tax['label'], 'Redmond Sales Tax') !== false && isset($item['addon_tax'])) {
-            $taxAmt += floatval($item['addon_tax']);
-        }
         echo '<div class="summary-row">';
         echo '  <div style="padding-left:20px;">' . htmlspecialchars($tax['label']) . '</div>';
         echo '<div></div><div></div>';

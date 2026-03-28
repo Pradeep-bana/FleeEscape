@@ -24,4 +24,4 @@ define("SITE_TITLE", "Flee Escape");
 // Default Timezone
 date_default_timezone_set("Asia/Kolkata");
 
-define('CART_TIMER_MINUTES', 3); 
+define('CART_TIMER_MINUTES', 5); 

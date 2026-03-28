@@ -25,7 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     if ($result) {
-        echo json_encode(['status' => 'success']);
+        // Refresh Bookeo hold to keep cart totals and tax calculations correct.
+        $_POST['code'] = $_SESSION['giftCode'] ?? '';
+        include("apply_code.php");
+        exit;
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Database error']);
     }

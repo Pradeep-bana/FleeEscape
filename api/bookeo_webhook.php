@@ -5,12 +5,11 @@ ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
-$logFile = __DIR__ . '/webhook_debug.txt';
+require_once(__DIR__ . '/../includes/bookeo_runtime.php');
 
-$input   = file_get_contents('php://input');
+$input = file_get_contents('php://input');
 $payload = json_decode($input, true);
 
-// Respond to Bookeo immediately
 http_response_code(200);
 if (function_exists('fastcgi_finish_request')) {
     echo "OK";
@@ -19,37 +18,39 @@ if (function_exists('fastcgi_finish_request')) {
     echo "OK";
 }
 
-$timestamp = date('Y-m-d H:i:s');
-$logMsg    = "\n[$timestamp] WEBHOOK RECEIVED:\n$input\n";
-
 if (!$payload) {
-    file_put_contents($logFile, $logMsg . "ERROR: Invalid JSON\n", FILE_APPEND);
+    flee_bookeo_log_message('api_bookeo_webhook_invalid', 'Invalid JSON payload received', [
+        'raw_payload' => $input,
+    ]);
     exit;
 }
 
-require_once('db.php');
+require_once(__DIR__ . '/db.php');
 
-$item      = $payload['item'] ?? [];
-$eventId   = $item['eventId']   ?? $payload['data']['eventId']   ?? null;
-$productId = $item['productId'] ?? $payload['data']['productId'] ?? null;
-$rawDate   = $item['startTime'] ?? $payload['data']['startTime'] ?? null;
-$reason    = $item['reason'] ?? '';
+$item = $payload['item'] ?? [];
+$eventId = $item['eventId'] ?? ($payload['data']['eventId'] ?? null);
+$productId = $item['productId'] ?? ($payload['data']['productId'] ?? null);
+$rawDate = $item['startTime'] ?? ($payload['data']['startTime'] ?? null);
+$reason = $item['reason'] ?? '';
 
-// Parse slot date in LA timezone (critical — offsets like -07:00 must be respected)
 $slotDate = null;
 if ($rawDate) {
     try {
-        $dt = new DateTime($rawDate); // PHP respects the timezone offset in the string
+        $dt = new DateTime($rawDate);
         $dt->setTimezone(new DateTimeZone('America/Los_Angeles'));
         $slotDate = $dt->format('Y-m-d');
-    } catch (Exception $e) {}
+    } catch (Exception $e) {
+        flee_bookeo_log_message('api_bookeo_webhook_date_error', 'Unable to parse webhook start time', [
+            'raw_date' => $rawDate,
+            'error' => $e->getMessage(),
+        ]);
+    }
 }
 
-// Detect event type
 $statusLog = "UNKNOWN";
-if (isset($payload['type']) && $payload['type'] == 'deleted') {
+if (($payload['type'] ?? null) === 'deleted') {
     $statusLog = "RELEASE_HOLD_OR_DELETE";
-} elseif (!empty($item['canceled']) && $item['canceled'] === true) {
+} elseif (!empty($item['canceled'])) {
     $statusLog = "CANCELED";
 } elseif (stripos($reason, 'in progress') !== false) {
     $statusLog = "HOLD_STARTED";
@@ -59,13 +60,14 @@ if (isset($payload['type']) && $payload['type'] == 'deleted') {
     $statusLog = "SEATBLOCK_UPDATE";
 }
 
-$logMsg .= "DETECTED STATUS: $statusLog\n";
-$logMsg .= "Event ID: $eventId\n";
-$logMsg .= "Product ID: $productId\n";
-$logMsg .= "Slot Date: $slotDate\n";
-file_put_contents($logFile, $logMsg, FILE_APPEND);
+flee_bookeo_log('api_bookeo_webhook_received', [
+    'status' => $statusLog,
+    'event_id' => $eventId,
+    'product_id' => $productId,
+    'slot_date' => $slotDate,
+    'raw_payload' => $input,
+]);
 
-// Log to DB
 try {
     if (isset($pdo)) {
         $stmt = $pdo->prepare("
@@ -73,21 +75,21 @@ try {
             VALUES (:type, :pid, :eid, :date, :payload)
         ");
         $stmt->execute([
-            ':type'    => $statusLog,
-            ':pid'     => $productId,
-            ':eid'     => $eventId,
-            ':date'    => $slotDate,
+            ':type' => $statusLog,
+            ':pid' => $productId,
+            ':eid' => $eventId,
+            ':date' => $slotDate,
             ':payload' => $input,
         ]);
     }
 } catch (PDOException $e) {
-    file_put_contents($logFile, "DB Log Error: " . $e->getMessage() . "\n", FILE_APPEND);
+    flee_bookeo_log_message('api_bookeo_webhook_db_error', 'Webhook DB log insert failed', [
+        'error' => $e->getMessage(),
+    ]);
 }
 
-// CACHE INVALIDATION
 if ($productId && $slotDate && isset($pdo)) {
     try {
-        // Expire ALL slots for this product on this date
         $stmt = $pdo->prepare("
             UPDATE bookeo_slots_cache
             SET expires_at = '2000-01-01 00:00:00'
@@ -96,26 +98,28 @@ if ($productId && $slotDate && isset($pdo)) {
         $stmt->execute([$productId, $slotDate]);
         $affected = $stmt->rowCount();
 
-        // Also clear fetch registry to force fresh download
         $stmt = $pdo->prepare("
             DELETE FROM bookeo_fetch_registry
             WHERE product_id = ? AND slot_date = ?
         ");
         $stmt->execute([$productId, $slotDate]);
+        flee_bookeo_clear_day_cache($slotDate);
 
-        file_put_contents(
-            $logFile,
-            "CACHE CLEARED. $affected slot rows expired for product=$productId date=$slotDate. Next page load will fetch fresh data from Bookeo.\n",
-            FILE_APPEND
-        );
-
+        flee_bookeo_log_message('api_bookeo_webhook_cache_cleared', 'Expired cache rows for webhook event', [
+            'product_id' => $productId,
+            'slot_date' => $slotDate,
+            'affected_rows' => $affected,
+        ]);
     } catch (Exception $e) {
-        file_put_contents($logFile, "Cache Error: " . $e->getMessage() . "\n", FILE_APPEND);
+        flee_bookeo_log_message('api_bookeo_webhook_cache_error', 'Cache invalidation failed', [
+            'error' => $e->getMessage(),
+            'product_id' => $productId,
+            'slot_date' => $slotDate,
+        ]);
     }
 } else {
-    file_put_contents(
-        $logFile,
-        "CACHE NOT CLEARED — missing productId or slotDate (productId=$productId, slotDate=$slotDate)\n",
-        FILE_APPEND
-    );
+    flee_bookeo_log_message('api_bookeo_webhook_cache_skipped', 'Cache not cleared because webhook lacked identifiers', [
+        'product_id' => $productId,
+        'slot_date' => $slotDate,
+    ]);
 }

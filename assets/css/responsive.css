@@ -1705,11 +1705,6 @@ h4 {
 .customer-details .form-group {
     margin-bottom: 8px;
 }
-.payment_btnrow_tab button, .payment_voucher_tab {
-    padding: 8px 2px;
-    font-size: 12px;
-    border-radius: 4px;
-}
 .payment_images_done {
     padding: 26px 7px;
 }

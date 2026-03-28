@@ -92,17 +92,6 @@ function stopPersistentTimer() {
     const timerWrapper = document.querySelector(".timer_wrapper");
     if(timerWrapper) timerWrapper.style.display = "none";
 }
-// Add this at the very top of booking.js
-function logBookeoError(msg, details) {
-    // If details is an object (like the full response), convert to string
-    if (typeof details === 'object') {
-        details = JSON.stringify(details);
-    }
-    const formData = new FormData();
-    formData.append('error', msg);
-    formData.append('context', details);
-    navigator.sendBeacon('log_bookeo_error.php', formData);
-}
 
 function updateBundleOffers(cartCount) {
     const offer1 = document.querySelector('.offer-card[data-offer="1"]');
@@ -360,6 +349,28 @@ function setAddonStepEnabled(enabled) {
     }
 }
 
+function scrollToBookingStepArea() {
+    const targetEl =
+        document.getElementById("stepContents") ||
+        document.getElementById("to_book_scroll") ||
+        document.getElementById("custom_scroll");
+
+    if (!targetEl) return;
+
+    requestAnimationFrame(() => {
+        const yOffset = -120;
+        const y =
+            targetEl.getBoundingClientRect().top +
+            window.pageYOffset +
+            yOffset;
+
+        window.scrollTo({
+            top: Math.max(0, y),
+            behavior: "smooth"
+        });
+    });
+}
+
 async function goToAddonsOrCustomer() {
     try {
         const resp = await fetch("check_addons.php");
@@ -371,8 +382,10 @@ async function goToAddonsOrCustomer() {
             setAddonStepEnabled(false);
             goToStep(2); // Always go to index 2 (Customer Details) — absolute
         }
+        scrollToBookingStepArea();
     } catch (e) {
         goToStep(1); // safe fallback
+        scrollToBookingStepArea();
     }
 }
 
@@ -444,60 +457,29 @@ document.addEventListener("click", function(e) {
 .then(response => {
 
     if (response.status !== 'success') {
-        // DB save itself failed (duplicate, validation, etc.)
-        console.error("Cart error:", response.message);
         document.getElementById("stepLoader").style.display = "none";
-        alert(response.message || "Failed to add item.");
+        showBookeoError(response.message);
         return;
     }
 
-    // cart_session.php succeeded (DB saved).
-    // Now let apply_code.php create ALL holds correctly in one pass.
-    // Pass the promo code cart_session detected (BMSM_10/BMSM_20/empty)
-    // OR any existing voucher the user already applied.
-    const existingCode = document.getElementById("giftCodeInput")?.value?.trim() || "";
-    const promoCode    = response.promo || "";
-    const codeToSend   = existingCode || promoCode;
+    localStorage.removeItem('cartTimerExpired');
+    loadCart();
+    loadAddons();
+    if (response.cart) updateBookedButtons(response.cart);
 
-    fetch("apply_code.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "code=" + encodeURIComponent(codeToSend)
-    })
-    .then(r => r.json())
-    .then(holdResponse => {
-
-        if (holdResponse.status === 'hold_error') {
             // Slot unavailable — item was auto-removed from cart by apply_code.php
-            const failed = holdResponse.failed_items || [];
-            const names  = failed.map(f => f.message || "Unknown slot").join("\n");
-            alert("Sorry, the following could not be reserved and were removed:\n" + names);
-        }
 
         // Reload cart regardless — apply_code already cleaned up any failed items
-        localStorage.removeItem('cartTimerExpired');
-        loadCart();
-        loadAddons();
-        if (response.cart) updateBookedButtons(response.cart);
-
-        // Modal / step logic
-        if (response.cart) {
-            if (response.cart.length < 3) {
-                const modalEl = document.getElementById('timeslotModal');
-                if (modalEl) new bootstrap.Modal(modalEl).show();
-            } else {
-                goToAddonsOrCustomer();
-            }
+    if (response.cart) {
+        if (response.cart.length < 3) {
+            const modalEl = document.getElementById('timeslotModal');
+            if (modalEl) new bootstrap.Modal(modalEl).show();
+        } else {
+            goToAddonsOrCustomer();
         }
-    })
-    .catch(err => {
-        console.error("apply_code.php error:", err);
-        // Even if apply_code fails unexpectedly, reload cart so UI stays consistent
-        loadCart();
-    })
-    .finally(() => {
-        document.getElementById("stepLoader").style.display = "none";
-    });
+    }
+
+    document.getElementById("stepLoader").style.display = "none";
 
 })
 .catch(err => {
@@ -536,7 +518,7 @@ async function handleContinueNextStepParty(e) {
 
     document.getElementById("stepLoader")?.style?.setProperty("display", "flex");
 
-    let req = await fetch("party_cart_session.php", {
+    let req = await fetch("cart_session.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
@@ -556,38 +538,14 @@ async function handleContinueNextStepParty(e) {
     document.getElementById("stepLoader")?.style?.setProperty("display", "none");
 
     // API FAILURE → SHOW BOOKEO ERROR MODAL
-    if (res.status === "slot_error") {
-            const msg = res.message || "Failed to reserve slot.";
-            // --- LOGGING CODE ---
-            logBookeoError(msg, {
-                type: "Party Package",
-                gameId: productCode,
-                guests: guestCount,
-                full_response: res 
-            });
-            // --------------------
-
-        document.getElementById("bookeoErrorMessage").innerText =
-            res.message || "Failed to reserve slot. Please try again.";
-        const errorModal = new bootstrap.Modal(document.getElementById("bookeoErrorModal"));
-        errorModal.show();
+    if (res.status !== "success") {
+        showBookeoError(res.message || "Failed to reserve slot. Please try again.");
         return;
     }
-  if (productCode === "41551LAM3LY18570132661") {
-       loadCart();
-    loadAddons();
-        goToAddonsOrCustomer();
-        return;
-    }
+ 
     // SUCCESS → load addons + show booking modal
     
-    fetch("apply_code.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    })
-    .then(() => {
-        if (typeof loadCart === "function") loadCart();
-    });
+    if (typeof loadCart === "function") loadCart();
     loadAddons();
     const modalEl = document.getElementById("partymodalform");
     const modal = new bootstrap.Modal(modalEl);
@@ -637,11 +595,11 @@ document.addEventListener("click", async function(e) {
         document.getElementById("stepLoader").style.display = "flex";
 
         try {
-            const response = await fetch("event_cart_session.php", {
+            const response = await fetch("cart_session.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams({
-                    action: "add_party_cart",
+                    action: "add_event_cart",
                     gameId: productCode,
                     gameName: gameName,
                     slot: slot,
@@ -653,25 +611,9 @@ document.addEventListener("click", async function(e) {
 
             const res = await response.json();
 
-            if (res.status === "slot_error") {
-                console.log('kaka error agya');
-                console.log(res);
-                
-                const msg = res.message || "Failed to reserve slot.";
-                // --- LOGGING CODE ---
-                logBookeoError(msg, {
-                    type: "Event Room",
-                    gameId: productCode,
-                    guests: guestCount,
-                    full_response: res 
-                });
-                // --------------------
-                
+            if (res.status !== "success") {
                 // SHOW ERROR MODAL (NOT ALERT)
-                document.getElementById("bookeoErrorMessage").innerText = 
-                    res.message || "Failed to reserve slot. Please try again.";
-                const errorModal = new bootstrap.Modal(document.getElementById("bookeoErrorModal"));
-                errorModal.show();
+                showBookeoError(res.message || "Failed to reserve slot. Please try again.");
                 return;
             }
 
@@ -719,10 +661,10 @@ document.addEventListener("click", async function(e) {
         loading.style.display = "flex";
         modalBox.classList.add("loading-mode");
 
-        fetch("remove_from_cart.php", {
+        fetch("cart_session.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "index=" + index
+            body: "action=remove_from_cart&index=" + encodeURIComponent(index)
         })
         .then(res => res.json())
         .then(data => {

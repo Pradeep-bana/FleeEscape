@@ -1,0 +1,22 @@
+[2026-03-19 05:17:25] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:17:27] DB ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'CACHE_STATUS-META' for key 'uq_slot'
+[2026-03-19 05:20:04] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:20:06] DB ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'CACHE_STATUS-META' for key 'uq_slot'
+[2026-03-19 05:20:37] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:20:38] DB ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'CACHE_STATUS-META' for key 'uq_slot'
+[2026-03-19 05:21:17] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:21:19] DB ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'CACHE_STATUS-META' for key 'uq_slot'
+[2026-03-19 05:22:02] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:22:04] DB ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'CACHE_STATUS-META' for key 'uq_slot'
+[2026-03-19 05:25:10] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:25:11] SUCCESS: Updated 50 slots across 7 days. Expires at: 2026-03-19 05:40:10
+[2026-03-19 05:25:14] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:25:15] SUCCESS: Updated 50 slots across 7 days. Expires at: 2026-03-19 05:40:14
+[2026-03-19 05:30:06] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:30:08] SUCCESS: Updated 50 real slots across 7 days.
+[2026-03-19 05:31:19] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:31:21] SUCCESS: Updated 50 real slots across 7 days.
+[2026-03-19 05:35:38] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:35:40] SUCCESS: Updated 50 real slots across 7 days.
+[2026-03-19 05:37:07] CRON STARTED: Fetching 7-day window.
+[2026-03-19 05:37:09] SUCCESS: Updated 50 real slots across 7 days.

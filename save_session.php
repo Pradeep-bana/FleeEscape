@@ -5,15 +5,13 @@ error_reporting(E_ALL);
 ini_set('log_errors', 1);
 
 include "admin/db.php"; 
+require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
 // --- Global error deduplication tracker ---
 $seenErrors = []; 
 
-// --- logging helper ---
-$logFile = __DIR__ . "/booking_debug.log";
 function logMsg($msg) {
-    global $logFile;
-    file_put_contents($logFile, "[" . date("Y-m-d H:i:s") . "] " . $msg . "\n", FILE_APPEND);
+    flee_bookeo_log_message('save_session', $msg);
 }
 
 // --- Unique error handler ---
@@ -47,25 +45,19 @@ function makeBookingAPI($bookingData, $previousHoldId) {
         "notifyCustomer" => "false"
     ]);
     $bookingUrl = "https://api.bookeo.com/v2/bookings?$queryParams";
-    $curl = curl_init();
-    curl_setopt_array($curl, [
-        CURLOPT_URL => $bookingUrl,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => json_encode($bookingData),
-        CURLOPT_HTTPHEADER => [
+    $apiResponse = flee_bookeo_request('POST', $bookingUrl, [
+        'context' => 'save_session_booking_create',
+        'timeout' => 30,
+        'headers' => [
             "X-Bookeo-apiKey: $apiKey",
             "X-Bookeo-secretKey: $secretKey",
             "Content-Type: application/json",
             "Accept: application/json"
-        ]
+        ],
+        'body' => json_encode($bookingData),
+        'log_body' => true,
     ]);
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
-    return ['httpCode' => $httpCode, 'response' => $response, 'error' => $err];
+    return ['httpCode' => $apiResponse['code'], 'response' => $apiResponse['body'], 'error' => $apiResponse['error']];
 }
 
 function isSuccess($apiResp) {

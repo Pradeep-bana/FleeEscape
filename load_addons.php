@@ -7,22 +7,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include("admin/db.php");
+require_once("addon_pricing_helper.php");
 
 /* ----------------------------------------------
    1. GET PRODUCT CACHE
 ------------------------------------------------*/
-$stmt = $pdo->prepare("SELECT product_data FROM bookeo_products_cache WHERE id = 1 LIMIT 1");
-$stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$row) {
+$products = flee_get_cached_products_data($pdo);
+if (empty($products)) {
     echo "No product cache found.";
-    exit;
-}
-
-$productsData = json_decode($row['product_data'], true);
-if (!isset($productsData['data']) || !is_array($productsData['data'])) {
-    echo "Invalid product cache structure.";
     exit;
 }
 
@@ -47,7 +39,7 @@ foreach ($services as $srv) {
         $cleanID = trim($id);
         $addonLookup[$cleanID] = [
             "title" => $titles[$i] ?? "",
-            "price" => $prices[$i] ?? 0,
+            "fallback_price" => $prices[$i] ?? 0,
             "image" => $images[$i] ?? "",
             "strikethrough_price" => $strikes[$i] ?? 0 
         ];
@@ -81,15 +73,12 @@ foreach ($partyRows as $pr) {
     if (is_array($addon_ids)) {
         foreach ($addon_ids as $i => $id) {
             $cleanID = trim($id);
-            // Verify price exists at this index
-            if(isset($addon_prices[$i])) {
-                $temp[$cleanID] = [
-                    "title" => $addon_titles[$i] ?? "", // Optional: store title if needed
-                    "price" => $addon_prices[$i] ?? 0,
-                    "image" => $addon_images[$i] ?? "",
-                    "strikethrough_price" => $addon_strikes[$i] ?? 0
-                ];
-            }
+            $temp[$cleanID] = [
+                "title" => $addon_titles[$i] ?? "",
+                "fallback_price" => $addon_prices[$i] ?? 0,
+                "image" => $addon_images[$i] ?? "",
+                "strikethrough_price" => $addon_strikes[$i] ?? 0
+            ];
         }
     }
 
@@ -112,7 +101,7 @@ $cartGameIds = array_keys($cartMap);
 /* ----------------------------------------------
    5. RENDER ADD-ONS
 ------------------------------------------------*/
-foreach ($productsData['data'] as $product) {
+foreach ($products as $product) {
 
     if (!isset($product['productCode'])) continue;
     $productCode = $product['productCode'];
@@ -120,6 +109,7 @@ foreach ($productsData['data'] as $product) {
     if (!in_array($productCode, $cartGameIds)) continue;
 
     $cat = strtolower(trim($cartMap[$productCode]['cat'] ?? ""));
+    $slot = $cartMap[$productCode]['slot'] ?? '';
     $defaultImage = $product['images'][0]['url'] ?? "";
 
 
@@ -140,22 +130,22 @@ foreach ($productsData['data'] as $product) {
                 $opt_desc = strip_tags($opt["description"] ?? "");
 
                 // Default values
-                $addonPrice = 0;
+                $addonPrice = flee_get_bookeo_option_price($product, $opt_id, $slot);
                 $addonImage = $defaultImage;
                 $strkPrice = 0;
                 $percentLabel = "";
 
                 // CHECK IF THIS ID EXISTS IN OUR DB LOOKUP
                 if (isset($partyAddons[$opt_id])) {
-                    if (!empty($partyAddons[$opt_id]["price"])) {
-                        $addonPrice = $partyAddons[$opt_id]["price"];
-                        $strkPrice = $partyAddons[$opt_id]["strikethrough_price"] ?? 0;
-                    }
+                    $strkPrice = $partyAddons[$opt_id]["strikethrough_price"] ?? 0;
                     if (!empty($partyAddons[$opt_id]["image"])) {
                         $addonImage = "admin/uploads/" . $partyAddons[$opt_id]["image"];
                     }
-                    if (!empty($partyAddons[$opt_id]["title"])) {
-                        $opt_name = $partyAddons[$opt_id]["title"] ?? "";
+                    // if (!empty($partyAddons[$opt_id]["title"])) {
+                    //     $opt_name = $partyAddons[$opt_id]["title"] ?? "";
+                    // }
+                    if ($addonPrice <= 0 && !empty($partyAddons[$opt_id]["fallback_price"])) {
+                        $addonPrice = (float)$partyAddons[$opt_id]["fallback_price"];
                     }
                 }
 
@@ -179,7 +169,7 @@ foreach ($productsData['data'] as $product) {
 
                         <div class="card-body flex-column">
                             <!-- TITLE WITH PERCENTAGE -->
-                            <h5 class="add_on_booking_card_title">' . $percentLabel . htmlspecialchars($opt_name) . '</h5>
+                            <h5 class="add_on_booking_card_title">' . htmlspecialchars($opt_name) . '</h5>
                             
                             <h5 class="opt_id d-none">' . $opt_id . '</h5>
                             <h5 class="game_id d-none">' . $productCode . '</h5>
@@ -235,22 +225,22 @@ foreach ($productsData['data'] as $product) {
         $min = intval($opt["minValue"] ?? 0);
         $max = intval($opt["maxValue"] ?? 0);
 
-        $addonPrice = $opt["defaultValue"] ?? 0;
+        $addonPrice = flee_get_bookeo_option_price($product, $opt_id, $slot);
         $strkPrice = 0;
         $addonImage = $defaultImage;
         $percentLabel = "";
 
         // Match by ID
         if (isset($addonLookup[$opt_id])) {
-            if (!empty($addonLookup[$opt_id]["price"])) {
-                $addonPrice = $addonLookup[$opt_id]["price"];
-                $strkPrice = $addonLookup[$opt_id]["strikethrough_price"] ?? 0;
-            }
+            $strkPrice = $addonLookup[$opt_id]["strikethrough_price"] ?? 0;
             if (!empty($addonLookup[$opt_id]["image"])) {
                 $addonImage = "admin/uploads/" . $addonLookup[$opt_id]["image"];
             }
-            if (!empty($addonLookup[$opt_id]["title"])) {
-                $opt_name = $addonLookup[$opt_id]["title"] ?? "";
+            // if (!empty($addonLookup[$opt_id]["title"])) {
+            //     $opt_name = $addonLookup[$opt_id]["title"] ?? "";
+            // }
+            if ($addonPrice <= 0 && !empty($addonLookup[$opt_id]["fallback_price"])) {
+                $addonPrice = (float)$addonLookup[$opt_id]["fallback_price"];
             }
         }
         
@@ -270,7 +260,7 @@ foreach ($productsData['data'] as $product) {
                 <img src="' . $addonImage . '" alt="' . htmlspecialchars($opt_name) . '"  loading="lazy" decoding="async">
                 <div class="card-body flex-column">
 
-                    <h5 class="add_on_booking_card_title">' . $percentLabel . htmlspecialchars($opt_name) . '</h5>
+                    <h5 class="add_on_booking_card_title">' . htmlspecialchars($opt_name) . '</h5>
                     <h5 class="opt_id d-none">' . $opt_id . '</h5>
                     <h5 class="game_id d-none">' . $productCode . '</h5>
 

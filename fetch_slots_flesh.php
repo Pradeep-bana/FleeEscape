@@ -1,310 +1,267 @@
 <?php
+/**
+ * fetch_slots_flash.php (Upgraded to New Architecture)
+ */
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
-
 header('Content-Type: application/json');
 
 include('admin/db.php');
+require_once(__DIR__ . '/includes/bookeo_runtime.php');
+
+const API_BASE_URL = 'https://api.bookeo.com/v2/availability/slots';
+
+function logFlash($msg) {
+    flee_bookeo_log_message('fetch_slots_flash', $msg);
+}
+
+function isFlashProductCacheFresh(PDO $pdo, $requestedDate, $productId, DateTimeZone $losAngelesTz, DateTime $nowLocal)
+{
+    if (flee_bookeo_is_day_cache_fresh($requestedDate, $nowLocal)) {
+        return true;
+    }
+
+    $stmtCache = $pdo->prepare("SELECT MIN(expires_at) as earliest_expiry, COUNT(DISTINCT product_id) as found_products FROM bookeo_slots_cache WHERE slot_date = ? AND product_id = ?");
+    $stmtCache->execute([$requestedDate, $productId]);
+    $cacheCheck = $stmtCache->fetch(PDO::FETCH_ASSOC);
+
+    if ((int)($cacheCheck['found_products'] ?? 0) === 0) {
+        return false;
+    }
+
+    if (empty($cacheCheck['earliest_expiry'])) {
+        return false;
+    }
+
+    $earliestExpiryDt = new DateTime($cacheCheck['earliest_expiry'], $losAngelesTz);
+    return $earliestExpiryDt >= $nowLocal;
+}
 
 $requestedDate = $_GET['date'] ?? '';
 $productIds    = isset($_GET['productIds']) ? json_decode($_GET['productIds'], true) : [];
 
 if (!$requestedDate || !is_array($productIds) || empty($productIds)) {
-    echo json_encode(['error' => 'Missing date or product IDs']);
+    echo json_encode(['error' => 'Missing inputs']);
     exit;
 }
 
-$washingtonTz = new DateTimeZone('America/Los_Angeles');
+$losAngelesTz = new DateTimeZone('America/Los_Angeles');
 $utcTz        = new DateTimeZone('UTC');
-$logFile      = __DIR__ . "/debug_slots_flash.txt";
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
+$stmt = $pdo->prepare("SELECT deal_hours FROM tbl_flash_deal WHERE is_active = 1 LIMIT 1");
+$stmt->execute();
+$dealRow = $stmt->fetch(PDO::FETCH_ASSOC);
+$dealHours = $dealRow ? (int)$dealRow['deal_hours'] : 0;
 
-function logFlash(string $msg): void {
-    global $logFile;
-    file_put_contents($logFile, "[" . date("Y-m-d H:i:s") . "] $msg\n", FILE_APPEND);
-}
-
-// ─── CACHE TTL with jitter — matches fetch_slots.php ─────────────────────────
-
-function getCacheTtlWithJitter(DateTime $requestedDate, DateTime $now): int {
-    $diffDays = (int)$now->diff($requestedDate)->days;
-    if ($diffDays === 0)     $base = 120;
-    elseif ($diffDays <= 3)  $base = 300;
-    elseif ($diffDays <= 14) $base = 900;
-    elseif ($diffDays <= 60) $base = 3600;
-    else                     $base = 86400;
-
-    $jitter = (int)($base * 0.10);
-    return $base + rand(-$jitter, $jitter);
-}
-
-// ─── BOOKEO API ───────────────────────────────────────────────────────────────
-
-function fetchFromBookeo(string $url, int $retry = 0, int $max = 3): array {
-    $curl = curl_init();
-    curl_setopt_array($curl, [
-        CURLOPT_URL            => $url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 20,
-        CURLOPT_HTTPHEADER     => [
-            'X-Bookeo-apiKey: AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC',
-            'X-Bookeo-secretKey: RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4',
-            'Accept: application/json'
-        ],
-    ]);
-
-    $response = curl_exec($curl);
-    $http     = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    $err      = curl_error($curl);
-    curl_close($curl);
-
-    if ($response === false) {
-        logFlash("CURL Error: $err");
-        return [500, []];
-    }
-
-    $data = json_decode($response, true) ?? [];
-
-    if ($http === 429 && $retry < $max) {
-        $wait = isset($data['retryAfter']) ? (int)$data['retryAfter'] : 5;
-        sleep(min($wait, 10));
-        return fetchFromBookeo($url, $retry + 1, $max);
-    }
-
-    return [$http, $data];
-}
-
-// ─── DB HELPERS ──────────────────────────────────────────────────────────────
-
-function getCachedSlots(PDO $pdo, string $productId, string $date): array {
-    $stmt = $pdo->prepare("
-        SELECT * FROM bookeo_slots_cache
-        WHERE product_id = :pid AND slot_date = :d
-        ORDER BY start_time_local ASC
-    ");
-    $stmt->execute([':pid' => $productId, ':d' => $date]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function getDealHours(PDO $pdo): int {
-    $stmt = $pdo->prepare("SELECT deal_hours FROM tbl_flash_deal WHERE is_active = 1 LIMIT 1");
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row ? (int)$row['deal_hours'] : 0;
-}
-
-// ─── CACHE FRESHNESS — uses expires_at (matches fetch_slots.php schema) ───────
-
-function isCacheFresh(array $cached, DateTimeZone $tz, string $productId, string $date): bool {
-    $expiries = array_filter(
-        array_column($cached, 'expires_at'),
-        fn($v) => !empty($v)
-    );
-
-    if (empty($expiries)) {
-        logFlash("FLASH | PID: $productId | Date: $date -> NO valid expires_at in cache rows");
-        return false;
-    }
-
-    $latestExpiry = max($expiries);
-    $expiresDt    = DateTime::createFromFormat('Y-m-d H:i:s', $latestExpiry, $tz)
-                    ?: new DateTime($latestExpiry, $tz);
-    $nowWash      = new DateTime('now', $tz);
-    $fresh        = ($expiresDt >= $nowWash);
-
-    logFlash("FLASH | PID: $productId | Date: $date | Expires: $latestExpiry -> " . ($fresh ? 'USING CACHE' : 'CACHE EXPIRED'));
-    return $fresh;
-}
-
-// ─── SAVE SLOTS ───────────────────────────────────────────────────────────────
-function saveSlotsToDB($pdo, $productId, $requestedDate, $slots, $nowLocal, $washingtonTz, $utcTz, $cacheTtl) {
-    $expiresAt = (clone $nowLocal)->modify("+{$cacheTtl} seconds")->format('Y-m-d H:i:s');
-    $nowStr    = $nowLocal->format('Y-m-d H:i:s');
-
-    $pdo->beginTransaction();
-    try {
-        // ── Step 1: Delete old slots for this product + date ─────────────────
-        // Removes ghost slots (fully booked slots Bookeo no longer returns).
-        // Using $requestedDate directly — correct for LA business hours since
-        // slots never cross the UTC midnight boundary in practice.
-        $pdo->prepare("DELETE FROM bookeo_slots_cache WHERE product_id = :pid AND slot_date = :sdate")
-            ->execute([':pid' => $productId, ':sdate' => $requestedDate]);
-
-        // ── Step 2: Insert fresh slots ───────────────────────────────────────
-        // Loop may be empty for fully-booked days — delete above still ran,
-        // which is correct (clears any ghosts).
-        if (!empty($slots)) {
-            $insStmt = $pdo->prepare("
-                INSERT INTO bookeo_slots_cache
-                    (product_id, slot_date, start_time_utc, start_time_local,
-                     event_id, available_seats, max_seats, cached_at, expires_at)
-                VALUES
-                    (:pid, :sdate, :utc, :local, :eid, :avail, :max, :now, :exp)
-            ");
-
-            foreach ($slots as $slot) {
-                $localDt = (new DateTime($slot['startTime'], $utcTz))->setTimezone($washingtonTz);
-                $insStmt->execute([
-                    ':pid'   => $productId,
-                    ':sdate' => $localDt->format('Y-m-d'),
-                    ':utc'   => $slot['startTime'],
-                    ':local' => $localDt->format('Y-m-d H:i:s'),
-                    ':eid'   => $slot['eventId'],
-                    ':avail' => (int)($slot['numSeatsAvailable'] ?? 0),
-                    ':max'   => (int)($slot['maxSeats'] ?? 0),
-                    ':now'   => $nowStr,
-                    ':exp'   => $expiresAt,
-                ]);
-            }
-        }
-
-        // ── Step 3: Update fetch registry ────────────────────────────────────
-        $pdo->prepare("
-            INSERT INTO bookeo_fetch_registry (product_id, slot_date, fetched_at, fetch_source)
-            VALUES (:pid, :d, :now, 'api')
-            ON DUPLICATE KEY UPDATE fetched_at = :now, fetch_source = 'api'
-        ")->execute([':pid' => $productId, ':d' => $requestedDate, ':now' => $nowStr]);
-
-        $pdo->commit();
-        return true;
-
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        logSlots("saveSlotsToDB FAILED for $productId / $requestedDate: " . $e->getMessage());
-        return false;
-    }
-}
-
-// ─── BUILD SLOT HTML ──────────────────────────────────────────────────────────
-
-function buildSlotHtml(array $cached, string $productId, int $dealHours, DateTimeZone $tz): string {
-    $html     = '';
-    $nowLocal = new DateTime('now', $tz);
-
-    foreach ($cached as $i => $slot) {
-        $dt          = new DateTime($slot['start_time_local'], $tz);
-        $time        = $dt->format('g:i A');
-        $available   = (int)$slot['available_seats'];
-        $isFull      = ($available === 0);
-        $eventId     = $slot['event_id'];
-        $minutesDiff = ($dt->getTimestamp() - $nowLocal->getTimestamp()) / 60;
-
-        if ($minutesDiff < 0) continue;
-
-        if ($dealHours > 0 && $minutesDiff > ($dealHours * 60)) continue;
-
-        if ($minutesDiff <= 20 && !$isFull) {
-            $safeTime = htmlspecialchars($time, ENT_QUOTES);
-            $html .= '
-                <div class="time_slot_group time_slot_call">
-                    <span class="call-slot-btn" onclick="showCallPopup(\'' . $safeTime . '\')">
-                        ' . $safeTime . '
-                        <span class="Available_play_time">' . $available . ' Available</span>
-                        <span class="Available_play_time">Call</span>
-                    </span>
-                </div>';
-            continue;
-        }
-
-        $id = 'lift-' . preg_replace('/[^a-zA-Z0-9_-]/', '', $productId) . '-' . $i;
-
-        $html .= '
-            <div class="time_slot_group ' . ($isFull ? 'time_slot_full' : '') . '">
-                <input type="radio"
-                       name="lift-time-' . $productId . '"
-                       id="' . $id . '"
-                       value="' . htmlspecialchars($slot['start_time_local'], ENT_QUOTES) . '"
-                       data-start-time="' . htmlspecialchars($slot['start_time_local'], ENT_QUOTES) . '"
-                       data-eventid="' . htmlspecialchars($eventId, ENT_QUOTES) . '"
-                       data-available="' . $available . '"
-                       ' . ($isFull ? 'disabled' : '') . '
-                       hidden>
-                <label for="' . $id . '">
-                    ' . $time . '
-                    <span class="Available_play_time">' . ($isFull ? 'Full' : $available . ' Available') . '</span>
-                </label>
-            </div>';
-    }
-
-    return $html;
-}
-
-// ─── MAIN LOOP ────────────────────────────────────────────────────────────────
-
-$dealHours = getDealHours($pdo);
-$results   = [];
+$results = [];
 
 foreach ($productIds as $rawProductId) {
     $productId = trim($rawProductId);
     if (empty($productId)) continue;
 
-    $currentDate       = $requestedDate;
-    $attempts          = 0;
-    $usedDateForResult = $requestedDate;
-
+    $currentDate = $requestedDate;
+    $attempts    = 0;
+    
     while ($attempts < 2) {
-
+        $nowLocal = new DateTime('now', $losAngelesTz);
+        
         try {
-            $dateObj = new DateTime($currentDate, $washingtonTz);
-            $startDt = (clone $dateObj)->setTime(0, 0, 0)->setTimezone($utcTz);
-            $endDt   = (clone $dateObj)->setTime(23, 59, 59)->setTimezone($utcTz);
+            $dateObj = new DateTime($currentDate, $losAngelesTz);
         } catch (Exception $e) {
-            logFlash("Invalid date '$currentDate': " . $e->getMessage());
             break;
         }
 
-        $startTime = $startDt->format('Y-m-d\TH:i:s\Z');
-        $endTime   = $endDt->format('Y-m-d\TH:i:s\Z');
+        // --- CACHE CHECK ---
+        $slotsForDisplay = null;
+        $needsApiFetch = false;
 
-        $cached   = getCachedSlots($pdo, $productId, $currentDate);
-        $useCache = !empty($cached) && isCacheFresh($cached, $washingtonTz, $productId, $currentDate);
+        $needsApiFetch = !isFlashProductCacheFresh($pdo, $currentDate, $productId, $losAngelesTz, $nowLocal);
 
-        if (!$useCache) {
-            logFlash("Fetching API for PID: $productId | Date: $currentDate");
-
-            $url = "https://api.bookeo.com/v2/availability/slots"
-                 . "?productId={$productId}&startTime={$startTime}&endTime={$endTime}";
-
-            [$status, $apiData] = fetchFromBookeo($url);
-
-            // FIX 2: save on ANY 200 — even empty data means fully booked,
-            // old ghost slots must be deleted
-            if ($status === 200) {
-                $slots    = $apiData['data'] ?? [];
-                $nowLocal = new DateTime('now', $washingtonTz);
-                $cacheTtl = getCacheTtlWithJitter($dateObj, $nowLocal);
-                saveSlotsToDB($pdo, $productId, $currentDate, $slots, $nowLocal, $washingtonTz, $utcTz, $cacheTtl);
-            } else {
-                logFlash("API returned status $status for PID: $productId | Date: $currentDate");
+        // --- API FETCH ---
+        if ($needsApiFetch) {
+            $fetchLock = flee_bookeo_acquire_lock('availability_day_' . $currentDate, 12);
+            if ($fetchLock === false) {
+                logFlash("Could not acquire fetch lock for $currentDate. Reading current cache instead.");
+                usleep(800000);
             }
 
-            $cached = getCachedSlots($pdo, $productId, $currentDate);
+            if (flee_bookeo_is_throttled()) {
+                $waitSeconds = flee_bookeo_retry_after_seconds();
+                if ($waitSeconds > 15) {
+                    $results[$productId] = ['html' => '<p>System synchronizing. Please retry.</p>', 'date' => $currentDate];
+                    break 2; // Exit both loops to prevent freezing
+                } elseif ($waitSeconds > 0) {
+                    sleep($waitSeconds + 1); 
+                }
+            }
+
+            try {
+                $nowLocal = new DateTime('now', $losAngelesTz);
+                if ($fetchLock === false) {
+                    $refreshedByPeer = isFlashProductCacheFresh($pdo, $currentDate, $productId, $losAngelesTz, $nowLocal);
+                    if ($refreshedByPeer) {
+                        logFlash("Skipped Bookeo fetch for $currentDate because another request refreshed the cache while lock was busy.");
+                    } else {
+                        logFlash("Skipped Bookeo fetch for $currentDate because the day lock stayed busy. Serving DB state without a duplicate outbound call.");
+                    }
+                } elseif (!isFlashProductCacheFresh($pdo, $currentDate, $productId, $losAngelesTz, $nowLocal)) {
+                    $startUTC = (clone $dateObj)->setTime(0, 0, 0)->setTimezone($utcTz)->format('Y-m-d\TH:i:s\Z');
+                    $endUTC   = (clone $dateObj)->setTime(23, 59, 59)->setTimezone($utcTz)->format('Y-m-d\TH:i:s\Z');
+                    $url = API_BASE_URL . "?startTime={$startUTC}&endTime={$endUTC}&itemsPerPage=300";
+                    
+                    $apiResponse = flee_bookeo_request('GET', $url, [
+                        'context' => 'fetch_slots_flash_availability',
+                        'timeout' => 20,
+                        'headers' => [
+                            'X-Bookeo-apiKey: ' . FLEE_BOOKEO_API_KEY,
+                            'X-Bookeo-secretKey: ' . FLEE_BOOKEO_SECRET_KEY,
+                            'Accept: application/json',
+                        ],
+                    ]);
+                    $response = $apiResponse['body'];
+                    $httpCode = $apiResponse['code'];
+                    
+                    if ($httpCode === 200) {
+                        $apiData = json_decode($response, true);
+                        $fetchedSlots = $apiData['data'] ?? [];
+                        $requestedProductFound = false;
+
+                        $normalizedSlots = [];
+                        foreach ($fetchedSlots as $apiSlot) {
+                            if (($apiSlot['productId'] ?? '') === $productId) {
+                                $requestedProductFound = true;
+                            }
+                            $apiDt = new DateTime($apiSlot['startTime']);
+                            $normalizedSlots[] = [
+                                'product_id' => $apiSlot['productId'],
+                                'start_time_local' => $apiDt->setTimezone($losAngelesTz)->format('Y-m-d H:i:s'),
+                                'event_id' => $apiSlot['eventId'],
+                                'available_seats' => (int)($apiSlot['numSeatsAvailable'] ?? 0)
+                            ];
+                        }
+                        $slotsForDisplay = array_values(array_filter($normalizedSlots, static function ($slot) use ($productId) {
+                            return ($slot['product_id'] ?? '') === $productId;
+                        }));
+
+                        $pdo->beginTransaction();
+                        try {
+                            $pdo->prepare("DELETE FROM bookeo_slots_cache WHERE slot_date = ? AND product_id = ?")->execute([$currentDate, $productId]);
+                            $nowStr = $nowLocal->format('Y-m-d H:i:s');
+                            $expiresAt = (clone $nowLocal)->modify("+10 minutes")->format('Y-m-d H:i:s');
+                            $placeholderEventId = flee_bookeo_placeholder_event_id($currentDate);
+                            
+                            if (!empty($fetchedSlots)) {
+                                $insStmt = $pdo->prepare("
+                                    INSERT INTO bookeo_slots_cache
+                                        (product_id, slot_date, start_time_utc, start_time_local, event_id, available_seats, max_seats, cached_at, expires_at)
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                    ON DUPLICATE KEY UPDATE
+                                        slot_date = VALUES(slot_date),
+                                        start_time_utc = VALUES(start_time_utc),
+                                        start_time_local = VALUES(start_time_local),
+                                        available_seats = VALUES(available_seats),
+                                        max_seats = VALUES(max_seats),
+                                        cached_at = VALUES(cached_at),
+                                        expires_at = VALUES(expires_at)
+                                ");
+                                foreach ($fetchedSlots as $slot) {
+                                    if (empty($slot['productId']) || empty($slot['eventId'])) continue;
+                                    $apiDt = new DateTime($slot['startTime']);
+                                    $insStmt->execute([$slot['productId'], $apiDt->setTimezone($losAngelesTz)->format('Y-m-d'), $apiDt->setTimezone($utcTz)->format('Y-m-d\TH:i:s\Z'), $apiDt->setTimezone($losAngelesTz)->format('Y-m-d H:i:s'), $slot['eventId'], (int)($slot['numSeatsAvailable'] ?? 0), (int)($slot['maxSeats'] ?? 0), $nowStr, $expiresAt]);
+                                }
+                                if (!$requestedProductFound) {
+                                    $pdo->prepare("
+                                        INSERT INTO bookeo_slots_cache (product_id, slot_date, expires_at, event_id, cached_at)
+                                        VALUES (?, ?, ?, ?, ?)
+                                        ON DUPLICATE KEY UPDATE
+                                            slot_date = VALUES(slot_date),
+                                            expires_at = VALUES(expires_at),
+                                            cached_at = VALUES(cached_at)
+                                    ")->execute([$productId, $currentDate, $expiresAt, $placeholderEventId, $nowStr]);
+                                }
+                            } else {
+                                $pdo->prepare("
+                                    INSERT INTO bookeo_slots_cache (product_id, slot_date, expires_at, event_id, cached_at)
+                                    VALUES (?, ?, ?, ?, ?)
+                                    ON DUPLICATE KEY UPDATE
+                                        slot_date = VALUES(slot_date),
+                                        expires_at = VALUES(expires_at),
+                                        cached_at = VALUES(cached_at)
+                                ")->execute([$productId, $currentDate, $expiresAt, $placeholderEventId, $nowStr]);
+                            }
+                            $pdo->commit();
+                            flee_bookeo_mark_day_cache_fresh($currentDate, $expiresAt);
+                        } catch (Exception $e) {
+                            $pdo->rollBack();
+                            logFlash("DB ERROR during fetch: " . $e->getMessage());
+                        }
+                    } elseif ($httpCode === 429) {
+                        flee_bookeo_set_throttle((int)($apiResponse['retry_after'] ?? (($apiResponse['data']['retryAfter'] ?? 30))), 'fetch_slots_flash_penalty');
+                        $results[$productId] = ['html' => '<p>System synchronizing. Please retry.</p>', 'date' => $currentDate];
+                        break 2;
+                    } else {
+                        $slotsForDisplay = [];
+                    }
+                } else {
+                    logFlash("Skipped Bookeo fetch for $currentDate because another request refreshed the cache.");
+                }
+            } finally {
+                flee_bookeo_release_lock($fetchLock);
+            }
         }
 
-        if (empty($cached)) {
-            $attempts++;
-            $currentDate = (new DateTime($currentDate, $washingtonTz))
-                ->modify('+1 day')->format('Y-m-d');
-            continue;
+        // --- DB READ ---
+        if ($slotsForDisplay === null) {
+            $stmt = $pdo->prepare("SELECT product_id, start_time_local, event_id, available_seats FROM bookeo_slots_cache WHERE slot_date = ? AND product_id = ? ORDER BY start_time_local ASC");
+            $stmt->execute([$currentDate, $productId]);
+            $slotsForDisplay = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        $html = buildSlotHtml($cached, $productId, $dealHours, $washingtonTz);
+        // --- HTML GENERATION WITH FLASH DEAL LIMITS ---
+        $html = '';
+        $counter = 0;
+        $validSlotsFound = false;
 
-        if (trim($html) !== '') {
-            $usedDateForResult   = $currentDate;
-            $results[$productId] = ['html' => $html, 'date' => $usedDateForResult];
-            break;
+        foreach ($slotsForDisplay as $slot) {
+            if (flee_bookeo_is_placeholder_event_id($slot['event_id'])) continue;
+            
+            $dt = new DateTime($slot['start_time_local'], $losAngelesTz);
+            if ($dt->getTimestamp() < $nowLocal->getTimestamp()) continue;
+
+            $minutesDiff = ($dt->getTimestamp() - $nowLocal->getTimestamp()) / 60;
+            
+            // FLASH DEAL LOGIC
+            if ($dealHours > 0 && $minutesDiff > ($dealHours * 60)) continue;
+
+            $validSlotsFound = true;
+            $time = $dt->format('g:i A');
+            $available = (int)$slot['available_seats'];
+            $isFull = ($available === 0);
+            $eventId = $slot['event_id'];
+            $localStr = $dt->format('Y-m-d H:i:s');
+
+            if ($minutesDiff <= 20 && !$isFull) {
+                $safeTime = htmlspecialchars($time, ENT_QUOTES);
+                $html .= '<div class="time_slot_group time_slot_call"><span class="call-slot-btn" onclick="showCallPopup(\'' . $safeTime . '\')">' . $safeTime . '<span class="Available_play_time">' . $available . ' Available</span><span class="Available_play_time">Call</span></span></div>';
+                continue;
+            }
+
+            $id = 'lift-' . preg_replace('/[^a-zA-Z0-9_-]/', '', $productId) . '-' . $counter++;
+            $html .= '<div class="time_slot_group ' . ($isFull ? 'time_slot_full' : '') . '"><input type="radio" name="lift-time-' . $productId . '" id="' . $id . '" value="' . htmlspecialchars($localStr, ENT_QUOTES) . '" data-start-time="' . htmlspecialchars($localStr, ENT_QUOTES) . '" data-eventid="' . htmlspecialchars($eventId, ENT_QUOTES) . '" data-available="' . $available . '" ' . ($isFull ? 'disabled' : '') . ' hidden><label for="' . $id . '">' . $time . '<span class="Available_play_time">' . ($isFull ? 'Full' : $available . ' Available') . '</span></label></div>';
         }
 
+        if ($validSlotsFound) {
+            $results[$productId] = ['html' => $html, 'date' => $currentDate];
+            break; // Break the 'attempts' while loop, move to next product
+        }
+
+        // If no valid slots found, increment attempt and jump to tomorrow
         $attempts++;
-        $currentDate = (new DateTime($currentDate, $washingtonTz))
-            ->modify('+1 day')->format('Y-m-d');
+        $currentDate = (new DateTime($currentDate, $losAngelesTz))->modify('+1 day')->format('Y-m-d');
 
         if ($attempts >= 2) {
             $results[$productId] = [
-                'html' => "<p>No available slots found for {$requestedDate}" .
-                          ($currentDate !== $requestedDate ? " or {$currentDate}" : "") . ".</p>",
+                'html' => "<p>No available slots found for {$requestedDate}" . ($currentDate !== $requestedDate ? " or {$currentDate}" : "") . ".</p>",
                 'date' => $currentDate,
             ];
         }
@@ -312,3 +269,4 @@ foreach ($productIds as $rawProductId) {
 }
 
 echo json_encode($results);
+?>

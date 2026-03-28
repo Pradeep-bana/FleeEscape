@@ -130,6 +130,7 @@
 <script src="<?php echo ASSETS_URL; ?>js/swiper.js"></script>
 <script src="<?php echo ASSETS_URL; ?>js/custom-marquee.js"></script>
 <script src="<?php echo ASSETS_URL; ?>js/escape-room.js"></script>
+<script src="<?php echo ASSETS_URL; ?>js/bookeo-error-handler.js"></script>
 <script src="<?php echo ASSETS_URL; ?>js/custom-swiper-1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>

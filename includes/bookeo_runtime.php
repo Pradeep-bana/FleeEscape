@@ -1,0 +1,383 @@
+<?php
+
+if (!defined('FLEE_BOOKEO_RUNTIME')) {
+    define('FLEE_BOOKEO_RUNTIME', true);
+}
+
+if (!defined('FLEE_BOOKEO_API_KEY')) {
+    define('FLEE_BOOKEO_API_KEY', 'AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC');
+}
+
+if (!defined('FLEE_BOOKEO_SECRET_KEY')) {
+    define('FLEE_BOOKEO_SECRET_KEY', 'RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4');
+}
+
+if (!defined('FLEE_BOOKEO_THROTTLE_FILE')) {
+    define('FLEE_BOOKEO_THROTTLE_FILE', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_throttle.txt');
+}
+
+if (!defined('FLEE_BOOKEO_UNIVERSAL_LOG_FILE')) {
+    define('FLEE_BOOKEO_UNIVERSAL_LOG_FILE', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_universal.log');
+}
+
+if (!defined('FLEE_BOOKEO_LOCK_DIR')) {
+    define('FLEE_BOOKEO_LOCK_DIR', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_locks');
+}
+
+if (!defined('FLEE_BOOKEO_DAY_CACHE_DIR')) {
+    define('FLEE_BOOKEO_DAY_CACHE_DIR', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_day_cache');
+}
+
+if (!defined('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS')) {
+    define('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS', true);
+}
+
+if (!function_exists('flee_bookeo_now_la')) {
+    function flee_bookeo_now_la()
+    {
+        return new DateTime('now', new DateTimeZone('America/Los_Angeles'));
+    }
+}
+
+if (!function_exists('flee_bookeo_now_india')) {
+    function flee_bookeo_now_india()
+    {
+        return new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+    }
+}
+
+if (!function_exists('flee_bookeo_client_ip')) {
+    function flee_bookeo_client_ip()
+    {
+        $keys = [
+            'HTTP_CF_CONNECTING_IP',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_REAL_IP',
+            'REMOTE_ADDR',
+        ];
+
+        foreach ($keys as $key) {
+            if (empty($_SERVER[$key])) {
+                continue;
+            }
+
+            $value = trim((string)$_SERVER[$key]);
+            if ($value === '') {
+                continue;
+            }
+
+            if ($key === 'HTTP_X_FORWARDED_FOR') {
+                $parts = array_map('trim', explode(',', $value));
+                return $parts[0] ?? 'CLI';
+            }
+
+            return $value;
+        }
+
+        return PHP_SAPI === 'cli' ? 'CLI' : 'UNKNOWN';
+    }
+}
+
+if (!function_exists('flee_bookeo_log')) {
+    function flee_bookeo_log($context, array $fields = [])
+    {
+        $la = flee_bookeo_now_la()->format('Y-m-d h:i:s A T');
+        $india = flee_bookeo_now_india()->format('Y-m-d h:i:s A T');
+        $base = [
+            'la_time' => $la,
+            'india_time' => $india,
+            'ip' => flee_bookeo_client_ip(),
+            'script' => $_SERVER['SCRIPT_NAME'] ?? basename($_SERVER['PHP_SELF'] ?? ''),
+            'method' => $_SERVER['REQUEST_METHOD'] ?? (PHP_SAPI === 'cli' ? 'CLI' : 'UNKNOWN'),
+            'uri' => $_SERVER['REQUEST_URI'] ?? '',
+        ];
+
+        $merged = array_merge($base, $fields);
+        $parts = [];
+        foreach ($merged as $key => $value) {
+            if ($value === null || $value === '') {
+                continue;
+            }
+            if (is_array($value) || is_object($value)) {
+                $value = json_encode($value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            }
+            $parts[] = $key . '=' . str_replace(["\r", "\n"], [' ', ' '], (string)$value);
+        }
+
+        $line = '[' . strtoupper((string)$context) . '] ' . implode(' | ', $parts) . PHP_EOL;
+        file_put_contents(FLEE_BOOKEO_UNIVERSAL_LOG_FILE, $line, FILE_APPEND | LOCK_EX);
+    }
+}
+
+if (!function_exists('flee_bookeo_log_message')) {
+    function flee_bookeo_log_message($context, $message, array $fields = [])
+    {
+        $fields['message'] = $message;
+        flee_bookeo_log($context, $fields);
+    }
+}
+
+if (!function_exists('flee_bookeo_is_throttled')) {
+    function flee_bookeo_is_throttled()
+    {
+        if (!file_exists(FLEE_BOOKEO_THROTTLE_FILE)) {
+            return false;
+        }
+
+        clearstatcache(true, FLEE_BOOKEO_THROTTLE_FILE);
+        return time() < (int)file_get_contents(FLEE_BOOKEO_THROTTLE_FILE);
+    }
+}
+
+if (!function_exists('flee_bookeo_retry_after_seconds')) {
+    function flee_bookeo_retry_after_seconds()
+    {
+        if (!file_exists(FLEE_BOOKEO_THROTTLE_FILE)) {
+            return 0;
+        }
+
+        clearstatcache(true, FLEE_BOOKEO_THROTTLE_FILE);
+        return max(0, ((int)file_get_contents(FLEE_BOOKEO_THROTTLE_FILE)) - time());
+    }
+}
+
+if (!function_exists('flee_bookeo_set_throttle')) {
+    function flee_bookeo_set_throttle($retryAfterSeconds, $context = 'bookeo_throttle')
+    {
+        $resumeAt = time() + max(0, (int)$retryAfterSeconds) + 2;
+        file_put_contents(FLEE_BOOKEO_THROTTLE_FILE, (string)$resumeAt, LOCK_EX);
+        flee_bookeo_log_message($context, 'Global Bookeo throttle engaged', [
+            'retry_after_seconds' => (int)$retryAfterSeconds,
+            'resume_after_seconds' => max(0, $resumeAt - time()),
+        ]);
+    }
+}
+
+if (!function_exists('flee_bookeo_request')) {
+    function flee_bookeo_request($method, $url, array $options = [])
+    {
+        $method = strtoupper($method);
+        $context = $options['context'] ?? 'bookeo_request';
+        $timeout = isset($options['timeout']) ? (int)$options['timeout'] : 20;
+        $headers = $options['headers'] ?? [];
+        $body = $options['body'] ?? null;
+
+        if (empty($options['skip_throttle']) && flee_bookeo_is_throttled()) {
+            $waitSeconds = flee_bookeo_retry_after_seconds();
+            flee_bookeo_log_message($context, 'Skipped outbound Bookeo request because throttle is active', [
+                'endpoint' => $url,
+                'wait_seconds' => $waitSeconds,
+            ]);
+
+            return [
+                'code' => 429,
+                'body' => '',
+                'data' => null,
+                'error' => 'Globally throttled',
+                'url' => $url,
+                'throttled' => true,
+                'retry_after' => $waitSeconds,
+            ];
+        }
+
+        $shouldLogRequest = true;
+        $requestMeta = [
+            'endpoint' => $url,
+            'http_method' => $method,
+            'timeout' => $timeout,
+        ];
+        if (!empty($options['log_body'])) {
+            $requestMeta['request_body'] = $body;
+        }
+        if ($shouldLogRequest) {
+            flee_bookeo_log($context . '_request', $requestMeta);
+        }
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+
+        if (!empty($headers)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
+
+        if ($body !== null) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, is_string($body) ? $body : json_encode($body));
+        }
+
+        $response = curl_exec($ch);
+        $httpCode = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+
+        $decoded = null;
+        if (is_string($response) && $response !== '') {
+            $decoded = json_decode($response, true);
+        }
+
+        if ($response === false) {
+            flee_bookeo_log_message($context . '_network_error', 'Bookeo cURL request failed', [
+                'endpoint' => $url,
+                'error' => $curlError,
+            ]);
+
+            return [
+                'code' => 0,
+                'body' => false,
+                'data' => null,
+                'error' => $curlError,
+                'url' => $url,
+            ];
+        }
+
+        if ($httpCode === 429) {
+            $retryAfter = (int)($decoded['retryAfter'] ?? 30);
+            flee_bookeo_set_throttle($retryAfter, $context . '_429');
+        }
+
+        $responseMeta = [
+            'endpoint' => $url,
+            'http_method' => $method,
+            'http_code' => $httpCode,
+        ];
+        if (!empty($options['log_response_body'])) {
+            $responseMeta['response_body'] = $response;
+        }
+        $isSuccessfulGet = ($method === 'GET' && $httpCode >= 200 && $httpCode < 300);
+        $shouldLogResponse = true;
+
+        if ($shouldLogResponse) {
+            flee_bookeo_log($context . '_response', $responseMeta);
+        }
+
+        return [
+            'code' => $httpCode,
+            'body' => $response,
+            'data' => $decoded,
+            'error' => $curlError ?: null,
+            'url' => $url,
+        ];
+    }
+}
+
+if (!function_exists('flee_bookeo_placeholder_event_id')) {
+    function flee_bookeo_placeholder_event_id($date)
+    {
+        $normalized = preg_replace('/[^0-9]/', '', (string)$date);
+        if ($normalized === '') {
+            $normalized = date('Ymd');
+        }
+
+        // Keep this short so it fits the same DB width as real Bookeo event IDs.
+        return 'EMPTY' . substr($normalized, 0, 8);
+    }
+}
+
+if (!function_exists('flee_bookeo_is_placeholder_event_id')) {
+    function flee_bookeo_is_placeholder_event_id($eventId)
+    {
+        return strpos((string)$eventId, 'EMPTY') === 0 || strpos((string)$eventId, 'placeholder_empty_day_') === 0;
+    }
+}
+
+if (!function_exists('flee_bookeo_acquire_lock')) {
+    function flee_bookeo_acquire_lock($key, $timeoutSeconds = 15)
+    {
+        if (!is_dir(FLEE_BOOKEO_LOCK_DIR)) {
+            @mkdir(FLEE_BOOKEO_LOCK_DIR, 0777, true);
+        }
+
+        $safeKey = preg_replace('/[^A-Za-z0-9_.-]/', '_', (string)$key);
+        $path = FLEE_BOOKEO_LOCK_DIR . DIRECTORY_SEPARATOR . $safeKey . '.lock';
+        $handle = fopen($path, 'c+');
+        if ($handle === false) {
+            return false;
+        }
+
+        $startedAt = time();
+        do {
+            if (@flock($handle, LOCK_EX | LOCK_NB)) {
+                ftruncate($handle, 0);
+                fwrite($handle, (string)getmypid());
+                fflush($handle);
+                return $handle;
+            }
+
+            usleep(200000);
+        } while ((time() - $startedAt) < $timeoutSeconds);
+
+        fclose($handle);
+        return false;
+    }
+}
+
+if (!function_exists('flee_bookeo_release_lock')) {
+    function flee_bookeo_release_lock($handle)
+    {
+        if (is_resource($handle)) {
+            @flock($handle, LOCK_UN);
+            fclose($handle);
+        }
+    }
+}
+
+if (!function_exists('flee_bookeo_day_cache_path')) {
+    function flee_bookeo_day_cache_path($date)
+    {
+        $normalized = preg_replace('/[^0-9-]/', '', (string)$date);
+        if ($normalized === '') {
+            return null;
+        }
+
+        if (!is_dir(FLEE_BOOKEO_DAY_CACHE_DIR)) {
+            @mkdir(FLEE_BOOKEO_DAY_CACHE_DIR, 0777, true);
+        }
+
+        return FLEE_BOOKEO_DAY_CACHE_DIR . DIRECTORY_SEPARATOR . $normalized . '.txt';
+    }
+}
+
+if (!function_exists('flee_bookeo_mark_day_cache_fresh')) {
+    function flee_bookeo_mark_day_cache_fresh($date, $expiresAt)
+    {
+        $path = flee_bookeo_day_cache_path($date);
+        if ($path === null) {
+            return;
+        }
+
+        $laTz = new DateTimeZone('America/Los_Angeles');
+        if ($expiresAt instanceof DateTimeInterface) {
+            $expiry = (clone $expiresAt)->setTimezone($laTz)->getTimestamp();
+        } else {
+            $expiry = (new DateTime((string)$expiresAt, $laTz))->getTimestamp();
+        }
+
+        file_put_contents($path, (string)$expiry, LOCK_EX);
+    }
+}
+
+if (!function_exists('flee_bookeo_is_day_cache_fresh')) {
+    function flee_bookeo_is_day_cache_fresh($date, DateTime $nowLocal = null)
+    {
+        $path = flee_bookeo_day_cache_path($date);
+        if ($path === null || !file_exists($path)) {
+            return false;
+        }
+
+        clearstatcache(true, $path);
+        $expiry = (int)file_get_contents($path);
+        $nowTs = $nowLocal ? $nowLocal->getTimestamp() : flee_bookeo_now_la()->getTimestamp();
+        return $expiry >= $nowTs;
+    }
+}
+
+if (!function_exists('flee_bookeo_clear_day_cache')) {
+    function flee_bookeo_clear_day_cache($date)
+    {
+        $path = flee_bookeo_day_cache_path($date);
+        if ($path !== null && file_exists($path)) {
+            @unlink($path);
+        }
+    }
+}

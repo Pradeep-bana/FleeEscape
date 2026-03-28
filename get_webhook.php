@@ -1,7 +1,4 @@
 <?php
-//----------------------------------------------------------
-// 1) QUICK RESPONSE TO BOOKEO (VERY IMPORTANT)
-//----------------------------------------------------------
 http_response_code(200);
 header("Content-Type: text/plain");
 echo "OK";
@@ -13,76 +10,51 @@ if (function_exists('fastcgi_finish_request')) {
     @flush();
 }
 
-//----------------------------------------------------------
-// 2) BACKGROUND PROCESSING STARTS
-//----------------------------------------------------------
 include('admin/db.php');
+require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
-$logFile = __DIR__ . '/bookeo_webhook_log.txt';
-$raw     = file_get_contents("php://input");
+function flee_legacy_webhook_log($message, array $fields = [])
+{
+    $fields['message'] = $message;
+    flee_bookeo_log('legacy_get_webhook', $fields);
+}
 
-file_put_contents(
-    $logFile,
-    "\n\n==== NEW WEBHOOK @ " . date("Y-m-d H:i:s") . " ====\n$raw\n",
-    FILE_APPEND
-);
+$raw = file_get_contents("php://input");
+flee_legacy_webhook_log('Webhook received', ['raw_payload' => $raw]);
 
 $data = json_decode($raw, true);
-if (!$data) { file_put_contents($logFile, "Invalid JSON\n", FILE_APPEND); return; }
+if (!$data) {
+    flee_legacy_webhook_log('Invalid JSON');
+    return;
+}
 
-// MAIN ITEM
 $item = $data["item"] ?? null;
-if (!$item) { file_put_contents($logFile, "No item object\n", FILE_APPEND); return; }
+if (!$item) {
+    flee_legacy_webhook_log('No item object');
+    return;
+}
 
-
-//----------------------------------------------------------
-// 3) DETECT EVENT TYPE (UPDATED WITH YOUR LOGIC)
-//----------------------------------------------------------
 $eventType = "unknown";
-
-// Bookings
 if (isset($item["bookingNumber"])) {
-
-    // Standard Bookeo Cancellation Logic
-    if (($data["type"] ?? "") === "bookings.updated") {
-        if (isset($data["booking"]["status"]) && strtolower($data["booking"]["status"]) === "cancelled") {
-
-            $eventType = "bookingCancelled";
-
-            file_put_contents($logFile, "Detected: bookingCancelled (primary rule)\n", FILE_APPEND);
-        }
+    if (($data["type"] ?? "") === "bookings.updated" && isset($data["booking"]["status"]) && strtolower($data["booking"]["status"]) === "cancelled") {
+        $eventType = "bookingCancelled";
+        flee_legacy_webhook_log('Detected bookingCancelled via primary rule');
     }
 
-    // Existing logic (works as fallback)
     if ($eventType === "unknown") {
         if (($data["action"] ?? "") === "created") {
             $eventType = "bookingCreated";
-        }
-        elseif (($data["action"] ?? "") === "deleted") {
+        } elseif (($data["action"] ?? "") === "deleted") {
             $eventType = "bookingdeleted";
-        }
-        elseif (($data["action"] ?? "") === "updated") {
+        } elseif (($data["action"] ?? "") === "updated") {
             $eventType = "bookingUpdated";
-        }
-        elseif (
-            ($item["status"] ?? "") === "cancelled" ||
-            ($data["action"] ?? "") === "statusChanged" ||
-            (
-                ($data["action"] ?? "") === "updated" &&
-                strtolower($item["status"] ?? "") === "cancelled"
-            )
-        ) {
+        } elseif (($item["status"] ?? "") === "cancelled" || ($data["action"] ?? "") === "statusChanged" || (($data["action"] ?? "") === "updated" && strtolower($item["status"] ?? "") === "cancelled")) {
             $eventType = "bookingCancelled";
-        }
-        else {
+        } else {
             $eventType = "bookingEvent";
         }
     }
-
-}
-// Seatblocks
-elseif (isset($item["numSeats"])) {
-
+} elseif (isset($item["numSeats"])) {
     if ($item["numSeats"] > 0) {
         $eventType = "seatBlockCreated";
     } elseif ($item["numSeats"] < 0) {
@@ -90,10 +62,7 @@ elseif (isset($item["numSeats"])) {
     } else {
         $eventType = "seatBlockEvent";
     }
-
-// Events
 } elseif (($data["type"] ?? "") === "event") {
-
     if (($data["action"] ?? "") === "created") {
         $eventType = "eventCreated";
     } elseif (($data["action"] ?? "") === "updated") {
@@ -105,16 +74,12 @@ elseif (isset($item["numSeats"])) {
     }
 }
 
-file_put_contents($logFile, "Detected Event: $eventType\n", FILE_APPEND);
+flee_legacy_webhook_log('Detected event', ['event_type' => $eventType]);
 
-
-//----------------------------------------------------------
-// 4) COMMON FIELDS
-//----------------------------------------------------------
 $productId = $item["productId"] ?? null;
-$eventId   = $item["eventId"] ?? null;
+$eventId = $item["eventId"] ?? null;
 $startTime = $item["startTime"] ?? null;
-$numSeats  = $item["numSeats"] ?? 0;
+$numSeats = $item["numSeats"] ?? 0;
 
 $itemId = $data["itemId"] ?? ($item["id"] ?? "");
 if (!$itemId) {
@@ -122,19 +87,21 @@ if (!$itemId) {
 }
 
 if (!$productId || !$eventId || !$startTime) {
-    file_put_contents($logFile, "Missing productId/eventId/startTime\n", FILE_APPEND);
+    flee_legacy_webhook_log('Missing productId/eventId/startTime', [
+        'product_id' => $productId,
+        'event_id' => $eventId,
+        'start_time' => $startTime,
+    ]);
     return;
 }
 
-
-//----------------------------------------------------------
-// 5) DEDUPE PROTECTION
-//----------------------------------------------------------
 $processedFile = __DIR__ . "/bookeo_processed.json";
-$dedupeWindow  = 10 * 60;
+$dedupeWindow = 10 * 60;
 
 function loadProcessed($file) {
-    if (!file_exists($file)) return [];
+    if (!file_exists($file)) {
+        return [];
+    }
     return json_decode(@file_get_contents($file), true) ?: [];
 }
 
@@ -147,31 +114,23 @@ $processed = loadProcessed($processedFile);
 $now = time();
 
 foreach ($processed as $key => $ts) {
-    if ($now - $ts > $dedupeWindow * 5) unset($processed[$key]);
+    if ($now - $ts > $dedupeWindow * 5) {
+        unset($processed[$key]);
+    }
 }
 
 if (isset($processed[$itemId]) && ($now - $processed[$itemId]) <= $dedupeWindow) {
-    file_put_contents($logFile, "SKIPPED DUPLICATE: $itemId\n", FILE_APPEND);
+    flee_legacy_webhook_log('Skipped duplicate webhook item', ['item_id' => $itemId]);
     return;
 }
 
 $processed[$itemId] = $now;
 saveProcessed($processedFile, $processed);
+flee_legacy_webhook_log('Processing webhook item', ['item_id' => $itemId]);
 
-file_put_contents($logFile, "PROCESSING itemId $itemId\n", FILE_APPEND);
+$dt = new DateTime($startTime);
+$slot_date = $dt->format("Y-m-d");
 
-
-//----------------------------------------------------------
-// 6) FORMAT DATE
-//----------------------------------------------------------
-$dt          = new DateTime($startTime);
-$slot_date   = $dt->format("Y-m-d");
-$local_start = $dt->format("Y-m-d\TH:i:sP");
-
-
-//----------------------------------------------------------
-// 7) DB UPDATE
-//----------------------------------------------------------
 try {
     $pdo->beginTransaction();
 
@@ -185,15 +144,14 @@ try {
     ");
 
     $find->execute([
-        ":pid"   => $productId,
-        ":eid"   => $eventId,
+        ":pid" => $productId,
+        ":eid" => $eventId,
         ":stime" => $startTime
     ]);
 
     $row = $find->fetch(PDO::FETCH_ASSOC);
 
     if ($row) {
-
         $update = $pdo->prepare("
             UPDATE bookeo_slots_cache
             SET available_seats = :seats,
@@ -205,15 +163,13 @@ try {
 
         $update->execute([
             ":seats" => 0,
-            ":pid"   => $productId,
-            ":eid"   => $eventId,
+            ":pid" => $productId,
+            ":eid" => $eventId,
             ":stime" => $startTime
         ]);
 
-        file_put_contents($logFile, "DB: Slot updated\n", FILE_APPEND);
-
+        flee_legacy_webhook_log('DB slot updated', ['product_id' => $productId, 'event_id' => $eventId]);
     } else {
-
         $insert = $pdo->prepare("
             INSERT INTO bookeo_slots_cache
             (product_id, slot_date, start_time_utc, start_time_local,
@@ -226,20 +182,19 @@ try {
         ");
 
         $insert->execute([
-            ":pid"   => $productId,
+            ":pid" => $productId,
             ":sdate" => $slot_date,
             ":stime" => $startTime,
-            ":eid"   => $eventId,
+            ":eid" => $eventId,
             ":avail" => $numSeats
         ]);
 
-        file_put_contents($logFile, "DB: Slot inserted\n", FILE_APPEND);
+        flee_legacy_webhook_log('DB slot inserted', ['product_id' => $productId, 'event_id' => $eventId]);
     }
 
     $pdo->commit();
-
 } catch (Exception $e) {
     $pdo->rollBack();
-    file_put_contents($logFile, "DB ERROR: " . $e->getMessage() . "\n", FILE_APPEND);
+    flee_legacy_webhook_log('DB error during webhook sync', ['error' => $e->getMessage()]);
 }
 ?>
