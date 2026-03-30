@@ -643,13 +643,19 @@ document.addEventListener("click", async function(e) {
     }
 });
 
+// -------------------------------
+  // DELETE CART ITEM (Handles both old and new buttons)
   // -------------------------------
-  // DELETE CART ITEM
-  // -------------------------------
-  if (e.target.closest(".delete_card")) {
-      console.log("delete card clicked");
-    const index = e.target.closest(".delete_card").getAttribute("data-index");
+  // Find the closest delete button, whether it's the old or new class
+  const deleteButton = e.target.closest(".delete_card, .remove-game-btn");
 
+  // If a delete button was clicked...
+  if (deleteButton) {
+    console.log("Delete button clicked (new or old)");
+    // Get the index from the button that was clicked
+    const index = deleteButton.getAttribute("data-index");
+
+    // The rest of your existing logic is perfect and remains unchanged
     const modal = document.getElementById("deleteConfirmModal");
     const modalBox = document.getElementById("deleteModalBox");
 
@@ -687,7 +693,6 @@ document.addEventListener("click", async function(e) {
 
             setTimeout(() => {
                 const cartCount = data.cartCount;
-                // alert(cartCount);
                 if (cartCount === 0) {
                     window.location.href = "booking.php?choose-experience";
                 }

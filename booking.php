@@ -3826,7 +3826,56 @@ $(document).on('change', '.update-additional-guest', function() {
     });
 });
 
-// --- Remove Addon Script ---
+// --- Update Addon Quantity Dynamically from Cart ---
+$(document).on('change', '.update-addon-qty', async function() {
+    let cartId = $(this).data('cart-id');
+    let newQty = $(this).val();
+    let $select = $(this);
+
+    // Disable input while loading to prevent double clicks
+    $select.prop('disabled', true);
+
+    try {
+        // 1. Update the database
+        const fd = new FormData();
+        fd.append('cart_id', cartId);
+        fd.append('qty', newQty);
+
+        const resp = await fetch('update_addon_qty.php', {
+            method: 'POST',
+            body: fd
+        });
+        const json = await resp.json();
+
+        if (json.status === 'success') {
+            // 2. Sync with Bookeo using apply_code.php (matches "add to cart" logic)
+            let currentCode = document.getElementById("giftCodeInput")?.value || "";
+            await fetch("apply_code.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "code=" + encodeURIComponent(currentCode)
+            });
+
+            // 3. Reload the cart safely
+            const cartHtml = await fetch("cart_view.php").then(r => r.text());
+            
+            // If the cart somehow emptied, refresh the page smoothly
+            if (cartHtml.includes('{"redirect":true}')) {
+                window.location.reload();
+            } else {
+                $("#summary-output").html(cartHtml);
+            }
+        } else {
+            alert(json.message || "Failed to update addon quantity.");
+            $select.prop('disabled', false); 
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Network error.");
+        $select.prop('disabled', false);
+    }
+});
+
 // --- Remove Addon Script ---
 $(document).on('click', '.remove-addon-btn', function() {
     let cartId = $(this).data('cart-id');

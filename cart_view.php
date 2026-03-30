@@ -4,6 +4,8 @@
 
 session_start();
 include("admin/db.php");
+require_once("addon_pricing_helper.php");
+$products = flee_get_cached_products_data($pdo);
 
 $sid = session_id();
 
@@ -210,24 +212,24 @@ foreach ($cart as $index => $item) {
     echo '<div class="summary-row-group">';
     echo '  <div class="d-flex justify-content-between align-items-center">';
     echo '      <div class="summary-date"><p>' . $fDate . '</p></div>';
-    echo '      <div class="delete_card" data-index="' . (int)$index . '"><i class="fa-solid fa-trash"></i></div>';
     echo '  </div>';
 
-    echo '  <div class="summary-row">';
+    // Add position:relative to align the delete icon correctly
+    echo '  <div class="summary-row" style="position: relative;">';
     echo '      <div>' . $displayName . '</div>';
     echo '      <div>$' . number_format($unitPrice, 2) . '</div>';
-    
-    // QTY SELECTOR
+
+    // QTY SELECTOR (This part is unchanged)
     echo '<div class="checkout_QUNT_select">';
     if (!empty($item['cat']) && (strtolower($item['cat']) === 'party-package' || strtolower($item['cat']) === 'event-rooms')) {
         echo '<span>1</span>';
     } else {
         echo '<select name="qty"
-          id="guest-' . $item['game_id'] . '"
-          data-event="' . $item['event_id'] . '"
-          data-game="' . $item['game_id'] . '"
-          class="QNT_SELECT_drop qty-input"
-          style="width:80px;">';
+            id="guest-' . $item['game_id'] . '"
+            data-event="' . $item['event_id'] . '"
+            data-game="' . $item['game_id'] . '"
+            class="QNT_SELECT_drop qty-input"
+            style="width:80px;">';
         for ($i = 2; $i <= $item['dataAvailable']; $i++) {
             $sel = ($i == $qty) ? 'selected' : '';
             echo '<option value="' . $i . '" ' . $sel . '>' . $i . '</option>';
@@ -235,7 +237,15 @@ foreach ($cart as $index => $item) {
         echo '</select>';
     }
     echo '</div>';
+
     echo '      <div>$' . number_format($unitPrice * $qty, 2) . '</div>';
+
+    // --- NEW: Add the consistent delete button with data-index ---
+    echo '      <span class="remove-game-btn" data-index="' . (int)$index . '" style="cursor:pointer; color:#ff4d4d; margin-right:8px;" title="Remove Game">';
+    echo '          <i class="fa-solid fa-trash-can"></i>';
+    echo '      </span>';
+    // --- End of new button ---
+
     echo '  </div>';
     
     // --- [NEW] ADDITIONAL GUESTS ROW ---
@@ -275,17 +285,60 @@ foreach ($cart as $index => $item) {
     // ADDONS
     if (!empty($item['addon_name']) && $item['addon_qty'] > 0) {
         echo '  <div class="summary-row" style="position: relative;">';
-        
-        // Addon Name + Delete Icon
-        echo '      <div class="d-flex align-items-center">';
-        echo            htmlspecialchars($item['addon_name']);
-        echo '      </div>';
+        echo '      <div class="d-flex align-items-center">' . htmlspecialchars($item['addon_name']) . '</div>';
         echo '      <div>$' . number_format($item['addon_price'], 2) . '</div>';
-        echo '      <div class="checkout_QUNT_select">' . $item['addon_qty'] . '</div>';
+        echo '      <div class="checkout_QUNT_select">';
+
+        // --- DYNAMIC ADDON QTY LOGIC ---
+        $min = 1;
+        $max = 10; // Default max
+        $isOnOffOption = false;
+
+        // Find the product in our cache
+        $product = flee_find_cached_product($products, $item['game_id']);
+
+        if ($product) {
+            // Check NumberOptions (for escape rooms)
+            if (!empty($product['numberOptions'])) {
+                foreach ($product['numberOptions'] as $opt) {
+                    if ($opt['id'] === $item['addon_opt_id']) {
+                        $min = (int)($opt['minValue'] ?? 1);
+                        $max = (int)($opt['maxValue'] ?? 10);
+                        break;
+                    }
+                }
+            }
+            // Check OnOffOptions (for party packages)
+            elseif (!empty($product['onOffOptions'])) {
+                foreach ($product['onOffOptions'] as $opt) {
+                    if ($opt['id'] === $item['addon_opt_id']) {
+                        $isOnOffOption = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Render the correct control based on the addon type
+        if ($isOnOffOption) {
+            // For on/off addons, just show "1"
+            echo '<span>1</span>';
+        } else {
+            // For number-based addons, show the dynamic dropdown
+            echo '<select class="QNT_SELECT_drop qty-input update-addon-qty" data-cart-id="' . $item['id'] . '" style="width:60px;">';
+            for ($i = $min; $i <= $max; $i++) {
+                $selected = ($i == $item['addon_qty']) ? 'selected' : '';
+                echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+            }
+            echo '</select>';
+        }
+        // --- END DYNAMIC LOGIC ---
+
+        echo '      </div>';
         echo '      <div>$' . number_format($item['addon_subtotal'], 2) . '</div>';
-        echo '          <span class="remove-addon-btn" data-cart-id="' . $item['id'] . '" style="cursor:pointer; color:#ff4d4d; margin-right:8px;" title="Remove Addon">';
-        echo '              <i class="fa-solid fa-trash-can"></i>';
-        echo '          </span>';
+        echo '      <span class="remove-addon-btn" data-cart-id="' . $item['id'] . '" style="cursor:pointer; color:#ff4d4d; margin-right:8px;" title="Remove Addon">';
+        echo '          <i class="fa-solid fa-trash-can"></i>';
+        echo '      </span>';
         echo '  </div>';
     }
 
