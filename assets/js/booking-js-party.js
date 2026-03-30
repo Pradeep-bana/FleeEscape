@@ -312,6 +312,13 @@ async function handleContinueNextStepParty(e) {
         return;
     }
    
+    if (productCode === "41551LAM3LY18570132661") {
+        if (typeof loadCart === "function") loadCart();
+        loadAddons();
+        window.location.href = "booking?add-ons-";
+        return;
+    }
+
     loadAddons();
     const modalEl = document.getElementById("partymodalform");
     const modal = new bootstrap.Modal(modalEl);

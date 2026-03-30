@@ -69,7 +69,7 @@ function bc_voucher_label(array $summaryItem) {
     <div class="booking_banner_content booking_success_content">
 
         <div class="success_icon_3d">
-    ðŸŽ‰
+    🎉
 </div>
 
 
@@ -565,20 +565,20 @@ function openPrintPage() {
 </script>
 
 <?php 
-$_SESSION = [];
+// $_SESSION = [];
 
-if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-    setcookie(
-        session_name(),
-        '',
-        time() - 42000,
-        $params["path"],
-        $params["domain"],
-        $params["secure"],
-        $params["httponly"]
-    );
-}
+// if (ini_get("session.use_cookies")) {
+//     $params = session_get_cookie_params();
+//     setcookie(
+//         session_name(),
+//         '',
+//         time() - 42000,
+//         $params["path"],
+//         $params["domain"],
+//         $params["secure"],
+//         $params["httponly"]
+//     );
+// }
 
-session_destroy(); 
+// session_destroy(); 
 include('./includes/footer.php'); ?>

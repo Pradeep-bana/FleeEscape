@@ -238,7 +238,7 @@ foreach ($cartItems as $item) {
         ]];
     }
     if ($cat === 'party-package' && !empty($escape_selection)) {
-        $bookingData["options"] = [["name" => "Escape Room Choice", "value" => $escape_selection]];
+        $bookingData["options"] = [["name" => "Escape Room Choices", "value" => $escape_selection]];
     }
     if ($addonName && $addonQty > 0) {
         if (!isset($bookingData["options"])) $bookingData["options"] = [];

@@ -543,8 +543,16 @@ async function handleContinueNextStepParty(e) {
         return;
     }
  
+    if (productCode === "41551LAM3LY18570132661") {
+        if (typeof loadCart === "function") loadCart();
+        loadAddons();
+        if (typeof changeStep === "function") {
+            changeStep(1);
+        }
+        return;
+    }
+
     // SUCCESS → load addons + show booking modal
-    
     if (typeof loadCart === "function") loadCart();
     loadAddons();
     const modalEl = document.getElementById("partymodalform");
