@@ -829,10 +829,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let guestCount = 0;
     let selectedTimeSlot = null;
     let slotAvailableSeats = 0; 
+    let isInitialLoad = true;
 
     // Timezone setup
     const laNow = DateTime.now().setZone(LA_ZONE);
-    const laDate = laNow.toJSDate(); 
+    const laDate = new Date(laNow.year, laNow.month - 1, laNow.day);
 
     const dateInput = document.getElementById("Book-Prison-Date-inline");
     if (!dateInput) return;
@@ -874,8 +875,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const fp = flatpickr(dateInput, {
             inline: true,                    
             dateFormat: "Y-m-d",
-            defaultDate: laNow.toJSDate(),
-            minDate: laNow.toJSDate(),
+            defaultDate: laDate,
+            minDate: laDate,
             prevArrow: "←",
             nextArrow: "→",
             disableMobile: true,
@@ -902,7 +903,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         
         // Set initial summary date display
-        document.getElementById("summary-date").textContent = laNow.toJSDate().toLocaleDateString('en-US', {
+        document.getElementById("summary-date").textContent = laDate.toLocaleDateString('en-US', {
             weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'
         });
                 
@@ -925,11 +926,28 @@ document.addEventListener("DOMContentLoaded", function () {
             type: "GET",
             data: { productCode: productCode, date: formattedDate },
             success: function(response) {
+                if (isInitialLoad) {
+                    isInitialLoad = false;
+                    const laTodayStr = laNow.toFormat("yyyy-MM-dd");
+
+                    if (formattedDate === laTodayStr && response.includes("No slots available")) {
+                        const tomorrowLA = laNow.plus({ days: 1 });
+                        const tomorrowDate = new Date(tomorrowLA.year, tomorrowLA.month - 1, tomorrowLA.day);
+                        const fp = document.getElementById("Book-Prison-Date-inline")._flatpickr;
+
+                        if (fp) {
+                            fp.setDate(tomorrowDate, true);
+                        }
+                        return;
+                    }
+                }
+
                 timeSlotsContainer.innerHTML = response;
                 setTimeout(attachSlotListeners, 50); 
             },
             error: function() {
                 timeSlotsContainer.innerHTML = '<div class="col-12"><p>Error loading slots.</p></div>';
+                isInitialLoad = false;
             }
         });
     }
@@ -938,8 +956,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const container = document.getElementById("timeSlots-" + productCode);
         if(!container) return;
         const inputs = container.querySelectorAll(".Boo_Prison_Escape_time-slot");
-        
-        if (inputs.length === 0) {
+        const callSlots = container.querySelectorAll(".time_slot_call");
+
+        if (inputs.length === 0 && callSlots.length === 0) {
             container.innerHTML = '<div class="col-12"><p>No available time slots.</p></div>';
             return;
         }
@@ -1040,7 +1059,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // INITIAL LOAD
-    fetchTimeSlots(laNow.toJSDate());
+    fetchTimeSlots(laDate);
 });
 </script>
 

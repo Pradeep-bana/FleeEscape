@@ -1629,6 +1629,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const { DateTime } = luxon;
     const LA_ZONE = "America/Los_Angeles";
     const today = DateTime.now().setZone(LA_ZONE).startOf('day');
+    const todayRaw = today.toFormat('yyyy-MM-dd');
     const fmtDisplay = dt => dt.toFormat("ccc, LLLL dd, yyyy");
 
     // --- REQUEST QUEUE / DEBOUNCE (to avoid Bookeo 429) ---
@@ -1638,6 +1639,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let runningRequests = 0;
     let requestQueue = [];
     let loadedTabs = {}; // cache tab html (optional)
+    let isInitialLoad = true;
 
     function showLoader() {
         $("#globalLoader").fadeIn(160);
@@ -1724,6 +1726,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 success: function(response) {
                     if (typeof response !== 'object' || response === null) {
                         console.log('fetchSlotsForProducts: Invalid response', response);
+                        isInitialLoad = false;
                         productIds.forEach(id => {
                             const $container = $('#timeSlots-' + id);
                             if ($container.length) $container.html('<p>No slots available</p>');
@@ -1731,6 +1734,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         return;
                     }
 
+                    let atLeastOneGameHasSlots = false;
                     productIds.forEach(productId => {
                         const res = response[productId];
 
@@ -1749,6 +1753,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         const $container = $('#timeSlots-' + productId);
                         if ($container.length) $container.html(html);
 
+                        if (!html.includes("No slots available") && !html.includes("Error loading slots")) {
+                            atLeastOneGameHasSlots = true;
+                        }
+
                         // If server explicitly returned a different date (auto-switched),
                         // update the datepicker input to reflect this (no re-fetch because slots already returned)
                         if (returnedDate && returnedDate !== rawDate) {
@@ -1763,26 +1771,38 @@ document.addEventListener("DOMContentLoaded", function() {
                             return;
                         }
 
-                        // Backwards-compatible fallback:
-                        // If HTML contains "No slots available" and auto-next-day recursion allowed, attempt next day client-side.
-                        if (html.includes("No slots available") && allowAutoNextDay) {
-                            const $input = $(`.custom-datepicker_input[data-product="${productId}"]`);
-                            if ($input.length) {
-                                const nextDay = DateTime.fromISO(rawDate, { zone: LA_ZONE }).plus({ days: 1 });
-                                if (nextDay.diff(today, 'days').days <= 7) {
-                                    const nextRaw = nextDay.toFormat('yyyy-MM-dd');
-                                    $input.data('rawdate', nextRaw);
-                                    $input.val(fmtDisplay(nextDay));
-                                    console.log(`fetchSlotsForProducts: No slots for ${productId} on ${rawDate}, trying next day ${nextRaw}`);
-                                    // Recurse for this specific product (old behavior)
-                                    fetchSlotsForProducts([productId], nextRaw, false);
-                                }
-                            }
-                        }
                     });
+
+                    if (allowAutoNextDay && isInitialLoad && rawDate === todayRaw && !atLeastOneGameHasSlots) {
+                        isInitialLoad = false;
+                        const nextDay = today.plus({ days: 1 });
+                        const nextRaw = nextDay.toFormat('yyyy-MM-dd');
+                        const nextVisual = fmtDisplay(nextDay);
+
+                        $('.custom-datepicker_input').each(function() {
+                            const $input = $(this);
+                            $input.data('rawdate', nextRaw);
+                            $input.attr('data-rawdate', nextRaw);
+
+                            if (this._flatpickr) {
+                                this._flatpickr.setDate(nextRaw, false);
+                                const yearSelect = this._flatpickr.calendarContainer.querySelector(".flatpickr-year-dropdown");
+                                if (yearSelect) yearSelect.value = nextDay.year;
+                            }
+
+                            $input.val(nextVisual);
+                        });
+
+                        updatePrevButtons();
+                        fetchSlotsForProducts(productIds, nextRaw, false);
+                        return;
+                    }
+
+                    isInitialLoad = false;
                 },
                 error: function(xhr, status, error) {
                     console.log(`fetchSlotsForProducts: Error for date=${rawDate}, error=${error}`);
+                    isInitialLoad = false;
                     productIds.forEach(id => {
                         const $container = $('#timeSlots-' + id);
                         if ($container.length) $container.html('<p style="color:red;">Error loading slots</p>');

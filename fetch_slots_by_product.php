@@ -210,7 +210,7 @@ if ($slotsForDisplay === null) {
 
 $html = '';
 $counter = 0;
-
+$nowLocal = new DateTime('now', $losAngelesTz);
 foreach ($slotsForDisplay as $slot) {
     if (flee_bookeo_is_placeholder_event_id($slot['event_id'])) continue;
     $dt = new DateTime($slot['start_time_local'], $losAngelesTz);

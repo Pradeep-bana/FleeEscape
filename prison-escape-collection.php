@@ -981,10 +981,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let guestCount = 0;
     let selectedTimeSlot = null;
     let slotAvailableSeats = 0; 
+    let isInitialLoad = true;
 
     // Timezone setup
+    // Timezone setup
     const laNow = DateTime.now().setZone(LA_ZONE);
-    const laDate = laNow.toJSDate(); 
+    // Force the JS calendar to ignore the local browser timezone and strictly use LA's year/month/day
+    const laDate = new Date(laNow.year, laNow.month - 1, laNow.day);
 
     const dateInput = document.getElementById("Book-Prison-Date-inline");
     if (!dateInput) {
@@ -1033,8 +1036,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const fp = flatpickr(dateInput, {
             inline: true,                    // ← render calendar inside the div
             dateFormat: "Y-m-d",
-            defaultDate: laNow.toJSDate(),
-            minDate: laNow.toJSDate(),
+            defaultDate: laDate, // FIXED
+            minDate: laDate,     // FIXED
             prevArrow: "←",
             nextArrow: "→",
             disableMobile: true,
@@ -1063,7 +1066,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         
         // Set initial summary date display
-        document.getElementById("summary-date").textContent = laNow.toJSDate().toLocaleDateString('en-US', {
+        // Set initial summary date display
+        document.getElementById("summary-date").textContent = laDate.toLocaleDateString('en-US', {
             weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'
         });
                 
@@ -1077,7 +1081,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     function fetchTimeSlots(date) {
         if (!date) return;
-        const formattedDate = DateTime.fromJSDate(date).toFormat("yyyy-MM-dd");
+        
+        // Format the date sent to PHP
+        const dateObj = DateTime.fromJSDate(date);
+        const formattedDate = dateObj.toFormat("yyyy-MM-dd");
+        
         const timeSlotsContainer = document.getElementById("timeSlots-" + productCode);
         if (!timeSlotsContainer) return;
 
@@ -1088,11 +1096,36 @@ document.addEventListener("DOMContentLoaded", function () {
             type: "GET",
             data: { productCode: productCode, date: formattedDate },
             success: function(response) {
+                
+                // --- DYNAMIC NEXT-DAY JUMP LOGIC ---
+                if (isInitialLoad) {
+                    isInitialLoad = false;
+                    const laTodayStr = laNow.toFormat("yyyy-MM-dd");
+                    
+                    // If we requested LA's Today, and it has no slots left:
+                    if (formattedDate === laTodayStr && response.includes("No slots available")) {
+                        console.log("Current time is past the last available slot today. Jumping to tomorrow.");
+                        
+                        // Calculate LA's Tomorrow
+                        const tomorrowLA = laNow.plus({ days: 1 });
+                        const tomorrowDate = new Date(tomorrowLA.year, tomorrowLA.month - 1, tomorrowLA.day);
+                        
+                        // Jump the calendar
+                        const fp = document.getElementById("Book-Prison-Date-inline")._flatpickr;
+                        if (fp) {
+                            fp.setDate(tomorrowDate, true); 
+                        }
+                        return; // Stop processing today
+                    }
+                }
+                // -----------------------------------
+
                 timeSlotsContainer.innerHTML = response;
                 setTimeout(attachSlotListeners, 50); 
             },
             error: function() {
                 timeSlotsContainer.innerHTML = '<div class="col-12"><p>Error loading slots.</p></div>';
+                isInitialLoad = false; 
             }
         });
     }
@@ -1100,13 +1133,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function attachSlotListeners() {
         const container = document.getElementById("timeSlots-" + productCode);
         if(!container) return;
-        const inputs = container.querySelectorAll(".Boo_Prison_Escape_time-slot");
         
-        if (inputs.length === 0) {
+        // Find normal bookable radio buttons
+        const inputs = container.querySelectorAll(".Boo_Prison_Escape_time-slot");
+        // Find "Call" buttons
+        const callSlots = container.querySelectorAll(".time_slot_call");
+        
+        // If there are NO normal slots AND NO call slots, then show "No available time slots."
+        if (inputs.length === 0 && callSlots.length === 0) {
             container.innerHTML = '<div class="col-12"><p>No available time slots.</p></div>';
             return;
         }
 
+        // Attach listeners only to the normal radio buttons
         inputs.forEach(function(input) {
             input.addEventListener("change", function() {
                 inputs.forEach(i => { if(i !== input) i.checked = false; }); 
@@ -1204,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // INITIAL LOAD
-    fetchTimeSlots(laNow.toJSDate());
+    fetchTimeSlots(laDate);
 });
 </script>
 

@@ -262,6 +262,17 @@ foreach ($productIds as $productId) {
     $slots = $groupedSlots[$productId];
     $html = '';
     $counter = 0;
+    $nowLocal = new DateTime('now', $losAngelesTz);
+    // // --- START TEST CODE ---
+    // $realLaNow = new DateTime('now', $losAngelesTz);
+    // if ($requestedDate === $realLaNow->format('Y-m-d')) {
+    //     // Pretend it is 11:00 PM Today (Past all available slots)
+    //     $nowLocal = new DateTime($requestedDate . ' 23:00:00', $losAngelesTz); 
+    // } else {
+    //     // Use normal time for Tomorrow so we can see tomorrow's slots
+    //     $nowLocal = new DateTime('now', $losAngelesTz);
+    // }
+    // // --- END TEST CODE ---
     foreach ($slots as $slot) {
         if (flee_bookeo_is_placeholder_event_id($slot['event_id'])) continue;
         $dt = new DateTime($slot['start_time_local'], $losAngelesTz);

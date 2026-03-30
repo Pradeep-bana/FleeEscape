@@ -1677,6 +1677,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const { DateTime } = luxon;
     const LA_ZONE = "America/Los_Angeles";
     const today = DateTime.now().setZone(LA_ZONE).startOf('day');
+    const todayRaw = today.toFormat('yyyy-MM-dd');
     const fmtDisplay = dt => dt.toFormat("ccc, LLLL dd, yyyy");
 
     // --- REQUEST QUEUE / DEBOUNCE (to avoid Bookeo 429) ---
@@ -1686,6 +1687,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let runningRequests = 0;
     let requestQueue = [];
     let loadedTabs = {}; // cache tab html (optional)
+    let isInitialLoad = true;
 
     function showLoader() {
         $("#globalLoader").fadeIn(160);
@@ -1769,6 +1771,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 dataType: 'json',
                 success: function(response) {
                     if (typeof response !== 'object' || response === null) {
+                        isInitialLoad = false;
                         productIds.forEach(id => $('#timeSlots-' + id).html('<p>No slots available</p>'));
                         return;
                     }
@@ -1790,59 +1793,35 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     });
 
-                    // 2. CHECK TIME (8:30 PM Cutoff)
-                    const laNow = luxon.DateTime.now().setZone("America/Los_Angeles");
+                    if (allowAutoNextDay && isInitialLoad && rawDate === todayRaw && !atLeastOneGameHasSlots) {
+                        isInitialLoad = false;
+                        const nextDay = today.plus({ days: 1 });
+                        const nextRaw = nextDay.toFormat('yyyy-MM-dd');
+                        const nextVisual = nextDay.toFormat("ccc, LLLL dd, yyyy");
 
-                    // Logic: Is it after 8 PM? OR Is it 8 PM and minutes >= 30?
-                    const isPastCutoff = (laNow.hour > 20) || (laNow.hour === 20 && laNow.minute >= 30);
+                        $('.custom-datepicker_input').each(function() {
+                            const $this = $(this);
+                            $this.data('rawdate', nextRaw);
+                            $this.attr('data-rawdate', nextRaw);
 
-                    // 3. DECIDE TO REDIRECT
-                    if (allowAutoNextDay && isPastCutoff && !atLeastOneGameHasSlots) {
-                        const currentRequestedDate = luxon.DateTime.fromISO(rawDate, { zone: "America/Los_Angeles" });
-                        const nextDay = currentRequestedDate.plus({ days: 1 });
-                        
-                        // Prevent infinite jumps (limit to 1 day from today)
-                        const todayRef = luxon.DateTime.now().setZone("America/Los_Angeles").startOf('day');
-                        const diffFromToday = nextDay.diff(todayRef, 'days').days;
+                            if (this._flatpickr) {
+                                this._flatpickr.setDate(nextRaw, false);
+                                const yearSelect = this._flatpickr.calendarContainer.querySelector(".flatpickr-year-dropdown");
+                                if (yearSelect) yearSelect.value = nextDay.year;
+                            }
 
-                        if (diffFromToday <= 1) {
-                            // 1. Raw format for logic/flatpickr (YYYY-MM-DD)
-                            const nextRaw = nextDay.toFormat('yyyy-MM-dd');
-                            
-                            // 2. Pretty format for Display (Fri, March 06, 2026)
-                            const nextVisual = nextDay.toFormat("ccc, LLLL dd, yyyy");
+                            $this.val(nextVisual);
+                        });
 
-                            console.log(`Auto-advance: Switching ALL datepickers to ${nextVisual} (${nextRaw})`);
-
-                            // Update ALL datepickers on the page
-                            $('.custom-datepicker_input').each(function() {
-                                const $this = $(this);
-                                
-                                // A. Update internal data attribute (logic)
-                                $this.data('rawdate', nextRaw);
-                                $this.attr('data-rawdate', nextRaw); 
-
-                                // B. Update Flatpickr instance FIRST
-                                if (this._flatpickr) {
-                                    this._flatpickr.setDate(nextRaw, false); 
-                                    
-                                    // Update year dropdown if present
-                                    const yearSelect = this._flatpickr.calendarContainer.querySelector(".flatpickr-year-dropdown");
-                                    if (yearSelect) yearSelect.value = nextDay.year;
-                                }
-
-                                // C. FORCE OVERWRITE THE DISPLAY TEXT LAST
-                                $this.val(nextVisual);
-                            });
-
-                            // Recursively fetch for the next day
-                            fetchSlotsForProducts(productIds, nextRaw, false); 
-                        }
-                    } else {
-                        console.log(`Auto-advance skipped.`);
+                        updatePrevButtons();
+                        fetchSlotsForProducts(productIds, nextRaw, false);
+                        return;
                     }
+
+                    isInitialLoad = false;
                 },
                 error: function(xhr, status, error) {
+                    isInitialLoad = false;
                     productIds.forEach(id => {
                         $('#timeSlots-' + id).html('<p style="color:red;">Error loading slots</p>');
                     });

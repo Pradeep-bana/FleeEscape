@@ -221,6 +221,7 @@ foreach ($productIds as $rawProductId) {
         $html = '';
         $counter = 0;
         $validSlotsFound = false;
+        $nowLocal = new DateTime('now', $losAngelesTz);
 
         foreach ($slotsForDisplay as $slot) {
             if (flee_bookeo_is_placeholder_event_id($slot['event_id'])) continue;

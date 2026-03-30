@@ -546,9 +546,7 @@ async function handleContinueNextStepParty(e) {
     if (productCode === "41551LAM3LY18570132661") {
         if (typeof loadCart === "function") loadCart();
         loadAddons();
-        if (typeof changeStep === "function") {
-            changeStep(1);
-        }
+        if (typeof goToAddonsOrCustomer === "function") goToAddonsOrCustomer();
         return;
     }
 
