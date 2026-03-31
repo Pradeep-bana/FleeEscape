@@ -349,9 +349,16 @@ try {
         $promoDiscountDisplay = isset($summaryItem['promo_discount'])
             ? (float)$summaryItem['promo_discount']
             : 0.0;
+        $totalPaidDisplay = isset($summaryItem['display_total_paid'])
+            ? (float)$summaryItem['display_total_paid']
+            : 0.0;
         $balanceDueDisplay = isset($summaryItem['display_balance_due'])
             ? (float)$summaryItem['display_balance_due']
-            : max(0, $bookingTotalDisplay - $voucherAmountDisplay);
+            : max(0, $bookingTotalDisplay - $voucherAmountDisplay - $totalPaidDisplay);
+
+        if ($balanceDueDisplay < 0.01) {
+            $balanceDueDisplay = 0.0;
+        }
 
         $grandTotal += $bookingTotalDisplay;
         $grandTaxes += ($displayTaxTotal > 0 ? $displayTaxTotal : $totalTaxes);
@@ -441,6 +448,9 @@ try {
 
         if ($voucherAmountDisplay > 0) {
             $html .= '<p>' . bc_voucher_label($summaryItem) . ': <span>- $' . number_format($voucherAmountDisplay, 2) . '</span></p>';
+        }
+
+        if ($balanceDueDisplay > 0) {
             $html .= '<p class="total">Balance Due: <span>$' . number_format($balanceDueDisplay, 2) . '</span></p>';
         }
 
@@ -456,6 +466,9 @@ try {
 
     if ($grandVoucherAmount > 0) {
         $html .= '<p>Total Voucher Applied: <span>- $' . number_format($grandVoucherAmount, 2) . '</span></p>';
+    }
+
+    if ($grandBalanceDue > 0) {
         $html .= '<p class="total">Balance Due: <span>$' . number_format($grandBalanceDue, 2) . '</span></p>';
     }
 
@@ -565,20 +578,20 @@ function openPrintPage() {
 </script>
 
 <?php 
-// $_SESSION = [];
+$_SESSION = [];
 
-// if (ini_get("session.use_cookies")) {
-//     $params = session_get_cookie_params();
-//     setcookie(
-//         session_name(),
-//         '',
-//         time() - 42000,
-//         $params["path"],
-//         $params["domain"],
-//         $params["secure"],
-//         $params["httponly"]
-//     );
-// }
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(
+        session_name(),
+        '',
+        time() - 42000,
+        $params["path"],
+        $params["domain"],
+        $params["secure"],
+        $params["httponly"]
+    );
+}
 
-// session_destroy(); 
+session_destroy(); 
 include('./includes/footer.php'); ?>

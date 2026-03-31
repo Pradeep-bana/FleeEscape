@@ -143,7 +143,8 @@ function buildDisplayBreakdown(array $item, array $holdData, array $bookingData)
     $displayTaxTotal += (float)($tax['amount'] ?? 0);
   }
 
-  $balanceDue = max(0, $displayBookingTotal - $voucherAmount);
+  $displayTotalPaid = (float)($bookingPrice['totalPaid']['amount'] ?? 0);
+  $balanceDue = max(0, $displayBookingTotal - $voucherAmount - $displayTotalPaid);
   if ($balanceDue < 0.01) {
     $balanceDue = 0.0;
   }
@@ -160,6 +161,7 @@ function buildDisplayBreakdown(array $item, array $holdData, array $bookingData)
     'display_taxes' => $displayTaxes,
     'display_tax_total' => round($displayTaxTotal, 2),
     'display_booking_total' => round($displayBookingTotal, 2),
+    'display_total_paid' => round($displayTotalPaid, 2),
     'display_balance_due' => round($balanceDue, 2)
   ];
 }
@@ -478,6 +480,7 @@ try {
         "display_taxes" => $displayBreakdown['display_taxes'],
         "display_tax_total" => $displayBreakdown['display_tax_total'],
         "display_booking_total" => $displayBreakdown['display_booking_total'],
+        "display_total_paid" => $displayBreakdown['display_total_paid'],
         "display_balance_due" => $displayBreakdown['display_balance_due']
       ];
     

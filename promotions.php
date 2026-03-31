@@ -1427,36 +1427,6 @@ document.addEventListener('change', function(e) {
 </script>
 
 <script>
-document.addEventListener('click', function(e) {
-    // Detect clicks only on new guest count buttons
-    if (e.target.classList.contains('guest-plus-btn') || e.target.classList.contains('guest-minus-btn')) {
-
-        const wrapper = e.target.closest('.guest-count-wrapper');
-        const addonPrice = parseFloat(wrapper.dataset.addonPrice) || 0;
-        const productId = wrapper.dataset.productId;
-
-        const valueSpan = document.getElementById('guest-count-display-' + productId);
-        const priceSpan = document.getElementById('extra-price-' + productId);
-
-        let count = parseInt(valueSpan.textContent, 10) || 0;
-
-        // Increase or decrease
-        if (e.target.classList.contains('guest-plus-btn')) {
-            count++;
-        } else if (e.target.classList.contains('guest-minus-btn') && count > 0) {
-            count--;
-        }
-
-        // Update guest count
-        valueSpan.textContent = count;
-
-        // Calculate total price
-        const totalPrice = addonPrice * count;
-        priceSpan.textContent = totalPrice.toFixed(2);
-    }
-});
-</script>
-<script>
 function initCardFilter() {
     const experienceSelect = document.getElementById('experienceType');
     const partySizeSelect = document.getElementById('partySize');

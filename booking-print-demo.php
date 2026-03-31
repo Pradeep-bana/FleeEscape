@@ -323,9 +323,16 @@ foreach ($bookingSummary as $b) {
     $voucherAmountDisplay = isset($b['voucher_amount'])
         ? (float)$b['voucher_amount']
         : 0.0;
+    $totalPaidDisplay = isset($b['display_total_paid'])
+        ? (float)$b['display_total_paid']
+        : 0.0;
     $balanceDueDisplay = isset($b['display_balance_due'])
         ? (float)$b['display_balance_due']
-        : max(0, $bookingTotalDisplay - $voucherAmountDisplay);
+        : max(0, $bookingTotalDisplay - $voucherAmountDisplay - $totalPaidDisplay);
+
+    if ($balanceDueDisplay < 0.01) {
+        $balanceDueDisplay = 0.0;
+    }
 
     $productImage = "";
     $currentProductId = $row["productId"] ?? "";
@@ -375,6 +382,7 @@ foreach ($bookingSummary as $b) {
         "promo_label" => bp_promo_label($b),
         "voucher_amount" => $voucherAmountDisplay,
         "voucher_label" => bp_voucher_label($b),
+        "total_paid" => $totalPaidDisplay,
         "balance_due" => $balanceDueDisplay,
         "productId" => $row["productId"],
         "productImage" => $productImage
@@ -440,7 +448,9 @@ foreach ($bookingSummary as $b) {
                 <?php if ($bk["voucher_amount"] > 0): ?>
                     <div class="small-text"><?= $bk["voucher_label"] ?>: <strong>- $<?= number_format($bk["voucher_amount"], 2) ?></strong></div>
                 <?php endif; ?>
-                <div class="small-text">Amount due: <strong>$<?= number_format($bk["balance_due"], 2) ?></strong></div>
+                <?php if ($bk["balance_due"] > 0): ?>
+                    <div class="small-text">Amount due: <strong>$<?= number_format($bk["balance_due"], 2) ?></strong></div>
+                <?php endif; ?>
             </div>
 
             <div class="booking-right">
@@ -549,6 +559,8 @@ foreach ($bookingSummary as $b) {
                         <td></td>
                         <td>- $<?= number_format($bk["voucher_amount"], 2) ?></td>
                     </tr>
+                <?php endif; ?>
+                <?php if ($bk["balance_due"] > 0): ?>
                     <tr>
                         <td></td>
                         <td></td>
