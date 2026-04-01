@@ -68,6 +68,18 @@ $prod_id='41551F9C679173BC114D28';
 .flatpickr-year-dropdown option {
     background: #fff;
 }
+
+
+.flatpickr-next-month,
+.flatpickr-prev-month {
+    font-size: 25px;
+}
+
+.flatpickr-next-month svg,
+.flatpickr-prev-month svg {
+    width: 20px;
+    height: 20px;
+}
 </style>
 
 <section class="choose-adventure ">

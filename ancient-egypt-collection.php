@@ -62,6 +62,17 @@ include('includes/header.php');
 .flatpickr-year-dropdown option {
     background: #fff;
 }
+
+.flatpickr-next-month,
+.flatpickr-prev-month {
+    font-size: 25px;
+}
+
+.flatpickr-next-month svg,
+.flatpickr-prev-month svg {
+    width: 20px;
+    height: 20px;
+}
 </style>
 <section class="choose-adventure ">
     <div class="container-fluid">
@@ -182,7 +193,7 @@ try {
                 <div class="ca-badges">
                     <span class="ca-badge"><i class="bi bi-clock"></i> <?php echo $duration; ?> minutes</span>
                     <span class="ca-badge"><i class="bi bi-people"></i> <?php echo $players; ?> players</span>
-                    <span class="ca-badge"><i class="bi bi-star-fill"></i> <?php echo $avgRating; ?>/5 (<?php echo $reviewCount; ?> reviews)</span>
+                    <span class="ca-badge"><i class="bi bi-star-fill"></i> <?php echo $avgRating; ?>/5 (<?php echo $room['reviewsCount']; ?> reviews)</span>
                 </div>
 
                 <div class="all_button_main_header" style="background-size: cover; background-repeat: no-repeat;">
@@ -245,7 +256,7 @@ try {
         $age = htmlspecialchars($room['age']);
         $price = !empty($room['price']) ? '$' . htmlspecialchars($room['price']) . '/person' : '$35/person';
         $features = !empty($room['features']) ? $room['features'] : '';
-        $description = !empty($room['blog_detl']) ? htmlspecialchars($room['blog_detl']) : 'Description coming soon.';
+        $description = !empty($room['blog_detl']) ? $room['blog_detl'] : 'Description coming soon.';
 ?>
 <div class="row g-4">
     <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">

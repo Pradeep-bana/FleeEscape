@@ -215,6 +215,12 @@ if (!function_exists('flee_apply_is_promotion_page_flag')) {
 if (!function_exists('flee_apply_resolve_active_promo')) {
     function flee_apply_resolve_active_promo(array $cartItems)
     {
+        // Skip auto-promo detection when user explicitly removes promo
+        if (!empty($_SESSION['skip_auto_promo'])) {
+            unset($_SESSION['skip_auto_promo']);
+            return [null, false];
+        }
+
         $escapeCount = 0;
         $hasPromotionPage = false;
         $promotionPagePromo = null;
@@ -270,7 +276,7 @@ if (!function_exists('flee_apply_build_options')) {
         $gameId = (string)($item['game_id'] ?? '');
 
         if (!empty($item['escape_selection'])) {
-            $skipEscapeChoiceGames = ['41551LAM3LY18570132661'];
+            $skipEscapeChoiceGames = ['41551LAM3LY18570132661', '41551U9C4YX1857011E312'];
             if (!in_array($gameId, $skipEscapeChoiceGames, true)) {
                 $options[] = ["name" => "Escape Room Choices", "value" => $item['escape_selection']];
             }

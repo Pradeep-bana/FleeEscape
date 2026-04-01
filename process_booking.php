@@ -394,7 +394,8 @@ try {
     $options = [];
     if (!empty($item['escape_selection'])) {
         $skipEscapeChoiceGames = [
-            '41551LAM3LY18570132661'
+            '41551LAM3LY18570132661',
+            '41551U9C4YX1857011E312'
         ];
         if (!in_array($gid, $skipEscapeChoiceGames)) {
             $options[] = ["name" => "Escape Room Choices", "value" => $item['escape_selection']];

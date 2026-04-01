@@ -85,6 +85,89 @@ if (!function_exists('flee_cart_delete_cache_for_rows')) {
     }
 }
 
+if (!function_exists('flee_cart_sync_auto_promo')) {
+    function flee_cart_sync_auto_promo(PDO $pdo, $sid) {
+        $stmt = $pdo->prepare("SELECT id, cat FROM tbl_carts WHERE session_id = :sid");
+        $stmt->execute([':sid' => $sid]);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $escapeCount = 0;
+        foreach ($rows as $r) {
+            if (strtolower(trim((string)$r['cat'])) === 'escape-room') {
+                $escapeCount++;
+            }
+        }
+        
+        $currentCode = strtoupper(trim((string)($_SESSION['giftCode'] ?? '')));
+        
+        // Only apply/modify if user has no manual code, or already has an auto-code
+        $isBMSM = ($currentCode === '' || strpos($currentCode, 'BMSM_') === 0);
+        
+        if ($isBMSM) {
+            $targetCode = '';
+            $promoPage = 'false';
+            
+            if ($escapeCount >= 3) {
+                $targetCode = 'BMSM_20';
+                $promoPage = 'save_more_play_more';
+            } elseif ($escapeCount == 2) {
+                $targetCode = 'BMSM_10';
+                $promoPage = 'save_more_play_more';
+            }
+            
+            if ($currentCode !== $targetCode) {
+                if ($targetCode === '') {
+                    // Dropped below 2 games: Completely scrub promo code data from session AND DB
+                    unset($_SESSION['giftCode']);
+                    $pdo->prepare("
+                        UPDATE tbl_carts 
+                        SET promo_code = '', 
+                            pramotion_page = 'false', 
+                            discount_amt = 0, 
+                            discounted_total = total 
+                        WHERE session_id = :sid
+                    ")->execute([':sid' => $sid]);
+                } else {
+                    // Upgraded/Downgraded
+                    $_SESSION['giftCode'] = $targetCode;
+                    $pdo->prepare("
+                        UPDATE tbl_carts 
+                        SET promo_code = :code, 
+                            pramotion_page = :page 
+                        WHERE session_id = :sid 
+                          AND cat = 'escape-room'
+                    ")->execute([
+                        ':code' => $targetCode, 
+                        ':page' => $promoPage, 
+                        ':sid' => $sid
+                    ]);
+                }
+                return true; // Indicates promo code changed and holds need refresh
+            }
+        }
+        
+        // Ultimate fallback: If cart drops below 2 games but DB mysteriously still has BMSM
+        if ($escapeCount < 2) {
+            $stmtCheck = $pdo->prepare("SELECT id FROM tbl_carts WHERE session_id = :sid AND promo_code LIKE 'BMSM_%' LIMIT 1");
+            $stmtCheck->execute([':sid' => $sid]);
+            if ($stmtCheck->fetch()) {
+                $pdo->prepare("
+                    UPDATE tbl_carts 
+                    SET promo_code = '', 
+                        pramotion_page = 'false', 
+                        discount_amt = 0, 
+                        discounted_total = total 
+                    WHERE session_id = :sid 
+                      AND promo_code LIKE 'BMSM_%'
+                ")->execute([':sid' => $sid]);
+                return true;
+            }
+        }
+        
+        return false;
+    }
+}
+
 if (!function_exists('flee_cart_cleanup_expired')) {
     function flee_cart_cleanup_expired(PDO $pdo, $reason = '')
     {
@@ -236,6 +319,11 @@ if (!function_exists('flee_cart_cleanup_expired')) {
         if ($result['cart_count'] === 0) {
             $_SESSION['cart'] = [];
             unset($_SESSION['giftCode']);
+        } elseif ($result['expired_count'] > 0) {
+            // Apply Auto-Promo check if an item expired from the cart
+            if (flee_cart_sync_auto_promo($pdo, $sid)) {
+                flee_cart_refresh_holds($pdo, flee_cart_current_code());
+            }
         }
 
         return $result;
@@ -245,7 +333,7 @@ if (!function_exists('flee_cart_cleanup_expired')) {
 if (!function_exists('flee_cart_normalize_price')) {
     function flee_cart_normalize_price($priceStr, $guests)
     {
-        $normalized = str_replace(["Ã¢â‚¬â€œ", "Ã¢â‚¬â€", "â€“", "â€”"], "-", (string)$priceStr);
+        $normalized = str_replace(["Ã¢â‚¬â€œ", "Ã¢â‚¬â€ ", "â€“", "â€”"], "-", (string)$priceStr);
         $normalized = preg_replace('/\s*-\s*/', '-', $normalized);
         preg_match_all('/\d+(?:\.\d+)?/', $normalized, $matches);
         $numbers = $matches[0] ?? [];
@@ -529,6 +617,9 @@ if (!function_exists('flee_cart_handle_add')) {
         flee_cart_insert_row($pdo, $row);
         flee_apply_sync_session_cart($pdo, session_id());
 
+        // Call auto-promo handler to add BMSM logic if needed before sending to bookeo
+        flee_cart_sync_auto_promo($pdo, session_id());
+
         $preferredCode = flee_cart_current_code();
         $refreshResult = flee_cart_refresh_holds($pdo, $preferredCode);
 
@@ -589,7 +680,12 @@ if (!function_exists('flee_cart_handle_remove')) {
         flee_cart_delete_item_by_event($pdo, session_id(), $eventId);
 
         if (flee_cart_count_rows($pdo, session_id()) > 0) {
+            
+            // Check count, scrub database if we dropped below 2 items
+            flee_cart_sync_auto_promo($pdo, session_id());
+            
             $refreshResult = flee_cart_refresh_holds($pdo, flee_cart_current_code());
+            
             if (($refreshResult['status'] ?? 'error') !== 'success') {
                 return [
                     'status' => 'error',
@@ -602,6 +698,7 @@ if (!function_exists('flee_cart_handle_remove')) {
             unset($_SESSION['giftCode']);
         }
 
+        // Must sync back the fully scrubbed data back to $_SESSION for final response
         $cartRows = flee_apply_sync_session_cart($pdo, session_id());
 
         return [

@@ -2791,7 +2791,7 @@ document.addEventListener("click", async (e) => {
         }
 
         
-        if (productCode === "41551LAM3LY18570132661") {
+        if (productCode === "41551LAM3LY18570132661" || productCode === "41551U9C4YX1857011E312") {
             loadCart();
             loadAddons();
             window.location.href = "<?= BASE_URL ?>/booking?add-ons-";

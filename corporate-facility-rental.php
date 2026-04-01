@@ -2256,10 +2256,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- GLOBAL PICK DATE BUTTON FUNCTIONALITY ---
     initTabContent($(document));
 
-    // --- FIX: Remove Flatpickr duplicate input (keep only first one) ---
-    setTimeout(() => {
-      const duplicateInputs = document.querySelectorAll('.flatpickr-mobile');
-      duplicateInputs.forEach(input => input.remove());
+    // --- FIX: Remove Flatpickr duplicate input & unhide main inputs ---
+    function cleanupFlatpickrMobile() {
+      // ONLY delete mobile clones that belong to the booking packages
+      document.querySelectorAll('.custom-date-wrapper_date').forEach(wrapper => {
+         const mobileInput = wrapper.querySelector('.flatpickr-mobile');
+         if(mobileInput) mobileInput.remove();
+      });
+      
+      // Unhide custom datepicker inputs (booking packages)
       const mainInputs = document.querySelectorAll('.custom-datepicker_input');
       mainInputs.forEach(input => {
         input.classList.remove('d-none');
@@ -2268,8 +2273,23 @@ document.addEventListener("DOMContentLoaded", function() {
         input.style.opacity = '1';
         input.type = 'text';
       });
-      console.log("✅ Removed Flatpickr duplicate inputs — only main input kept.");
-    }, 1200);
+      
+      // ENSURE the contact form date input remains visible
+      const eventDateInput = document.getElementById('event_date');
+      if (eventDateInput) {
+        eventDateInput.classList.remove('d-none');
+        eventDateInput.style.display = 'block';
+        eventDateInput.style.visibility = 'visible';
+        eventDateInput.style.opacity = '1';
+        eventDateInput.type = 'text';
+      }
+    }
+    
+    // Run cleanup after initial load
+    setTimeout(cleanupFlatpickrMobile, 1200);
+    
+    // Re-run cleanup on window resize
+    window.addEventListener('resize', cleanupFlatpickrMobile);
 });
 </script>
 
@@ -2426,9 +2446,11 @@ document.addEventListener("click", function(e) {
 
 <?php include('includes/footer.php'); ?>
 <script>
+document.addEventListener("DOMContentLoaded", function() {
     flatpickr("#event_date", {
-  dateFormat: "d-m-Y",
-  disableMobile: true
+        dateFormat: "m-d-Y",
+        disableMobile: true,
+        allowInput: true
+    });
 });
-
 </script>
