@@ -980,9 +980,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 if (input.checked) {
                     selectedTimeSlot = input.getAttribute("data-start-time");
-                    const label = input.nextElementSibling.textContent.trim();
-                    const parts = label.split(/\s+/);
-                    const timeOnly = parts[0] + " " + (parts[1] || "");
+                    const labelText = input.nextElementSibling.textContent.trim();
+                    const timeMatch = labelText.match(/\d{1,2}:\d{2}(?:\s*(?:AM|PM))?/i);
+                    const timeOnly = timeMatch ? timeMatch[0] : (labelText.split(" ")[0] + " " + labelText.split(" ")[1]);
                     
                     document.getElementById("summary-time").textContent = timeOnly;
                     slotAvailableSeats = parseInt(input.getAttribute("data-available")) || 0;

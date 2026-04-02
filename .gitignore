@@ -1,0 +1,18 @@
+# Cache and Lock files
+bookeo_day_cache/
+bookeo_locks/
+
+# Payment and Testing
+php_payment/
+testPass/
+
+# Assets and Uploads
+vr/
+uploads/
+fonts/
+
+# Dependencies
+vendor/
+
+# Any log files
+*.log

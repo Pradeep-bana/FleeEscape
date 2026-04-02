@@ -117,39 +117,28 @@ window.latestCart = [];
 
 // 2. Updated updateBookedButtons function
 function updateBookedButtons(cartItems) {
-    // 1. Save cart to global variable
     window.latestCart = cartItems || [];
-
-    // 2. Select ALL types of Continue buttons (Escape, Party, and Event)
     const allButtons = document.querySelectorAll(".continue_nex_step, .continue_next_step_party, .continue_next_step_event");
 
     allButtons.forEach(btn => {
         const gameId = btn.getAttribute("data-game-id");
-        
-        // Safety check: if button has no game ID, skip it
         if (!gameId) return;
 
-        // Find the CURRENTLY selected radio button for this specific game
-        // (This works for all tabs because they all use the name="lift-time-{id}" format)
         const selectedSlot = document.querySelector(`input[name="lift-time-${gameId}"]:checked`);
-
         let isBooked = false;
 
-        // Check if this specific Slot (EventID) is in the cart
         if (selectedSlot) {
             const selectedEventId = selectedSlot.getAttribute("data-eventid");
-            
             isBooked = window.latestCart.some(item => 
                 item.gameId === gameId && item.eventId === selectedEventId
             );
         }
 
-        // Logic to handle Guest count wrappers (works for all tabs if they use this structure)
         const guestWrapper = document.querySelector(`#guest-count-${gameId}`)?.closest(".guest-count-wrapper") 
                           || document.querySelector(`#guest-count-display-${gameId}`)?.closest(".guest-count-wrapper");
 
         if (isBooked) {
-            // DISABLE BUTTON
+            // IF IN CART: Disable and show "Added to Cart"
             btn.innerText = "Added to Cart";
             btn.classList.add("booked_btn");
             btn.disabled = true;
@@ -159,14 +148,39 @@ function updateBookedButtons(cartItems) {
                 guestWrapper.querySelectorAll(".guest-btn, .plus-btn, .minus-btn").forEach(b => b.disabled = true);
             }
         } else {
-            // ENABLE BUTTON
+            // NOT IN CART: Restore normal text
             btn.innerText = "Continue";
             btn.classList.remove("booked_btn");
-            btn.disabled = false;
-            btn.style.opacity = "1";
 
             if (guestWrapper) {
                 guestWrapper.querySelectorAll(".guest-btn, .plus-btn, .minus-btn").forEach(b => b.disabled = false);
+            }
+
+            // CRITICAL FIX: Evaluate correctly instead of blindly enabling all buttons!
+            let isEnabled = false;
+            
+            if (btn.classList.contains("continue_next_step_event")) {
+                // Event rooms usually just need a slot selected
+                isEnabled = !!selectedSlot;
+            } else {
+                // Escape & Party need a slot AND guests > 0
+                let count = 0;
+                const valEl = guestWrapper?.querySelector('.guest-value');
+                if (valEl) count = parseInt(valEl.innerText) || 0;
+                isEnabled = !!selectedSlot && count > 0;
+            }
+
+            // Apply the evaluated state properly
+            if (isEnabled) {
+                btn.disabled = false;
+                btn.classList.remove("disabled");
+                btn.removeAttribute("disabled");
+                btn.style.opacity = "1";
+            } else {
+                btn.disabled = true;
+                btn.classList.add("disabled");
+                btn.setAttribute("disabled", "true");
+                btn.style.opacity = ""; // Let CSS handle opacity
             }
         }
     });

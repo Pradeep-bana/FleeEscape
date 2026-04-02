@@ -288,18 +288,28 @@ foreach ($cart as $index => $item) {
         echo '      <div class="d-flex align-items-center">' . htmlspecialchars($item['addon_name']) . '</div>';
         echo '      <div>$' . number_format($item['addon_price'], 2) . '</div>';
         echo '      <div class="checkout_QUNT_select">';
-
+    
         // --- DYNAMIC ADDON QTY LOGIC ---
         $min = 1;
         $max = 10; // Default max
         $isOnOffOption = false;
-
-        // Find the product in our cache
+    
+        // Find the product in our cache to determine the addon type
         $product = flee_find_cached_product($products, $item['game_id']);
-
+    
         if ($product) {
-            // Check NumberOptions (for escape rooms)
-            if (!empty($product['numberOptions'])) {
+            // Check OnOffOptions first (for party packages, typically has no dropdown)
+            if (!empty($product['onOffOptions'])) {
+                foreach ($product['onOffOptions'] as $opt) {
+                    if ($opt['id'] === $item['addon_opt_id']) {
+                        $isOnOffOption = true;
+                        break;
+                    }
+                }
+            }
+            
+            // If it wasn't an OnOffOption, check NumberOptions for min/max values
+            if (!$isOnOffOption && !empty($product['numberOptions'])) {
                 foreach ($product['numberOptions'] as $opt) {
                     if ($opt['id'] === $item['addon_opt_id']) {
                         $min = (int)($opt['minValue'] ?? 1);
@@ -308,20 +318,11 @@ foreach ($cart as $index => $item) {
                     }
                 }
             }
-            // Check OnOffOptions (for party packages)
-            elseif (!empty($product['onOffOptions'])) {
-                foreach ($product['onOffOptions'] as $opt) {
-                    if ($opt['id'] === $item['addon_opt_id']) {
-                        $isOnOffOption = true;
-                        break;
-                    }
-                }
-            }
         }
-
+    
         // Render the correct control based on the addon type
         if ($isOnOffOption) {
-            // For on/off addons, just show "1"
+            // For on/off addons, just show a static "1" as the quantity is not changeable.
             echo '<span>1</span>';
         } else {
             // For number-based addons, show the dynamic dropdown
@@ -333,7 +334,7 @@ foreach ($cart as $index => $item) {
             echo '</select>';
         }
         // --- END DYNAMIC LOGIC ---
-
+    
         echo '      </div>';
         echo '      <div>$' . number_format($item['addon_subtotal'], 2) . '</div>';
         echo '      <span class="remove-addon-btn" data-cart-id="' . $item['id'] . '" style="cursor:pointer; color:#ff4d4d; margin-right:8px;" title="Remove Addon">';
