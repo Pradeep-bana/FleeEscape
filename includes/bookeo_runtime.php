@@ -12,6 +12,10 @@ if (!defined('FLEE_BOOKEO_UNIVERSAL_LOG_FILE')) {
     define('FLEE_BOOKEO_UNIVERSAL_LOG_FILE', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_universal.log');
 }
 
+if (!defined('FLEE_BOOKEO_ERROR_HISTORY_FILE')) {
+    define('FLEE_BOOKEO_ERROR_HISTORY_FILE', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_error_history.json');
+}
+
 if (!defined('FLEE_BOOKEO_LOCK_DIR')) {
     define('FLEE_BOOKEO_LOCK_DIR', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_locks');
 }
@@ -21,7 +25,7 @@ if (!defined('FLEE_BOOKEO_DAY_CACHE_DIR')) {
 }
 
 if (!defined('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS')) {
-    define('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS', false);
+    define('FLEE_BOOKEO_LOG_SUCCESSFUL_GETS', true);
 }
 
 if (!function_exists('flee_bookeo_now_la')) {
@@ -109,6 +113,27 @@ if (!function_exists('flee_bookeo_log_message')) {
     }
 }
 
+if (!function_exists('flee_bookeo_request_caller')) {
+    function flee_bookeo_request_caller()
+    {
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 12);
+        foreach ($trace as $frame) {
+            $file = $frame['file'] ?? '';
+            if ($file === '' || realpath($file) === realpath(__FILE__)) {
+                continue;
+            }
+
+            return [
+                'caller_file' => str_replace('\\', '/', $file),
+                'caller_line' => (int)($frame['line'] ?? 0),
+                'caller_function' => $frame['function'] ?? '',
+            ];
+        }
+
+        return [];
+    }
+}
+
 if (!function_exists('flee_bookeo_is_throttled')) {
     function flee_bookeo_is_throttled()
     {
@@ -145,6 +170,107 @@ if (!function_exists('flee_bookeo_set_throttle')) {
     }
 }
 
+if (!function_exists('flee_bookeo_error_history_read')) {
+    function flee_bookeo_error_history_read()
+    {
+        if (!file_exists(FLEE_BOOKEO_ERROR_HISTORY_FILE)) {
+            return [];
+        }
+
+        $raw = file_get_contents(FLEE_BOOKEO_ERROR_HISTORY_FILE);
+        if (!is_string($raw) || trim($raw) === '') {
+            return [];
+        }
+
+        $decoded = json_decode($raw, true);
+        return is_array($decoded) ? $decoded : [];
+    }
+}
+
+if (!function_exists('flee_bookeo_error_history_write')) {
+    function flee_bookeo_error_history_write(array $history)
+    {
+        file_put_contents(
+            FLEE_BOOKEO_ERROR_HISTORY_FILE,
+            json_encode(array_values($history), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            LOCK_EX
+        );
+    }
+}
+
+if (!function_exists('flee_bookeo_is_qualifying_error')) {
+    function flee_bookeo_is_qualifying_error($httpCode)
+    {
+        $httpCode = (int)$httpCode;
+        if ($httpCode >= 500) {
+            return true;
+        }
+
+        return in_array($httpCode, [403, 404, 409, 422, 429], true);
+    }
+}
+
+if (!function_exists('flee_bookeo_track_error_burst')) {
+    function flee_bookeo_track_error_burst($httpCode, $context, $url, $method, $responseBody = '')
+    {
+        if (!flee_bookeo_is_qualifying_error($httpCode)) {
+            return;
+        }
+
+        $now = time();
+        $history = flee_bookeo_error_history_read();
+        $history = array_values(array_filter($history, static function ($entry) use ($now) {
+            return is_array($entry) && isset($entry['ts']) && ((int)$entry['ts'] >= ($now - 180));
+        }));
+
+        $history[] = [
+            'ts' => $now,
+            'code' => (int)$httpCode,
+            'context' => (string)$context,
+            'url' => (string)$url,
+            'method' => (string)$method,
+        ];
+
+        flee_bookeo_error_history_write($history);
+
+        $last30 = 0;
+        $last120 = 0;
+        foreach ($history as $entry) {
+            $age = $now - (int)$entry['ts'];
+            if ($age <= 30) {
+                $last30++;
+            }
+            if ($age <= 120) {
+                $last120++;
+            }
+        }
+
+        $cooldown = 0;
+        if ($last120 >= 12) {
+            $cooldown = 90;
+        } elseif ($last30 >= 6) {
+            $cooldown = 20;
+        }
+
+        if ($cooldown <= 0 || flee_bookeo_is_throttled()) {
+            return;
+        }
+
+        flee_bookeo_set_throttle($cooldown, $context . '_error_burst');
+        flee_bookeo_log_message($context . '_error_burst', 'Global Bookeo throttle engaged because of a recent error burst', [
+            'http_code' => (int)$httpCode,
+            'last_30s_errors' => $last30,
+            'last_120s_errors' => $last120,
+            'cooldown_seconds' => $cooldown,
+            'endpoint' => $url,
+            'http_method' => $method,
+            'response_excerpt' => is_string($responseBody) ? substr(str_replace(["\r", "\n"], [' ', ' '], $responseBody), 0, 300) : '',
+        ]);
+
+        flee_bookeo_error_history_write([]);
+    }
+}
+
 if (!function_exists('flee_bookeo_request')) {
     function flee_bookeo_request($method, $url, array $options = [])
     {
@@ -178,6 +304,7 @@ if (!function_exists('flee_bookeo_request')) {
             'http_method' => $method,
             'timeout' => $timeout,
         ];
+        $requestMeta = array_merge($requestMeta, flee_bookeo_request_caller());
         if ($method !== 'GET' && $body !== null) {
             $requestMeta['request_body'] = $body;
         }
@@ -198,10 +325,40 @@ if (!function_exists('flee_bookeo_request')) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, is_string($body) ? $body : json_encode($body));
         }
 
+        // --- NEW: GLOBAL OUTBOUND RATE LIMITER ---
+        // Force all concurrent users/scripts into a single-file line
+        $globalLockHandle = flee_bookeo_acquire_lock('global_outbound_rate_limit', 30);
+        if ($globalLockHandle !== false) {
+            $lastCallTimeFile = dirname(FLEE_BOOKEO_THROTTLE_FILE) . DIRECTORY_SEPARATOR . 'bookeo_last_call_time.txt';
+            $minSpacingSeconds = 0.6; // Max ~1.6 requests per second globally
+
+            if (file_exists($lastCallTimeFile)) {
+                $lastCallTime = (float)file_get_contents($lastCallTimeFile);
+                $elapsed = microtime(true) - $lastCallTime;
+                if ($elapsed > 0 && $elapsed < $minSpacingSeconds) {
+                    usleep((int)(($minSpacingSeconds - $elapsed) * 1000000));
+                }
+            }
+            file_put_contents($lastCallTimeFile, (string)microtime(true));
+            flee_bookeo_release_lock($globalLockHandle);
+            $globalLockHandle = false;
+        } else {
+            flee_bookeo_log_message($context . '_rate_limit_lock_warning', 'Global outbound rate-limit lock was not acquired before Bookeo request', [
+                'endpoint' => $url,
+            ]);
+        }
+        // -----------------------------------------
+
         $response = curl_exec($ch);
         $httpCode = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $curlError = curl_error($ch);
         curl_close($ch);
+
+        // --- RELEASE RATE LIMITER LOCK ---
+        if ($globalLockHandle !== false) {
+            flee_bookeo_release_lock($globalLockHandle);
+        }
+        // ---------------------------------
 
         $decoded = null;
         if (is_string($response) && $response !== '') {
@@ -226,6 +383,10 @@ if (!function_exists('flee_bookeo_request')) {
         if ($httpCode === 429) {
             $retryAfter = (int)($decoded['retryAfter'] ?? 30);
             flee_bookeo_set_throttle($retryAfter, $context . '_429');
+        }
+
+        if ($httpCode >= 400) {
+            flee_bookeo_track_error_burst($httpCode, $context, $url, $method, $response);
         }
 
         $responseMeta = [

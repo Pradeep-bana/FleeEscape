@@ -207,7 +207,7 @@ span.ca-chip {
 }
 
 .vr_page_banner_add_log_top {
-    bottom: 0;
+    bottom: -25px;
 }
 .Party_contact_form_section {
     padding: 0;

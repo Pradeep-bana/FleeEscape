@@ -1,6 +1,8 @@
 <?php
 /**
  * cron_sync_slots.php (Final: Bulletproof Pagination + Garbage Collection)
+ * 
+ * this is our cron file that runs every 10 minute in our cpanel
  */
 
 ini_set('display_errors', 1);
