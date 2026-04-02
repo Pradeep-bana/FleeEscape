@@ -16,3 +16,4 @@ vendor/
 
 # Any log files
 *.log
+config.php
