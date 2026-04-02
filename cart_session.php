@@ -172,8 +172,8 @@ if (!function_exists('flee_cart_cleanup_expired')) {
     function flee_cart_cleanup_expired(PDO $pdo, $reason = '')
     {
         $sid = session_id();
-        $apiKey = "AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC";
-        $secretKey = "RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4";
+        $apiKey = FLEE_BOOKEO_API_KEY;
+        $secretKey = FLEE_BOOKEO_SECRET_KEY;
 
         $forceExpireReasons = [
             'persistent_timer',
@@ -408,8 +408,8 @@ if (!function_exists('flee_cart_delete_item_by_event')) {
             return;
         }
 
-        $apiKey = "AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC";
-        $secretKey = "RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4";
+        $apiKey = FLEE_BOOKEO_API_KEY;
+        $secretKey = FLEE_BOOKEO_SECRET_KEY;
 
         $cartRows = flee_cart_collect_cart_rows($pdo, $sid);
         $targetRows = array_values(array_filter($cartRows, function ($row) use ($eventId) {

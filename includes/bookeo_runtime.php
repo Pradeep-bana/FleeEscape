@@ -4,14 +4,6 @@ if (!defined('FLEE_BOOKEO_RUNTIME')) {
     define('FLEE_BOOKEO_RUNTIME', true);
 }
 
-if (!defined('FLEE_BOOKEO_API_KEY')) {
-    define('FLEE_BOOKEO_API_KEY', 'AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC');
-}
-
-if (!defined('FLEE_BOOKEO_SECRET_KEY')) {
-    define('FLEE_BOOKEO_SECRET_KEY', 'RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4');
-}
-
 if (!defined('FLEE_BOOKEO_THROTTLE_FILE')) {
     define('FLEE_BOOKEO_THROTTLE_FILE', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bookeo_throttle.txt');
 }

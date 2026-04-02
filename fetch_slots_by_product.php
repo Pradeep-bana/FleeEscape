@@ -6,6 +6,7 @@ ini_set('display_errors', 0);
 error_reporting(E_ALL);
 
 include('admin/db.php');
+require_once('config.php');
 require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
 const API_BASE_URL = 'https://api.bookeo.com/v2/availability/slots';

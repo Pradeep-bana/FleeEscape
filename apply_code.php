@@ -354,8 +354,8 @@ if (!function_exists('flee_apply_update_cart_row')) {
 if (!function_exists('run_apply_code')) {
     function run_apply_code(string $inputCode, PDO $pdo): array
     {
-        $apiKey = "AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC";
-        $secretKey = "RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4";
+        $apiKey = FLEE_BOOKEO_API_KEY;
+        $secretKey = FLEE_BOOKEO_SECRET_KEY;
         $sid = session_id();
 
         $userCodes = array_values(array_filter(array_map('trim', explode(',', $inputCode))));

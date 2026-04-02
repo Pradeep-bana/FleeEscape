@@ -4,7 +4,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 ini_set('log_errors', 1);
 
-include "admin/db.php"; 
+include "admin/db.php";
+require_once('config.php');
 require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
 // --- Global error deduplication tracker ---
@@ -74,8 +75,8 @@ $giftCodeInput = trim($_POST['giftCode'] ?? ''); // Check POST first
 $currency = 'USD';
 
 // --- API keys ---
-$apiKey = 'AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC';
-$secretKey = 'RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4';
+$apiKey = FLEE_BOOKEO_API_KEY;
+$secretKey = FLEE_BOOKEO_SECRET_KEY;
 $sessionId = session_id();
 logMsg("Session ID: {$sessionId} | Starting booking process");
 

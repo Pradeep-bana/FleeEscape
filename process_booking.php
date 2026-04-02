@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 ini_set('log_errors', 1);
 
 include "admin/db.php";
+require_once('config.php');
 require __DIR__ . '/vendor/autoload.php';
 require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
@@ -266,8 +267,8 @@ try {
   }
 
   // 5. Finalize Bookeo Bookings
-  $apiKey  = 'AJXRUXU3EUHNXXKFAA4ER41551N96JNR14F91CA8DAC';
-  $secretKey = 'RV4URTDBaoNysxrVcCtDGXm7eRiVoaX4';
+  $apiKey  = FLEE_BOOKEO_API_KEY;
+  $secretKey = FLEE_BOOKEO_SECRET_KEY;
   
   $customerFn = $_SESSION['firstName'] ?? 'Guest';
   $customerLn = $_SESSION['lastName'] ?? '';

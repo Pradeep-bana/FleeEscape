@@ -9,6 +9,7 @@ set_time_limit(600);
 ignore_user_abort(true);
 
 include('admin/db.php');
+require_once('config.php');
 require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
 const FETCH_DAYS_AHEAD = 7; 
