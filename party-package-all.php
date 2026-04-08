@@ -1155,20 +1155,34 @@ document.addEventListener("DOMContentLoaded", function() {
     function setDateAll(dt) {
         const normalized = dt.setZone(LA_ZONE).startOf('day');
         const rawDate = normalized.toFormat('yyyy-MM-dd');
+        const targetYear = normalized.year; // Extract the year
         console.log(`setDateAll: Setting date to ${rawDate}`);
         $('.custom-datepicker_input').each(function() {
             const $input = $(this);
+            
+            // Skip flatpickr-mobile duplicates
+            if ($input.hasClass('flatpickr-mobile')) return;
+
+            // Target the flatpickr instance and update its visual UI
+            if (this._flatpickr) {
+                this._flatpickr.setDate(rawDate, false);
+                const yearSelect = this._flatpickr.calendarContainer.querySelector(".flatpickr-year-dropdown");
+                if (yearSelect) {
+                    yearSelect.value = targetYear;
+                }
+            }
+
             $input.data('rawdate', rawDate);
             $input.val(fmtDisplay(normalized));
-            console.log(
-                `setDateAll: Updated datepicker: product=${$input.data('product')}, rawdate=${$input.data('rawdate')}`
-                );
+            console.log(`setDateAll: Updated datepicker: product=${$input.attr('data-product') || $input.data('product')}, rawdate=${$input.data('rawdate')}`);
         });
-        // Fetch for all products after setting date
+        
+        // Fetch for all products after setting date (safely extracting IDs)
         const productIds = $('.custom-datepicker_input').map(function() {
-            return $(this).data('product');
-        }).get();
-        console.log(`setDateAll: Fetching slots for productIds: ${productIds}`);
+            return $(this).attr('data-product') || $(this).data('product');
+        }).get().filter(Boolean);
+        
+        console.log(`setDateAll: Fetching slots for productIds: ${JSON.stringify(productIds)}`);
         fetchSlotsForProducts(productIds, rawDate);
         updatePrevButtons();
     }

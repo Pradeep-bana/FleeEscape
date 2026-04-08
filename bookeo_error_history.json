@@ -1,0 +1,1 @@
+[{"ts":1775551081,"code":403,"context":"apply_code_hold_create","url":"https://api.bookeo.com/v2/holds?holdDurationSeconds=600","method":"POST"},{"ts":1775551084,"code":403,"context":"apply_code_hold_create","url":"https://api.bookeo.com/v2/holds?holdDurationSeconds=600","method":"POST"}]

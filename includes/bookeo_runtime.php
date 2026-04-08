@@ -282,7 +282,7 @@ if (!function_exists('flee_bookeo_request')) {
 
         if (empty($options['skip_throttle']) && flee_bookeo_is_throttled()) {
             $waitSeconds = flee_bookeo_retry_after_seconds();
-            flee_bookeo_log_message($context, 'Skipped outbound Bookeo request because throttle is active', [
+            flee_bookeo_log($context . '_THROTTLED', [
                 'endpoint' => $url,
                 'wait_seconds' => $waitSeconds,
             ]);
@@ -298,19 +298,7 @@ if (!function_exists('flee_bookeo_request')) {
             ];
         }
 
-        $shouldLogRequest = true;
-        $requestMeta = [
-            'endpoint' => $url,
-            'http_method' => $method,
-            'timeout' => $timeout,
-        ];
-        $requestMeta = array_merge($requestMeta, flee_bookeo_request_caller());
-        if ($method !== 'GET' && $body !== null) {
-            $requestMeta['request_body'] = $body;
-        }
-        if ($shouldLogRequest) {
-            flee_bookeo_log($context . '_request', $requestMeta);
-        }
+        $startTime = microtime(true);
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -325,7 +313,7 @@ if (!function_exists('flee_bookeo_request')) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, is_string($body) ? $body : json_encode($body));
         }
 
-        // --- NEW: GLOBAL OUTBOUND RATE LIMITER ---
+        // --- KEEP: GLOBAL OUTBOUND RATE LIMITER ---
         // Force all concurrent users/scripts into a single-file line
         $globalLockHandle = flee_bookeo_acquire_lock('global_outbound_rate_limit', 30);
         if ($globalLockHandle !== false) {
@@ -343,7 +331,8 @@ if (!function_exists('flee_bookeo_request')) {
             flee_bookeo_release_lock($globalLockHandle);
             $globalLockHandle = false;
         } else {
-            flee_bookeo_log_message($context . '_rate_limit_lock_warning', 'Global outbound rate-limit lock was not acquired before Bookeo request', [
+            flee_bookeo_log($context . '_LOCK_WARNING', [
+                'warning' => 'Global outbound rate-limit lock was not acquired before Bookeo request',
                 'endpoint' => $url,
             ]);
         }
@@ -354,23 +343,52 @@ if (!function_exists('flee_bookeo_request')) {
         $curlError = curl_error($ch);
         curl_close($ch);
 
-        // --- RELEASE RATE LIMITER LOCK ---
+        // --- RELEASE RATE LIMITER LOCK (Fallback) ---
         if ($globalLockHandle !== false) {
             flee_bookeo_release_lock($globalLockHandle);
         }
         // ---------------------------------
+
+        $timeTaken = round((microtime(true) - $startTime) * 1000, 2) . 'ms';
 
         $decoded = null;
         if (is_string($response) && $response !== '') {
             $decoded = json_decode($response, true);
         }
 
-        if ($response === false) {
-            flee_bookeo_log_message($context . '_network_error', 'Bookeo cURL request failed', [
-                'endpoint' => $url,
-                'error' => $curlError,
-            ]);
+        if ($httpCode === 429) {
+            $retryAfter = (int)($decoded['retryAfter'] ?? 30);
+            flee_bookeo_set_throttle($retryAfter, $context . '_429');
+        }
 
+        // --- KEEP: ERROR BURST TRACKER ---
+        if ($httpCode >= 400 && function_exists('flee_bookeo_track_error_burst')) {
+            flee_bookeo_track_error_burst($httpCode, $context, $url, $method, $response);
+        }
+
+        // ========================================================
+        // CLEAN LOGGING: ONE CONSOLIDATED LINE
+        // ========================================================
+        $logMeta = [
+            'http_method' => $method,
+            'endpoint' => $url,
+            'http_code' => $httpCode,
+            'duration' => $timeTaken,
+        ];
+
+        // KEEP: Caller info
+        if (function_exists('flee_bookeo_request_caller')) {
+            $logMeta = array_merge($logMeta, flee_bookeo_request_caller());
+        }
+
+        if ($method !== 'GET' && $body !== null) {
+            $logMeta['req_body'] = $body;
+        }
+
+        if ($response === false) {
+            $logMeta['curl_error'] = $curlError;
+            flee_bookeo_log($context . '_NETWORK_FAIL', $logMeta);
+            
             return [
                 'code' => 0,
                 'body' => false,
@@ -380,40 +398,19 @@ if (!function_exists('flee_bookeo_request')) {
             ];
         }
 
-        if ($httpCode === 429) {
-            $retryAfter = (int)($decoded['retryAfter'] ?? 30);
-            flee_bookeo_set_throttle($retryAfter, $context . '_429');
-        }
-
-        if ($httpCode >= 400) {
-            flee_bookeo_track_error_burst($httpCode, $context, $url, $method, $response);
-        }
-
-        $responseMeta = [
-            'endpoint' => $url,
-            'http_method' => $method,
-            'http_code' => $httpCode,
-        ];
+        // If it's an error (400, 403, etc.), include the response body so you can see why it failed
         if ($httpCode < 200 || $httpCode >= 300) {
-            $responseMeta['response_body'] = $response;
+            $logMeta['res_body'] = $response;
+            $logTag = $context . '_FAIL';
+        } else {
+            $logTag = $context . '_SUCCESS'; // Don't log full response on success to keep logs clean
         }
+
         $isSuccessfulGet = ($method === 'GET' && $httpCode >= 200 && $httpCode < 300);
-        $shouldLogResponse = !FLEE_BOOKEO_LOG_SUCCESSFUL_GETS ? !$isSuccessfulGet : true;
+        $shouldLog = !FLEE_BOOKEO_LOG_SUCCESSFUL_GETS ? !$isSuccessfulGet : true;
 
-        if ($shouldLogResponse) {
-            flee_bookeo_log($context . '_response', $responseMeta);
-        }
-
-        if ($httpCode < 200 || $httpCode >= 300) {
-            flee_bookeo_log_message($context . '_error', 'Bookeo API error - Full details for debugging', [
-                'request_method' => $method,
-                'request_url' => $url,
-                'request_headers' => $headers,
-                'request_body' => $body,
-                'response_code' => $httpCode,
-                'response_body' => $response,
-                'curl_error' => $curlError,
-            ]);
+        if ($shouldLog) {
+            flee_bookeo_log($logTag, $logMeta);
         }
 
         return [

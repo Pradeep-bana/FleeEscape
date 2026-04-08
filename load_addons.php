@@ -128,6 +128,7 @@ foreach ($products as $product) {
                 $opt_id   = $opt["id"] ?? "";
                 $opt_name = $opt["name"] ?? "";
                 $opt_desc = strip_tags($opt["description"] ?? "");
+                $opt_desc = html_entity_decode($opt_desc, ENT_QUOTES, 'UTF-8');
 
                 // Default values
                 $addonPrice = flee_get_bookeo_option_price($product, $opt_id, $slot);
@@ -221,6 +222,7 @@ foreach ($products as $product) {
         $opt_id   = $opt["id"] ?? "";
         $opt_name = $opt["name"] ?? "";
         $opt_desc = strip_tags($opt["description"] ?? "");
+        $opt_desc = html_entity_decode($opt_desc, ENT_QUOTES, 'UTF-8');
 
         $min = intval($opt["minValue"] ?? 0);
         $max = intval($opt["maxValue"] ?? 0);

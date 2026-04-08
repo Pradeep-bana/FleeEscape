@@ -1850,11 +1850,21 @@ document.addEventListener("DOMContentLoaded", function() {
     function setDateAll(dt) {
         const normalized = dt.setZone(LA_ZONE).startOf('day');
         const rawDate = normalized.toFormat('yyyy-MM-dd');
+        const targetYear = normalized.year; // Extract the year
         console.log(`setDateAll: Setting date to ${rawDate}`);
         $('.custom-datepicker_input').each(function() {
             const $input = $(this);
             // skip flatpickr-mobile if somehow present
             if ($input.hasClass('flatpickr-mobile')) return;
+            
+            if (this._flatpickr) {
+                this._flatpickr.setDate(rawDate, false);
+                const yearSelect = this._flatpickr.calendarContainer.querySelector(".flatpickr-year-dropdown");
+                if (yearSelect) {
+                    yearSelect.value = targetYear;
+                }
+            }
+            
             $input.data('rawdate', rawDate);
             $input.val(fmtDisplay(normalized));
             console.log(`setDateAll: Updated datepicker: product=${$input.attr('data-product') || $input.data('product')}, rawdate=${$input.data('rawdate')}`);

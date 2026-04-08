@@ -798,7 +798,7 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
- Modal for Removing Additional Guests 
+ <!-- Modal for Removing Additional Guests  -->
 <div id="deleteAdditionalGuestModal" class="custom-modal-overlay">
     <div class="custom-modal p-4 text-center" id="deleteAdditionalGuestBox">
         <h3 class="custom-modal-title">Remove Additional Guest</h3>
@@ -1573,6 +1573,60 @@ $(document).ready(function() {
         //         );
         //     }
         // });
+    });
+
+    // =========================================================================
+    // 1. PARTY PACKAGES: Additional Guests +/- Buttons (AJAX Safe)
+    // =========================================================================
+    $(document).on('click', '.guest-plus-btn, .guest-minus-btn', function(e) {
+        const $wrapper = $(this).closest('.guest-count-wrapper');
+        const addonPrice = parseFloat($wrapper.data('addon-price')) || 0;
+        const productId = $wrapper.data('product-id');
+
+        const $valueSpan = $('#guest-count-display-' + productId);
+        const $priceSpan = $('#extra-price-' + productId);
+
+        let count = parseInt($valueSpan.text(), 10) || 0;
+
+        if ($(this).hasClass('guest-plus-btn')) {
+            count++;
+        } else if ($(this).hasClass('guest-minus-btn') && count > 0) {
+            count--;
+        }
+
+        // Update numbers
+        $valueSpan.text(count);
+        $priceSpan.text((addonPrice * count).toFixed(2));
+    });
+
+    // =========================================================================
+    // 2. PARTY PACKAGES: Radio Button Slot Selection & Continue Button (AJAX Safe)
+    // =========================================================================
+    $(document).on('change', '.party_packages_card_new input[type="radio"][name^="lift-time-"]', function(e) {
+        const $card = $(this).closest('.party_packages_card_new');
+        
+        // 1. Disable all Party Package Continue buttons
+        $('.party_packages_card_new .continueBtn').addClass('disabled').prop('disabled', true);
+
+        // 2. Remove "slot-selected" class from all slot labels inside party packages
+        $('.party_packages_card_new .time_slot_group label').removeClass('slot-selected');
+
+        // 3. Highlight the newly selected slot label
+        const $label = $(this).closest('.time_slot_group').find('label');
+        if ($label.length) {
+            $label.addClass('slot-selected');
+        }
+
+        // 4. Enable the Continue button for THIS specific product
+        // Note: Party Packages include up to 8/16 guests in the base price, 
+        // so 0 additional guests is valid. Simply selecting a time slot is enough to continue.
+        const name = this.name;
+        const productId = name.replace('lift-time-', '');
+        const $btn = $('#continueBtn-' + productId);
+
+        if ($btn.length) {
+            $btn.removeClass('disabled').removeAttr('disabled');
+        }
     });
 
 });

@@ -382,43 +382,6 @@ if (!empty($productCode)) {
 ?>
 </div>
 
-
-
-
-<script>
-document.addEventListener('change', function(e) {
-    if (e.target.matches('input[type="radio"][name^="lift-time-"]')) {
-
-        // --- 1. Disable all Continue buttons ---
-        document.querySelectorAll('.continueBtn').forEach(btn => {
-            btn.classList.add('disabled');
-            btn.setAttribute('disabled', true);
-        });
-
-        // --- 2. Remove "slot-selected" class from all slot labels ---
-        document.querySelectorAll('.time_slot_group label').forEach(lbl => {
-            lbl.classList.remove('slot-selected');
-        });
-
-        // --- 3. Enable only the related Continue button ---
-        const name = e.target.name; // e.g. "lift-time-1234"
-        const productId = name.replace('lift-time-', '');
-        const btn = document.getElementById('continueBtn-' + productId);
-
-        if (btn) {
-            btn.classList.remove('disabled');
-            btn.removeAttribute('disabled');
-        }
-
-        // --- 4. Highlight the selected slot label ---
-        const label = e.target.closest('.time_slot_group')?.querySelector('label');
-        if (label) {
-            label.classList.add('slot-selected');
-        }
-    }
-});
-</script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 

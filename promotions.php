@@ -2015,9 +2015,20 @@ document.addEventListener("DOMContentLoaded", function() {
     function setDateAll(dt) {
         const normalized = dt.setZone(LA_ZONE).startOf('day');
         const rawDate = normalized.toFormat('yyyy-MM-dd');
+        const targetYear = normalized.year; // Extract the year
         console.log(`setDateAll: Setting date to ${rawDate}`);
         $('.custom-datepicker_input').each(function() {
             const $input = $(this);
+            if ($input.hasClass('flatpickr-mobile')) return;
+            
+            if (this._flatpickr) {
+                this._flatpickr.setDate(rawDate, false);
+                const yearSelect = this._flatpickr.calendarContainer.querySelector(".flatpickr-year-dropdown");
+                if (yearSelect) {
+                    yearSelect.value = targetYear;
+                }
+            }
+            
             $input.data('rawdate', rawDate);
             $input.val(fmtDisplay(normalized));
             console.log(
@@ -2791,7 +2802,7 @@ document.addEventListener("click", async (e) => {
         }
 
         
-        if (productCode === "41551LAM3LY18570132661" || productCode === "41551U9C4YX1857011E312") {
+        if (productCode === "41551LAM3LY18570132661") {
             loadCart();
             loadAddons();
             window.location.href = "<?= BASE_URL ?>/booking?add-ons-";

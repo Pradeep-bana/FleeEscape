@@ -134,7 +134,7 @@ try {
         </div>
 
         <div class="ca-rating">
-            <i class="bi bi-star-fill"></i> <?php echo $avgRating; ?> (<?php echo $reviewCount; ?> reviews)
+            <i class="bi bi-star-fill"></i> <?php echo $avgRating; ?> (<?php echo $row['reviewsCount']; ?> reviews)
         </div>
     </button>
 <?php
