@@ -13,7 +13,7 @@ require_once(__DIR__ . '/includes/bookeo_runtime.php');
 const API_BASE_URL = 'https://api.bookeo.com/v2/availability/slots';
 
 function logFlash($msg) {
-    flee_bookeo_log_message('fetch_slots_flash', $msg);
+    flee_system_log_message('fetch_slots_flash', $msg);
 }
 
 function isFlashProductCacheFresh(PDO $pdo, $requestedDate, $productId, DateTimeZone $losAngelesTz, DateTime $nowLocal)

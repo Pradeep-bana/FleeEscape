@@ -705,6 +705,10 @@ document.addEventListener("click", async function(e) {
 
             loadCart();
 
+            if (typeof loadAddons === "function") {
+                loadAddons();
+            }
+
             setTimeout(() => {
                 const cartCount = data.cartCount;
                 if (cartCount === 0) {
@@ -718,4 +722,37 @@ document.addEventListener("click", async function(e) {
         modal.style.display = "none";
     };
   }
+
+
+    // --- Helper to keep Promo UI in sync with Backend Cart State ---
+    window.syncPromoUI = async function() {
+        let currentCode = document.getElementById("giftCodeInput")?.value || "";
+        
+        try {
+            const res = await fetch("apply_code.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "code=" + encodeURIComponent(currentCode)
+            });
+            const data = await res.json();
+            
+            const codeEl = document.querySelector(".applied_code .code");
+            const removeBtn = document.querySelector(".applied_code_remove");
+            const giftInput = document.getElementById("giftCodeInput");
+
+            // If backend says the code is still valid (or auto-applied a new one)
+            if (data.valid_code && data.valid_code !== "") {
+                if(codeEl) codeEl.textContent = 'Promotion: ' + data.valid_code;
+                if(giftInput) giftInput.value = data.valid_code;
+                if(removeBtn) removeBtn.style.display = "block";
+            } else {
+                // Backend rejected it based on new quantities! Reset UI.
+                if(codeEl) codeEl.textContent = "Have a promotion or voucher code?";
+                if(giftInput) giftInput.value = "";
+                if(removeBtn) removeBtn.style.display = "none";
+            }
+        } catch (err) {
+            console.error("Promo sync error:", err);
+        }
+    };
 });

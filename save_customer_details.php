@@ -3,6 +3,7 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 include "admin/db.php";
+require_once(__DIR__ . '/includes/bookeo_runtime.php');
 
 header('Content-Type: application/json');
 
@@ -18,6 +19,13 @@ if (empty($firstName) || empty($lastName) || empty($email)) {
     echo json_encode(["status" => "error", "message" => "Missing required fields."]);
     exit;
 }
+
+flee_system_log_message('customer_details_entered', 'User submitted checkout form', [
+    'first_name' => $_POST['firstName'] ?? 'unknown',
+    'last_name' => $_POST['lastName'] ?? 'unknown',
+    'email' => $_POST['email'] ?? 'unknown',
+    'phone' => $_POST['phone'] ?? 'unknown'
+]);
 
 // 2. Save to Session
 $_SESSION['firstName'] = $firstName;

@@ -2,13 +2,13 @@
 /**
  * fetch_slots.php (Corrected, Normalized, and Optimized)
  */
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 header('Content-Type: application/json');
 
 include('admin/db.php');
 require_once('config.php');
-require_once(__DIR__ . '/includes/bookeo_runtime.php');
+require_once('includes/bookeo_runtime.php');
 
 const API_BASE_URL = 'https://api.bookeo.com/v2/availability/slots';
 
@@ -32,7 +32,7 @@ try {
 }
 
 function logMessage($msg) {
-    flee_bookeo_log_message('fetch_slots', $msg);
+    flee_system_log_message('fetch_slots', $msg);
 }
 
 function isCacheFreshForProducts(PDO $pdo, $requestedDate, array $productIds, DateTimeZone $losAngelesTz, DateTime $nowLocal)

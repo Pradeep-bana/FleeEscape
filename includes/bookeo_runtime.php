@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('FLEE_WEBSITE_SYSTEM_LOG_FILE')) {
+    define('FLEE_WEBSITE_SYSTEM_LOG_FILE', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'website_system.log');
+}
+
 if (!defined('FLEE_BOOKEO_RUNTIME')) {
     define('FLEE_BOOKEO_RUNTIME', true);
 }
@@ -74,6 +78,17 @@ if (!function_exists('flee_bookeo_client_ip')) {
     }
 }
 
+if (!function_exists('flee_bookeo_auto_clear_log')) {
+    function flee_bookeo_auto_clear_log($filePath) {
+        if (file_exists($filePath)) {
+            // Check if the log file was last modified on a previous day
+            if (date('Y-m-d', filemtime($filePath)) !== date('Y-m-d')) {
+                file_put_contents($filePath, ''); // Empty the file!
+            }
+        }
+    }
+}
+
 if (!function_exists('flee_bookeo_log')) {
     function flee_bookeo_log($context, array $fields = [])
     {
@@ -101,6 +116,7 @@ if (!function_exists('flee_bookeo_log')) {
         }
 
         $line = '[' . strtoupper((string)$context) . '] ' . implode(' | ', $parts) . PHP_EOL;
+        flee_bookeo_auto_clear_log(FLEE_BOOKEO_UNIVERSAL_LOG_FILE);
         file_put_contents(FLEE_BOOKEO_UNIVERSAL_LOG_FILE, $line, FILE_APPEND | LOCK_EX);
     }
 }
@@ -110,6 +126,40 @@ if (!function_exists('flee_bookeo_log_message')) {
     {
         $fields['message'] = $message;
         flee_bookeo_log($context, $fields);
+    }
+}
+
+if (!function_exists('flee_system_log')) {
+    function flee_system_log($context, array $fields = [])
+    {
+        $la = flee_bookeo_now_la()->format('Y-m-d h:i:s A T');
+        if (session_status() === PHP_SESSION_NONE) { session_start(); }
+        $base = [
+            'la_time' => $la,
+            'ip' => flee_bookeo_client_ip(),
+            'session_id' => session_id(),
+            'script' => $_SERVER['SCRIPT_NAME'] ?? basename($_SERVER['PHP_SELF'] ?? ''),
+        ];
+
+        $merged = array_merge($base, $fields);
+        $parts = [];
+        foreach ($merged as $key => $value) {
+            if ($value === null || $value === '') continue;
+            if (is_array($value) || is_object($value)) $value = json_encode($value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            $parts[] = $key . '=' . str_replace(["\r", "\n"], [' ', ' '], (string)$value);
+        }
+
+        $line = '[' . strtoupper((string)$context) . '] ' . implode(' | ', $parts) . PHP_EOL;
+        flee_bookeo_auto_clear_log(FLEE_WEBSITE_SYSTEM_LOG_FILE);
+        file_put_contents(FLEE_WEBSITE_SYSTEM_LOG_FILE, $line, FILE_APPEND | LOCK_EX);
+    }
+}
+
+if (!function_exists('flee_system_log_message')) {
+    function flee_system_log_message($context, $message, array $fields = [])
+    {
+        $fields['message'] = $message;
+        flee_system_log($context, $fields);
     }
 }
 
@@ -163,7 +213,7 @@ if (!function_exists('flee_bookeo_set_throttle')) {
     {
         $resumeAt = time() + max(0, (int)$retryAfterSeconds) + 2;
         file_put_contents(FLEE_BOOKEO_THROTTLE_FILE, (string)$resumeAt, LOCK_EX);
-        flee_bookeo_log_message($context, 'Global Bookeo throttle engaged', [
+        flee_system_log_message($context, 'Global Bookeo throttle engaged', [
             'retry_after_seconds' => (int)$retryAfterSeconds,
             'resume_after_seconds' => max(0, $resumeAt - time()),
         ]);
@@ -257,7 +307,7 @@ if (!function_exists('flee_bookeo_track_error_burst')) {
         }
 
         flee_bookeo_set_throttle($cooldown, $context . '_error_burst');
-        flee_bookeo_log_message($context . '_error_burst', 'Global Bookeo throttle engaged because of a recent error burst', [
+        flee_system_log_message($context . '_error_burst', 'Global Bookeo throttle engaged because of a recent error burst', [
             'http_code' => (int)$httpCode,
             'last_30s_errors' => $last30,
             'last_120s_errors' => $last120,
@@ -282,7 +332,7 @@ if (!function_exists('flee_bookeo_request')) {
 
         if (empty($options['skip_throttle']) && flee_bookeo_is_throttled()) {
             $waitSeconds = flee_bookeo_retry_after_seconds();
-            flee_bookeo_log($context . '_THROTTLED', [
+            flee_system_log($context . '_THROTTLED', [
                 'endpoint' => $url,
                 'wait_seconds' => $waitSeconds,
             ]);
@@ -331,7 +381,7 @@ if (!function_exists('flee_bookeo_request')) {
             flee_bookeo_release_lock($globalLockHandle);
             $globalLockHandle = false;
         } else {
-            flee_bookeo_log($context . '_LOCK_WARNING', [
+            flee_system_log($context . '_LOCK_WARNING', [
                 'warning' => 'Global outbound rate-limit lock was not acquired before Bookeo request',
                 'endpoint' => $url,
             ]);

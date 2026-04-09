@@ -12,7 +12,7 @@ require_once(__DIR__ . '/includes/bookeo_runtime.php');
 $seenErrors = []; 
 
 function logMsg($msg) {
-    flee_bookeo_log_message('save_session', $msg);
+    flee_system_log_message('save_session', $msg);
 }
 
 // --- Unique error handler ---

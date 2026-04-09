@@ -14,7 +14,7 @@ use Square\Models\Money;
 use Square\Models\CreatePaymentRequest;
 
 function logMsg($msg) {
-  flee_bookeo_log_message('process_booking', $msg);
+  flee_system_log_message('process_booking', $msg);
 }
 
 function normalizeCodeList($codes) {
@@ -560,10 +560,17 @@ try {
   // Bookeo sends it now because we added notifyCustomer=true above.
   // ------------------------------------------------------------------
 
+  flee_system_log_message('booking_success', 'Booking finalized successfully', [
+      'booking_number' => $bookingNumber
+  ]);
+
   echo json_encode(["status" => "success", "redirectUrl" => "booking-confirmation.php"]);
 
 } catch (Exception $e) {
-  logMsg("Critical Error: " . $e->getMessage());
+  // logMsg("Critical Error: " . $e->getMessage());
+  flee_system_log_message('booking_failed', 'Failed to process booking', [
+      'error_reason' => $e->getMessage()
+  ]);
   echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 } 
 ?>

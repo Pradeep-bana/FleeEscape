@@ -19,7 +19,7 @@ if (function_exists('fastcgi_finish_request')) {
 }
 
 if (!$payload) {
-    flee_bookeo_log_message('api_bookeo_webhook_invalid', 'Invalid JSON payload received', [
+    flee_system_log_message('api_bookeo_webhook_invalid', 'Invalid JSON payload received', [
         'raw_payload' => $input,
     ]);
     exit;
@@ -40,7 +40,7 @@ if ($rawDate) {
         $dt->setTimezone(new DateTimeZone('America/Los_Angeles'));
         $slotDate = $dt->format('Y-m-d');
     } catch (Exception $e) {
-        flee_bookeo_log_message('api_bookeo_webhook_date_error', 'Unable to parse webhook start time', [
+        flee_system_log_message('api_bookeo_webhook_date_error', 'Unable to parse webhook start time', [
             'raw_date' => $rawDate,
             'error' => $e->getMessage(),
         ]);
@@ -60,7 +60,7 @@ if (($payload['type'] ?? null) === 'deleted') {
     $statusLog = "SEATBLOCK_UPDATE";
 }
 
-flee_bookeo_log('api_bookeo_webhook_received', [
+flee_system_log_message('api_bookeo_webhook_received', [
     'status' => $statusLog,
     'event_id' => $eventId,
     'product_id' => $productId,
@@ -83,7 +83,7 @@ try {
         ]);
     }
 } catch (PDOException $e) {
-    flee_bookeo_log_message('api_bookeo_webhook_db_error', 'Webhook DB log insert failed', [
+    flee_system_log_message('api_bookeo_webhook_db_error', 'Webhook DB log insert failed', [
         'error' => $e->getMessage(),
     ]);
 }
@@ -105,20 +105,20 @@ if ($productId && $slotDate && isset($pdo)) {
         $stmt->execute([$productId, $slotDate]);
         flee_bookeo_clear_day_cache($slotDate);
 
-        flee_bookeo_log_message('api_bookeo_webhook_cache_cleared', 'Expired cache rows for webhook event', [
+        flee_system_log_message('api_bookeo_webhook_cache_cleared', 'Expired cache rows for webhook event', [
             'product_id' => $productId,
             'slot_date' => $slotDate,
             'affected_rows' => $affected,
         ]);
     } catch (Exception $e) {
-        flee_bookeo_log_message('api_bookeo_webhook_cache_error', 'Cache invalidation failed', [
+        flee_system_log_message('api_bookeo_webhook_cache_error', 'Cache invalidation failed', [
             'error' => $e->getMessage(),
             'product_id' => $productId,
             'slot_date' => $slotDate,
         ]);
     }
 } else {
-    flee_bookeo_log_message('api_bookeo_webhook_cache_skipped', 'Cache not cleared because webhook lacked identifiers', [
+    flee_system_log_message('api_bookeo_webhook_cache_skipped', 'Cache not cleared because webhook lacked identifiers', [
         'product_id' => $productId,
         'slot_date' => $slotDate,
     ]);

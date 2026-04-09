@@ -38,7 +38,7 @@ if (!function_exists('flee_cart_delete_bookeo_hold')) {
             deleteBookeoHold($holdId, $apiKey, $secretKey);
             return;
         }
-        flee_bookeo_log_message('cart_session_hold_delete_skipped', 'deleteBookeoHold helper was not available', [
+        flee_system_log_message('cart_session_hold_delete_skipped', 'deleteBookeoHold helper was not available', [
             'hold_id' => $holdId,
         ]);
     }

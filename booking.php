@@ -3276,8 +3276,9 @@ $(document).on("change", ".qty-input", function () {
         success: function (response) {
             console.log("Hold Updated:", response);
 
-            // Reload cart summary section only
-            $("#summary-output").load("cart_view.php");
+            window.syncPromoUI().then(() => {
+                $("#summary-output").load("cart_view.php");
+            })
         }
     });
 });
@@ -3489,15 +3490,16 @@ async function handleAddButtonClick(evt) {
                 body: "code=" + encodeURIComponent(currentCode)
             });
             const refreshJson = await refreshResp.json();
-            if (refreshJson.status !== "success") {
-                throw new Error(refreshJson.message || "Failed to refresh hold");
+            
+            // If the promo code was rejected because of the new addon rules, 
+            // alert the user, but DO NOT throw an error. Let the cart reload!
+            if (refreshJson.status !== "success" && currentCode !== "") {
+                 Toastify({ text: "Code removed: Not valid with this condition.", duration: 4000, backgroundColor: "orange" }).showToast();
             }
 
+            // Always sync the promo UI and reload the cart, even if the code was dropped!
+            if (typeof window.syncPromoUI === "function") await window.syncPromoUI();
             if (typeof loadCart === "function") loadCart();
-
-            // If your flow expects to reload addons (e.g. availability changed),
-            // uncomment next line to refresh addon list:
-            // if (typeof loadAddons === "function") loadAddons();
 
             // Optionally give visual feedback
             btn.textContent = "Added";
@@ -3863,10 +3865,8 @@ $(document).on('change', '.update-additional-guest', function() {
         dataType: 'json',
         success: function(response) {
             if (response.status === 'success') {
-                // Reload the cart view to update totals and display
-                $("#summary-output").load("cart_view.php", function() {
-                    // Optional: Toast message
-                    // Toastify({ text: "Guest count updated", duration: 2000, backgroundColor: "#00d4ff" }).showToast();
+                window.syncPromoUI().then(() => {
+                    $("#summary-output").load("cart_view.php");
                 });
             } else {
                 alert("Failed to update guest count.");
@@ -3902,6 +3902,8 @@ $(document).on('change', '.update-addon-qty', async function() {
         const json = await resp.json();
 
         if (json.status === 'success') {
+            await window.syncPromoUI();
+
             // 2. Sync with Bookeo using apply_code.php (matches "add to cart" logic)
             let currentCode = document.getElementById("giftCodeInput")?.value || "";
             await fetch("apply_code.php", {

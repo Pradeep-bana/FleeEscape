@@ -34,7 +34,7 @@ if (!function_exists('flee_apply_write_log')) {
     // (Your existing function, unchanged)
     function flee_apply_write_log($context, $message)
     {
-        flee_bookeo_log_message('apply_code_' . strtolower(str_replace(' ', '_', $context)), $message);
+        flee_system_log_message('apply_code_' . strtolower(str_replace(' ', '_', $context)), $message);
     }
 }
 

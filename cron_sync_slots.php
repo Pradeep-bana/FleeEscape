@@ -21,7 +21,7 @@ $losAngelesTz = new DateTimeZone('America/Los_Angeles');
 $utcTz        = new DateTimeZone('UTC');
 
 function log_message($message) {
-    flee_bookeo_log_message('cron_sync_slots', $message);
+    flee_system_log_message('cron_sync_slots', $message);
 }
 
 function is_api_throttled() {
