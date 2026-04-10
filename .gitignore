@@ -17,3 +17,5 @@ vendor/
 # Any log files
 *.log
 config.php
+bookeo_error_history.json
+bookeo_last_call_time.txt

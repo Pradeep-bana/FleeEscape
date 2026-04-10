@@ -246,10 +246,10 @@ if (!function_exists('flee_apply_resolve_active_promo')) {
             $promoIsLocked = true;
         } elseif ($escapeCount >= 3) {
             $activePromoCode = "BMSM_20";
-            $promoIsLocked = true;
+            $promoIsLocked = false;
         } elseif ($escapeCount == 2) {
             $activePromoCode = "BMSM_10";
-            $promoIsLocked = true;
+            $promoIsLocked = false;
         } elseif ($hasPromotionPage) {
             $promoIsLocked = true;
         }
@@ -259,7 +259,7 @@ if (!function_exists('flee_apply_resolve_active_promo')) {
                 $itemPromo = trim((string)($item['promo_code'] ?? ''));
                 if ($itemPromo !== '' && stripos($itemPromo, 'BMSM') !== false) {
                     $activePromoCode = $itemPromo;
-                    $promoIsLocked = true;
+                    $promoIsLocked = false;
                     break;
                 }
             }
@@ -417,8 +417,55 @@ if (!function_exists('run_apply_code')) {
             $stmtHold->execute([':sid' => $sid, ':event_id' => $eventId]);
             $oldHoldRow = $stmtHold->fetch(PDO::FETCH_ASSOC);
 
+            // Fetch the options early so we can check if they changed
+            $options = flee_apply_build_options($item);
+
+            // =========================================================
+            // OPTIMIZATION: ANTI-LOOP (Check Before We Delete)
+            // =========================================================
+            $skipApiCall = false;
+            $oldJson = null;
+
+            $guessedPromo = null;
+            $simulatedVoucherPool = $voucherPool;
+
+            if ($promoToApply) {
+                $guessedPromo = $promoToApply;
+            } elseif (!empty($simulatedVoucherPool)) {
+                $guessedPromo = array_shift($simulatedVoucherPool);
+            }
+            
+            $intendedVouchers = !empty($simulatedVoucherPool) ? implode(',', $simulatedVoucherPool) : null;
+
             if ($oldHoldRow) {
                 $oldJson = json_decode($oldHoldRow['response_json'], true);
+                $oldPromo = $oldJson['_internal_promo'] ?? null;
+                $oldVouchers = $oldJson['_internal_vouchers'] ?? null;
+                
+                // Reliably get the quantity we manually saved last time
+                $oldQty = (int)($oldJson['_internal_qty'] ?? 0);
+                
+                // Hash the options to see if addons/additional guests changed
+                $oldOptionsHash = $oldJson['_internal_options_hash'] ?? null;
+                $currentOptionsHash = md5(json_encode($options));
+
+                // If Promo, Vouchers, Quantity, AND Options are all identical, THEN skip!
+                if ($oldPromo === $guessedPromo && $oldVouchers === $intendedVouchers && $oldQty === $qty && $oldOptionsHash === $currentOptionsHash) {
+                    $skipApiCall = true;
+                }
+            }
+
+            if ($skipApiCall) {
+                flee_apply_update_cart_row($pdo, $item, $guessedPromo, $oldJson);
+                $itemsUpdated++;
+                $voucherPool = [];
+                $promoToApply = $activePromoCode;
+                continue; 
+            }
+            // =========================================================
+
+            // If we reach here, we actually need to talk to Bookeo. Delete the old hold.
+            if ($oldHoldRow) {
                 if (!empty($oldJson['id'])) {
                     deleteBookeoHold($oldJson['id'], $apiKey, $secretKey);
                 }
@@ -454,14 +501,41 @@ if (!function_exists('run_apply_code')) {
             $res = callBookeoHold($payload, $apiKey, $secretKey);
 
             // Handle 400 Error (Wrong Guess)
-            if ($res['code'] === 400 && $guessedPromo) {
-                // The first code wasn't a promo. Move it to the voucher list and try one more time.
-                unset($payload['promotionCodeInput']);
-                array_unshift($voucherPool, $guessedPromo);
-                $payload['giftVoucherCodeInput'] = implode(',', $voucherPool);
+            if ($res['code'] === 400) {
                 
-                usleep(250000);
-                $res = callBookeoHold($payload, $apiKey, $secretKey); // Call 3
+                // Case A: We guessed the user's first code was a promo, but Bookeo rejected it.
+                if ($guessedPromo && empty($promoToApply)) {
+                    unset($payload['promotionCodeInput']);
+                    array_unshift($voucherPool, $guessedPromo);
+                    $payload['giftVoucherCodeInput'] = implode(',', $voucherPool);
+                    
+                    usleep(250000);
+                    $res = callBookeoHold($payload, $apiKey, $secretKey); // Call 3
+                } 
+                // Case B: We used the old DB promo, and Bookeo rejected the user's new code as a voucher.
+                // This means the user is likely trying to OVERRIDE the old promo with a new one!
+                elseif ($promoToApply && !$promoIsLocked && !empty($voucherPool)) {
+                    $potentialNewPromo = array_shift($voucherPool);
+                    $payload['promotionCodeInput'] = $potentialNewPromo;
+                    
+                    if (!empty($voucherPool)) {
+                        $payload['giftVoucherCodeInput'] = implode(',', $voucherPool);
+                    } else {
+                        unset($payload['giftVoucherCodeInput']);
+                    }
+                    
+                    usleep(250000);
+                    $res = callBookeoHold($payload, $apiKey, $secretKey); // Call 3
+
+                    // If it worked, permanently update the active promo for the rest of the cart!
+                    if ($res['code'] === 201) {
+                        $activePromoCode = $potentialNewPromo; 
+                        $promoToApply = $potentialNewPromo;
+                    } else {
+                        // Put it back in case the Strict Abort needs it for logging
+                        array_unshift($voucherPool, $potentialNewPromo);
+                    }
+                }
             }
 
             // --- STRICT ABORT ---
@@ -492,7 +566,20 @@ if (!function_exists('run_apply_code')) {
                 unset($_SESSION['giftCode']);
                 flee_apply_sync_session_cart($pdo, $sid);
                 
-                $errorMsg = ($res['code'] === 429) ? 'System Busy - Please wait a moment' : 'Invalid promo/voucher code';
+                // Check if Bookeo sent a specific error message (like "No more seats available")
+                $bookeoErrorMessage = $res['data']['message'] ?? $cleanRes['data']['message'] ?? null;
+
+                if ($res['code'] === 429) {
+                    $errorMsg = 'System Busy - Please wait a moment.';
+                } elseif ($res['code'] === 403 && $bookeoErrorMessage) {
+                    // Pass the actual Bookeo error directly to the user interface
+                    $errorMsg = $bookeoErrorMessage; 
+                }elseif ($res['code'] === 400 && $bookeoErrorMessage) {
+                    $errorMsg = 'Invalid promo/voucher code'; 
+                }
+                else {
+                    $errorMsg = 'Something went wrong.';
+                }
                 return [
                     'status' => 'error',
                     'message' => $errorMsg,
@@ -510,6 +597,8 @@ if (!function_exists('run_apply_code')) {
             
             $finalData['_internal_promo'] = $appliedPromo;
             $finalData['_internal_vouchers'] = $appliedVouchers;
+            $finalData['_internal_options_hash'] = md5(json_encode($options));
+            $finalData['_internal_qty'] = $qty; // <--- This officially stops the loop!
 
             $stmtInsert = $pdo->prepare("
                 INSERT INTO tbl_bookeo_holds (session_id, event_id, game_id, response_json, created_at)
