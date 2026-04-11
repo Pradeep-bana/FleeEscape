@@ -952,8 +952,7 @@ try {
 </section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     console.log("dateInput element:", document.getElementById("Book-Prison-Date"));

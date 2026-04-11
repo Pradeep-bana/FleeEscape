@@ -2419,6 +2419,16 @@ async function refreshSessionValues() {
     }
 }
 
+async function silentlyLogToServer(message, context) {
+    try {
+        let fd = new FormData();
+        fd.append("message", message);
+        fd.append("context", context);
+        await fetch("log_js_error.php", { method: "POST", body: fd });
+    } catch (e) {
+        console.error("Logging failed", e);
+    }
+}
 
 /* ---------------------------------------------------------
    Square Payment Initialization
@@ -2429,10 +2439,10 @@ async function initializeCard(payments) {
         await card.attach('#card-container');
         return card;
     } catch (err) {
-        throw new Error(`Card initialization failed: ${err.message}`);
+        silentlyLogToServer(`Square Card Init Failed: ${err.message}`, 'Square_Payments');
+        throw new Error("Our payment gateway is currently unavailable. Please try again later.");
     }
 }
-
 
 /* ---------------------------------------------------------
    CREATE PAYMENT — USE SESSION VALUES
@@ -2662,7 +2672,8 @@ try {
 
 
     } catch (err) {
-        showError("Initialization Failed: " + err.message);
+        silentlyLogToServer(`General Init Failed: ${err.message}`, 'Square_Main');
+        showError("We are experiencing issues connecting to the payment processor. Please try again later.");
     }
 });
 
@@ -3347,7 +3358,7 @@ document.querySelector(".btn_apply").addEventListener("click", function () {
             document.querySelector(".applied_code").style.display = "block";
         } else {
             // Error Message
-            Toastify({ text: data.message + " ❌", duration: 4000, backgroundColor: "red" }).showToast();
+            Toastify({ text: data.message, duration: 4000, backgroundColor: "red" }).showToast();
             
             // Revert UI Text
             document.querySelector(".applied_code .code").textContent = "Have a promotion or voucher code?";

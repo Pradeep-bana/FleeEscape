@@ -321,7 +321,7 @@ try {
         <div class="item">
             <div class="room-card">
                 <div class="room-image haunted-hotel check kaka"
-                    style="background-image: url('<?= BASE_URL ?>/admin/uploads/<?php echo htmlspecialchars($room['thumbnail']); ?>');">
+                    style="background-image: url('<?= BASE_URL ?>admin/uploads/<?php echo htmlspecialchars($room['thumbnail']); ?>');">
                 </div>
 
                 <?php if (!empty($room['label'])): ?>
@@ -401,7 +401,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
     <div class="item">
         <div class="room-card">
-            <div class="room-image haunted-hotel" style="background-image: url('<?= BASE_URL ?>/admin/<?php echo $bannerImage; ?>');"> 
+            <div class="room-image haunted-hotel" style="background-image: url('<?= BASE_URL ?>admin/<?php echo $bannerImage; ?>');"> 
             </div>
            
             <div class="room-content">

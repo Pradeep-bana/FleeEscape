@@ -66,11 +66,6 @@ function loadCart() {
   fetch("cart_view.php?live=1")
     .then(res => res.text())
     .then(html => {
-      // Check if backend says empty
-    //   if (!html.includes("data-totals")) {
-    //     window.location.href = "<?= BASE_URL ?>/booking.php?choose-experience";
-    //     return;
-    //   }
 
       document.getElementById("summary-output").innerHTML = html;
 

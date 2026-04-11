@@ -2547,7 +2547,7 @@ function resetSection1Date() {
                         if (modal) modal.hide();
 
                         // ✅ Move to next step
-                  window.location.href = "<?= BASE_URL ?>/booking?add-ons-";
+                  window.location.href = "<?= BASE_URL ?>booking?add-ons-";
                     } else {
                         showError("❌ Something went wrong while saving selection.");
                         console.error(data);
@@ -2642,11 +2642,6 @@ function loadCart() {
     fetch("cart_view.php?live=1")
         .then(res => res.text())
         .then(html => {
-            // if (html.includes("data-totals") === false) {
-            //     // Redirect if cart empty
-            //     window.location.href = "<?= BASE_URL ?>/booking.php?choose-experience";
-            //     return;
-            // }
 
             // ✅ Only determine cart count (no rendering)
             const tempDiv = document.createElement("div");
@@ -2727,7 +2722,7 @@ if (e.target.classList.contains("continue_nex_step") && !e.target.disabled) {
         if (response.status === "success") {
             loadCart();
               loadAddons();
-            window.location.href = "<?= BASE_URL ?>/booking?add-ons-";
+            window.location.href = "<?= BASE_URL ?>booking?add-ons-";
         }
     })
     .catch(err => {
@@ -2805,7 +2800,7 @@ document.addEventListener("click", async (e) => {
         if (productCode === "41551LAM3LY18570132661") {
             loadCart();
             loadAddons();
-            window.location.href = "<?= BASE_URL ?>/booking?add-ons-";
+            window.location.href = "<?= BASE_URL ?>booking?add-ons-";
             return;
         }
         const modalEl = document.getElementById("partymodalform");
@@ -2873,7 +2868,7 @@ document.addEventListener("click", async (e) => {
                     .then(res => res.json())
                     .then(data => {
                         if (!data.cart || data.cart.length === 0) {
-                            window.location.href = "<?= BASE_URL ?>/booking.php?choose-experience";
+                            window.location.href = "<?= BASE_URL ?>booking.php?choose-experience";
                         }
                     });
             }, 300);
@@ -2898,7 +2893,7 @@ document.addEventListener("click", async (e) => {
     </div>
 </div>
 
-<div id="stepLoader" aria-hidden="true">
+<div id="stepLoader" aria-hidden="true" style="display: none;">
     <div class="step-loader-content">
         <div class="step-loader-circle" role="status" aria-label="Loading"></div>
         <p>Please wait...</p>

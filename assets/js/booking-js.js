@@ -292,9 +292,20 @@ function loadCart() {
 
             // *** NEW: Handle Timer Logic Here ***
             if (cartCount > 0) {
-                startPersistentTimer(); // <--- Resume or Start Timer
+                startPersistentTimer();
+                fetch("check_addons.php", { cache: "no-store" })
+                    .then(r => r.json())
+                    .then(d => {
+                        if (typeof setAddonStepEnabled === "function") {
+                            setAddonStepEnabled(d.has_addons);
+                        }
+                    }).catch(()=>{});
+
             } else {
-                stopPersistentTimer();  // <--- Safety check
+                stopPersistentTimer();
+                if (typeof setAddonStepEnabled === "function") {
+                    setAddonStepEnabled(true);
+                }
             }
             setCartLinksByCount(cartCount);
             document.querySelectorAll('.cart-count').forEach(badge => {
@@ -703,18 +714,14 @@ document.addEventListener("click", async function(e) {
             loading.style.display = "none";
             modalBox.classList.remove("loading-mode");
 
-            loadCart();
-
-            if (typeof loadAddons === "function") {
-                loadAddons();
-            }
-
-            setTimeout(() => {
-                const cartCount = data.cartCount;
-                if (cartCount === 0) {
-                    window.location.href = "booking.php?choose-experience";
+            if (data.cartCount === 0) {
+                window.location.href = "booking.php?escape-room";
+            } else {
+                loadCart();
+                if (typeof loadAddons === "function") {
+                    loadAddons();
                 }
-            }, 300);
+            }
         });
     };
 

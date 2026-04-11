@@ -66,7 +66,7 @@ if (!function_exists('flee_is_weekend_slot')) {
         $dayOfWeek = (int)$date->format('N');
         $hour = (int)$date->format('G');
 
-        if ($dayOfWeek >= 5) {
+        if ($dayOfWeek >= 6) {
             return true;
         }
 

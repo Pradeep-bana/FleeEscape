@@ -148,8 +148,10 @@ $vrGames = $stmtVR->fetchAll(PDO::FETCH_ASSOC);
                                             ?>
                                             
                                             <a href="<?php echo $redirectUrl; ?>" class="cartUrl">
-                                              <i class="fa-solid fa-cart-plus"></i>
-                                              <span class="cart-count"><?php echo $cartCount; ?></span>
+                                                <i class="fa-solid fa-cart-plus"></i>
+                                                <span class="cart-count" style="display: <?php echo ($cartCount > 0) ? 'inline-block' : 'none'; ?>;">
+                                                    <?php echo $cartCount; ?>
+                                                </span>
                                             </a>
                                         </div>
                                         <button id="menu-toggle" class="nav-toggle" aria-label="Open Menu">
@@ -320,8 +322,10 @@ $vrGames = $stmtVR->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                         
                         <a href="<?php echo $redirectUrl; ?>" class="cartUrl">
-                          <i class="fa-solid fa-cart-plus"></i>
-                          <span class="cart-count"><?php echo $cartCount; ?></span>
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span class="cart-count" style="display: <?php echo ($cartCount > 0) ? 'inline-block' : 'none'; ?>;">
+                                <?php echo $cartCount; ?>
+                            </span>
                         </a>
                         </div>
 

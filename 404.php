@@ -8,7 +8,7 @@ include 'config.php';
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 - Page Not Found</title>
 
-<link rel="icon" href="<?= BASE_URL ?>/assets/images/icon.png" type="image/gif" sizes="16x16">
+<link rel="icon" href="<?= BASE_URL ?>assets/images/icon.png" type="image/gif" sizes="16x16">
 
 <style>
     body {

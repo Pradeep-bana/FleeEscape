@@ -327,7 +327,7 @@ try {
     $room = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($room) {
-        $story = !empty($room['story']) ? htmlspecialchars($room['story']) : 'Story coming soon.';
+        $story = !empty($room['story']) ? $room['story'] : 'Story coming soon.';
 ?>
 <div class="Room_Detail_overview_tabs p-4" data-aos="zoom-in-up">
     <p class="mt-3"><?php echo nl2br($story); ?></p>
@@ -826,8 +826,7 @@ try {
 </section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const { DateTime } = luxon;

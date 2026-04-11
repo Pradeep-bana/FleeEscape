@@ -135,7 +135,7 @@ table td {
     <!-- HEADER -->
     <div class="header-flex">
         <div class="header-left">
-            <img src="<?= BASE_URL ?>/assets/images/logo.png" loading="lazy"  decoding="async" >
+            <img src="<?= BASE_URL ?>assets/images/logo.png" loading="lazy"  decoding="async" >
         </div>
         <div class="header-right">
             <b>FLEE Escape Rooms and Zero Latency VR Seattle</b><br>

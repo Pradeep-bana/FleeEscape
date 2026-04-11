@@ -857,6 +857,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script src="assets/js/booking-js-party.js"></script>
 <?php include('includes/footer.php'); ?>
-
-<script src="assets/js/booking-js-party.js"></script>
-<?php include('includes/footer.php'); ?>

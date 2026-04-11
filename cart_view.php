@@ -313,6 +313,9 @@ foreach ($cart as $index => $item) {
                 foreach ($product['numberOptions'] as $opt) {
                     if ($opt['id'] === $item['addon_opt_id']) {
                         $min = (int)($opt['minValue'] ?? 1);
+                        if ($min === 0) {
+                            $min = 1;
+                        }
                         $max = (int)($opt['maxValue'] ?? 10);
                         break;
                     }

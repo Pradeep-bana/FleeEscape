@@ -561,7 +561,7 @@ try {
   // ------------------------------------------------------------------
 
   flee_system_log_message('booking_success', 'Booking finalized successfully', [
-      'booking_number' => $bookingNumber
+      'booking_number' => $bookingNum
   ]);
 
   echo json_encode(["status" => "success", "redirectUrl" => "booking-confirmation.php"]);
