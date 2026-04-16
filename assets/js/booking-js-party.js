@@ -227,6 +227,8 @@ if (response.status === "error") {
 
     // success path
     console.log(response.message);
+    localStorage.removeItem('cartTimerExpired');
+    localStorage.removeItem('cartTimerEnd');
     loadCart();
     if (typeof loadCart === "function") loadCart();
     loadAddons();
@@ -306,6 +308,9 @@ async function handleContinueNextStepParty(e) {
         errorModal.show();
         return;
     }
+
+    localStorage.removeItem('cartTimerExpired');
+    localStorage.removeItem('cartTimerEnd');
    
     if (productCode === "41551LAM3LY18570132661") {
         if (typeof loadCart === "function") loadCart();
@@ -383,6 +388,8 @@ document.addEventListener("click", async function(e) {
             }
 
             if (res.status === "success") {
+                localStorage.removeItem('cartTimerExpired');
+                localStorage.removeItem('cartTimerEnd');
                 loadCart();
                 changeStep(1);
             }

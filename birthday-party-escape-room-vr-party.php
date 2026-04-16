@@ -20,11 +20,6 @@ include('includes/header.php');
 </style>
 <!--<link rel="stylesheet" href="./assets/css/birthday.css">-->
 <?php 
-include('admin/db.php');
-
-$stmt = $pdo->query("SELECT * FROM tbl_birthday_party_page LIMIT 1");
-$data = $stmt->fetch(PDO::FETCH_ASSOC);
-
 // Convert comma-separated images into array
 $sliderImages = array_filter(array_map('trim', explode(',', $data['thumbnail'])));
 ?>
@@ -428,11 +423,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         </div>
     </div>
   <div class="container Why_Choose_VR">
-      <?php
-      include('admin/db.php');
-
-$stmt = $pdo->query("SELECT * FROM tbl_birthday_party_page LIMIT 1");
-$data = $stmt->fetch(PDO::FETCH_ASSOC); ?>
       
     <div class="section_heading_page">
 

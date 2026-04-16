@@ -582,7 +582,7 @@ select.Boo_Prison_Escape_select {
     font-size: 9px;
     width: 15px;
     height: 15px;
-    display: flex!important;
+    display: flex;
     justify-content: center;
     align-items: anchor-center;
     line-height: 15px;

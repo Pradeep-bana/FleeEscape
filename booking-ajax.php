@@ -61,13 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Send Email
         if (mail($to, $email_subject, $htmlContent, $headers)) {
-            echo json_encode(["status" => "success", "message" => "Booking submitted and email sent successfully!"]);
+            echo json_encode(["status" => "success", "message" => "Message Sent. Someone will be in touch shortly."]);
         } else {
-            echo json_encode(["status" => "warning", "message" => "Booking saved but failed to send email."]);
+            echo json_encode(["status" => "warning", "message" => "Failed to send mail. Please try again"]);
         }
 
     } else {
-        echo json_encode(["status" => "error", "errors" => ["Failed to save booking."]]);
+        echo json_encode(["status" => "error", "errors" => ["Something went wrong. Please try again"]]);
     }
 }
 ?>

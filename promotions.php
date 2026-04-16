@@ -2720,6 +2720,8 @@ if (e.target.classList.contains("continue_nex_step") && !e.target.disabled) {
         }
 
         if (response.status === "success") {
+            localStorage.removeItem('cartTimerExpired');
+            localStorage.removeItem('cartTimerEnd');
             loadCart();
               loadAddons();
             window.location.href = "<?= BASE_URL ?>booking?add-ons-";
@@ -2796,6 +2798,8 @@ document.addEventListener("click", async (e) => {
             return; // Bilkul ruk jao yahi pe
         }
 
+        localStorage.removeItem('cartTimerExpired');
+        localStorage.removeItem('cartTimerEnd');
         
         if (productCode === "41551LAM3LY18570132661") {
             loadCart();

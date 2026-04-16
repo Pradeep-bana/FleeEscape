@@ -2856,7 +2856,9 @@ function showCallPopup(time) {
                     value="<?= htmlspecialchars($_SESSION['giftCode'] ?? '') ?>">
                 </form>
                 <div>
-                    <p>To use multiple coupons, separate them with a comma. <br> Ex. ABC, DEF</p>
+                    <p>To use multiple gift certificates, separate them with a comma. <br> Ex. ABC, DEF</p>
+                    <p>When using promo code with a gift certificate, pass the promo code first followed by the gift certificate code
+                    <br>Ex Promo_code, Gift_code</p>
                 </div>
             </div>
             <div class="all_button_main_header text-end" style="background-size: cover; background-repeat: no-repeat;">
@@ -3558,7 +3560,9 @@ document.addEventListener("DOMContentLoaded", function () {
    If you already have loadAddons declared elsewhere, update it to call setInitialVisibility()
    after replacing the .add_on_section HTML. Example replacement below (drop-in): */
 function loadAddons() {
-    fetch("load_addons.php")
+    // 1. MUST HAVE 'return' so the browser waits for the promise
+    // 2. MUST HAVE cache-buster '?t=' + Date.now() to fix mobile Chrome/Safari
+    return fetch("load_addons.php?t=" + Date.now(), { cache: "no-store" })
         .then(res => res.text())
         .then(html => {
             const container = document.querySelector(".add_on_section");
@@ -3570,8 +3574,9 @@ function loadAddons() {
             });
 
             // initialize visibility for newly-injected content
-            setInitialVisibility(container);
-            // Note: no need to rebind event listeners thanks to delegation
+            if (typeof setInitialVisibility === "function") {
+                setInitialVisibility(container);
+            }
         })
         .catch(err => console.error("loadAddons error:", err));
 }

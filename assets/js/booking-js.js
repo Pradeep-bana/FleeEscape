@@ -356,11 +356,41 @@ function loadCart() {
 }
 
 function loadAddons() {
-    fetch("load_addons.php")
+    return fetch("load_addons.php?t=" + Date.now(), { cache: "no-store" })
         .then(res => res.text())
         .then(html => {
-            document.querySelector(".add_on_section").innerHTML = html;
-        });
+            const container = document.querySelector(".add_on_section");
+            if (!container) return;
+
+            container.innerHTML = html;
+
+            // Remove AOS attributes — on mobile these block rendering
+            // when elements are injected dynamically after page load
+            container.querySelectorAll("[data-aos]").forEach(el => {
+                el.removeAttribute("data-aos");
+                el.removeAttribute("data-aos-delay");
+                el.removeAttribute("data-aos-duration");
+                // Force element visible in case AOS already hid it
+                el.style.opacity = "1";
+                el.style.transform = "none";
+                el.style.transition = "none";
+            });
+
+            // Initialize addon button visibility
+            if (typeof setInitialVisibility === "function") {
+                setInitialVisibility(container);
+            }
+
+            // Force a mobile repaint — mobile browsers sometimes
+            // don't render injected content without this nudge
+            requestAnimationFrame(() => {
+                container.style.display = "none";
+                requestAnimationFrame(() => {
+                    container.style.display = "";
+                });
+            });
+        })
+        .catch(err => console.error("loadAddons error:", err));
 }
 
 function setAddonStepEnabled(enabled) {
@@ -567,6 +597,9 @@ async function handleContinueNextStepParty(e) {
         showBookeoError(res.message || "Failed to reserve slot. Please try again.");
         return;
     }
+
+    localStorage.removeItem('cartTimerExpired');
+    localStorage.removeItem('cartTimerEnd');
  
     if (productCode === "41551LAM3LY18570132661") {
         if (typeof loadCart === "function") loadCart();
@@ -649,6 +682,8 @@ document.addEventListener("click", async function(e) {
             }
 
             if (res.status === "success") {
+                localStorage.removeItem('cartTimerExpired');
+                localStorage.removeItem('cartTimerEnd');
                 loadCart();
                 goToAddonsOrCustomer();
             }
