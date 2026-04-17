@@ -87,15 +87,30 @@ if (!function_exists('flee_cart_delete_cache_for_rows')) {
 
 if (!function_exists('flee_cart_sync_auto_promo')) {
     function flee_cart_sync_auto_promo(PDO $pdo, $sid) {
-        $stmt = $pdo->prepare("SELECT id, cat FROM tbl_carts WHERE session_id = :sid");
+        $stmt = $pdo->prepare("SELECT id, cat, pramotion_page FROM tbl_carts WHERE session_id = :sid");
         $stmt->execute([':sid' => $sid]);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         $escapeCount = 0;
+        $hasPromotion = false;
+        
         foreach ($rows as $r) {
             if (strtolower(trim((string)$r['cat'])) === 'escape-room') {
                 $escapeCount++;
             }
+            if (in_array(strtolower(trim((string)($r['pramotion_page'] ?? ''))), ['true', '1'], true)) {
+                $hasPromotion = true;
+            }
+        }
+        
+        // ========================================================================
+        // FIX: PROTECT FLASH DEALS
+        // If ANY item in the cart is a Flash Deal (pramotion_page = true), 
+        // disable the BMSM "Play More Save More" logic completely.
+        // This prevents BMSM from accidentally wiping out the Flash Deal code!
+        // ========================================================================
+        if ($hasPromotion) {
+            return false;
         }
         
         $currentCode = strtoupper(trim((string)($_SESSION['giftCode'] ?? '')));

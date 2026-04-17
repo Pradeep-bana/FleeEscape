@@ -3514,14 +3514,16 @@ async function handleAddButtonClick(evt) {
             if (typeof window.syncPromoUI === "function") await window.syncPromoUI();
             if (typeof loadCart === "function") loadCart();
 
-            // Optionally give visual feedback
+            // Keep visual feedback permanently
             btn.textContent = "Added";
             btn.disabled = true;
-            setTimeout(() => {
-                // restore label
-                btn.textContent = "Add";
-                toggleAddButtonForSelect(selectEl);
-            }, 900);
+            btn.style.opacity = "0.6";
+            btn.style.cursor = "not-allowed";
+            
+            // Optional: Disable the quantity dropdown as well so they can't change it after adding
+            if(selectEl) {
+                selectEl.disabled = true;
+            }
         } else {
             alert(json.message || "Failed to add addon");
         }

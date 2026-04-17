@@ -357,6 +357,8 @@ if (!function_exists('run_apply_code')) {
         $apiKey = FLEE_BOOKEO_API_KEY;
         $secretKey = FLEE_BOOKEO_SECRET_KEY;
         $sid = session_id();
+        
+        $inputCode = trim($inputCode);
 
         // 1. Parse user codes & LIMIT TO 5 CODES MAX
         $rawCodes = array_values(array_filter(array_map('trim', explode(',', $inputCode))));
@@ -394,6 +396,9 @@ if (!function_exists('run_apply_code')) {
 
         $itemsUpdated = 0;
         $holdsCreatedInThisRun = [];
+        
+        // === NEW: Track actual money saved ===
+        $totalActualDiscount = 0; 
 
         // 3. Process Cart Items
         foreach ($cartItems as $index => $item) {
@@ -457,6 +462,17 @@ if (!function_exists('run_apply_code')) {
 
             if ($skipApiCall) {
                 flee_apply_update_cart_row($pdo, $item, $guessedPromo, $oldJson);
+                
+                // --- NEW: Track existing discount if skipped ---
+                $promoAmt = (float)($oldJson['price']['appliedPromotionDiscount']['amount'] ?? ($oldJson['appliedPromotionDiscount']['amount'] ?? 0));
+                $voucherAmt = 0;
+                if (!empty($oldJson['price']['appliedVouchers']) && is_array($oldJson['price']['appliedVouchers'])) {
+                    foreach ($oldJson['price']['appliedVouchers'] as $v) {
+                        $voucherAmt += (float)($v['amount'] ?? 0);
+                    }
+                }
+                $totalActualDiscount += ($promoAmt + $voucherAmt);
+
                 $itemsUpdated++;
                 $voucherPool = [];
                 $promoToApply = $activePromoCode;
@@ -591,6 +607,16 @@ if (!function_exists('run_apply_code')) {
             // --- SUCCESS ---
             $finalData = $res['data'];
             
+            // --- NEW: Track actual discount applied by Bookeo to validate the code ---
+            $promoAmt = (float)($finalData['price']['appliedPromotionDiscount']['amount'] ?? ($finalData['appliedPromotionDiscount']['amount'] ?? 0));
+            $voucherAmt = 0;
+            if (!empty($finalData['price']['appliedVouchers']) && is_array($finalData['price']['appliedVouchers'])) {
+                foreach ($finalData['price']['appliedVouchers'] as $v) {
+                    $voucherAmt += (float)($v['amount'] ?? 0);
+                }
+            }
+            $totalActualDiscount += ($promoAmt + $voucherAmt);
+            
             // Figure out what actually worked for our records
             $appliedPromo = $payload['promotionCodeInput'] ?? null;
             $appliedVouchers = $payload['giftVoucherCodeInput'] ?? null;
@@ -613,13 +639,28 @@ if (!function_exists('run_apply_code')) {
             $itemsUpdated++;
             
             // ANTI-DOUBLE DIP LOGIC:
-            // Since we applied all valid vouchers to the first game, Bookeo has logged the discount.
-            // Empty the pool so we don't send the exact same vouchers to Game #2, which prevents the double-dip bug!
             $voucherPool = [];
             $promoToApply = $activePromoCode; // Reset promo guess
         }
 
         flee_apply_sync_session_cart($pdo, $sid);
+
+        // ====================================================================
+        // NEW VALIDATION: Did the user's code actually reduce the price?
+        // ====================================================================
+        if ($inputCode !== '' && $totalActualDiscount <= 0 && $itemsUpdated > 0) {
+            // Bookeo accepted the code (201), but it resulted in a $0 discount for the cart.
+            // Erase the useless promo code so it doesn't trick the user or the database.
+            $pdo->prepare("UPDATE tbl_carts SET promo_code = '', discount_amt = 0 WHERE session_id = :sid")->execute([':sid' => $sid]);
+            unset($_SESSION['giftCode']);
+            
+            return [
+                'status' => 'error',
+                'message' => 'Invalid promo/voucher code.',
+                'valid_code' => '',
+                'isHoldRefreshed' => true
+            ];
+        }
 
         $cleanCodeString = implode(',', $userCodes); 
         if ($cleanCodeString !== '') {
