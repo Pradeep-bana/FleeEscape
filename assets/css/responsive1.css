@@ -207,7 +207,7 @@ span.ca-chip {
 }
 
 .vr_page_banner_add_log_top {
-    bottom: -25px;
+    bottom: -25px !important;
 }
 .Party_contact_form_section {
     padding: 0;
@@ -514,11 +514,13 @@ ul.submenu li {
     padding-left: 12px;
     padding-right: 12px;
 }
+@media (max-width: 768px) {
+    .container {
+         margin-bottom: 40px; 
+    }
+}
 .Boo_Prison_Escape_calendar_box .flatpickr-days {
     grid-template-columns: inherit!important;
-}
-.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month {
-    top: -4px;
 }
 select.Boo_Prison_Escape_select {
     text-align: left;

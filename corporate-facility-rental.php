@@ -639,7 +639,7 @@ foreach ($lines as $line) {
 
 <div class="party_packages_card_new_desc">
     <?php if ($firstLine): ?>
-        <p class="card-subtitle"><?= htmlspecialchars($firstLine); ?></p>
+        <p><?= htmlspecialchars($firstLine); ?></p>
     <?php endif; ?>
 
     <?php if (!empty($liItems)): ?>
@@ -755,9 +755,6 @@ foreach ($lines as $line) {
                     </div>
 
                     <div class="col-md-7">
-                        <div class="modal_Beginner_badel">
-                            <p>Beginner</p>
-                        </div>
 
                         <div class="game-stats d-flex flex-wrap gap-3 mb-3">
                             <div class="stat-box">

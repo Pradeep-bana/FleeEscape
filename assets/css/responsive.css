@@ -1842,7 +1842,7 @@ div#ourclinets {
     height: 40px;
     text-align: left;
 }
-.faq-section {
+.get-in-touch-section, .faq-section {
     box-shadow: 0 0 30px #00d4ff00;
 }
 .team-transform-section .features span {

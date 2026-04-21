@@ -164,7 +164,10 @@ $blogs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php echo !empty($blog['article_date']) ? date('M d Y', strtotime($blog['article_date'])) : ''; ?>
             </a>
             <p class="h4title" style='color: #aaa; font-size:1rem;'><?php echo htmlspecialchars($blog['category']); ?></p>
-            <h1 style='font-size:2rem;color:#00d4ff;text-transform:none;'><?php echo htmlspecialchars($blog['title']); ?></h1>
+            <a href="<?php echo BASE_URL; ?>blog/<?php echo urlencode($blog['slug']); ?>">
+                <h1 style='font-size:2rem;color:#00d4ff;text-transform:none;'><?php echo htmlspecialchars($blog['title']); ?>
+                </h1>
+            </a>
             <p style='color:#aaa'><?php echo substr(strip_tags($blog['detail']), 0, 160) . '...'; ?></p>
             <div class="meta">
                 <div>

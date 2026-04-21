@@ -1959,10 +1959,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         $(target).html('<p>Loading...</p>');
+        trackRequestStart();
         $.get(file, function(data) {
             $(target).html(data);
             loadedTabs[target] = data;
             initTabContent($(target));
+        }).always(function() {
+            trackRequestEnd();
         });
     }
 
@@ -3524,6 +3527,21 @@ async function handleAddButtonClick(evt) {
             if(selectEl) {
                 selectEl.disabled = true;
             }
+
+            // --- NEW: Move focus to the Continue button ---
+            const continueBtn = document.querySelector('.step-1-bnt_continue');
+            if (continueBtn) {
+                // Ensure the <a> tag is focusable even without an href
+                if (!continueBtn.hasAttribute('href')) {
+                    continueBtn.setAttribute('tabindex', '0');
+                }
+                
+                // Set keyboard focus to the button
+                continueBtn.focus();
+                
+                // Smoothly scroll the page so the Continue button is visible
+                continueBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         } else {
             alert(json.message || "Failed to add addon");
         }
@@ -3977,6 +3995,31 @@ $(document).on('click', '.remove-addon-btn', function() {
                         $('#deleteAddonActions').show();
                         $('#deleteAddonLoading').hide(); // Spinner hides
                     });
+                    
+                    // --- NEW CODE: RESET ADDON BUTTONS AND DROPDOWNS ---
+                    // 1. Manually reset all buttons for instant visual feedback
+                    document.querySelectorAll(".add-addon-btn").forEach(btn => {
+                        btn.textContent = "Add";
+                        btn.disabled = false;
+                        btn.style.opacity = "1";
+                        btn.style.cursor = "pointer";
+                    });
+                    
+                    // 2. Reset all dropdowns back to 0
+                    document.querySelectorAll(".addon-dropdown").forEach(sel => {
+                        sel.disabled = false;
+                        sel.value = "0"; 
+                        if (typeof toggleAddButtonForSelect === "function") {
+                            toggleAddButtonForSelect(sel); // Hides the "Add" button until a new qty is selected
+                        }
+                    });
+
+                    // 3. Optionally fetch fresh HTML from the server
+                    if (typeof loadAddons === "function") {
+                        loadAddons();
+                    }
+                    // ---------------------------------------------------
+
                 } else {
                     alert("Failed to remove addon.");
                     $('#deleteAddonActions').show();

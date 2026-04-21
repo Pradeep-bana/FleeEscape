@@ -4,7 +4,6 @@ $pageTitle = 'Booking Confirmation';
 include('./includes/header.php');
 
 if (empty($_SESSION['booking_summary'])) {
-    // echo '<meta http-equiv="refresh" content="0;URL=https://indiawebsoft.co.in/fleeescape-new">';
     echo '<meta http-equiv="refresh" content="0;URL=' . BASE_URL . '">';
     exit;
 }

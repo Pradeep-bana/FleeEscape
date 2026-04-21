@@ -392,7 +392,7 @@ div#stepContents .col-md-6.col-sm-12 {
     border-radius: 0px!important;
 }
 
-.flatpickr-calendar .flatpickr-months, .flatpickr-calendar .flatpickr-innerContainer{
+.flatpickr-calendar .flatpickr-months{
     background-color: #ffffff !important;
 }
 
@@ -427,6 +427,10 @@ div#stepContents .col-md-6.col-sm-12 {
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
     color: #00d4ff !important;
+}
+
+.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month {
+    padding: 5px 10px !important;
 }
 
 /* Year input */
@@ -1309,6 +1313,17 @@ header.transparent a.bg_bnt_custom {
     border: 1px solid #00d4ff5c;
 }
 
+.get-in-touch-section {
+    animation: fadeIn 1s;
+    background: #060608;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #00d4ff96;
+    padding: 40px 20px;
+    max-width: 100%;
+    margin: 0px auto 40px auto;
+    border: 1px solid #00d4ff5c;
+}
+
 .faq-section h2 {
     color: #00d4ff;
     font-weight: 700;
@@ -1426,6 +1441,10 @@ header.transparent a.bg_bnt_custom {
     .faq-section .accordion-body {
         padding: 12px 10px;
         font-size: 1em;
+    }
+
+    .stat-box{
+        min-width: 90px;
     }
 }
 

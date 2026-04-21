@@ -442,37 +442,53 @@ $stmt->execute([':selected_page' => $selectedPage]);
 $testimonials = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<section class="review-section" style="margin-top: 50px;">
+<section class=" review_section">
     <div class="section_heading_page">
         <h2 class="section-title">What Corporate Leaders Say</h2>
-        <p class="section-subtitle">
-            Real feedback from executives and HR professionals
-        </p>
+        <p class="section-subtitle">Real feedback from executives and HR professionals</p>
     </div>
-    <div class="d-flex flex-wrap justify-content-center gap-3">
-        <?php if (!empty($testimonials)): ?>
-            <?php foreach ($testimonials as $testimonial): ?>
-                <div class="review-card">
-                    <div class="rating" style="color: #ffd700;">
-                        <?php echo str_repeat('★', intval($testimonial['rating'])); ?>
-                    </div>
-                    <p style="color: #fff;">
-                        <?php echo htmlspecialchars($testimonial['message']); ?>
-                    </p>
-                    <p class="author" style="color: #ccc;">
-                        - <?php echo htmlspecialchars($testimonial['client_name']); ?>
-                    </p>
-                    <?php if (!empty($testimonial['image']) && file_exists('admin/uploads/' . $testimonial['image'])): ?>
-                        <img src="admin/uploads/<?php echo htmlspecialchars($testimonial['image']); ?>" loading="lazy" alt="<?php echo htmlspecialchars($testimonial['client_name']); ?>" style="max-width:50px; border-radius:50%; margin-top:5px;">
-                    <?php endif; ?>
+
+  <div class="owl-carousel owl-theme Our_customers_love">
+
+
+        <?php
+     
+
+        // $stmt = $pdo->query("SELECT * FROM tbl_facility_rental_testimonial ORDER BY id DESC");
+        // $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($testimonials as $r) {
+
+            // Star rating
+            $stars = str_repeat("★", (int)$r['rating']);
+
+            // Image
+            $img = !empty($r['image']) ? $r['image'] : "default-user.png"; // fallback image
+            ?>
+            <div class="item">
+              <div class="card text-center h-100">
+
+
+                <!-- Rating -->
+                <div class="rating" style="color: #ffd700; font-size:20px;">
+                    <?= $stars ?>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p style="color:#fff;">No testimonials available yet.</p>
-        <?php endif; ?>
+                <!-- Message -->
+                <p class="reting_cont" style="color: #fff;">"<?= htmlspecialchars($r['message']) ?>"</p>
+
+                <div class="rre_profile_name">
+                         <img src="admin/uploads/<?= $img ?>" loading="lazy" alt="<?= htmlspecialchars($r['client_name']) ?>" 
+                         class="testimonial-img mb-2" style="width:50px; border-radius:50%;">
+                    <p class="author" style="color: #ccc;"> <?= htmlspecialchars($r['client_name']) ?></p>
+                    </div>
+
+            </div>
+            </div>
+
+        <?php } ?>
+
     </div>
 </section>
-
 
 <?php
 include('admin/db.php');
@@ -642,41 +658,45 @@ include('admin/db.php');
 $selectedPage = 'team-building'; // Replace dynamically if needed
 
 // Fetch FAQs for the selected page
-$stmt = $pdo->prepare("SELECT question, answer FROM tbl_other_party_package_faq WHERE selected_page = :selected_page ORDER BY id ASC");
+$stmt = $pdo->prepare("SELECT id, question, answer FROM tbl_other_party_package_faq WHERE selected_page = :selected_page ORDER BY id ASC");
 $stmt->execute([':selected_page' => $selectedPage]);
 $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="faq-section fade-in-up" style="animation-delay: 0.6s;">
     <h4>Frequently Asked Questions</h4>
-    <div class="faq-list row">
-        <?php if (!empty($faqs)): ?>
-            <?php 
-            $half = ceil(count($faqs)/2);
-            $firstCol = array_slice($faqs, 0, $half);
-            $secondCol = array_slice($faqs, $half);
-            ?>
-            <div class="col-sm-6">
-                <?php foreach($firstCol as $faq): ?>
-                    <div>
-                        <strong><?php echo htmlspecialchars($faq['question']); ?></strong>
-                        <p><?php echo htmlspecialchars($faq['answer']); ?></p>
-                    </div>
-                <?php endforeach; ?>
+    <div class="accordion" id="faqAccordion">
+    <?php
+        foreach ($faqs as $index => $faq){
+        $faqId = $faq['id'];
+        $question = htmlspecialchars($faq['question']);
+        $answer = nl2br(htmlspecialchars($faq['answer'])); // preserves line breaks
+        $collapseId = "faqCollapse" . $index;
+        $headingId = "faqHeading" . $index;
+    ?>
+    <div class="accordion-item">
+            <h2 class="accordion-header" id="<?= $headingId ?>">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#<?= $collapseId ?>" aria-expanded="false" aria-controls="<?= $collapseId ?>">
+                    <?= $question ?>
+                    <span class="faq-toggle-icon ms-auto">
+                        <span class="plus">+</span>
+                        <span class="minus" style="display:none;">−</span>
+                    </span>
+                </button>
+            </h2>
+            <div id="<?= $collapseId ?>" class="accordion-collapse collapse" aria-labelledby="<?= $headingId ?>"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <?= $answer ?>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <?php foreach($secondCol as $faq): ?>
-                    <div>
-                        <strong><?php echo htmlspecialchars($faq['question']); ?></strong>
-                        <p><?php echo htmlspecialchars($faq['answer']); ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <p>No FAQs available for this page.</p>
-        <?php endif; ?>
+        </div>
     </div>
+    <?php } ?>
+ </div>
 
+ <div class="get-in-touch-section fade-in-up" style="animation-delay: 0.6s;">
     <div class="contact-form">
         <h4 data-aos="fade-up">Get In Touch</h4>
         <p data-aos="fade-up" data-aos-delay="100">
@@ -733,9 +753,6 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div id="formResult" style="margin-top:15px; font-weight:bold;"></div>
 </form>
-
-<!--<div id="enq_response_msg"></div>-->
-    </div>
 </div>
 
         </div>

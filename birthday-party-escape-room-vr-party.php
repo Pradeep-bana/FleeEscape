@@ -4,7 +4,7 @@ include('link.php');
 include('admin/db.php');
 
 $stmt = $pdo->query("SELECT * FROM tbl_birthday_party_page LIMIT 1");
-$data = $stmt->fetch(PDO::FETCH_ASSOC);
+$data = $partyPageData = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $pageTitle = !empty($data['page_title']) ? $data['page_title'] : 'Escape Room Birthday Parties';
 $metaKeywords = !empty($data['keywords']) ? $data['keywords'] : '';
@@ -427,10 +427,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <div class="section_heading_page">
 
         <!-- Dynamic Main Heading -->
-        <h2 class="section-title"><?= htmlspecialchars($data['occasions_heading']) ?></h2>
+        <h2 class="section-title"><?= htmlspecialchars($partyPageData['occasions_heading']) ?></h2>
 
         <!-- Dynamic Subtitle -->
-        <p class="section-subtitle"><?= nl2br(htmlspecialchars($data['occasions_sub_heading'])) ?></p>
+        <p class="section-subtitle"><?= nl2br(htmlspecialchars($partyPageData['occasions_sub_heading'])) ?></p>
     </div>
 
     <div class="row text-center">
@@ -439,8 +439,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $icons = ['fa-gamepad', 'fa-users', 'fa-star', 'fa-clock'];
 
         for ($i = 1; $i <= 4; $i++):
-            $title = htmlspecialchars($data["occasion_{$i}_title"]);
-            $desc  = nl2br(htmlspecialchars($data["occasion_{$i}_desc"]));
+            $title = htmlspecialchars($partyPageData["occasion_{$i}_title"]);
+            $desc  = nl2br(htmlspecialchars($partyPageData["occasion_{$i}_desc"]));
             $icon  = $icons[$i - 1];
         ?>
             <div class="col-md-3 col-sm-6 mb-4">

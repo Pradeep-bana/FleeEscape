@@ -90,6 +90,11 @@ $vrGames = $stmtVR->fetchAll(PDO::FETCH_ASSOC);
   padding: 2px 6px;
   line-height: 1;
 }
+
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+    fill: #00d4ff !important;
+}
     </style>
 </head>
 

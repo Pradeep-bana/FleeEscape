@@ -20,7 +20,7 @@ include('admin/db.php'); // $pdo is the PDO connection
 // Receive form data
 // --------------------
 $fullname   = trim($_POST['fullname'] ?? '');
-$email      = trim($_POST['email'] ?? '');
+$email      = htmlspecialchars(trim($_POST['email'] ?? ''));
 $phone      = trim($_POST['mobile'] ?? '');
 $company    = trim($_POST['company'] ?? 'N/A');     
 $service    = trim($_POST['service'] ?? '');
@@ -93,6 +93,9 @@ $htmlContent = "
 
 // Email headers
 $headers  = "From: $fromName <$from>\r\n";
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $headers .= "Reply-To: $email\r\n";
+}
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=UTF-8\r\n";
 

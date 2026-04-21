@@ -786,7 +786,7 @@ $recommendPercent = round(($recommendCount / $totalReviews) * 100);
                 </div>
                 <div class="col-md-4 escape_room_home_Customer_Reviews_counter">
                     <div class="value escape_room_home_Customer_Reviews_total">
-                        <?php echo $room['reviewsCount'];; ?>
+                        <?php echo $room['reviewsCount']; ?>
                     </div>
                     <small class="text-muted">Total Reviews</small>
                 </div>

@@ -15,7 +15,7 @@ include('admin/db.php'); // $pdo
 $first_name = trim($_POST['first_name'] ?? '');
 $last_name  = trim($_POST['last_name'] ?? '');
 $phone      = trim($_POST['phone'] ?? '');
-$email      = trim($_POST['email'] ?? '');
+$email      = htmlspecialchars(trim($_POST['email'] ?? ''));
 $guests     = trim($_POST['guests'] ?? '');
 $duration   = trim($_POST['duration'] ?? '');
 $event_date = trim($_POST['event_date'] ?? '');
@@ -80,6 +80,9 @@ $htmlContent = "
 ";
 
 $headers = "From: $fromName <$from>\r\n";
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $headers .= "Reply-To: $email\r\n";
+}
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=UTF-8\r\n";
 

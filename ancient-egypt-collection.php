@@ -573,7 +573,7 @@ if(!empty($prod_id)){
                         ?>
                     </span>
                     <span class="fw-bold"><?php echo $avgRating; ?>/5</span>
-                    <small class="text-muted">(<?php echo $totalReviews; ?> reviews)</small>
+                    <small class="text-muted">(<?php echo $room['reviewsCount']; ?> reviews)</small>
                 </div>
             </div>
         </div>
@@ -680,7 +680,7 @@ if(!empty($prod_id)){
                 </div>
                 <div class="col-md-4 escape_room_home_Customer_Reviews_counter">
                     <div class="value escape_room_home_Customer_Reviews_total">
-                        <?php echo $totalReviews; ?>
+                        <?php echo $room['reviewsCount']; ?>
                     </div>
                     <small class="text-muted">Total Reviews</small>
                 </div>

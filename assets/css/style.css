@@ -24860,7 +24860,7 @@ button:disabled:hover {
 }
 
 .eam-transform-section_box .col-md-4:nth-child(1) .Corporate_Team_Building_card p:last-child {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 input[type="date"]::before {

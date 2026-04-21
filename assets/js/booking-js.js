@@ -749,6 +749,20 @@ document.addEventListener("click", async function(e) {
             loading.style.display = "none";
             modalBox.classList.remove("loading-mode");
 
+            // --- NEW CODE: INSTANT UI RESET ---
+            document.querySelectorAll(".add-addon-btn").forEach(btn => {
+                btn.textContent = "Add";
+                btn.disabled = false;
+                btn.style.opacity = "1";
+                btn.style.cursor = "pointer";
+            });
+            document.querySelectorAll(".addon-dropdown").forEach(sel => {
+                sel.disabled = false;
+                sel.value = "0";
+                if (typeof toggleAddButtonForSelect === "function") toggleAddButtonForSelect(sel);
+            });
+            // -----------------------------------
+
             if (data.cartCount === 0) {
                 window.location.href = "booking.php?escape-room";
             } else {
