@@ -38,6 +38,25 @@ if (!function_exists('flee_apply_write_log')) {
     }
 }
 
+if (!function_exists('flee_apply_is_hidden_auto_promo')) {
+    function flee_apply_is_hidden_auto_promo($code)
+    {
+        $normalizedCode = strtoupper(trim((string)$code));
+        return in_array($normalizedCode, ['BMSM_10', 'BMSM_20'], true);
+    }
+}
+
+if (!function_exists('flee_apply_public_code_string')) {
+    function flee_apply_public_code_string(array $codes): string
+    {
+        $visibleCodes = array_values(array_filter($codes, function ($code) {
+            return !flee_apply_is_hidden_auto_promo($code);
+        }));
+
+        return implode(',', $visibleCodes);
+    }
+}
+
 if (!function_exists('callBookeoHold')) {
     function callBookeoHold($payload, $apiKey, $secretKey)
     {
@@ -663,6 +682,7 @@ if (!function_exists('run_apply_code')) {
         }
 
         $cleanCodeString = implode(',', $userCodes); 
+        $publicCodeString = flee_apply_public_code_string($userCodes);
         if ($cleanCodeString !== '') {
             $_SESSION['giftCode'] = $cleanCodeString;
         } else {
@@ -673,7 +693,7 @@ if (!function_exists('run_apply_code')) {
             return [
                 'status' => 'success',
                 'message' => $cleanCodeString !== '' ? 'Codes applied successfully' : 'Hold refreshed successfully',
-                'valid_code' => $cleanCodeString,
+                'valid_code' => $publicCodeString,
                 'isHoldRefreshed' => true
             ];
         }

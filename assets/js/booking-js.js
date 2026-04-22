@@ -796,10 +796,12 @@ document.addEventListener("click", async function(e) {
             const removeBtn = document.querySelector(".applied_code_remove");
             const giftInput = document.getElementById("giftCodeInput");
 
+            const visibleValidCode = (data.valid_code || "").trim();
+
             // If backend says the code is still valid (or auto-applied a new one)
-            if (data.valid_code && data.valid_code !== "") {
-                if(codeEl) codeEl.textContent = 'Promotion: ' + data.valid_code;
-                if(giftInput) giftInput.value = data.valid_code;
+            if (visibleValidCode !== "") {
+                if(codeEl) codeEl.textContent = 'Promotion: ' + visibleValidCode;
+                if(giftInput) giftInput.value = visibleValidCode;
                 if(removeBtn) removeBtn.style.display = "block";
             } else {
                 // Backend rejected it based on new quantities! Reset UI.

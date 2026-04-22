@@ -398,7 +398,7 @@ foreach ($bookingSummary as $b) {
 <div class="page">
     <div class="header-flex">
         <div class="header-left">
-            <img src="https://indiawebsoft.co.in/fleeescape-new/assets/images/logo.png">
+            <img src="assets/images/logo.png">
         </div>
         <div class="header-right">
             <b>FLEE Escape Rooms and Zero Latency VR Seattle</b><br>

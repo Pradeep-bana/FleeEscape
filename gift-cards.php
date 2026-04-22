@@ -21,7 +21,7 @@
   
   
    <iframe 
-      src="https://indiawebsoft.co.in/fleeescape-new/gift-card-widget.php" 
+      src="gift-card-widget.php" 
       title="Gift Voucher Widget" 
       allowfullscreen 
       loading="lazy"

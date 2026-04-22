@@ -1,19 +1,20 @@
 {
   "name": "FleeEscape VR Games",
   "short_name": "FleeEscape",
-  "start_url": "/fleeescape-new/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#00e6f6",
   "description": "Play immersive VR games with FleeEscape — your ultimate adventure zone!",
   "icons": [
     {
-      "src": "https://indiawebsoft.co.in/fleeescape-new/assets/images/logo.png",
+      "src": "/assets/images/logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://indiawebsoft.co.in/fleeescape-new/assets/images/logo.png",
+      "src": "/assets/images/logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }

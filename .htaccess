@@ -18,7 +18,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/?$ $1.php [L,QSA]
 
 # Redirect all 404 errors to custom page
-ErrorDocument 404 https://fleeescapes.com/404.php
+ErrorDocument 404 /404.php
 
 #----------------------------------------------------------------cp:ppd
 # Section managed by cPanel: Password Protected Directories     -cp:ppd

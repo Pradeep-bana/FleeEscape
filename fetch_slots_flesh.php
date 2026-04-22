@@ -258,15 +258,21 @@ foreach ($productIds as $rawProductId) {
         }
 
         // If no valid slots found, increment attempt and jump to tomorrow
-        $attempts++;
-        $currentDate = (new DateTime($currentDate, $losAngelesTz))->modify('+1 day')->format('Y-m-d');
+        // $attempts++;
+        // $currentDate = (new DateTime($currentDate, $losAngelesTz))->modify('+1 day')->format('Y-m-d');
 
-        if ($attempts >= 2) {
-            $results[$productId] = [
-                'html' => "<p>No available slots found for {$requestedDate}" . ($currentDate !== $requestedDate ? " or {$currentDate}" : "") . ".</p>",
-                'date' => $currentDate,
-            ];
-        }
+        // if ($attempts >= 2) {
+        //     $results[$productId] = [
+        //         'html' => "<p>No available slots found for {$requestedDate}" . ($currentDate !== $requestedDate ? " or {$currentDate}" : "") . ".</p>",
+        //         'date' => $currentDate,
+        //     ];
+        // }
+
+        $results[$productId] = [
+            'html' => "<p>No slots available</p>",
+            'date' => $currentDate,
+        ];
+        break;
     }
 }
 

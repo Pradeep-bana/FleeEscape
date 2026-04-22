@@ -13,13 +13,6 @@ $stmt->execute([':sid' => $sid]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $cartCount = (int)$row['count'];
 
-// Determine redirect URL
-//if ($cartCount === 0) {
-   
-//echo '<meta http-equiv="refresh" content="0;URL=https://indiawebsoft.co.in/fleeescape-new/">';
-   // exit;
-//} 
-
 $pageTitle = 'Book Your Escape Room and Virtual Reality Game Adventure Now in Redmond, Bellevue, and Greater Seattle';
 $metaKeywords = 'Booking';
 $metaDescription = 'Book immersive escape rooms and Zero Latency VR experiences at Flee Escape Rooms in Redmond. Perfect for team building, kids and teens birthday parties, fun date nights, competitions, and celebrations. Serving Bellevue, Kirkland, Issaquah, Sammamish, and all of Greater Seattle.';
@@ -603,12 +596,33 @@ if (!empty($_SESSION['booking_summary'])) {
                                 
                                 <!--<p>Have a promotion or voucher code?</p>-->
                                 <?php
-                                $savedCode = !empty($_SESSION['giftCode']) ? $_SESSION['giftCode'] : '';
+                                if (!function_exists('flee_is_hidden_auto_promo_code')) {
+                                    function flee_is_hidden_auto_promo_code($code)
+                                    {
+                                        $normalizedCode = strtoupper(trim((string)$code));
+                                        return in_array($normalizedCode, ['BMSM_10', 'BMSM_20'], true);
+                                    }
+                                }
+
+                                if (!function_exists('flee_get_visible_promo_codes')) {
+                                    function flee_get_visible_promo_codes($codeList)
+                                    {
+                                        $codes = array_values(array_filter(array_map('trim', explode(',', (string)$codeList))));
+                                        $visibleCodes = array_values(array_filter($codes, function ($code) {
+                                            return !flee_is_hidden_auto_promo_code($code);
+                                        }));
+
+                                        return implode(', ', $visibleCodes);
+                                    }
+                                }
+
+                                $savedCode = !empty($_SESSION['giftCode']) ? trim((string)$_SESSION['giftCode']) : '';
+                                $displaySavedCode = flee_get_visible_promo_codes($savedCode);
                                 ?>
                                 <p class="applied_code">
-                                  <span class="code"><?= $savedCode ? 'Promotion: ' . htmlspecialchars($savedCode) : 'Have a promotion or voucher code?' ?></span>
+                                  <span class="code"><?= $displaySavedCode !== '' ? 'Promotion: ' . htmlspecialchars($displaySavedCode) : 'Have a promotion or voucher code?' ?></span>
                                 </p>
-                                <div class="applied_code_remove">
+                                <div class="applied_code_remove" style="<?= $displaySavedCode !== '' ? '' : 'display:none;' ?>">
                                     <button><i class="fa-solid fa-delete-left"></i></button>
                                 </div>
                             </div>
@@ -2856,7 +2870,7 @@ function showCallPopup(time) {
                     <!--<label for="giftCodeInput" class="voucher-form-label">Code</label>-->
                     <input type="text" id="giftCodeInput" class="voucher-form-input" 
                     placeholder="Enter your code"
-                    value="<?= htmlspecialchars($_SESSION['giftCode'] ?? '') ?>">
+                    value="<?= htmlspecialchars($displaySavedCode ?? '') ?>">
                 </form>
                 <div>
                     <p>To use multiple gift certificates, separate them with a comma. <br> Ex. ABC, DEF</p>
@@ -3337,15 +3351,17 @@ document.querySelector(".btn_apply").addEventListener("click", function () {
         const bsModal = bootstrap.Modal.getInstance(modalEl);
         if(bsModal) bsModal.hide();
 
+        const visibleValidCode = (data.valid_code || "").trim();
+
         if (data.status === "success") {
             // Success Message
             Toastify({ text: data.message + " ✅", duration: 3000, backgroundColor: "green" }).showToast();
             
             // ⭐ CHECK IF WE HAVE A VALID USER CODE OR JUST AUTO PROMO
-            if (data.valid_code && data.valid_code !== "") {
+            if (visibleValidCode !== "") {
                 // Show the specific valid code
-                document.querySelector(".applied_code .code").textContent = 'Promotion: ' + data.valid_code;
-                document.getElementById("giftCodeInput").value = data.valid_code;
+                document.querySelector(".applied_code .code").textContent = 'Promotion: ' + visibleValidCode;
+                document.getElementById("giftCodeInput").value = visibleValidCode;
                 
                 // Update the remove button to actually clear this specific code
                 document.querySelector(".applied_code_remove").style.display = "block";
@@ -3353,6 +3369,8 @@ document.querySelector(".btn_apply").addEventListener("click", function () {
                 // "Success" but only because Auto-Promo worked (User input was garbage)
                 // Revert UI Text to default or "Auto Applied"
                 document.querySelector(".applied_code .code").textContent = "Have a promotion or voucher code?";
+                document.getElementById("giftCodeInput").value = "";
+                document.querySelector(".applied_code_remove").style.display = "none";
                 
                 // Optionally verify message matches
                 if(data.message.includes("Invalid voucher ignored")) {

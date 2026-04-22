@@ -691,7 +691,6 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?= $answer ?>
                 </div>
             </div>
-        </div>
     </div>
     <?php } ?>
  </div>

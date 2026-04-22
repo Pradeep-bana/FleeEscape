@@ -474,7 +474,7 @@ if ($row):
 
                                 <!-- ✅ Static Learn More button -->
                                 <div class="de-flex-col all_button_main_header">
-                                    <a href="https://www.fleeescape.com/summer-camp" class="bg_bnt_custom">Learn
+                                    <a href="summer-camp" class="bg_bnt_custom">Learn
                                         More</a>
                                 </div>
                             </div>
