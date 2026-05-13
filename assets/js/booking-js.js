@@ -428,19 +428,42 @@ function scrollToBookingStepArea() {
 
 async function goToAddonsOrCustomer() {
     try {
+        // --- ADDED VALIDATION: Check if cart is empty before proceeding ---
+        const cartReq = await fetch("get_cart.php");
+        const cartData = await cartReq.json();
+        
+        if (!cartData.cart || cartData.cart.length === 0) {
+            if (typeof showBookeoError === "function") {
+                showBookeoError("Your cart is empty. Please add an experience before proceeding.");
+            } else {
+                alert("Your cart is empty. Please add an experience before proceeding.");
+            }
+            applyEmptyCartState();
+            return; // Stop execution, don't go to the next step
+        }
+        // ------------------------------------------------------------------
+
         const resp = await fetch("check_addons.php");
         const data = await resp.json();
+        
         if (data.has_addons) {
             setAddonStepEnabled(true);
-            goToStep(1); // Always go to index 1 (Add Ons) — absolute
+            goToStep(1); // Always go to index 1 (Add Ons)
         } else {
             setAddonStepEnabled(false);
-            goToStep(2); // Always go to index 2 (Customer Details) — absolute
+            goToStep(2); // Always go to index 2 (Customer Details)
         }
         scrollToBookingStepArea();
+        
     } catch (e) {
-        goToStep(1); // safe fallback
-        scrollToBookingStepArea();
+        console.error("Error navigating to next step:", e);
+        // Safe fallback in case of network issue
+        if (window.latestCart && window.latestCart.length > 0) {
+            goToStep(1); 
+            scrollToBookingStepArea();
+        } else {
+            applyEmptyCartState();
+        }
     }
 }
 
@@ -814,3 +837,29 @@ document.addEventListener("click", async function(e) {
         }
     };
 });
+
+// --- ADDED VALIDATION: Prevent clicking Progress Steps with an empty cart ---
+document.addEventListener("click", function(e) {
+    const stepBtn = e.target.closest('.progress-step');
+    if (stepBtn) {
+        const steps = Array.from(document.querySelectorAll('.progress-step'));
+        const index = steps.indexOf(stepBtn);
+        
+        // If the user is trying to click Add-ons (index 1) or Checkout (index 2)
+        if (index > 0) {
+            // Check the synchronous cart state
+            if (!window.latestCart || window.latestCart.length === 0) {
+                e.preventDefault();
+                e.stopPropagation(); // Stops the UI from moving to the next tab
+                
+                if (typeof showBookeoError === "function") {
+                    showBookeoError("Your cart is empty. Please add an experience before proceeding.");
+                } else {
+                    alert("Your cart is empty. Please add an experience before proceeding.");
+                }
+                
+                applyEmptyCartState();
+            }
+        }
+    }
+}, true); // 'true' forces this to run before any other click listeners, intercepting the click immediately

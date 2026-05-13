@@ -237,8 +237,8 @@ try {
     if (!$nonce) throw new Exception("Payment required but no card token received.");
 
     $client = new SquareClient([
-      'accessToken' => 'EAAAl8LlAZtvXu4na9gLonjCDfnJuZSxon16pkFR5bF89CDBduo9HJ-s1wvP5SpX', // Use ENV in production
-      'environment' => 'sandbox'
+      'accessToken' => 'EAAAl22CAQSZv0mxXtqU0PIvlmocDVxKD8mWFxkYtMToohcR8XeMHn8oOfuCu9Jn', // Use ENV in production
+      'environment' => 'production'
     ]);
 
     $money = new Money();
@@ -246,14 +246,64 @@ try {
     $money->setCurrency($currency);
 
     $req = new CreatePaymentRequest($nonce, uniqid(), $money);
-    $req->setLocationId('L8XX876JN6ZSH'); 
+    $req->setLocationId('L2CPDRKXESF14'); 
 
     $apiResponse = $client->getPaymentsApi()->createPayment($req);
 
     if (!$apiResponse->isSuccess()) {
       $errs = $apiResponse->getErrors();
-      $msg = $errs[0]->getDetail() ?? "Payment Failed";
-      throw new Exception("Square Error: " . $msg);
+      $squareErrorCode = $errs[0]->getCode();
+      $squareErrorDetail = $errs[0]->getDetail() ?? "Payment Failed";
+      
+      // 1. Log the technical error securely so you can see it in your logs
+      logMsg("Square API Error: Code [" . $squareErrorCode . "] - " . $squareErrorDetail);
+      
+      // 2. Translate the specific Square ErrorCode into a friendly message
+      $friendlyMessage = "Your payment could not be processed. Please try a different card.";
+      
+      switch ($squareErrorCode) {
+          case 'PAN_FAILURE':
+              $friendlyMessage = "The card number you entered is invalid. Please double-check the number and try again.";
+              break;
+          case 'CVV_FAILURE':
+          case 'VERIFY_CVV_FAILURE':
+              $friendlyMessage = "The security code (CVV) is incorrect. Please check the back of your card and try again.";
+              break;
+          case 'EXPIRATION_FAILURE':
+          case 'BAD_EXPIRATION':
+          case 'INVALID_EXPIRATION':
+              $friendlyMessage = "The card expiration date is invalid or the card has expired.";
+              break;
+          case 'INSUFFICIENT_FUNDS':
+              $friendlyMessage = "The card was declined due to insufficient funds. Please use a different payment method.";
+              break;
+          case 'ADDRESS_VERIFICATION_FAILURE':
+          case 'VERIFY_AVS_FAILURE':
+          case 'INVALID_POSTAL_CODE':
+              $friendlyMessage = "The billing zip/postal code does not match the card. Please verify your billing details.";
+              break;
+          case 'CARD_DECLINED':
+          case 'GENERIC_DECLINE':
+              $friendlyMessage = "Your card was declined by your bank. Please try a different card or call your bank to authorize the charge.";
+              break;
+          case 'CARD_DECLINED_CALL_ISSUER':
+          case 'VOICE_FAILURE':
+              $friendlyMessage = "Your bank blocked the transaction. Please call the phone number on the back of your card to approve the charge.";
+              break;
+          case 'TRANSACTION_LIMIT':
+              $friendlyMessage = "The transaction exceeds your card's limit. Please try a different payment method.";
+              break;
+          case 'CARD_TOKEN_EXPIRED':
+          case 'CARD_TOKEN_USED':
+              $friendlyMessage = "Your checkout session timed out. Please refresh the page and try again.";
+              break;
+          case 'CARD_NOT_SUPPORTED':
+              $friendlyMessage = "We do not accept this type of card. Please try a different card brand.";
+              break;
+      }
+
+      // 3. Throw the friendly message so it reaches the frontend booking.php
+      throw new Exception($friendlyMessage);
     }
 
     $paymentObj = $apiResponse->getResult()->getPayment();

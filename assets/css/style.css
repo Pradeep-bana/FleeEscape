@@ -21171,9 +21171,9 @@ img {
     cursor: poInter;
   }
 
-  .dark-scheme header.header-mobile #mainmenu>li>span {
+  /* .dark-scheme header.header-mobile #mainmenu>li>span {
     background: url(../images/ui/arrow-down-light.png) center no-repeat;
-  }
+  } */
 
   header.header-mobile #mainmenu li span.active {
     background: url(../images/ui/arrow-up.png) center no-repeat;

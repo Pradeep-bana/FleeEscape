@@ -27,7 +27,7 @@ if (!empty($_SESSION['user_id'])) {
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
-<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+<script src="https://web.squarecdn.com/v1/square.js"></script>
 <style>
 button.custom-date_arrow {
     background: transparent;
@@ -1641,6 +1641,11 @@ $(document).ready(function() {
         if ($btn.length) {
             $btn.removeClass('disabled').removeAttr('disabled');
         }
+
+        const $valueSpan = $('#guest-count-display-' + productId);
+        const $priceSpan = $('#extra-price-' + productId);
+        if ($valueSpan.length) $valueSpan.text("0");
+        if ($priceSpan.length) $priceSpan.text("0");
     });
 
 });
@@ -2385,8 +2390,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 <script>
-const appId = "sandbox-sq0idb-VwqgN_zOnEPVQGzbPNMKDQ";
-const locationId = "L8XX876JN6ZSH";
+const appId = "sq0idp-_FWfx5VzDf2pdlbXtkc3mg";
+const locationId = "L2CPDRKXESF14";
 
 let sessionPromoCode = "";
 let sessionPromotionPage = "";

@@ -177,7 +177,7 @@ $vrGames = $stmtVR->fetchAll(PDO::FETCH_ASSOC);
                                             <ul class="submenu">
                                                         <li><a class="submenu_tand_add_on"
                                                                 href="<?php echo BASE_URL; ?>prison-escape-collection">
-                                                                Prison Break <span
+                                                                Prison Escape <span
                                                                     class="bg-danger ms-2">Popular</span></a>
                                                         </li>
                                                         <li><a class="submenu_tand_add_on"

@@ -445,6 +445,9 @@ section.Unforgettable_Birthday_section .container {
     font-size: 16px!important;
 }
 
+.promotions_price_and_pad p{
+   font-size: 13px!important; 
+}
 
 .swiper-pagination {
     font-size: 15px;

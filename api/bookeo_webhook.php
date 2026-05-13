@@ -98,11 +98,6 @@ if ($productId && $slotDate && isset($pdo)) {
         $stmt->execute([$productId, $slotDate]);
         $affected = $stmt->rowCount();
 
-        $stmt = $pdo->prepare("
-            DELETE FROM bookeo_fetch_registry
-            WHERE product_id = ? AND slot_date = ?
-        ");
-        $stmt->execute([$productId, $slotDate]);
         flee_bookeo_clear_day_cache($slotDate);
 
         flee_system_log_message('api_bookeo_webhook_cache_cleared', 'Expired cache rows for webhook event', [

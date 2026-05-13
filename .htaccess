@@ -1,6 +1,9 @@
 # Enable URL rewriting
 RewriteEngine On
 
+RewriteCond %{HTTP_HOST} ^(www\.)?fleeescapes\.com$ [NC]
+RewriteRule ^escape-room/?$ /indoor-real-life-escape-games [L,R=301]
+
 # SPECIFIC RULE FIRST - For VR experience pages
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

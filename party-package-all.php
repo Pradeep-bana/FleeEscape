@@ -505,6 +505,11 @@ document.addEventListener('change', function(e) {
         if (label) {
             label.classList.add('slot-selected');
         }
+
+        const valueSpan = document.getElementById('guest-count-display-' + productId);
+        const priceSpan = document.getElementById('extra-price-' + productId);
+        if (valueSpan) valueSpan.textContent = "0";
+        if (priceSpan) priceSpan.textContent = "0";
     }
 });
 </script>
