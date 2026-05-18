@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 session_start();
 include("admin/db.php");
 require_once("addon_pricing_helper.php");
+require_once("includes/booking_funnel.php");
 
 header('Content-Type: application/json');
 
@@ -32,7 +33,7 @@ $created_at = date("Y-m-d H:i:s");
 
 // 1) Check main game exists for this session + game
 $parent = $pdo->prepare("
-    SELECT id, slot FROM tbl_carts 
+    SELECT id, slot, event_id FROM tbl_carts 
     WHERE session_id = :sid 
       AND game_id    = :gid
     ORDER BY id DESC LIMIT 1
@@ -120,6 +121,15 @@ foreach ($_SESSION['cart'] as &$cartItem) {
     }
 }
 unset($cartItem);
+
+// Track addon addition
+flee_funnel_log('ADDON_ADDED', [
+    'event_id' => $row['event_id'] ?? null,
+    'addon_name' => $addon_name,
+    'addon_price' => $addon_price,
+    'addon_qty' => $qty,
+    'game_id' => $game_id
+]);
 
 echo json_encode(["success" => true, "message" => "Addon updated with tax"]);
 exit;

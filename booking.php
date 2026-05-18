@@ -3,6 +3,7 @@ include('link.php');
 
 include('admin/db.php'); 
 // include('config.php');
+require_once('includes/booking_funnel.php');
 
 // Get current session ID
 $sid = session_id();
@@ -1190,6 +1191,38 @@ document.addEventListener('DOMContentLoaded', function() {
         window.history.pushState({
             step: stepSlug
         }, "", newUrl);
+
+        // Log step reached event for funnel tracking
+        logFunnelStep(currentStep + 1);
+    }
+
+    function logFunnelStep(stepNumber) {
+        // Skip Step 1 - it triggers on page load (noise)
+        // Only track from Step 2 onwards (meaningful user navigation)
+        if (stepNumber < 2 || stepNumber > 5) return;
+
+        const stepEvents = [
+            'STEP_2_REACHED',
+            'STEP_3_REACHED',
+            'STEP_4_REACHED',
+            'STEP_5_REACHED'
+        ];
+
+        const eventName = stepEvents[stepNumber - 2];
+        const stepTitles = ['Add Ons', 'Customer Details', 'Payment Details', 'Booking Confirmation'];
+        const stepTitle = stepTitles[stepNumber - 2];
+
+        // Send event to server
+        fetch('log_funnel_event.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'event=' + encodeURIComponent(eventName) + '&data[step_number]=' + stepNumber + '&data[step_title]=' + encodeURIComponent(stepTitle)
+        }).catch(err => {
+            // Silently fail - don't interrupt user experience
+            console.log('Funnel log error:', err);
+        });
     }
 
      steps.forEach((step, index) => {
@@ -2618,53 +2651,69 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     let $btn = $(this);
 
-    // CLEAR OLD MESSAGE
+    // CLEAR OLD MESSAGES
     $("#booking-response").html("");
-
-    // ✅ CHECKBOX VALIDATION
-    if (!$("#agreeTerms").is(":checked")) {
-
-        $("#booking-response").html(`
-            <div style="color:red; padding:10px; font-weight:600;">
-                Please agree to the terms before continuing.
-            </div>
-        `);
-
-        return; // Stop process here
-    }
+    document.querySelectorAll(".checkbox-error").forEach(el => el.remove());
 
     clearError();
 
     // FIRST ⇒ Load updated session (Including Add-ons)
     await refreshSessionValues();
 
-$btn.prop("disabled", true).text("Processing...");
+    $btn.prop("disabled", true).text("Processing...");
 
-try {
-    const codeSpan = document.querySelector(".code");
-    const codeValue = codeSpan ? codeSpan.textContent.trim() : "";
-    const hasGiftCode = (codeValue !== "FIRSTRESPONDERS2025" && codeValue !== "");
+    try {
+        const codeSpan = document.querySelector(".code");
+        const codeValue = codeSpan ? codeSpan.textContent.trim() : "";
+        const hasGiftCode = (codeValue !== "FIRSTRESPONDERS2025" && codeValue !== "");
 
-    // TOKENIZE CARD
-    const token = await tokenize(card);
+        // STEP 1: VALIDATE & TOKENIZE CARD FIRST
+        const token = await tokenize(card);
 
-    // Agar token fail ho gaya
-    if (!token) {
-        showError("Invalid card. Please use a valid card number."); // friendly message
-        return; // ⛔ Stop process here
+        // If card validation fails, show error and stop
+        if (!token) {
+            showError("Invalid card. Please use a valid card number."); // friendly message
+            $btn.prop("disabled", false).text("Continue");
+            return; // ⛔ Stop process here
+        }
+
+        // STEP 2: VALIDATE CHECKBOX (only if card is valid)
+        if (!$("#agreeTerms").is(":checked")) {
+            // Show error near the checkbox
+            const agreeBox = document.querySelector(".agree-box");
+            if (agreeBox) {
+                const errorDiv = document.createElement("div");
+                errorDiv.className = "checkbox-error";
+                errorDiv.style.cssText = "color:red; padding:10px; font-weight:600; margin-top:10px; border:1px solid red; border-radius:4px; background-color: rgba(255,0,0,0.1);";
+                errorDiv.textContent = "Please agree to the terms before continuing.";
+                agreeBox.appendChild(errorDiv);
+
+                // Scroll & focus to the checkbox
+                agreeBox.scrollIntoView({ behavior: "smooth", block: "center" });
+                document.getElementById("agreeTerms").focus();
+            } else {
+                // Fallback if agree-box not found
+                showError("Please agree to the terms before continuing.");
+            }
+
+            $btn.prop("disabled", false).text("Continue");
+            return; // Stop process here
+        }
+
+        // ✅ Only if both card AND checkbox are valid, process payment
+        await processFinalPayment(token);
+
+    } catch (err) {
+        // Catch any other errors
+        showError(err.message || "Payment error occurred."); 
+        $btn.prop("disabled", false).text("Continue");
+        return; // ⛔ Stop here
+    } finally {
+        // Reset button state if not already done above
+        if ($btn.prop("disabled")) {
+            $btn.prop("disabled", false).text("Continue");
+        }
     }
-
-    // ✅ Sirf valid token par call ho
-    await processFinalPayment(token);
-
-} catch (err) {
-    // Catch any other errors
-    showError(err.message || "Payment error occurred."); 
-    return; // ⛔ Stop here
-} finally {
-    // Reset button state
-    $btn.prop("disabled", false).text("Continue");
-}
 
     // await refreshSessionValues();
 
@@ -2691,6 +2740,17 @@ try {
     // }
 
 });
+
+    // ✅ LIVE: Remove checkbox error when user checks the box
+    $(document).on("change", "#agreeTerms", function() {
+        const agreeBox = document.querySelector(".agree-box");
+        if (agreeBox) {
+            const errorDiv = agreeBox.querySelector(".checkbox-error");
+            if (errorDiv) {
+                errorDiv.remove();
+            }
+        }
+    });
 
 
     } catch (err) {

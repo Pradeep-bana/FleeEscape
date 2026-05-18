@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 include_once("admin/db.php");
 require_once('config.php');
+require_once('includes/booking_funnel.php');
 
 if (!defined('FLEE_APPLY_CODE_LIBRARY')) {
     define('FLEE_APPLY_CODE_LIBRARY', true);
@@ -216,6 +217,11 @@ if (!function_exists('flee_cart_cleanup_expired')) {
                 $cartRows = flee_cart_collect_cart_rows($pdo, $sid);
                 $holdRows = flee_cart_collect_hold_rows($pdo, $sid);
 
+                // Track abandoned cart before deleting
+                if (!empty($cartRows)) {
+                    flee_track_abandoned_cart($sid, $reason, $cartRows);
+                }
+
                 foreach ($cartRows as $row) {
                     $addEventId($row['event_id'] ?? '');
                 }
@@ -301,6 +307,11 @@ if (!function_exists('flee_cart_cleanup_expired')) {
                 if ($hasExpiredCartRows) {
                     $cartRows = flee_cart_collect_cart_rows($pdo, $sid);
                     $holdRows = flee_cart_collect_hold_rows($pdo, $sid);
+
+                    // Track abandoned cart before deleting
+                    if (!empty($cartRows)) {
+                        flee_track_abandoned_cart($sid, $reason ?: 'expired', $cartRows);
+                    }
 
                     foreach ($holdRows as $row) {
                         $json = json_decode($row['response_json'] ?? '', true);
@@ -543,6 +554,16 @@ if (!function_exists('flee_cart_insert_row')) {
             ':per_guest_price' => $data['per_guest_price'],
             ':total_additional_price' => $data['total_additional_price'],
         ]);
+
+        // Track add to cart event
+        flee_funnel_log('ADD_TO_CART', [
+            'event_id' => $data['event_id'],
+            'game_id' => $data['game_id'],
+            'game_name' => $data['game_name'],
+            'price' => $data['price'],
+            'guests' => $data['guests'],
+            'slot' => $data['slot']
+        ]);
     }
 }
 
@@ -654,6 +675,17 @@ if (!function_exists('flee_cart_handle_add')) {
             ];
         }
 
+        // ===== FIX: CLEAR CACHE AFTER HOLD IS CREATED =====
+        // After successfully creating the hold, invalidate the slot cache
+        // so that fetch_slots.php returns fresh data from Bookeo instead of stale cache
+        $slotDate = flee_cart_slot_date($row['slot'] ?? '');
+        if ($slotDate) {
+            $stmtClear = $pdo->prepare("DELETE FROM bookeo_slots_cache WHERE product_id = :pid AND slot_date = :sdate");
+            $stmtClear->execute([':pid' => $gameId, ':sdate' => $slotDate]);
+            flee_bookeo_clear_day_cache($slotDate);
+        }
+        // ===================================================
+
         $cartRows = flee_apply_sync_session_cart($pdo, session_id());
 
         return [
@@ -691,6 +723,14 @@ if (!function_exists('flee_cart_handle_remove')) {
         if ($eventId === '') {
             return ['status' => 'error', 'message' => 'Event ID missing'];
         }
+
+        // Track item removal before deleting
+        flee_funnel_log('ITEM_REMOVED_FROM_CART', [
+            'event_id' => $eventId,
+            'game_name' => $item['gameName'] ?? $item['game_name'] ?? '',
+            'game_id' => $item['gameId'] ?? $item['game_id'] ?? '',
+            'price' => $item['price'] ?? 0
+        ]);
 
         flee_cart_delete_item_by_event($pdo, session_id(), $eventId);
 

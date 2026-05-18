@@ -8,6 +8,7 @@ include "admin/db.php";
 require_once('config.php');
 require __DIR__ . '/vendor/autoload.php';
 require_once(__DIR__ . '/includes/bookeo_runtime.php');
+require_once(__DIR__ . '/includes/booking_funnel.php');
 
 use Square\SquareClient;
 use Square\Models\Money;
@@ -310,6 +311,18 @@ try {
     if ($paymentObj->getStatus() !== 'COMPLETED') {
       throw new Exception("Payment status: " . $paymentObj->getStatus());
     }
+
+    // Track successful payment submission
+    $event_ids = array_map(function($item) { return $item['event_id'] ?? null; }, $cartItems);
+    $event_ids = array_filter($event_ids); // Remove nulls
+    
+    flee_funnel_log('PAYMENT_SUBMITTED', [
+        'event_ids' => array_values($event_ids),
+        'payment_id' => $paymentObj->getId(),
+        'payment_status' => $paymentObj->getStatus(),
+        'total_amount' => $totalAmountCents / 100,
+        'items_count' => count($cartItems)
+    ]);
 
     $paymentId = $paymentObj->getId();
     $cardInfo = $paymentObj->getCardDetails()->getCard();
@@ -614,6 +627,18 @@ try {
       'booking_number' => $bookingNum
   ]);
 
+  // Track successful booking confirmation
+  $event_ids_final = array_map(function($item) { return $item['event_id'] ?? null; }, $cartItems);
+  $event_ids_final = array_filter($event_ids_final);
+  
+  flee_funnel_log('BOOKING_CONFIRMED', [
+      'booking_number' => $bookingNum,
+      'event_ids' => array_values($event_ids_final),
+      'items_count' => count($bookedSummary['items'] ?? []),
+      'total_price' => $bookedSummary['totalPrice'] ?? 0,
+      'booking_ids' => $bookedList
+  ]);
+
   echo json_encode(["status" => "success", "redirectUrl" => "booking-confirmation.php"]);
 
 } catch (Exception $e) {
@@ -621,6 +646,19 @@ try {
   flee_system_log_message('booking_failed', 'Failed to process booking', [
       'error_reason' => $e->getMessage()
   ]);
+
+  // Track booking failure
+  $failed_event_ids = [];
+  if (!empty($cartItems)) {
+    $failed_event_ids = array_map(function($item) { return $item['event_id'] ?? null; }, $cartItems);
+    $failed_event_ids = array_filter($failed_event_ids);
+  }
+
+  flee_funnel_log('BOOKING_FAILED', [
+      'event_ids' => array_values($failed_event_ids),
+      'error_message' => $e->getMessage()
+  ]);
+
   echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 } 
 ?>
