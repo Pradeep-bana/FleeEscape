@@ -33,13 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     if ($result) {
-        // Track addon removal
-        flee_funnel_log('ADDON_REMOVED', [
-            'event_id' => $event_id,
-            'cart_id' => $cartId,
-            'addon_name' => $addon_name_removed
-        ]);
-
         // Refresh Bookeo hold to recalculate prices with the new cart totals
         $_POST['code'] = $_SESSION['giftCode'] ?? '';
         include("apply_code.php");

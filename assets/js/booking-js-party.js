@@ -1,4 +1,40 @@
 
+// --- GLOBAL FRONTEND ERROR LOGGER ---
+// Safely catches detailed JS errors and sends them to the backend log without breaking page functionality.
+window.addEventListener('error', function(event) {
+    // Prevent infinite recursive loops if the fetch itself fails
+    if (event.filename && event.filename.indexOf('log_frontend_error.php') !== -1) return;
+    
+    const errorData = {
+        message: event.message || 'Unknown Error',
+        filename: event.filename || 'Unknown File',
+        lineno: event.lineno || 0,
+        colno: event.colno || 0,
+        stack: (event.error && event.error.stack) ? event.error.stack : 'No stack trace available',
+        url: window.location.href
+    };
+
+    fetch('log_frontend_error.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(errorData)
+    }).catch(function() { /* Fail silently */ });
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+    const reason = event.reason || 'Unhandled Promise Rejection';
+    const errorData = {
+        message: typeof reason === 'string' ? reason : (reason.message || 'Unknown Promise Error'),
+        filename: 'Promise Rejection',
+        lineno: 0,
+        colno: 0,
+        stack: reason.stack || 'No stack trace available',
+        url: window.location.href
+    };
+    fetch('log_frontend_error.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(errorData) }).catch(function() {});
+});
+// ------------------------------------
+
    let timerInterval = null;
 let timerEndTime = null;
 

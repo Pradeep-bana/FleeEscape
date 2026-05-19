@@ -11,13 +11,14 @@ if (!defined('FLEE_BOOKING_FUNNEL_LOG_FILE')) {
 
 if (!function_exists('flee_funnel_log')) {
     /**
-     * Log a booking funnel event
+     * Log a booking funnel event with optional API response data
      * 
      * @param string $funnel_event - Event type (e.g., 'ADD_TO_CART', 'PAYMENT_SUBMITTED', etc.)
-     * @param array $data - Additional data to log
+     * @param array $data - Event data to log
      * @param string $session_id - Optional session ID (auto-detected if not provided)
+     * @param array $api_response - Optional API response data (code, body, error, headers)
      */
-    function flee_funnel_log($funnel_event, $data = [], $session_id = null) {
+    function flee_funnel_log($funnel_event, $data = [], $session_id = null, $api_response = null) {
         if (!$session_id) {
             $session_id = session_id() ?: 'NO_SESSION';
         }
@@ -49,6 +50,30 @@ if (!function_exists('flee_funnel_log')) {
             'customer' => $customer_details,
             'data' => $data
         ];
+
+        // If API response is provided, add it to the log entry
+        if ($api_response !== null) {
+            $api_response_clean = [];
+            if (isset($api_response['code'])) {
+                $api_response_clean['http_code'] = $api_response['code'];
+            }
+            if (isset($api_response['body'])) {
+                // Try to decode JSON response body
+                $body = $api_response['body'];
+                if (is_string($body)) {
+                    $decoded = json_decode($body, true);
+                    $api_response_clean['body'] = $decoded !== null ? $decoded : $body;
+                } else {
+                    $api_response_clean['body'] = $body;
+                }
+            }
+            if (isset($api_response['error']) && !empty($api_response['error'])) {
+                $api_response_clean['error'] = $api_response['error'];
+            }
+            if (!empty($api_response_clean)) {
+                $log_entry['api_response'] = $api_response_clean;
+            }
+        }
 
         $log_line = json_encode($log_entry) . "\n";
 

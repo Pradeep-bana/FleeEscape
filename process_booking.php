@@ -175,6 +175,9 @@ function buildDisplayBreakdown(array $item, array $holdData, array $bookingData)
 header("Content-Type: application/json");
 
 try {
+  // Initialize errors early to prevent undefined variable in catch block
+  $errors = [];
+  
   $input = json_decode(file_get_contents('php://input'), true);
   $nonce = $input['sourceId'] ?? null; 
   $currency = 'USD';
@@ -316,13 +319,27 @@ try {
     $event_ids = array_map(function($item) { return $item['event_id'] ?? null; }, $cartItems);
     $event_ids = array_filter($event_ids); // Remove nulls
     
+    // Prepare Square API response data for logging
+    $squareApiResponse = [
+        'code' => 200,
+        'body' => [
+            'payment_id' => $paymentObj->getId(),
+            'payment_status' => $paymentObj->getStatus(),
+            'amount_money' => $paymentObj->getAmountMoney() ? $paymentObj->getAmountMoney()->getAmount() : null,
+            'card_details' => [
+                'card_brand' => $cardInfo->getCardBrand(),
+                'card_last_4' => $cardInfo->getLast4()
+            ]
+        ]
+    ];
+    
     flee_funnel_log('PAYMENT_SUBMITTED', [
         'event_ids' => array_values($event_ids),
         'payment_id' => $paymentObj->getId(),
         'payment_status' => $paymentObj->getStatus(),
         'total_amount' => $totalAmountCents / 100,
         'items_count' => count($cartItems)
-    ]);
+    ], null, $squareApiResponse);
 
     $paymentId = $paymentObj->getId();
     $cardInfo = $paymentObj->getCardDetails()->getCard();
@@ -346,7 +363,6 @@ try {
 
   $bookedList = [];
   $bookedSummary = [];
-  $errors = [];
 
   // --- MODIFIED CALL BOOKEO FUNCTION ---
   function callBookeo($payload, $key, $secret) {
@@ -631,13 +647,19 @@ try {
   $event_ids_final = array_map(function($item) { return $item['event_id'] ?? null; }, $cartItems);
   $event_ids_final = array_filter($event_ids_final);
   
+  // Prepare Bookeo API response data for logging (last successful booking)
+  $bookeoApiResponse = [
+      'code' => 201,
+      'body' => json_decode($bookedList[0] ?? '{}', true) // Get the first booking response
+  ];
+  
   flee_funnel_log('BOOKING_CONFIRMED', [
       'booking_number' => $bookingNum,
       'event_ids' => array_values($event_ids_final),
       'items_count' => count($bookedSummary['items'] ?? []),
       'total_price' => $bookedSummary['totalPrice'] ?? 0,
       'booking_ids' => $bookedList
-  ]);
+  ], null, $bookeoApiResponse);
 
   echo json_encode(["status" => "success", "redirectUrl" => "booking-confirmation.php"]);
 
@@ -654,10 +676,21 @@ try {
     $failed_event_ids = array_filter($failed_event_ids);
   }
 
+  // Prepare error API response data for logging
+  $errorApiResponse = [
+      'code' => 400,
+      'body' => [
+          'error' => $e->getMessage(),
+          'failed_bookings' => count($errors),
+          'error_details' => $errors
+      ]
+  ];
+
   flee_funnel_log('BOOKING_FAILED', [
       'event_ids' => array_values($failed_event_ids),
-      'error_message' => $e->getMessage()
-  ]);
+      'error_message' => $e->getMessage(),
+      'error_count' => count($errors)
+  ], null, $errorApiResponse);
 
   echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 } 

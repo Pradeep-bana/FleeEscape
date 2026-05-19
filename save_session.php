@@ -512,7 +512,7 @@ if ($allSuccess && $anySuccessfulBookings && !$paymentRequiredOverall) {
 
     if (isset($_SESSION['giftCode'])) unset($_SESSION['giftCode']);
 
-    $redirectUrl = "<?= BASE_URL ?>booking-confirmation.php";
+    $redirectUrl = BASE_URL."booking-confirmation.php";
 } else {
     // If partial failure or payment required
     $payment_required = true;

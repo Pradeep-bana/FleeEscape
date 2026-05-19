@@ -122,15 +122,6 @@ foreach ($_SESSION['cart'] as &$cartItem) {
 }
 unset($cartItem);
 
-// Track addon addition
-flee_funnel_log('ADDON_ADDED', [
-    'event_id' => $row['event_id'] ?? null,
-    'addon_name' => $addon_name,
-    'addon_price' => $addon_price,
-    'addon_qty' => $qty,
-    'game_id' => $game_id
-]);
-
 echo json_encode(["success" => true, "message" => "Addon updated with tax"]);
 exit;
 ?>

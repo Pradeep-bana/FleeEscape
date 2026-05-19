@@ -555,15 +555,7 @@ if (!function_exists('flee_cart_insert_row')) {
             ':total_additional_price' => $data['total_additional_price'],
         ]);
 
-        // Track add to cart event
-        flee_funnel_log('ADD_TO_CART', [
-            'event_id' => $data['event_id'],
-            'game_id' => $data['game_id'],
-            'game_name' => $data['game_name'],
-            'price' => $data['price'],
-            'guests' => $data['guests'],
-            'slot' => $data['slot']
-        ]);
+        // Note: ADD_TO_CART logging happens in flee_cart_handle_add after hold is successfully created
     }
 }
 
@@ -687,6 +679,22 @@ if (!function_exists('flee_cart_handle_add')) {
         // ===================================================
 
         $cartRows = flee_apply_sync_session_cart($pdo, session_id());
+
+        // Log ADD_TO_CART event with hold API response data
+        flee_funnel_log('ADD_TO_CART', [
+            'event_id' => $eventId,
+            'game_id' => $gameId,
+            'game_name' => $gameName,
+            'price' => $row['price'],
+            'guests' => $row['guests'],
+            'slot' => $slot,
+            'hold_status' => $refreshResult['status'] ?? 'unknown',
+            'valid_code' => $refreshResult['valid_code'] ?? '',
+            'is_hold_refreshed' => $refreshResult['isHoldRefreshed'] ?? false
+        ], null, [
+            'code' => 200,
+            'body' => $refreshResult
+        ]);
 
         return [
             'status' => 'success',
