@@ -723,6 +723,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const toggleBtn = document.querySelector(".choose_all_page_resposnive_toggle");
   const sidebar = document.querySelector(".choose-adventure .col-md-3");
 
+  if (!toggleBtn || !sidebar) return;
+
   toggleBtn.addEventListener("click", function() {
     sidebar.classList.toggle("choose-adventure_game");
   });

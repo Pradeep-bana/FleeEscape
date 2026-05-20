@@ -281,6 +281,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- ===============video========================= -->
 <script>
+window.stopLocalVideo = window.stopLocalVideo || function(trigger) {
+    var scope = trigger && typeof trigger.closest === 'function' ? trigger.closest('.modal') : null;
+    var videos = scope ? scope.querySelectorAll('video') : document.querySelectorAll('.modal.show video, video');
+
+    videos.forEach(function(video) {
+        video.pause();
+        video.currentTime = 0;
+    });
+};
+</script>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const videoContainer = document.querySelector('.video_play_add');
     if (!videoContainer) return; 

@@ -166,10 +166,13 @@ function loadCart() {
 }
 
 function loadAddons() {
+    const addonsSection = document.querySelector(".add_on_section");
+    if (!addonsSection) return Promise.resolve();
+
     fetch("load_addons.php")
         .then(res => res.text())
         .then(html => {
-            document.querySelector(".add_on_section").innerHTML = html;
+            addonsSection.innerHTML = html;
         });
 }
 

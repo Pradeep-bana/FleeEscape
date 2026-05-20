@@ -1,9 +1,11 @@
 function checkSelection() {
     const selectedTime = document.querySelector(".Boo_Prison_Escape_time-slot:checked");
-    const guestSelect = document.querySelector(".Boo_Prison_Escape_select").value;
+    const guestSelect = document.querySelector(".Boo_Prison_Escape_select");
     const button = document.querySelector(".continue_nex_step");
 
-    if (selectedTime && guestSelect !== "") {
+    if (!guestSelect || !button) return;
+
+    if (selectedTime && guestSelect.value !== "") {
         button.classList.remove("disabled");
         button.removeAttribute("disabled");
     } else {
@@ -23,7 +25,10 @@ document.querySelectorAll(".Boo_Prison_Escape_time-slot").forEach(input => {
     });
 });
 
-document.querySelector(".Boo_Prison_Escape_select").addEventListener("change", checkSelection);
+const escapeRoomGuestSelect = document.querySelector(".Boo_Prison_Escape_select");
+if (escapeRoomGuestSelect) {
+    escapeRoomGuestSelect.addEventListener("change", checkSelection);
+}
 
 
 
@@ -44,6 +49,8 @@ function getTodayInLosAngeles() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    if (!document.querySelector("#Book-Prison-Date") || typeof flatpickr !== "function") return;
+
     flatpickr("#Book-Prison-Date", {
         inline: true,
         dateFormat: "Y-m-d",
