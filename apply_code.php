@@ -490,7 +490,18 @@ if (!function_exists('run_apply_code')) {
                         $voucherAmt += (float)($v['amount'] ?? 0);
                     }
                 }
-                $totalActualDiscount += ($promoAmt + $voucherAmt);
+                
+                // Calculate full original price before any discounts
+                $rawBaseTotal = (float)($item['total'] ?? 0) + (float)($item['addon_subtotal'] ?? 0) + (float)($item['total_additional_price'] ?? 0);
+                
+                // Fallback: Bookeo sometimes puts totalPayable at the root or inside price
+                $payable = (float)($oldJson['price']['totalPayable']['amount'] ?? ($oldJson['totalPayable']['amount'] ?? ($oldJson['price']['totalNet']['amount'] ?? 0)));
+                
+                // Implicit discount handles Bookeo Prepaid Passes which zero out the price instead of listing a discount array
+                $implicitDiscount = $rawBaseTotal - $payable;
+                
+                $itemActualDiscount = max($implicitDiscount, ($promoAmt + $voucherAmt));
+                $totalActualDiscount += $itemActualDiscount;
 
                 $itemsUpdated++;
                 $voucherPool = [];
@@ -634,7 +645,18 @@ if (!function_exists('run_apply_code')) {
                     $voucherAmt += (float)($v['amount'] ?? 0);
                 }
             }
-            $totalActualDiscount += ($promoAmt + $voucherAmt);
+            
+            // Calculate full original price before any discounts
+            $rawBaseTotal = (float)($item['total'] ?? 0) + (float)($item['addon_subtotal'] ?? 0) + (float)($item['total_additional_price'] ?? 0);
+            
+            // Fallback: Bookeo sometimes puts totalPayable at the root or inside price
+            $payable = (float)($finalData['price']['totalPayable']['amount'] ?? ($finalData['totalPayable']['amount'] ?? ($finalData['price']['totalNet']['amount'] ?? 0)));
+            
+            // Implicit discount handles Bookeo Prepaid Passes which zero out the price instead of listing a discount array
+            $implicitDiscount = $rawBaseTotal - $payable;
+            
+            $itemActualDiscount = max($implicitDiscount, ($promoAmt + $voucherAmt));
+            $totalActualDiscount += $itemActualDiscount;
             
             // Figure out what actually worked for our records
             $appliedPromo = $payload['promotionCodeInput'] ?? null;

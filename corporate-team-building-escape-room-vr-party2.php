@@ -55,6 +55,18 @@ $benefits = [
     $pageData['benefit2'] ?? '98% Satisfaction Rate',
     $pageData['benefit3'] ?? 'Fortune 500 Trusted'
 ];
+
+$heroHeading = trim(($white_heading ?? '') . ' ' . ($blue_heading ?? ''));
+$heroText = $sub_content ?? '';
+$heroImages = [];
+
+if (!empty($pageData['thumbnail'])) {
+    $heroImages = array_filter(array_map('trim', explode(',', $pageData['thumbnail'])));
+}
+
+if (empty($heroImages) && !empty($pageData['party_thumbnail'])) {
+    $heroImages[] = $pageData['party_thumbnail'];
+}
 ?>
 <section class="Unforgettable_Birthday_section">
     <div class="container">
@@ -66,16 +78,16 @@ $benefits = [
 
                     <!-- Dynamic Title -->
                     <h1 class="Unforgettable_Birthday_title">
-                        <?= htmlspecialchars($data['heading']) ?>
+                        <?= htmlspecialchars($heroHeading ?: 'Corporate Team Building in Escape Rooms & VR') ?>
                     </h1>
 
                     <!-- Dynamic Text -->
                     <p class="Unforgettable_Birthday_text">
-                        <?= nl2br(htmlspecialchars($data['sub_content'])) ?>
+                        <?= nl2br(htmlspecialchars($heroText ?: 'Transform your team dynamics with our immersive escape room challenges and virtual reality experiences.')) ?>
                     </p>
 
                     <div class="all_button_main_header" style="background-size: cover; background-repeat: no-repeat;">
-                        <a href="javascript:void(0)" class="bg_bnt_custom bg_bnt_custom_tran scrollToParty">Book Birthday Party</a>
+                        <a href="#BuildingPackage" class="bg_bnt_custom bg_bnt_custom_tran">View Packages</a>
                     </div>
                 </div>
             </div>
@@ -86,23 +98,51 @@ $benefits = [
                     <div class="Unforgettable_slides">
 
                         <!-- Dynamic Slider Images -->
-                        <?php if (!empty($sliderImages)): ?>
-                            <?php foreach ($sliderImages as $index => $img): ?>
+                        <?php if (!empty($heroImages)): ?>
+                            <?php foreach ($heroImages as $index => $img): ?>
                                 <img src="admin/<?= htmlspecialchars($img) ?>"  
                                      <?php echo ($index === 0) ? 'fetchpriority="high"' : 'loading="lazy"'; ?> 
                                      decoding="async"
-                                     alt="Birthday Party Image <?= $index + 1 ?>">
+                                     alt="Corporate team building image <?= $index + 1 ?>">
                             <?php endforeach; ?>
                         <?php endif; ?>
 
                     </div>
 
                     <!-- Arrows -->
-                    <button class="slider-btn prev">&#10094;</button>
-                    <button class="slider-btn next">&#10095;</button>
+                    <?php if (count($heroImages) > 1): ?>
+                        <button class="slider-btn prev">&#10094;</button>
+                        <button class="slider-btn next">&#10095;</button>
+                    <?php endif; ?>
                 </div>
             </div>
 
+            <!-- Features Row (kept static as per your request) -->
+            <div class="Corporate_Team_Building_content_Features_box">
+                <div class="Corporate_Team_Building_content_Features_box_items">
+                    <i class="bi bi-brain"></i>
+                    <p>Critical Thinking</p>
+                </div>
+                <div class="Corporate_Team_Building_content_Features_box_items">
+                    <i class="bi bi-people"></i>
+                    <p>Team Collaboration</p>
+                </div>
+                <div class="Corporate_Team_Building_content_Features_box_items">
+                    <i class="bi bi-trophy"></i>
+                    <p>Achievement</p>
+                </div>
+                <div class="Corporate_Team_Building_content_Features_box_items">
+                    <i class="bi bi-lightning-charge"></i>
+                    <p>Innovation</p>
+                </div>
+            </div>
+
+            <!-- Bottom Stats -->
+            <div class="row mt-4 text-secondary Corporate_Team_Building_4_cont">
+                <?php foreach ($benefits as $benefit): ?>
+                    <div class="col-md-4">✔ <?php echo htmlspecialchars($benefit); ?></div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </section>
@@ -918,6 +958,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Run again after a short delay to override any delayed global scripts
     setTimeout(fixEnquiryDate, 1200);
+});
+</script>
+
+<!-- Unforgettable_Birthday_slider -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelector(".Unforgettable_Birthday_slider .Unforgettable_slides");
+    const images = document.querySelectorAll(".Unforgettable_Birthday_slider img");
+    const prevBtn = document.querySelector(".slider-btn.prev");
+    const nextBtn = document.querySelector(".slider-btn.next");
+
+    if (!slides || images.length <= 1 || !prevBtn || !nextBtn) return;
+
+    let index = 0;
+
+    function showSlide(i) {
+        if (i < 0) index = images.length - 1;
+        else if (i >= images.length) index = 0;
+        else index = i;
+
+        slides.style.transform = `translateX(${-index * 100}%)`;
+    }
+
+    prevBtn.addEventListener("click", () => showSlide(index - 1));
+    nextBtn.addEventListener("click", () => showSlide(index + 1));
+    setInterval(() => {
+        showSlide(index + 1);
+    }, 3000);
 });
 </script>
 

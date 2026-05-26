@@ -2,8 +2,8 @@
 include('link.php');
 
 include('admin/db.php'); 
-// include('config.php');
 require_once('includes/booking_funnel.php');
+// include('config.php');
 
 // Get current session ID
 $sid = session_id();
@@ -1191,7 +1191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.history.pushState({
             step: stepSlug
         }, "", newUrl);
-
+        
         // Log step reached event for funnel tracking
         logFunnelStep(currentStep + 1);
     }
@@ -2651,8 +2651,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     let $btn = $(this);
 
-    // CLEAR OLD MESSAGES
+    // CLEAR OLD MESSAGE
     $("#booking-response").html("");
+
     document.querySelectorAll(".checkbox-error").forEach(el => el.remove());
 
     clearError();
@@ -2660,60 +2661,63 @@ document.addEventListener("DOMContentLoaded", async () => {
     // FIRST ⇒ Load updated session (Including Add-ons)
     await refreshSessionValues();
 
-    $btn.prop("disabled", true).text("Processing...");
+$btn.prop("disabled", true).text("Processing...");
 
-    try {
-        const codeSpan = document.querySelector(".code");
-        const codeValue = codeSpan ? codeSpan.textContent.trim() : "";
-        const hasGiftCode = (codeValue !== "FIRSTRESPONDERS2025" && codeValue !== "");
+try {
+    const codeSpan = document.querySelector(".code");
+    const codeValue = codeSpan ? codeSpan.textContent.trim() : "";
+    const hasGiftCode = (codeValue !== "FIRSTRESPONDERS2025" && codeValue !== "");
 
-        // STEP 1: VALIDATE & TOKENIZE CARD FIRST
-        const token = await tokenize(card);
+    let token = null;
+    const isZeroBalance = (window.bookeoTotals && window.bookeoTotals.totalPayable === 0);
 
-        // If card validation fails, show error and stop
+    if (isZeroBalance) {
+        // Bypass Square tokenization entirely for $0 balances
+        token = "zero_balance_bypass"; 
+    } else {
+        // TOKENIZE CARD
+        token = await tokenize(card);
+
+        // Agar token fail ho gaya
         if (!token) {
             showError("Invalid card. Please use a valid card number."); // friendly message
-            $btn.prop("disabled", false).text("Continue");
             return; // ⛔ Stop process here
         }
-
-        // STEP 2: VALIDATE CHECKBOX (only if card is valid)
-        if (!$("#agreeTerms").is(":checked")) {
-            // Show error near the checkbox
-            const agreeBox = document.querySelector(".agree-box");
-            if (agreeBox) {
-                const errorDiv = document.createElement("div");
-                errorDiv.className = "checkbox-error";
-                errorDiv.style.cssText = "color:red; padding:10px; font-weight:600; margin-top:10px; border:1px solid red; border-radius:4px; background-color: rgba(255,0,0,0.1);";
-                errorDiv.textContent = "Please agree to the terms before continuing.";
-                agreeBox.appendChild(errorDiv);
-
-                // Scroll & focus to the checkbox
-                agreeBox.scrollIntoView({ behavior: "smooth", block: "center" });
-                document.getElementById("agreeTerms").focus();
-            } else {
-                // Fallback if agree-box not found
-                showError("Please agree to the terms before continuing.");
-            }
-
-            $btn.prop("disabled", false).text("Continue");
-            return; // Stop process here
-        }
-
-        // ✅ Only if both card AND checkbox are valid, process payment
-        await processFinalPayment(token);
-
-    } catch (err) {
-        // Catch any other errors
-        showError(err.message || "Payment error occurred."); 
-        $btn.prop("disabled", false).text("Continue");
-        return; // ⛔ Stop here
-    } finally {
-        // Reset button state if not already done above
-        if ($btn.prop("disabled")) {
-            $btn.prop("disabled", false).text("Continue");
-        }
     }
+
+    // STEP 2: VALIDATE CHECKBOX (only if card is valid or bypassed)
+    if (!$("#agreeTerms").is(":checked")) {
+        // Show error near the checkbox
+        const agreeBox = document.querySelector(".agree-box");
+        if (agreeBox) {
+            const errorDiv = document.createElement("div");
+            errorDiv.className = "checkbox-error";
+            errorDiv.style.cssText = "color:red; padding:10px; font-weight:600; margin-top:10px; border:1px solid red; border-radius:4px; background-color: rgba(255,0,0,0.1);";
+            errorDiv.textContent = "Please agree to the terms before continuing.";
+            agreeBox.appendChild(errorDiv);
+
+            // Scroll & focus to the checkbox
+            agreeBox.scrollIntoView({ behavior: "smooth", block: "center" });
+            document.getElementById("agreeTerms").focus();
+        } else {
+            // Fallback if agree-box not found
+            showError("Please agree to the terms before continuing.");
+        }
+
+        $btn.prop("disabled", false).text("Continue");
+        return; // Stop process here
+    }
+        
+    await processFinalPayment(token);
+
+} catch (err) {
+    // Catch any other errors
+    showError(err.message || "Payment error occurred."); 
+    return; // ⛔ Stop here
+} finally {
+    // Reset button state
+    $btn.prop("disabled", false).text("Continue");
+}
 
     // await refreshSessionValues();
 
@@ -2751,7 +2755,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
     });
-
 
     } catch (err) {
         silentlyLogToServer(`General Init Failed: ${err.message}`, 'Square_Main');
@@ -3358,6 +3361,7 @@ $(document).on("change", ".qty-input", function () {
     let eventId = $(this).data("event");
     let gameId = $(this).data("game");
     let newQty = $(this).val();
+    document.getElementById("stepLoader").style.display = "flex";
 
     $.ajax({
         url: "update_qty_hold.php",
@@ -3370,10 +3374,19 @@ $(document).on("change", ".qty-input", function () {
         },
         success: function (response) {
             console.log("Hold Updated:", response);
-
+    
             window.syncPromoUI().then(() => {
-                $("#summary-output").load("cart_view.php");
-            })
+                $("#summary-output").load("cart_view.php", function() {
+                    document.getElementById("stepLoader").style.display = "none";
+                });
+            }).catch((err) => {
+                console.error("Promo UI Sync failed:", err);
+                document.getElementById("stepLoader").style.display = "none";
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX failed:", error);
+            document.getElementById("stepLoader").style.display = "none";
         }
     });
 });
@@ -3973,6 +3986,8 @@ $(document).on('change', '.update-additional-guest', function() {
 
     // Optional: Visual feedback (disable input while loading)
     $select.prop('disabled', true);
+    
+    document.getElementById("stepLoader").style.display = "flex";
 
     $.ajax({
         url: 'update_additional_guests.php',
@@ -3996,6 +4011,10 @@ $(document).on('change', '.update-additional-guest', function() {
             alert("Network error.");
             $select.prop('disabled', false);
         }
+        
+    }).always(function() {
+        $select.prop('disabled', false);
+        document.getElementById("stepLoader").style.display = "none";
     });
 });
 
@@ -4007,6 +4026,7 @@ $(document).on('change', '.update-addon-qty', async function() {
 
     // Disable input while loading to prevent double clicks
     $select.prop('disabled', true);
+    document.getElementById("stepLoader").style.display = "flex";
 
     try {
         // 1. Update the database
@@ -4048,6 +4068,9 @@ $(document).on('change', '.update-addon-qty', async function() {
         console.error(err);
         alert("Network error.");
         $select.prop('disabled', false);
+    } finally {
+        $select.prop('disabled', false);
+        document.getElementById("stepLoader").style.display = "none";
     }
 });
 
@@ -4202,4 +4225,52 @@ $(document).on('click', '.remove-additional-guest-btn', function() {
 //         }
 //     });
 // });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Function to check balance and toggle payment UI
+    function checkBalanceAndTogglePayment() {
+        let totalsDiv = document.getElementById("bookeo-totals");
+        if (totalsDiv && totalsDiv.dataset.totals) {
+            try {
+                let totals = JSON.parse(totalsDiv.dataset.totals);
+                window.bookeoTotals = totals; // Ensure global var is updated
+                
+                // Target the Credit Card UI elements
+                let payText = document.querySelector('.payment_section_tab p');
+                let payHeading = document.querySelector('.payment_section_tab h2');
+                let payInput = document.querySelector('.payment_cardinputs_tab');
+                
+                // Hide if $0, show if there's a balance
+                if (totals.totalPayable === 0) {
+                    if (payText) payText.style.display = 'none';
+                    if (payInput) payInput.style.display = 'none'; 
+                    if (payHeading) payHeading.style.display = 'none'; 
+                } else {
+                    if (payText) payText.style.display = 'block';
+                    if (payInput) payInput.style.display = 'block';
+                    if (payHeading) payHeading.style.display = 'block';
+                }
+            } catch(e) {
+                console.error("Error parsing totals:", e);
+            }
+        }
+    }
+
+    // Run on initial page load (with a slight delay to allow cart to fetch)
+    setTimeout(checkBalanceAndTogglePayment, 500);
+    setTimeout(checkBalanceAndTogglePayment, 1500);
+
+    // Watch the cart container for ANY changes (AJAX, fetch, reloads)
+    let targetNode = document.getElementById("summary-output");
+    if (targetNode) {
+        let observer = new MutationObserver(function(mutationsList, observer) {
+            // Whenever the cart HTML changes, check the balance again
+            checkBalanceAndTogglePayment();
+        });
+        
+        // Start observing
+        observer.observe(targetNode, { childList: true, subtree: true });
+    }
+});
 </script>

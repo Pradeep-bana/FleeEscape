@@ -140,7 +140,43 @@ $sliderImages = array_filter(array_map('trim', explode(',', $data['thumbnail']))
         </div>
     </div>
 </section>
+<?php
+// Use the data already fetched at the very top of the file
+$party_thumbnail = !empty($partyPageData['party_thumbnail']) ? $partyPageData['party_thumbnail'] : './img/vr/video_img.webp';
+$video_link      = !empty($partyPageData['party_video']) ? $partyPageData['party_video'] : '#'; 
+?>
+<section>
+    <div class="container">
+        <div class="vr_game_video_modal">
+            <img src="admin/<?php echo htmlspecialchars($party_thumbnail); ?>" loading="lazy" alt="">
+            <div class="vr_game_video_modal_content" data-bs-toggle="modal" data-bs-target="#videoModal">
+                <i class="fa-regular fa-circle-play"></i>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- === Video Modal ====== -->
+<div class="modal fade blur-modal" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel"><?= $videoModalTitle = 'Corporate Team Building'; ?></h5>
+                <button type="button" class="btn btn-sm close-btn" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="stopLocalVideo()">X</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9">
+                    <!-- muted -->
+                    <video id="localVideo" controls>
+                        <source src="admin/<?php echo htmlspecialchars($video_link); ?>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Corporate Birthday Parties Section -->
 <section class="Corporate_Team_Building_section py-5" id="Parties_bir">
